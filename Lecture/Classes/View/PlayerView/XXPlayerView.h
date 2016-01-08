@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class CZMusic;
 @interface XXPlayerView : UIView
 + (instancetype)playerView;
+
+@property(nonatomic,strong)CZMusic *playingMusic;//当前播放的音乐
+
+/*
+ *播放状态 默认暂停状态
+ */
+@property(assign,nonatomic,getter=isPlaying)BOOL playing;
 @end

@@ -7,8 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C55EC1C3FA7030002514D /* Assets.xcassets */; };
+		2D1C55F91C3FAA450002514D /* CZMusicTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C55F71C3FAA450002514D /* CZMusicTool.m */; };
+		2D1C55FC1C3FAA4E0002514D /* CZMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C55FB1C3FAA4E0002514D /* CZMusic.m */; };
+		2D1C55FE1C3FAB900002514D /* songs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C55FD1C3FAB900002514D /* songs.plist */; };
+		2D1C56131C3FABB10002514D /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56011C3FABB10002514D /* MJArgument.m */; };
+		2D1C56141C3FABB10002514D /* MJIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56041C3FABB10002514D /* MJIvar.m */; };
+		2D1C56151C3FABB10002514D /* MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56061C3FABB10002514D /* MJMember.m */; };
+		2D1C56161C3FABB10002514D /* MJMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56081C3FABB10002514D /* MJMethod.m */; };
+		2D1C56171C3FABB10002514D /* MJType.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C560A1C3FABB10002514D /* MJType.m */; };
+		2D1C56181C3FABB10002514D /* MJTypeEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C560C1C3FABB10002514D /* MJTypeEncoding.m */; };
+		2D1C56191C3FABB10002514D /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C560E1C3FABB10002514D /* NSObject+MJCoding.m */; };
+		2D1C561A1C3FABB10002514D /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56101C3FABB10002514D /* NSObject+MJKeyValue.m */; };
+		2D1C561B1C3FABB10002514D /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56121C3FABB10002514D /* NSObject+MJMember.m */; };
+		2D1C56251C3FAFDF0002514D /* Let It Go.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C561D1C3FAFDF0002514D /* Let It Go.mp3 */; };
+		2D1C56261C3FAFDF0002514D /* 小苹果.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C561E1C3FAFDF0002514D /* 小苹果.mp3 */; };
+		2D1C56271C3FAFDF0002514D /* 愿得一人心(剧场版).lrc in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C561F1C3FAFDF0002514D /* 愿得一人心(剧场版).lrc */; };
+		2D1C56281C3FAFDF0002514D /* 愿得一人心(剧场版).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C56201C3FAFDF0002514D /* 愿得一人心(剧场版).mp3 */; };
+		2D1C56291C3FAFDF0002514D /* 昨迟人.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C56211C3FAFDF0002514D /* 昨迟人.mp3 */; };
+		2D1C562A1C3FAFDF0002514D /* 泡沫.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C56221C3FAFDF0002514D /* 泡沫.mp3 */; };
+		2D1C562B1C3FAFDF0002514D /* 爱莫忘.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C56231C3FAFDF0002514D /* 爱莫忘.mp3 */; };
+		2D1C562C1C3FAFDF0002514D /* 爸爸去哪儿.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C56241C3FAFDF0002514D /* 爸爸去哪儿.mp3 */; };
+		2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C562E1C3FB45F0002514D /* NSString+CZ.m */; };
+		2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56301C3FB45F0002514D /* UIButton+CZ.m */; };
+		2D1C56351C3FB45F0002514D /* UIImage+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56321C3FB45F0002514D /* UIImage+CZ.m */; };
 		2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01E51C3EA3910056B10C /* Main.storyboard */; };
-		2D1D01E91C3EA3910056B10C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01E81C3EA3910056B10C /* Assets.xcassets */; };
 		2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01EA1C3EA3910056B10C /* LaunchScreen.storyboard */; };
 		2D1D01F71C3EA3910056B10C /* LectureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D01F61C3EA3910056B10C /* LectureTests.m */; };
 		2D1D02021C3EA3910056B10C /* LectureUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D02011C3EA3910056B10C /* LectureUITests.m */; };
@@ -39,9 +62,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D1C55EC1C3FA7030002514D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D1C55F61C3FAA450002514D /* CZMusicTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZMusicTool.h; sourceTree = "<group>"; };
+		2D1C55F71C3FAA450002514D /* CZMusicTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZMusicTool.m; sourceTree = "<group>"; };
+		2D1C55F81C3FAA450002514D /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		2D1C55FA1C3FAA4E0002514D /* CZMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZMusic.h; sourceTree = "<group>"; };
+		2D1C55FB1C3FAA4E0002514D /* CZMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZMusic.m; sourceTree = "<group>"; };
+		2D1C55FD1C3FAB900002514D /* songs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = songs.plist; sourceTree = "<group>"; };
+		2D1C56001C3FABB10002514D /* MJArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJArgument.h; sourceTree = "<group>"; };
+		2D1C56011C3FABB10002514D /* MJArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJArgument.m; sourceTree = "<group>"; };
+		2D1C56021C3FABB10002514D /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		2D1C56031C3FABB10002514D /* MJIvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJIvar.h; sourceTree = "<group>"; };
+		2D1C56041C3FABB10002514D /* MJIvar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJIvar.m; sourceTree = "<group>"; };
+		2D1C56051C3FABB10002514D /* MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMember.h; sourceTree = "<group>"; };
+		2D1C56061C3FABB10002514D /* MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMember.m; sourceTree = "<group>"; };
+		2D1C56071C3FABB10002514D /* MJMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMethod.h; sourceTree = "<group>"; };
+		2D1C56081C3FABB10002514D /* MJMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMethod.m; sourceTree = "<group>"; };
+		2D1C56091C3FABB10002514D /* MJType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJType.h; sourceTree = "<group>"; };
+		2D1C560A1C3FABB10002514D /* MJType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJType.m; sourceTree = "<group>"; };
+		2D1C560B1C3FABB10002514D /* MJTypeEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTypeEncoding.h; sourceTree = "<group>"; };
+		2D1C560C1C3FABB10002514D /* MJTypeEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTypeEncoding.m; sourceTree = "<group>"; };
+		2D1C560D1C3FABB10002514D /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		2D1C560E1C3FABB10002514D /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		2D1C560F1C3FABB10002514D /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		2D1C56101C3FABB10002514D /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		2D1C56111C3FABB10002514D /* NSObject+MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJMember.h"; sourceTree = "<group>"; };
+		2D1C56121C3FABB10002514D /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
+		2D1C561D1C3FAFDF0002514D /* Let It Go.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Let It Go.mp3"; sourceTree = "<group>"; };
+		2D1C561E1C3FAFDF0002514D /* 小苹果.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "小苹果.mp3"; sourceTree = "<group>"; };
+		2D1C561F1C3FAFDF0002514D /* 愿得一人心(剧场版).lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "愿得一人心(剧场版).lrc"; sourceTree = "<group>"; };
+		2D1C56201C3FAFDF0002514D /* 愿得一人心(剧场版).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "愿得一人心(剧场版).mp3"; sourceTree = "<group>"; };
+		2D1C56211C3FAFDF0002514D /* 昨迟人.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "昨迟人.mp3"; sourceTree = "<group>"; };
+		2D1C56221C3FAFDF0002514D /* 泡沫.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "泡沫.mp3"; sourceTree = "<group>"; };
+		2D1C56231C3FAFDF0002514D /* 爱莫忘.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "爱莫忘.mp3"; sourceTree = "<group>"; };
+		2D1C56241C3FAFDF0002514D /* 爸爸去哪儿.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "爸爸去哪儿.mp3"; sourceTree = "<group>"; };
+		2D1C562D1C3FB45F0002514D /* NSString+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CZ.h"; sourceTree = "<group>"; };
+		2D1C562E1C3FB45F0002514D /* NSString+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CZ.m"; sourceTree = "<group>"; };
+		2D1C562F1C3FB45F0002514D /* UIButton+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CZ.h"; sourceTree = "<group>"; };
+		2D1C56301C3FB45F0002514D /* UIButton+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CZ.m"; sourceTree = "<group>"; };
+		2D1C56311C3FB45F0002514D /* UIImage+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CZ.h"; sourceTree = "<group>"; };
+		2D1C56321C3FB45F0002514D /* UIImage+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CZ.m"; sourceTree = "<group>"; };
 		2D1D01D91C3EA3910056B10C /* Lecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1D01E61C3EA3910056B10C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2D1D01E81C3EA3910056B10C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1D01EB1C3EA3910056B10C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D1D01ED1C3EA3910056B10C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1D01F21C3EA3910056B10C /* LectureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LectureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +151,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D1C55F51C3FAA450002514D /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				2D1C55F81C3FAA450002514D /* Singleton.h */,
+				2D1C55F61C3FAA450002514D /* CZMusicTool.h */,
+				2D1C55F71C3FAA450002514D /* CZMusicTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		2D1C55FF1C3FABB10002514D /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2D1C56001C3FABB10002514D /* MJArgument.h */,
+				2D1C56011C3FABB10002514D /* MJArgument.m */,
+				2D1C56021C3FABB10002514D /* MJExtension.h */,
+				2D1C56031C3FABB10002514D /* MJIvar.h */,
+				2D1C56041C3FABB10002514D /* MJIvar.m */,
+				2D1C56051C3FABB10002514D /* MJMember.h */,
+				2D1C56061C3FABB10002514D /* MJMember.m */,
+				2D1C56071C3FABB10002514D /* MJMethod.h */,
+				2D1C56081C3FABB10002514D /* MJMethod.m */,
+				2D1C56091C3FABB10002514D /* MJType.h */,
+				2D1C560A1C3FABB10002514D /* MJType.m */,
+				2D1C560B1C3FABB10002514D /* MJTypeEncoding.h */,
+				2D1C560C1C3FABB10002514D /* MJTypeEncoding.m */,
+				2D1C560D1C3FABB10002514D /* NSObject+MJCoding.h */,
+				2D1C560E1C3FABB10002514D /* NSObject+MJCoding.m */,
+				2D1C560F1C3FABB10002514D /* NSObject+MJKeyValue.h */,
+				2D1C56101C3FABB10002514D /* NSObject+MJKeyValue.m */,
+				2D1C56111C3FABB10002514D /* NSObject+MJMember.h */,
+				2D1C56121C3FABB10002514D /* NSObject+MJMember.m */,
+			);
+			path = MJExtension;
+			sourceTree = "<group>";
+		};
+		2D1C561C1C3FAFDF0002514D /* MP3 */ = {
+			isa = PBXGroup;
+			children = (
+				2D1C561D1C3FAFDF0002514D /* Let It Go.mp3 */,
+				2D1C561E1C3FAFDF0002514D /* 小苹果.mp3 */,
+				2D1C561F1C3FAFDF0002514D /* 愿得一人心(剧场版).lrc */,
+				2D1C56201C3FAFDF0002514D /* 愿得一人心(剧场版).mp3 */,
+				2D1C56211C3FAFDF0002514D /* 昨迟人.mp3 */,
+				2D1C56221C3FAFDF0002514D /* 泡沫.mp3 */,
+				2D1C56231C3FAFDF0002514D /* 爱莫忘.mp3 */,
+				2D1C56241C3FAFDF0002514D /* 爸爸去哪儿.mp3 */,
+			);
+			path = MP3;
+			sourceTree = "<group>";
+		};
 		2D1D01D01C3EA3910056B10C = {
 			isa = PBXGroup;
 			children = (
@@ -121,8 +234,10 @@
 		2D1D01DC1C3EA3910056B10C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2D1C561C1C3FAFDF0002514D /* MP3 */,
+				2D1C55FD1C3FAB900002514D /* songs.plist */,
+				2D1C55EC1C3FA7030002514D /* Assets.xcassets */,
 				2D1D01E51C3EA3910056B10C /* Main.storyboard */,
-				2D1D01E81C3EA3910056B10C /* Assets.xcassets */,
 				2D1D01EA1C3EA3910056B10C /* LaunchScreen.storyboard */,
 				2D1D01ED1C3EA3910056B10C /* Info.plist */,
 				2D1D20141C3F733F0093C310 /* PrefixHeader.pch */,
@@ -155,6 +270,7 @@
 				2D1D02111C3EA74F0056B10C /* Main */,
 				2D1D021C1C3EA74F0056B10C /* Model */,
 				2D1D021D1C3EA74F0056B10C /* Temp */,
+				2D1C55F51C3FAA450002514D /* Tool */,
 				2D1D021E1C3EA74F0056B10C /* View */,
 			);
 			path = Classes;
@@ -189,6 +305,12 @@
 			children = (
 				2D1D20111C3F731D0093C310 /* UIView+Extension.h */,
 				2D1D20121C3F731D0093C310 /* UIView+Extension.m */,
+				2D1C562D1C3FB45F0002514D /* NSString+CZ.h */,
+				2D1C562E1C3FB45F0002514D /* NSString+CZ.m */,
+				2D1C562F1C3FB45F0002514D /* UIButton+CZ.h */,
+				2D1C56301C3FB45F0002514D /* UIButton+CZ.m */,
+				2D1C56311C3FB45F0002514D /* UIImage+CZ.h */,
+				2D1C56321C3FB45F0002514D /* UIImage+CZ.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -203,6 +325,7 @@
 		2D1D02141C3EA74F0056B10C /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				2D1C55FF1C3FABB10002514D /* MJExtension */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -241,6 +364,8 @@
 		2D1D021C1C3EA74F0056B10C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2D1C55FA1C3FAA4E0002514D /* CZMusic.h */,
+				2D1C55FB1C3FAA4E0002514D /* CZMusic.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,11 +507,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D1C562A1C3FAFDF0002514D /* 泡沫.mp3 in Resources */,
+				2D1C562C1C3FAFDF0002514D /* 爸爸去哪儿.mp3 in Resources */,
+				2D1C56251C3FAFDF0002514D /* Let It Go.mp3 in Resources */,
+				2D1C56261C3FAFDF0002514D /* 小苹果.mp3 in Resources */,
 				2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */,
-				2D1D01E91C3EA3910056B10C /* Assets.xcassets in Resources */,
+				2D1C56281C3FAFDF0002514D /* 愿得一人心(剧场版).mp3 in Resources */,
 				2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */,
 				2D1D022C1C3EAB170056B10C /* XXLectureViewController.xib in Resources */,
+				2D1C56271C3FAFDF0002514D /* 愿得一人心(剧场版).lrc in Resources */,
+				2D1C55FE1C3FAB900002514D /* songs.plist in Resources */,
 				2D1D20161C3F89FE0093C310 /* XXPlayerView.xib in Resources */,
+				2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */,
+				2D1C56291C3FAFDF0002514D /* 昨迟人.mp3 in Resources */,
+				2D1C562B1C3FAFDF0002514D /* 爱莫忘.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,10 +545,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D1C561B1C3FABB10002514D /* NSObject+MJMember.m in Sources */,
+				2D1C56191C3FABB10002514D /* NSObject+MJCoding.m in Sources */,
+				2D1C56141C3FABB10002514D /* MJIvar.m in Sources */,
+				2D1C56181C3FABB10002514D /* MJTypeEncoding.m in Sources */,
 				2D1D20131C3F731D0093C310 /* UIView+Extension.m in Sources */,
+				2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */,
+				2D1C56131C3FABB10002514D /* MJArgument.m in Sources */,
 				2D1D02211C3EA74F0056B10C /* AppDelegate.m in Sources */,
+				2D1C56171C3FABB10002514D /* MJType.m in Sources */,
 				2D1D022F1C3EB2C10056B10C /* XXPlayerView.m in Sources */,
+				2D1C56351C3FB45F0002514D /* UIImage+CZ.m in Sources */,
+				2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */,
 				2D1D02221C3EA74F0056B10C /* main.m in Sources */,
+				2D1C55FC1C3FAA4E0002514D /* CZMusic.m in Sources */,
+				2D1C56161C3FABB10002514D /* MJMethod.m in Sources */,
+				2D1C55F91C3FAA450002514D /* CZMusicTool.m in Sources */,
+				2D1C56151C3FABB10002514D /* MJMember.m in Sources */,
+				2D1C561A1C3FABB10002514D /* NSObject+MJKeyValue.m in Sources */,
 				2D1D022B1C3EAB170056B10C /* XXLectureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

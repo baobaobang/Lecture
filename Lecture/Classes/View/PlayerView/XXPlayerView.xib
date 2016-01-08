@@ -13,10 +13,67 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0jp-5o-Mhu" userLabel="playerToolBar">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <subviews>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="etL-8g-msJ">
+                            <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                            <animations/>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="30" y="0.0" width="219" height="31"/>
+                            </variation>
+                        </slider>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4:25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-UD-ulY">
+                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="255" y="0.0" width="30" height="30"/>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ 7:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbj-Uj-bEp">
+                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="285" y="0.0" width="35" height="30"/>
+                            </variation>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJy-12-Z7G">
+                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="playbar_playbtn_nomal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="playbar_playbtn_click"/>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                            </variation>
+                            <connections>
+                                <action selector="playBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="c9d-ml-cY6"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="etL-8g-msJ"/>
+                            <exclude reference="qL0-UD-ulY"/>
+                            <exclude reference="Cbj-Uj-bEp"/>
+                            <exclude reference="IJy-12-Z7G"/>
+                        </mask>
+                    </variation>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                         <rect key="frame" x="0.0" y="170" width="320" height="30"/>
+                        <mask key="subviews">
+                            <include reference="etL-8g-msJ"/>
+                            <include reference="qL0-UD-ulY"/>
+                            <include reference="Cbj-Uj-bEp"/>
+                            <include reference="IJy-12-Z7G"/>
+                        </mask>
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuM-kq-DNh" userLabel="pptView">
@@ -44,10 +101,15 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="playBtn" destination="IJy-12-Z7G" id="XwS-s3-hRx"/>
                 <outlet property="playerToolBar" destination="0jp-5o-Mhu" id="Zex-En-Yem"/>
                 <outlet property="pptView" destination="HuM-kq-DNh" id="exh-P4-UeL"/>
             </connections>
             <point key="canvasLocation" x="-116" y="-214"/>
         </view>
     </objects>
+    <resources>
+        <image name="playbar_playbtn_click" width="80" height="80"/>
+        <image name="playbar_playbtn_nomal" width="80" height="80"/>
+    </resources>
 </document>
