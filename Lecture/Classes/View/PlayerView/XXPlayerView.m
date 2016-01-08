@@ -176,7 +176,11 @@
     
 }
 
+#pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    // 滚动结束后是第几张ppt，就播放第几首音乐
+    self.musicIndex = self.scrollView.contentOffset.x / self.scrollView.width;
+    [self playMusic];
     
 }
 
