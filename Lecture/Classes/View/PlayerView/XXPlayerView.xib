@@ -11,14 +11,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuM-kq-DNh" userLabel="pptView">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <animations/>
-                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
-                    </variation>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0jp-5o-Mhu" userLabel="playerToolBar">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <animations/>
@@ -27,27 +19,35 @@
                         <rect key="frame" x="0.0" y="170" width="320" height="30"/>
                     </variation>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuM-kq-DNh" userLabel="pptView">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <animations/>
+                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                    </variation>
+                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="subviews">
-                    <exclude reference="HuM-kq-DNh"/>
                     <exclude reference="0jp-5o-Mhu"/>
+                    <exclude reference="HuM-kq-DNh"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
-                    <include reference="HuM-kq-DNh"/>
                     <include reference="0jp-5o-Mhu"/>
+                    <include reference="HuM-kq-DNh"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="playerToolBar" destination="0jp-5o-Mhu" id="Zex-En-Yem"/>
                 <outlet property="pptView" destination="HuM-kq-DNh" id="exh-P4-UeL"/>
             </connections>
-            <point key="canvasLocation" x="-22" y="-55"/>
+            <point key="canvasLocation" x="-116" y="-214"/>
         </view>
     </objects>
 </document>
