@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "XXLectureViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    XXLectureViewController *rootVc = [[XXLectureViewController alloc] init];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rootVc];
+    
+    window.rootViewController = nav;
+    
+    [window makeKeyAndVisible];
+    self.window = window;
     return YES;
 }
 

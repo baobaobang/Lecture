@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  XXPlayerView.h
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/7.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-
+@interface XXPlayerView : UIView
++ (instancetype)playerView;
 @end
-
