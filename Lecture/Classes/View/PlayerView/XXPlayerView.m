@@ -104,7 +104,7 @@
     [self.timeSlider setThumbImage:scaledSliderImage forState:UIControlStateNormal];
     
     // 开启定时器
-    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     
 }
 
@@ -216,13 +216,18 @@
 
 -(void)next{
     
-    //1.更改播放的索引
+    // 更改播放的索引
     if (self.musicIndex == self.musics.count - 1) {//最后条
         self.musicIndex = 0;
     }else{
         self.musicIndex ++;
     }
     
+    // 图片自动滚动到下一张
+    CGFloat offsetX = self.musicIndex * self.scrollView.frame.size.width;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.scrollView.contentOffset = CGPointMake(offsetX, 0);
+    }];
     
     [self playMusic];
 }
@@ -300,10 +305,12 @@
     [self playMusic];
 }
 
-#pragma mark 播放器的代表
+#pragma mark 自动播放下一首
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     //自动播放下一首
     [self next];
 }
+
+
 
 @end
