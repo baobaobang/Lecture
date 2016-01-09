@@ -10,10 +10,16 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-#import "UIView+Extension.h"
 #import "UIButton+CZ.h"
 #import "UIImage+CZ.h"
 #import "NSString+CZ.h"
+
+#import "UIView+Extension.h"
+#import "UIBarButtonItem+Extension.h"
+#import "NSDate+Extension.h"
+#import "NSString+Extension.h"
+#import "NSString+Emoji.h"
+#import "UITextView+Extension.h"
 
 
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
@@ -33,8 +39,8 @@
 // 测试颜色
 #define HWTestColor [UIColor redColor]
 
-// 微博默认颜色
-#define HWTintColor [UIColor orangeColor]
+// 项目默认颜色（浅蓝色）
+#define HWTintColor HWColor(47, 180, 254)
 
 // 通知中心
 #define HWNotificationCenter [NSNotificationCenter defaultCenter]

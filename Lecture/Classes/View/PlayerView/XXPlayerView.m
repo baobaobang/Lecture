@@ -63,6 +63,13 @@
     return [[[NSBundle mainBundle] loadNibNamed:@"XXPlayerView" owner:nil options:nil] lastObject];
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        self.playerToolBar.backgroundColor = HWColor(38, 38, 38);
+    }
+    return self;
+}
+
 
 - (void)awakeFromNib{
     
