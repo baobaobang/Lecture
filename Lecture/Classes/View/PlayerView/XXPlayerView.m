@@ -13,7 +13,7 @@
 
 #define playerToolBarHeight 34
 
-@interface XXPlayerView () <UIScrollViewDelegate>
+@interface XXPlayerView () <UIScrollViewDelegate, AVAudioPlayerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *pptView;
 @property (weak, nonatomic) IBOutlet UIView *playerToolBar;
 @property (nonatomic, weak) UIScrollView *scrollView;
@@ -227,6 +227,8 @@
     [self playMusic];
 }
 
+
+#pragma mark - 准备播放音乐
 /**
  *  准备播放音乐
  */
@@ -234,6 +236,9 @@
     
     // 重新初始化一个 "播放器"
     [[CZMusicTool sharedCZMusicTool] prepareToPlayWithMusic:self.musics[self.musicIndex]];
+    
+    //设置player的代理
+    [CZMusicTool sharedCZMusicTool].player.delegate = self;
     
     // 更改 “播放器工具条” 的数据
     self.playingMusic = self.musics[self.musicIndex];
@@ -295,5 +300,10 @@
     [self playMusic];
 }
 
+#pragma mark 播放器的代表
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    //自动播放下一首
+    [self next];
+}
 
 @end
