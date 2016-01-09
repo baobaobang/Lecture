@@ -11,25 +11,38 @@
 #import "MJExtension.h"
 #import "UIButton+CZ.h"
 
-#define PhotoCount 4
+#define playerToolBarHeight 34
 
 @interface XXPlayerView () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *pptView;
 @property (weak, nonatomic) IBOutlet UIView *playerToolBar;
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *imageViews;
-
-@property(assign, nonatomic)NSInteger musicIndex;//当前播放音乐索引
-
-@property(strong,nonatomic) NSArray *musics;//音乐数据
+/** 当前播放音乐索引 */
+@property(assign, nonatomic)NSInteger musicIndex;//
+/** 音乐数据 */
+@property(strong,nonatomic) NSArray *musics;
+/** 播放按钮 */
 @property (weak, nonatomic) IBOutlet UIButton *playBtn;
-
+/** 时间进度条 */
+@property (weak, nonatomic) IBOutlet UISlider *timeSlider;
+/** 当前播放时间 */
+@property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
+/** 总播放时长 */
+@property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
+/** 定时器 */
+@property(strong,nonatomic)CADisplayLink *link;
+/** 是否正在拖拽 */
+@property(assign,nonatomic,getter=isDragging)BOOL dragging;
 @end
 
 
 @implementation XXPlayerView
 
+#pragma mark - 懒加载
+
 -(NSArray *)musics{
+    
     if (!_musics) {
         _musics = [CZMusic objectArrayWithFilename:@"songs.plist"];
     }
@@ -37,74 +50,65 @@
     return _musics;
 }
 
-//- (CZMusic *)currentMusic{
-//    if (!_currentMusic) {
-//        _currentMusic = [[CZMusic alloc] init];
-//    }
-//    return _currentMusic;
-//}
-
-- (IBAction)playBtnClick:(id)sender {
-    
-    //更改播放状态
-    self.playing = !self.playing;
-    
-    //
-    if (self.playing) {//播放音乐
-        NSLog(@"播放音乐");
-        //1.如果是播放的状态，按钮的图片更改为暂停的状态
-        [self.playBtn setNBg:@"playbar_pausebtn_nomal" hBg:@"playbar_pausebtn_click"];
-        [self play];
-    }else{//暂停音乐
-        NSLog(@"暂停音乐");
-        //2.如果当前是暂停的状态，按钮的图片更改为播放的状态
-        [self.playBtn setNBg:@"playbar_playbtn_nomal" hBg:@"playbar_playbtn_click"];
-        [self pause];
+-(CADisplayLink *)link{
+    if (!_link) {
+        _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
     }
     
+    return _link;
 }
 
-- (void)play{
-    [[CZMusicTool sharedCZMusicTool] play];
-}
-
-- (void)pause{
-    [[CZMusicTool sharedCZMusicTool] pause];
-}
-
+#pragma mark - 初始化
 + (instancetype)playerView{
     return [[[NSBundle mainBundle] loadNibNamed:@"XXPlayerView" owner:nil options:nil] lastObject];
 }
 
 
-
 - (void)awakeFromNib{
     
-    // 1.创建一个scrollView：用于显示所有的ppt图片
+    // 创建一个scrollView：用于显示所有的ppt图片
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     [self.pptView addSubview:scrollView];
     self.scrollView = scrollView;
-
-
-    // 2.添加图片到scrollView中
-    for (int i = 0; i < PhotoCount; i++) {
+    
+    
+    // 添加imageView到scrollView中
+    for (int i = 0; i < self.musics.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
-        NSString *name = [NSString stringWithFormat:@"new_feature_%d", i + 1];
-        imageView.image = [UIImage imageNamed:name];
+        // 设置图片
+        CZMusic *music = self.musics[i];
+        imageView.image = [UIImage imageNamed:music.singerIcon];
         [self.scrollView addSubview:imageView];
     }
     
-    // 3.设置scrollView的其他属性
+    // 设置scrollView的其他属性
     // 如果想要某个方向上不能滚动，那么这个方向对应的尺寸数值传0即可
     scrollView.bounces = NO; // 去除弹簧效果
     scrollView.pagingEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.delegate = self;
     
-    //2.重新初始化一个 "播放器"
+    // 重新初始化一个 "播放器"
     [self playMusic];
     
+    // 设置slider 按钮的图片
+    UIImage *originSliderImage = [UIImage imageNamed:@"playbar_slider_thumb"];
+    UIImage *scaledSliderImage = [UIImage originImage:originSliderImage scaleToSize:CGSizeMake(playerToolBarHeight, playerToolBarHeight)];
+    [self.timeSlider setThumbImage:scaledSliderImage forState:UIControlStateNormal];
+    
+    // 开启定时器
+    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    
 }
+
+#pragma mark - 生命周期
+
+-(void)dealloc{
+    //移除定时器
+    [self.link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+#pragma mark - 尺寸布局
 
 /**
  *  设置子控件的frame
@@ -118,7 +122,8 @@
     // 设置imageView的frame
     CGFloat scrollW = self.scrollView.width;
     CGFloat scrollH = self.scrollView.height;
-    for (int i = 0; i<PhotoCount; i++) {
+    NSUInteger musicCount = self.musics.count;
+    for (int i = 0; i<musicCount; i++) {
         //TODO:imageView的创建应该放到awakeFromNib中
         UIImageView *imageView = self.scrollView.subviews[i];
         imageView.width = scrollW;
@@ -128,14 +133,42 @@
     }
     
     // 设置scrollView的contentSize
-    self.scrollView.contentSize = CGSizeMake(PhotoCount * scrollW, 0);
+    self.scrollView.contentSize = CGSizeMake(musicCount * scrollW, 0);
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+#pragma mark - IBAction
+
+- (IBAction)playBtnClick:(id)sender {
+    
+    //更改播放状态
+    self.playing = !self.playing;
+    
+    //
+    if (self.playing) {//播放音乐
+        HWLog(@"播放音乐");
+        //1.如果是播放的状态，按钮的图片更改为暂停的状态
+        [self.playBtn setNBg:@"playbar_pausebtn_nomal" hBg:@"playbar_pausebtn_click"];
+        [self play];
+    }else{//暂停音乐
+        HWLog(@"暂停音乐");
+        //2.如果当前是暂停的状态，按钮的图片更改为播放的状态
+        [self.playBtn setNBg:@"playbar_playbtn_nomal" hBg:@"playbar_playbtn_click"];
+        [self pause];
+    }
     
 }
 
-#pragma mark 播放上一首
+#pragma mark - 播放和暂停
+
+- (void)play{
+    [[CZMusicTool sharedCZMusicTool] play];
+}
+
+- (void)pause{
+    [[CZMusicTool sharedCZMusicTool] pause];
+}
+
+#pragma mark 上一首和下一首
 -(void)previous{
     if (self.musicIndex == 0) {//第一首
         self.musicIndex = self.musics.count - 1;
@@ -146,7 +179,6 @@
     [self playMusic];
 }
 
-#pragma mark 播放下一首
 -(void)next{
     
     //1.更改播放的索引
@@ -160,28 +192,70 @@
     [self playMusic];
 }
 
-
+/**
+ *  准备播放音乐
+ */
 -(void)playMusic{
     
-    //2.重新初始化一个 "播放器"
+    // 重新初始化一个 "播放器"
     [[CZMusicTool sharedCZMusicTool] prepareToPlayWithMusic:self.musics[self.musicIndex]];
     
-    //3.更改 “播放器工具条” 的数据
+    // 更改 “播放器工具条” 的数据
     self.playingMusic = self.musics[self.musicIndex];
     
-    //4.播放
+    // 开始播放
     if (self.isPlaying) {
         [self play];
     }
+}
+
+/**
+ *  设置当前播放的音乐，并显示数据
+ */
+-(void)setPlayingMusic:(CZMusic *)playingMusic{
+    _playingMusic = playingMusic;
     
+    //设置总时间
+    double duration = [CZMusicTool sharedCZMusicTool].player.duration;
+    self.totalTimeLabel.text = [NSString getMinuteSecondWithSecond:duration];
+    
+    //设置slider的最大值
+    self.timeSlider.maximumValue = duration;
+    
+    //重置播放时间并更新slider，label
+    [CZMusicTool sharedCZMusicTool].player.currentTime = 0;
+    [self updateSliderAndTimeLabel];
+}
+
+#pragma mark 进度条和时间label
+/**
+ *  播放中更新进度条和当前播放时间
+ */
+-(void)update{
+    
+    if (self.isDragging == NO) {//如果没有拖拽，才需要做下面的操作
+        //1.更新进度条
+        
+        [self updateSliderAndTimeLabel];
+    }
+}
+
+-(void)updateSliderAndTimeLabel{
+    
+    double currentTime = [CZMusicTool sharedCZMusicTool].player.currentTime;
+    //1.更新进度条
+    self.timeSlider.value = currentTime;
+    
+    //2.更新时间
+    self.currentTimeLabel.text = [NSString getMinuteSecondWithSecond:currentTime];
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
     // 滚动结束后是第几张ppt，就播放第几首音乐
     self.musicIndex = self.scrollView.contentOffset.x / self.scrollView.width;
     [self playMusic];
-    
 }
 
 

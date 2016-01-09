@@ -9,7 +9,11 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+
 #import "UIView+Extension.h"
+#import "UIButton+CZ.h"
+#import "UIImage+CZ.h"
+#import "NSString+CZ.h"
 
 
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)

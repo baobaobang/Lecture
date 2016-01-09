@@ -113,4 +113,17 @@
     return [UIImage imageWithContentsOfFile:imagePath];
     
 }
+
++ (UIImage *)originImage:(UIImage *)image scaleToSize:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
+    
+    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
+    
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
+}
 @end

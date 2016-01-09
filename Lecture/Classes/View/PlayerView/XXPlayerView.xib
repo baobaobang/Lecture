@@ -14,24 +14,34 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0jp-5o-Mhu" userLabel="playerToolBar">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <subviews>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="etL-8g-msJ">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="etL-8g-msJ">
                             <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
                             <animations/>
                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                <rect key="frame" x="30" y="0.0" width="219" height="31"/>
+                                <rect key="frame" x="30" y="0.0" width="210" height="31"/>
                             </variation>
                         </slider>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4:25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-UD-ulY">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4:25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-UD-ulY" userLabel="currentTimeLabel">
                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                <rect key="frame" x="255" y="0.0" width="30" height="30"/>
+                                <rect key="frame" x="240" y="0.0" width="37" height="30"/>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ 7:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbj-Uj-bEp">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" / " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0m-yq-bss">
+                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="275" y="0.0" width="10" height="30"/>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbj-Uj-bEp" userLabel="totalTimeLabel">
                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -62,6 +72,7 @@
                         <mask key="subviews">
                             <exclude reference="etL-8g-msJ"/>
                             <exclude reference="qL0-UD-ulY"/>
+                            <exclude reference="R0m-yq-bss"/>
                             <exclude reference="Cbj-Uj-bEp"/>
                             <exclude reference="IJy-12-Z7G"/>
                         </mask>
@@ -71,6 +82,7 @@
                         <mask key="subviews">
                             <include reference="etL-8g-msJ"/>
                             <include reference="qL0-UD-ulY"/>
+                            <include reference="R0m-yq-bss"/>
                             <include reference="Cbj-Uj-bEp"/>
                             <include reference="IJy-12-Z7G"/>
                         </mask>
@@ -101,11 +113,14 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="currentTimeLabel" destination="qL0-UD-ulY" id="fgA-PG-a9v"/>
                 <outlet property="playBtn" destination="IJy-12-Z7G" id="XwS-s3-hRx"/>
                 <outlet property="playerToolBar" destination="0jp-5o-Mhu" id="Zex-En-Yem"/>
                 <outlet property="pptView" destination="HuM-kq-DNh" id="exh-P4-UeL"/>
+                <outlet property="timeSlider" destination="etL-8g-msJ" id="spA-ju-Ixj"/>
+                <outlet property="totalTimeLabel" destination="Cbj-Uj-bEp" id="voS-ve-wBi"/>
             </connections>
-            <point key="canvasLocation" x="-116" y="-214"/>
+            <point key="canvasLocation" x="-290" y="-337"/>
         </view>
     </objects>
     <resources>

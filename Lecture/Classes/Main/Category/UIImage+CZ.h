@@ -23,10 +23,22 @@
  */
 + (UIImage *)resizedImageWithName:(NSString *)name left:(CGFloat)left top:(CGFloat)top;
 
-
+/**
+ *  返回圆形图片
+ */
 + (instancetype)circleImageWithName:(NSString *)name borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
 
 + (instancetype)circleImageWithImage:(UIImage *)image borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
 
-+(UIImage *)imageFromMainBundleWithName:(NSString *)name;
++ (UIImage *)imageFromMainBundleWithName:(NSString *)name;
+
+/**
+ *  缩放图片大小
+ *
+ *  @param image 原图片
+ *  @param size  目标尺寸
+ *
+ *  @return 缩放后的图片
+ */
++ (UIImage *)originImage:(UIImage*)image scaleToSize:(CGSize)size;
 @end
