@@ -20,6 +20,12 @@
                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                 <rect key="frame" x="30" y="0.0" width="210" height="31"/>
                             </variation>
+                            <connections>
+                                <action selector="replay:" destination="iN0-l3-epB" eventType="touchUpInside" id="OKj-po-dc6"/>
+                                <action selector="replay:" destination="iN0-l3-epB" eventType="touchUpOutside" id="R57-nP-Gn9"/>
+                                <action selector="sliderChange:" destination="iN0-l3-epB" eventType="valueChanged" id="GzI-O3-Yvq"/>
+                                <action selector="stopPlay:" destination="iN0-l3-epB" eventType="touchDown" id="JfK-xL-7bQ"/>
+                            </connections>
                         </slider>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4:25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-UD-ulY" userLabel="currentTimeLabel">
                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -51,7 +57,7 @@
                                 <rect key="frame" x="285" y="0.0" width="35" height="30"/>
                             </variation>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJy-12-Z7G">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJy-12-Z7G">
                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                             <animations/>
                             <state key="normal" backgroundImage="playbar_playbtn_nomal">

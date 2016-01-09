@@ -142,7 +142,6 @@
     
     //更改播放状态
     self.playing = !self.playing;
-    
     //
     if (self.playing) {//播放音乐
         HWLog(@"播放音乐");
@@ -156,6 +155,35 @@
         [self pause];
     }
     
+}
+
+#pragma mark slider 点击的时候，暂停播放
+- (IBAction)stopPlay:(UISlider *)sender {
+    //更改拖拽的状态
+    self.dragging = YES;
+    
+    [[CZMusicTool sharedCZMusicTool] pause];
+}
+
+#pragma mark slider拖动
+- (IBAction)sliderChange:(UISlider *)sender {
+    //1.播放器的进度
+    [CZMusicTool sharedCZMusicTool].player.currentTime = sender.value;
+    
+    //2.工具条的当前时间
+    self.currentTimeLabel.text = [NSString getMinuteSecondWithSecond:sender.value];
+    
+}
+
+
+#pragma mark slider 松开手指的时候，继续播放
+- (IBAction)replay:(UISlider *)sender {
+    
+    self.dragging = NO;
+    
+    if (self.isPlaying) {
+        [[CZMusicTool sharedCZMusicTool] play];
+    }
 }
 
 #pragma mark - 播放和暂停
@@ -249,6 +277,8 @@
     //2.更新时间
     self.currentTimeLabel.text = [NSString getMinuteSecondWithSecond:currentTime];
 }
+
+
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
