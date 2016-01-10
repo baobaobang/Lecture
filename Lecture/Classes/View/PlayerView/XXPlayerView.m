@@ -290,19 +290,18 @@
 -(void)previous{
     
     if (self.currentItem == 0) { // 当前是第一首，需要切换section
+        // 先无动画滚到section2的第一首
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentItem inSection:2] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
         // 更改索引为最后一首
         self.currentItem = self.musics.count - 1;
-        // 先动画滚到section0的最后一首
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentItem inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-        // 再无动画滚到section1的最后一首
-        [self scrollToMiddleSectionWithoutAnimation];
         
     }else{ // 当前不是第一首，不需要切换section
         // 更改索引为上一首
         self.currentItem --;
-        // 动画滚到section1的上一首
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentItem inSection:1] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
     }
+    
+    // 有动画滚回到中间那组的对应currentItem的位置
+    [self scrollToMiddleSectionWithAnimation];
 }
 
 #pragma mark 下一首
@@ -310,19 +309,18 @@
 -(void)next{
     
     if (self.currentItem == self.musics.count - 1) { // 当前是最后一首，需要切换section
+        // 先无动画滚到section0的最后一首
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentItem inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
         // 更改索引为第一首
         self.currentItem = 0;
-        // 先动画滚到section2的第一首
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentItem inSection:2] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-        // 再无动画滚到section1的第一首
-        [self scrollToMiddleSectionWithoutAnimation];
         
     }else{ // 当前不是最后一首，不需要切换section
         // 更改索引为下一首
         self.currentItem ++;
-        // 动画滚到section1的上一首
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentItem inSection:1] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
     }
+    
+    // 有动画滚回到中间那组的对应currentItem的位置
+    [self scrollToMiddleSectionWithAnimation];
 }
 
 #pragma mark - 无动画滚回到中间那组的对应currentItem的位置
@@ -330,6 +328,12 @@
 - (void)scrollToMiddleSectionWithoutAnimation{
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentItem inSection:1] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
 }
+#pragma mark - 有动画滚回到中间那组的对应currentItem的位置
+
+- (void)scrollToMiddleSectionWithAnimation{
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentItem inSection:1] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+}
+
 
 #pragma mark - 滚动图片切换到另一张后自动切换音乐
 
@@ -350,7 +354,7 @@
         section = lastIndexPath.section;
     }
     
-    // 如果section不是1，就滚动到section1的位置
+    // 如果section不是1，就无动画滚动到section1的位置
     if (section != 1) {
         [self scrollToMiddleSectionWithoutAnimation];
     }
