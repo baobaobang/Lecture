@@ -15,6 +15,7 @@
 @interface XXLectureViewController ()
 @property (weak, nonatomic) IBOutlet XXPlayerView *playerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *joinBtn;
 
 @end
 
@@ -29,6 +30,9 @@
     // 初始化XXPlayerView
     XXPlayerView *playerView = [XXPlayerView playerView];
     [self.playerView addSubview:playerView];
+    
+    // 设置报名活动按钮颜色
+    self.joinBtn.backgroundColor = HWColor(75, 217, 130);
 }
 
 /**

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XXLectureViewController">
             <connections>
+                <outlet property="joinBtn" destination="g7x-B2-MPg" id="i0E-Vr-Jay"/>
                 <outlet property="playerView" destination="5ga-Pf-dYH" id="K26-H4-d6c"/>
                 <outlet property="tableView" destination="eMQ-BV-muU" id="C5a-Lf-Zi8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -38,13 +39,32 @@
                         </mask>
                     </variation>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eMQ-BV-muU">
+                    <rect key="frame" x="0.0" y="264" width="320" height="274"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="274" id="pfT-PC-D8f"/>
+                    </constraints>
+                    <variation key="widthClass=regular" ambiguous="YES">
+                        <rect key="frame" x="0.0" y="64" width="568" height="274"/>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <exclude reference="pfT-PC-D8f"/>
+                        </mask>
+                    </variation>
+                </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-B2-MPg">
                     <rect key="frame" x="0.0" y="538" width="320" height="30"/>
                     <animations/>
-                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.29411764709999999" green="0.85098039219999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="feC-d9-DUR"/>
+                        <constraint firstAttribute="height" constant="30" id="feC-d9-DUR">
+                            <variation key="heightClass=regular-widthClass=compact" constant="44"/>
+                        </constraint>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <state key="normal" title="报名活动">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </state>
@@ -62,25 +82,9 @@
                         </mask>
                     </variation>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eMQ-BV-muU">
-                    <rect key="frame" x="0.0" y="264" width="320" height="274"/>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="274" id="pfT-PC-D8f"/>
-                    </constraints>
-                    <variation key="widthClass=regular" ambiguous="YES">
-                        <rect key="frame" x="0.0" y="64" width="568" height="274"/>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <exclude reference="pfT-PC-D8f"/>
-                        </mask>
-                    </variation>
-                </tableView>
             </subviews>
             <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5ga-Pf-dYH" secondAttribute="trailing" id="47t-4k-92b"/>
                 <constraint firstAttribute="bottom" secondItem="g7x-B2-MPg" secondAttribute="bottom" id="64s-qt-dZF"/>
@@ -95,7 +99,9 @@
                 <constraint firstAttribute="trailing" secondItem="g7x-B2-MPg" secondAttribute="trailing" id="QXc-oi-2lv"/>
                 <constraint firstAttribute="bottom" secondItem="g7x-B2-MPg" secondAttribute="bottom" id="UNu-3m-X2Q"/>
                 <constraint firstAttribute="trailing" secondItem="g7x-B2-MPg" secondAttribute="trailing" id="Ujm-gQ-iqS"/>
-                <constraint firstItem="g7x-B2-MPg" firstAttribute="top" secondItem="eMQ-BV-muU" secondAttribute="bottom" id="V0x-e5-hPo"/>
+                <constraint firstItem="g7x-B2-MPg" firstAttribute="top" secondItem="eMQ-BV-muU" secondAttribute="bottom" id="V0x-e5-hPo">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
                 <constraint firstItem="g7x-B2-MPg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bw6-8U-oep"/>
                 <constraint firstItem="5ga-Pf-dYH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="czw-S7-v3b"/>
                 <constraint firstItem="eMQ-BV-muU" firstAttribute="top" secondItem="5ga-Pf-dYH" secondAttribute="bottom" id="eKd-QQ-8Pe"/>
