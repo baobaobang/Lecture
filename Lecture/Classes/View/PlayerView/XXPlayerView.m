@@ -43,6 +43,11 @@
 @property(nonatomic,strong)AVAudioPlayer *player;
 /** 定时器 */
 @property(strong,nonatomic)CADisplayLink *link;
+/** 蒙版 */
+@property (weak, nonatomic) IBOutlet UIView *maskView;
+/** 页码标签 */
+@property (weak, nonatomic) IBOutlet UILabel *pageNumberLabel;
+
 @end
 
 
@@ -108,6 +113,17 @@
     
     // 注册collectionView的cell
     [self.collectionView registerNib:[UINib nibWithNibName:@"HMCollectionCell" bundle:nil] forCellWithReuseIdentifier:HMCollectionViewCellIdentifier];
+    
+    // 向collectionView添加单击手势
+    UITapGestureRecognizer *collectionViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playBtnClick)];
+    collectionViewTap.numberOfTapsRequired = 1;
+    [self.collectionView addGestureRecognizer:collectionViewTap];
+    
+    // 向maskView添加单击手势
+    UITapGestureRecognizer *maskViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playBtnClick)];
+    maskViewTap.numberOfTapsRequired = 1;
+    [self.maskView addGestureRecognizer:maskViewTap];
+    
 }
 
 /**
@@ -131,6 +147,9 @@
     
     // 更改音乐模型
     self.currentMusic = self.musics[currentItem];
+    
+    // 设置页码标签
+    self.pageNumberLabel.text = [NSString stringWithFormat:@"第%ld/%ld页", currentItem + 1, self.musics.count];
 }
 
 #pragma mark - 切换音乐，准备播放音乐，刷新相关控件
@@ -204,22 +223,37 @@
 
 #pragma mark - 播放和暂停
 
-- (IBAction)playBtnClick:(id)sender {
+- (IBAction)playBtnClick{
     
     //更改播放状态
     self.playing = !self.playing;
     //
     if (self.playing) {//播放音乐
-//        HWLog(@"播放音乐");
         //1.如果是播放的状态，按钮的图片更改为暂停的状态
         [self.playBtn setNBg:@"playbar_pausebtn_nomal" hBg:@"playbar_pausebtn_click"];
         [self.player play];
+
+        [self addFadeAnimation];
+        self.maskView.hidden = YES;
+        
     }else{//暂停音乐
-//        HWLog(@"暂停音乐");
         //2.如果当前是暂停的状态，按钮的图片更改为播放的状态
         [self.playBtn setNBg:@"playbar_playbtn_nomal" hBg:@"playbar_playbtn_click"];
         [self.player pause];
+        
+        [self addFadeAnimation];
+        self.maskView.hidden = NO;
     }
+}
+
+/**
+ *  在maskView隐藏和显现的时候添加动画效果
+ */
+- (void)addFadeAnimation{
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.4;
+    [self.maskView.layer addAnimation:animation forKey:nil];
 }
 
 #pragma mark 点击slider的时候，暂停播放
@@ -327,5 +361,25 @@
     //自动播放下一首
     [self next];
 }
+
+
+#pragma mark 蒙版按钮点击
+
+- (IBAction)previousBtnClick:(id)sender {
+    [self previous];
+}
+
+- (IBAction)nextBtnClick:(id)sender {
+    [self next];
+}
+
+/**
+ *  点击分享按钮
+ */
+- (IBAction)shareBtnClick:(id)sender {
+
+}
+
+
 
 @end
