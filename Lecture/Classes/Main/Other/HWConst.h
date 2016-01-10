@@ -11,4 +11,7 @@
 @interface HWConst : NSObject
 
 //extern NSString * const XXNavigationTitleFont;
+
+extern const CGFloat PlayerToolBarHeight;
+extern NSString * const HMCollectionViewCellIdentifier;
 @end

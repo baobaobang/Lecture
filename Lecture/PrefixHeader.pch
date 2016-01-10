@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+#import "HWConst.h"
+
 #import "UIButton+CZ.h"
 #import "UIImage+CZ.h"
 #import "NSString+CZ.h"

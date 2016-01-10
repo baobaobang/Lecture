@@ -9,5 +9,6 @@
 #import "HWConst.h"
 
 @implementation HWConst
-//NSString * const XXNavigationTitleFont = @"";
+const CGFloat PlayerToolBarHeight = 34;
+NSString * const HMCollectionViewCellIdentifier = @"HMCollectionViewCellIdentifier";
 @end

@@ -27,16 +27,6 @@
                                 <action selector="stopPlay:" destination="iN0-l3-epB" eventType="touchDown" id="JfK-xL-7bQ"/>
                             </connections>
                         </slider>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4:25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-UD-ulY" userLabel="currentTimeLabel">
-                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                <rect key="frame" x="240" y="0.0" width="37" height="30"/>
-                            </variation>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" / " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0m-yq-bss">
                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                             <animations/>
@@ -71,35 +61,72 @@
                                 <rect key="frame" x="285" y="0.0" width="35" height="30"/>
                             </variation>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4:25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-UD-ulY" userLabel="currentTimeLabel">
+                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="240" y="0.0" width="37" height="30"/>
+                            </variation>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                     <variation key="default">
                         <mask key="subviews">
                             <exclude reference="etL-8g-msJ"/>
-                            <exclude reference="qL0-UD-ulY"/>
                             <exclude reference="R0m-yq-bss"/>
                             <exclude reference="IJy-12-Z7G"/>
                             <exclude reference="Cbj-Uj-bEp"/>
+                            <exclude reference="qL0-UD-ulY"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                         <rect key="frame" x="0.0" y="170" width="320" height="30"/>
                         <mask key="subviews">
                             <include reference="etL-8g-msJ"/>
-                            <include reference="qL0-UD-ulY"/>
                             <include reference="R0m-yq-bss"/>
                             <include reference="IJy-12-Z7G"/>
                             <include reference="Cbj-Uj-bEp"/>
+                            <include reference="qL0-UD-ulY"/>
                         </mask>
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuM-kq-DNh" userLabel="pptView">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7Fv-L4-WoX">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <animations/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="YLB-e9-SKV">
+                                <size key="itemSize" width="320" height="170"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                            </variation>
+                            <connections>
+                                <outlet property="dataSource" destination="iN0-l3-epB" id="SCC-Z2-DWQ"/>
+                                <outlet property="delegate" destination="iN0-l3-epB" id="zrX-lP-1eL"/>
+                            </connections>
+                        </collectionView>
+                    </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="7Fv-L4-WoX"/>
+                        </mask>
+                    </variation>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                        <mask key="subviews">
+                            <include reference="7Fv-L4-WoX"/>
+                        </mask>
                     </variation>
                 </view>
             </subviews>
@@ -119,6 +146,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="collectionView" destination="7Fv-L4-WoX" id="GZq-eq-3YB"/>
                 <outlet property="currentTimeLabel" destination="qL0-UD-ulY" id="fgA-PG-a9v"/>
                 <outlet property="playBtn" destination="IJy-12-Z7G" id="XwS-s3-hRx"/>
                 <outlet property="playerToolBar" destination="0jp-5o-Mhu" id="Zex-En-Yem"/>
