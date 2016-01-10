@@ -54,8 +54,12 @@
                             <exclude reference="pfT-PC-D8f"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="GJd-kd-QDU"/>
+                        <outlet property="delegate" destination="-1" id="0aw-jm-Ee8"/>
+                    </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-B2-MPg">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-B2-MPg" customClass="XXButton">
                     <rect key="frame" x="0.0" y="538" width="320" height="30"/>
                     <animations/>
                     <color key="backgroundColor" red="0.29411764709999999" green="0.85098039219999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>

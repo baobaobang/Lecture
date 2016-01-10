@@ -9,10 +9,19 @@
 #import "XXLectureViewController.h"
 #import "XXPlayerView.h"
 #import "HWNavigationController.h"
+#import "XXExpertProfileCell.h"
+#import "XXExpertProfileHeaderView.h"
+#import "XXSelectedQuestionCell.h"
+#import "XXSelectedQuestionHeaderView.h"
 
 #define XXNavigationTitleFont 18
 
-@interface XXLectureViewController ()
+typedef enum{
+    XXExpertProfileSection, // 专家简介
+    XXSelectedQuestionSection // 精选提问
+}XXTableViewSection;
+
+@interface XXLectureViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet XXPlayerView *playerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *joinBtn;
@@ -65,6 +74,50 @@
     NSLog(@"rightItemClick");
 }
 
+#pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == XXExpertProfileSection) {
+        return 1;
+    }else{
+        return 5;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == XXExpertProfileSection) {
+        XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
+        return expertCell;
+    }else{
+        XXSelectedQuestionCell *selectedCell = [XXSelectedQuestionCell selectedQuestionCellInTableView:tableView];
+        return selectedCell;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section == XXExpertProfileSection) {
+        return [XXExpertProfileHeaderView headerView];
+    }else{
+        return [XXSelectedQuestionHeaderView headerView];
+    }
+}
+
+#pragma mark - cell的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == XXExpertProfileSection) {
+        return 80;
+    }else{
+        return 80;
+    }
+}
+
+#pragma mark - headerView的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 44;
+}
 
 @end

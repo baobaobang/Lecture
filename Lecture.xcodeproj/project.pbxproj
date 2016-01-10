@@ -39,6 +39,15 @@
 		2D57987E1C40D63A007A0423 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D57987D1C40D63A007A0423 /* NSString+Extension.m */; };
 		2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798801C40D67A007A0423 /* NSString+Emoji.m */; };
 		2D5798841C40D90F007A0423 /* HWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798831C40D90F007A0423 /* HWNavigationController.m */; };
+		2D7708C21C42AA3000788B04 /* XXExpertProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708C01C42AA3000788B04 /* XXExpertProfileCell.m */; };
+		2D7708C31C42AA3000788B04 /* XXExpertProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */; };
+		2D7708C61C42AF1F00788B04 /* XXExpertProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708C51C42AF1F00788B04 /* XXExpertProfileHeaderView.m */; };
+		2D7708C81C42AF4D00788B04 /* XXExpertProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C71C42AF4D00788B04 /* XXExpertProfileHeaderView.xib */; };
+		2D7708CA1C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C91C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib */; };
+		2D7708CD1C42B17900788B04 /* XXSelectedQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708CC1C42B17900788B04 /* XXSelectedQuestionHeaderView.m */; };
+		2D7708D11C42B24100788B04 /* XXSelectedQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708CF1C42B24100788B04 /* XXSelectedQuestionCell.m */; };
+		2D7708D21C42B24100788B04 /* XXSelectedQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708D01C42B24100788B04 /* XXSelectedQuestionCell.xib */; };
+		2D7708D51C42BCFD00788B04 /* XXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708D41C42BCFD00788B04 /* XXButton.m */; };
 		2DE542981C423C3D00D4D4D9 /* 一千年以后.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DE542921C423C3D00D4D4D9 /* 一千年以后.mp3 */; };
 		2DE542991C423C3D00D4D4D9 /* 心碎了无痕.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DE542931C423C3D00D4D4D9 /* 心碎了无痕.mp3 */; };
 		2DE5429A1C423C3D00D4D4D9 /* 最佳损友.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DE542941C423C3D00D4D4D9 /* 最佳损友.mp3 */; };
@@ -131,6 +140,20 @@
 		2D5798801C40D67A007A0423 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		2D5798821C40D90F007A0423 /* HWNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWNavigationController.h; sourceTree = "<group>"; };
 		2D5798831C40D90F007A0423 /* HWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWNavigationController.m; sourceTree = "<group>"; };
+		2D7708BF1C42AA3000788B04 /* XXExpertProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileCell.h; sourceTree = "<group>"; };
+		2D7708C01C42AA3000788B04 /* XXExpertProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpertProfileCell.m; sourceTree = "<group>"; };
+		2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXExpertProfileCell.xib; sourceTree = "<group>"; };
+		2D7708C41C42AF1F00788B04 /* XXExpertProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileHeaderView.h; sourceTree = "<group>"; };
+		2D7708C51C42AF1F00788B04 /* XXExpertProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpertProfileHeaderView.m; sourceTree = "<group>"; };
+		2D7708C71C42AF4D00788B04 /* XXExpertProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXExpertProfileHeaderView.xib; sourceTree = "<group>"; };
+		2D7708C91C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXSelectedQuestionHeaderView.xib; sourceTree = "<group>"; };
+		2D7708CB1C42B17900788B04 /* XXSelectedQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSelectedQuestionHeaderView.h; sourceTree = "<group>"; };
+		2D7708CC1C42B17900788B04 /* XXSelectedQuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSelectedQuestionHeaderView.m; sourceTree = "<group>"; };
+		2D7708CE1C42B24100788B04 /* XXSelectedQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSelectedQuestionCell.h; sourceTree = "<group>"; };
+		2D7708CF1C42B24100788B04 /* XXSelectedQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSelectedQuestionCell.m; sourceTree = "<group>"; };
+		2D7708D01C42B24100788B04 /* XXSelectedQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXSelectedQuestionCell.xib; sourceTree = "<group>"; };
+		2D7708D31C42BCFD00788B04 /* XXButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXButton.h; sourceTree = "<group>"; };
+		2D7708D41C42BCFD00788B04 /* XXButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXButton.m; sourceTree = "<group>"; };
 		2DE542921C423C3D00D4D4D9 /* 一千年以后.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "一千年以后.mp3"; sourceTree = "<group>"; };
 		2DE542931C423C3D00D4D4D9 /* 心碎了无痕.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "心碎了无痕.mp3"; sourceTree = "<group>"; };
 		2DE542941C423C3D00D4D4D9 /* 最佳损友.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "最佳损友.mp3"; sourceTree = "<group>"; };
@@ -396,6 +419,8 @@
 			children = (
 				2D1D021F1C3EA74F0056B10C /* PlayerView */,
 				2D1D02201C3EA74F0056B10C /* TableView */,
+				2D7708D31C42BCFD00788B04 /* XXButton.h */,
+				2D7708D41C42BCFD00788B04 /* XXButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -416,6 +441,18 @@
 		2D1D02201C3EA74F0056B10C /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				2D7708BF1C42AA3000788B04 /* XXExpertProfileCell.h */,
+				2D7708C01C42AA3000788B04 /* XXExpertProfileCell.m */,
+				2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */,
+				2D7708CE1C42B24100788B04 /* XXSelectedQuestionCell.h */,
+				2D7708CF1C42B24100788B04 /* XXSelectedQuestionCell.m */,
+				2D7708D01C42B24100788B04 /* XXSelectedQuestionCell.xib */,
+				2D7708C41C42AF1F00788B04 /* XXExpertProfileHeaderView.h */,
+				2D7708C51C42AF1F00788B04 /* XXExpertProfileHeaderView.m */,
+				2D7708C71C42AF4D00788B04 /* XXExpertProfileHeaderView.xib */,
+				2D7708CB1C42B17900788B04 /* XXSelectedQuestionHeaderView.h */,
+				2D7708CC1C42B17900788B04 /* XXSelectedQuestionHeaderView.m */,
+				2D7708C91C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -541,11 +578,15 @@
 				2DE5429A1C423C3D00D4D4D9 /* 最佳损友.mp3 in Resources */,
 				2D4F2F281C4117F900CDAC0E /* HMCollectionCell.xib in Resources */,
 				2DE542991C423C3D00D4D4D9 /* 心碎了无痕.mp3 in Resources */,
+				2D7708C81C42AF4D00788B04 /* XXExpertProfileHeaderView.xib in Resources */,
+				2D7708C31C42AA3000788B04 /* XXExpertProfileCell.xib in Resources */,
 				2DE5429B1C423C3D00D4D4D9 /* 瓦解.mp3 in Resources */,
 				2D1D022C1C3EAB170056B10C /* XXLectureViewController.xib in Resources */,
 				2DE542981C423C3D00D4D4D9 /* 一千年以后.mp3 in Resources */,
 				2D1D20161C3F89FE0093C310 /* XXPlayerView.xib in Resources */,
 				2DE5429C1C423C3D00D4D4D9 /* 简单爱.mp3 in Resources */,
+				2D7708D21C42B24100788B04 /* XXSelectedQuestionCell.xib in Resources */,
+				2D7708CA1C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib in Resources */,
 				2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */,
 				2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */,
 			);
@@ -591,11 +632,16 @@
 				2D1D022F1C3EB2C10056B10C /* XXPlayerView.m in Sources */,
 				2D1C56351C3FB45F0002514D /* UIImage+CZ.m in Sources */,
 				2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */,
+				2D7708C61C42AF1F00788B04 /* XXExpertProfileHeaderView.m in Sources */,
+				2D7708D11C42B24100788B04 /* XXSelectedQuestionCell.m in Sources */,
+				2D7708D51C42BCFD00788B04 /* XXButton.m in Sources */,
 				2D4F2F271C4117F900CDAC0E /* HMCollectionCell.m in Sources */,
 				2D1D02221C3EA74F0056B10C /* main.m in Sources */,
 				2D1C56161C3FABB10002514D /* MJMethod.m in Sources */,
 				2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */,
+				2D7708CD1C42B17900788B04 /* XXSelectedQuestionHeaderView.m in Sources */,
 				2D1C56151C3FABB10002514D /* MJMember.m in Sources */,
+				2D7708C21C42AA3000788B04 /* XXExpertProfileCell.m in Sources */,
 				2D1C561A1C3FABB10002514D /* NSObject+MJKeyValue.m in Sources */,
 				2D1D022B1C3EAB170056B10C /* XXLectureViewController.m in Sources */,
 			);

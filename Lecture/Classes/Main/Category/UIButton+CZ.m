@@ -11,6 +11,11 @@
 
 @implementation UIButton (CZ)
 
+- (void)cornerRadius:(CGFloat)radius{
+    self.layer.cornerRadius = radius;
+    self.layer.masksToBounds = YES;
+}
+
 /**
  *  设置拉伸后的正常和高亮状态的按钮背影图片
  *

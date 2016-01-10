@@ -11,6 +11,13 @@
 @interface UIButton (CZ)
 
 /**
+ *  设置button为圆角
+ *
+ *  @param radius 圆角半径
+ */
+- (void)cornerRadius:(CGFloat)radius;
+
+/**
  *  设置拉伸后的正常和高亮状态的按钮背影图片
  *
  *  @param normalBg    普通状态的背影图片
