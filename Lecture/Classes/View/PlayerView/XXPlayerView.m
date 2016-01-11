@@ -76,6 +76,7 @@
 
 -(void)dealloc{
     
+
     //移除定时器
     [self.link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 }

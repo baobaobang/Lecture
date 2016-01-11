@@ -16,7 +16,7 @@
 
 #define XXNavigationTitleFont 18
 #define XXExpertProfileCellHeight 80
-#define XXSelectedQuestionCellHeight 80
+#define XXSelectedQuestionCellHeight 100
 
 typedef enum{
     XXExpertProfileSection, // 专家简介

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+// 有圆角效果的按钮
 @interface XXButton : UIButton
 
 @end
