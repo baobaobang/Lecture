@@ -92,10 +92,10 @@
                         </constraints>
                         <state key="normal" backgroundImage="expert_1"/>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zo8-TU-FJx" userLabel="toolbar">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zo8-TU-FJx" userLabel="toolbar" customClass="XXQuestionToolbar">
                         <rect key="frame" x="0.0" y="69" width="320" height="30"/>
                         <animations/>
-                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Rwz-aN-0zl"/>
                         </constraints>
@@ -118,6 +118,7 @@
             <animations/>
             <connections>
                 <outlet property="contentLabel" destination="1RT-kW-5KC" id="kb4-hU-HYs"/>
+                <outlet property="toolBarView" destination="zo8-TU-FJx" id="8ah-b9-2BW"/>
             </connections>
             <point key="canvasLocation" x="194" y="54"/>
         </tableViewCell>

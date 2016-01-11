@@ -31,6 +31,8 @@
 		2D1D022F1C3EB2C10056B10C /* XXPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D022E1C3EB2C10056B10C /* XXPlayerView.m */; };
 		2D1D20131C3F731D0093C310 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D20121C3F731D0093C310 /* UIView+Extension.m */; };
 		2D1D20161C3F89FE0093C310 /* XXPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D20151C3F89FE0093C310 /* XXPlayerView.xib */; };
+		2D1E8A431C43B3F000E0F24D /* XXQuestionToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E8A421C43B3F000E0F24D /* XXQuestionToolbar.m */; };
+		2D1E8A4C1C43B60C00E0F24D /* XXQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E8A4B1C43B60C00E0F24D /* XXQuestion.m */; };
 		2D4F2F271C4117F900CDAC0E /* HMCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4F2F251C4117F900CDAC0E /* HMCollectionCell.m */; };
 		2D4F2F281C4117F900CDAC0E /* HMCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D4F2F261C4117F900CDAC0E /* HMCollectionCell.xib */; };
 		2D5798761C40D58D007A0423 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798711C40D58D007A0423 /* UIBarButtonItem+Extension.m */; };
@@ -124,6 +126,10 @@
 		2D1D20121C3F731D0093C310 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		2D1D20141C3F733F0093C310 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2D1D20151C3F89FE0093C310 /* XXPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXPlayerView.xib; sourceTree = "<group>"; };
+		2D1E8A411C43B3F000E0F24D /* XXQuestionToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionToolbar.h; sourceTree = "<group>"; };
+		2D1E8A421C43B3F000E0F24D /* XXQuestionToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionToolbar.m; sourceTree = "<group>"; };
+		2D1E8A4A1C43B60C00E0F24D /* XXQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestion.h; sourceTree = "<group>"; };
+		2D1E8A4B1C43B60C00E0F24D /* XXQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestion.m; sourceTree = "<group>"; };
 		2D4F2F241C4117F900CDAC0E /* HMCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMCollectionCell.h; sourceTree = "<group>"; };
 		2D4F2F251C4117F900CDAC0E /* HMCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMCollectionCell.m; sourceTree = "<group>"; };
 		2D4F2F261C4117F900CDAC0E /* HMCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMCollectionCell.xib; sourceTree = "<group>"; };
@@ -401,6 +407,8 @@
 		2D1D021C1C3EA74F0056B10C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2D1E8A4A1C43B60C00E0F24D /* XXQuestion.h */,
+				2D1E8A4B1C43B60C00E0F24D /* XXQuestion.m */,
 				2DE5429E1C423C6C00D4D4D9 /* HMMusic.h */,
 				2DE5429F1C423C6C00D4D4D9 /* HMMusic.m */,
 			);
@@ -453,6 +461,8 @@
 				2D7708CB1C42B17900788B04 /* XXSelectedQuestionHeaderView.h */,
 				2D7708CC1C42B17900788B04 /* XXSelectedQuestionHeaderView.m */,
 				2D7708C91C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib */,
+				2D1E8A411C43B3F000E0F24D /* XXQuestionToolbar.h */,
+				2D1E8A421C43B3F000E0F24D /* XXQuestionToolbar.m */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -615,11 +625,13 @@
 			files = (
 				2D1C561B1C3FABB10002514D /* NSObject+MJMember.m in Sources */,
 				2D5798771C40D58D007A0423 /* UITextView+Extension.m in Sources */,
+				2D1E8A431C43B3F000E0F24D /* XXQuestionToolbar.m in Sources */,
 				2D1C56191C3FABB10002514D /* NSObject+MJCoding.m in Sources */,
 				2D1C56141C3FABB10002514D /* MJIvar.m in Sources */,
 				2D1C56181C3FABB10002514D /* MJTypeEncoding.m in Sources */,
 				2D5798841C40D90F007A0423 /* HWNavigationController.m in Sources */,
 				2D5798761C40D58D007A0423 /* UIBarButtonItem+Extension.m in Sources */,
+				2D1E8A4C1C43B60C00E0F24D /* XXQuestion.m in Sources */,
 				2D1D20131C3F731D0093C310 /* UIView+Extension.m in Sources */,
 				2D57987E1C40D63A007A0423 /* NSString+Extension.m in Sources */,
 				2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */,

@@ -240,7 +240,7 @@
                 <outlet property="timeSlider" destination="etL-8g-msJ" id="spA-ju-Ixj"/>
                 <outlet property="totalTimeLabel" destination="Cbj-Uj-bEp" id="voS-ve-wBi"/>
             </connections>
-            <point key="canvasLocation" x="-282" y="-313"/>
+            <point key="canvasLocation" x="-325" y="-341"/>
         </view>
     </objects>
     <resources>

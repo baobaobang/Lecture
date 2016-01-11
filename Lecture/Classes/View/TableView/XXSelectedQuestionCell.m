@@ -7,8 +7,12 @@
 //
 
 #import "XXSelectedQuestionCell.h"
+#import "XXQuestionToolbar.h"
+
 @interface XXSelectedQuestionCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+@property (nonatomic, weak) XXQuestionToolbar *toolBar;
 
 @end
 @implementation XXSelectedQuestionCell
@@ -28,6 +32,16 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    // 初始化toolbar
+    XXQuestionToolbar *toolBar = [XXQuestionToolbar toolbar];
+    [self.toolBarView addSubview:toolBar];
+    self.toolBar = toolBar;
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    // 设置toolbar的frame
+    self.toolBar.frame = self.toolBarView.bounds;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
