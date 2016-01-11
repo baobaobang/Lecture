@@ -22,9 +22,14 @@ typedef enum{
 }XXTableViewSection;
 
 @interface XXLectureViewController ()<UITableViewDataSource, UITableViewDelegate>
+/**  */
 @property (weak, nonatomic) IBOutlet XXPlayerView *playerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *joinBtn;
+/** 最近打开cell的indexPath */
+@property (nonatomic, strong) NSIndexPath *currentOpenIndexPath;
+/** 是否有cell处于打开状态，同一时间只能有一个cell处于打开状态 */
+@property (nonatomic, assign) BOOL isOpenCell;
 
 @end
 
@@ -42,6 +47,9 @@ typedef enum{
     
     // 设置报名活动按钮颜色
     self.joinBtn.backgroundColor = HWColor(75, 217, 130);
+    
+    //
+    self.currentOpenIndexPath = [NSIndexPath indexPathForItem:-1 inSection:-1];
 }
 
 /**
@@ -108,16 +116,34 @@ typedef enum{
 
 #pragma mark - cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == XXExpertProfileSection) {
-        return 80;
-    }else{
-        return 80;
+//    if (indexPath.section == XXExpertProfileSection) {
+//        return 80;
+//    }else{
+//        return 80;
+//    }
+    
+    if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES)
+    {
+        return 120.0f;
     }
+    return 80.0f;
 }
 
 #pragma mark - headerView的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 44;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame)
+    {
+        self.isOpenCell = !self.isOpenCell;
+    }else{
+        self.isOpenCell = YES;
+    }
+    self.currentOpenIndexPath = indexPath;
+    
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end
