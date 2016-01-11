@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,16 +12,22 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="专家简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzD-T2-3NO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专家简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzD-T2-3NO">
                     <rect key="frame" x="15" y="11" width="68" height="21"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="EzD-T2-3NO" secondAttribute="height" multiplier="68:21" id="89a-0d-kWj"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2P7-76-IcK" customClass="XXButton">
-                    <rect key="frame" x="266" y="7" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2P7-76-IcK" customClass="XXButton">
+                    <rect key="frame" x="268.5" y="10" width="41.5" height="27"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="2P7-76-IcK" secondAttribute="height" multiplier="23:15" id="hOb-aT-Ty6"/>
+                    </constraints>
                     <state key="normal" title="关注">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -28,6 +35,14 @@
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="EzD-T2-3NO" secondAttribute="bottom" constant="12" id="8vb-rU-dlv"/>
+                <constraint firstItem="EzD-T2-3NO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="11" id="Sja-mf-HEv"/>
+                <constraint firstAttribute="bottom" secondItem="2P7-76-IcK" secondAttribute="bottom" constant="7" id="Tak-Ic-Pfs"/>
+                <constraint firstItem="EzD-T2-3NO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="b72-pn-A0Z"/>
+                <constraint firstItem="2P7-76-IcK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="jgY-FH-hnQ"/>
+                <constraint firstAttribute="trailing" secondItem="2P7-76-IcK" secondAttribute="trailing" constant="10" id="uah-rk-u0u"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

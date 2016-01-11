@@ -8,6 +8,7 @@
 
 #import "XXSelectedQuestionCell.h"
 #import "XXQuestionToolbar.h"
+#import "XXQuestion.h"
 
 @interface XXSelectedQuestionCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;

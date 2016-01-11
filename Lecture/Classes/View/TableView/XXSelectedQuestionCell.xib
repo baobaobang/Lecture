@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="height" constant="20" id="mAG-7C-iEA"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="治疗顽固性咳嗽、哮喘、间质性肺炎、反复呼吸道感染、过敏性鼻炎、慢支、肺部肿瘤等呼吸系统疾病；中西医结合治疗儿童各类呼吸系统疾病" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RT-kW-5KC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RT-kW-5KC">
                                 <rect key="frame" x="8" y="20" width="243" height="42"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
