@@ -7,7 +7,10 @@
 //
 
 #import "XXSelectedQuestionCell.h"
+@interface XXSelectedQuestionCell ()
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
+@end
 @implementation XXSelectedQuestionCell
 
 //创建自定义可重用的cell对象
@@ -31,6 +34,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+-(void)cellAutoLayoutHeight{
+    self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.contentLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentLabel.frame);
 }
 
 @end

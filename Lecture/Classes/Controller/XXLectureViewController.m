@@ -15,6 +15,8 @@
 #import "XXSelectedQuestionHeaderView.h"
 
 #define XXNavigationTitleFont 18
+#define XXExpertProfileCellHeight 80
+#define XXSelectedQuestionCellHeight 80
 
 typedef enum{
     XXExpertProfileSection, // 专家简介
@@ -116,17 +118,41 @@ typedef enum{
 
 #pragma mark - cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == XXExpertProfileSection) {
-//        return 80;
-//    }else{
-//        return 80;
-//    }
-    
-    if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES)
-    {
-        return 120.0f;
+  
+    if (indexPath.section == XXExpertProfileSection) {// 专家简介部分
+        XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
+        if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
+            // 展开cell，根据内容自动调整高度
+            [expertCell cellAutoLayoutHeight];
+            CGSize size = [expertCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+            return size.height + 1;
+            
+        }else{
+            // 折叠cell，默认高度
+            return XXExpertProfileCellHeight;
+        }
+    }else{// 精选提问部分
+        XXSelectedQuestionCell *questionCell = [XXSelectedQuestionCell selectedQuestionCellInTableView:tableView];
+        if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
+            // 展开cell，根据内容自动调整高度
+            
+            [questionCell cellAutoLayoutHeight];
+            CGSize size = [questionCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+            return size.height + 1;
+        }else{
+            // 折叠cell，默认高度
+            return XXSelectedQuestionCellHeight;
+        }
     }
-    return 80.0f;
+}
+
+#pragma mark - 估算的cell的高度
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == XXExpertProfileSection) {
+        return XXExpertProfileCellHeight;
+    }else{
+        return XXSelectedQuestionCellHeight;
+    }
 }
 
 #pragma mark - headerView的高度
@@ -134,7 +160,9 @@ typedef enum{
     return 44;
 }
 
+#pragma mark - 点击cell后的反应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    // 判断是否要展开cell
     if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame)
     {
         self.isOpenCell = !self.isOpenCell;

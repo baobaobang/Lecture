@@ -10,4 +10,5 @@
 
 @interface XXExpertProfileCell : UITableViewCell
 + (instancetype)expertProfileCellInTableView:(UITableView *)tableView;
+- (void)cellAutoLayoutHeight;
 @end

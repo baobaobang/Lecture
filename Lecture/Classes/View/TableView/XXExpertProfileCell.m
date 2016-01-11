@@ -8,6 +8,11 @@
 
 #import "XXExpertProfileCell.h"
 
+@interface XXExpertProfileCell ()
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+
+@end
+
 @implementation XXExpertProfileCell
 
 + (instancetype)cell{
@@ -33,6 +38,11 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
+}
+
+-(void)cellAutoLayoutHeight{
+    self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.contentLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentLabel.frame);
 }
 
 @end

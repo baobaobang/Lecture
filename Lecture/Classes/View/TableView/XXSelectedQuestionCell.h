@@ -10,4 +10,5 @@
 
 @interface XXSelectedQuestionCell : UITableViewCell
 + (instancetype)selectedQuestionCellInTableView:(UITableView *)tableView;
+- (void)cellAutoLayoutHeight;
 @end

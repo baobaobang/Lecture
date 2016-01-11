@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ga-Pf-dYH" userLabel="PlayerView" customClass="XXPlayerView">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ga-Pf-dYH" userLabel="PlayerView" customClass="XXPlayerView">
                     <rect key="frame" x="0.0" y="64" width="320" height="200"/>
                     <animations/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,7 +39,7 @@
                         </mask>
                     </variation>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eMQ-BV-muU">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eMQ-BV-muU">
                     <rect key="frame" x="0.0" y="264" width="320" height="274"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,7 +59,7 @@
                         <outlet property="delegate" destination="-1" id="0aw-jm-Ee8"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-B2-MPg" customClass="XXButton">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-B2-MPg" customClass="XXButton">
                     <rect key="frame" x="0.0" y="538" width="320" height="30"/>
                     <animations/>
                     <color key="backgroundColor" red="0.29411764709999999" green="0.85098039219999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
