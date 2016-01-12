@@ -9,7 +9,6 @@
 #import "XXExpertProfileCell.h"
 
 @interface XXExpertProfileCell ()
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @end
 
@@ -40,9 +39,10 @@
 
 }
 
--(void)cellAutoLayoutHeight{
+-(void)cellAutoLayoutHeight:(NSString *)str{
     self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.contentLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentLabel.frame);
+    self.contentLabel.text = str;
 }
 
 @end

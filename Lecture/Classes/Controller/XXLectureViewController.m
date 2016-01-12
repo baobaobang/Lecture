@@ -18,6 +18,8 @@
 #define XXExpertProfileCellHeight 80
 #define XXQuestionCellHeight 100
 
+#define XXExpertProfileText @"治疗顽固性咳嗽、哮喘、间质性肺炎、反复呼吸道感染、过敏性鼻炎、慢支、肺部肿瘤等呼吸系统疾病；中西医结合治疗儿童各类呼吸系统疾病"
+
 typedef enum{
     XXExpertProfileSection, // 专家简介
     XXQuestionSection // 精选提问
@@ -33,6 +35,7 @@ typedef enum{
 /** 是否有cell处于打开状态，同一时间只能有一个cell处于打开状态 */
 @property (nonatomic, assign) BOOL isOpenCell;
 
+@property (nonatomic, strong) NSArray *questionContents;
 @end
 
 @implementation XXLectureViewController
@@ -53,6 +56,15 @@ typedef enum{
     //
     self.currentOpenIndexPath = [NSIndexPath indexPathForItem:-1 inSection:-1];
 }
+
+- (NSArray *)questionContents
+{
+    if (!_questionContents) {
+        _questionContents = @[@"张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了", @"孩子在家不咳嗽～出门就咳嗽怎么办", @"一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害", @"这几天新闻说上海流感比较多，H1N1,希望老师多讲讲"];
+    }
+    return _questionContents;
+}
+
 
 /**
  *  设置导航栏内容
@@ -94,10 +106,11 @@ typedef enum{
     if (section == XXExpertProfileSection) {
         return 1;
     }else{
-        return 5;
+        return 4;
     }
 }
 
+// cell创建和数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == XXExpertProfileSection) {
         XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
@@ -112,6 +125,40 @@ typedef enum{
         }else{
             // 折叠cell，隐藏屏蔽按钮
             questionCell.shieldBtn.hidden = YES;
+        }
+        
+        // 假数据
+        switch (indexPath.row) {
+            case 0:
+                questionCell.userNameLabel.text = @"李灵黛";
+                questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_1"];
+                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_1"] forState:UIControlStateNormal];
+                questionCell.questionContentLabel.text = @"张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了";
+                break;
+            case 1:
+                
+                questionCell.userNameLabel.text = @"冷文卿";
+                questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_2"];
+                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_2"] forState:UIControlStateNormal];
+                questionCell.questionContentLabel.text = @"孩子在家不咳嗽～出门就咳嗽怎么办";
+                break;
+            case 2:
+                
+                questionCell.userNameLabel.text = @"李念";
+                questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_3"];
+                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_3"] forState:UIControlStateNormal];
+                questionCell.questionContentLabel.text = @"一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害";
+                break;
+            case 3:
+                
+                questionCell.userNameLabel.text = @"魏天霞";
+                questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_1"];
+                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_4"] forState:UIControlStateNormal];
+                questionCell.questionContentLabel.text = @"这几天新闻说上海流感比较多，H1N1,希望老师多讲讲";
+                break;
+                
+            default:
+                break;
         }
         
         return questionCell;
@@ -133,19 +180,20 @@ typedef enum{
         XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
         if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
             // 展开cell，根据内容自动调整高度
-            [expertCell cellAutoLayoutHeight];
-            CGSize size = [expertCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+            [expertCell cellAutoLayoutHeight:XXExpertProfileText];
+            CGSize size = [expertCell.contentView systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
             return size.height + 1;
             
         }else{
             // 折叠cell，默认高度
             return XXExpertProfileCellHeight;
         }
+        
     }else{// 精选提问部分
         XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];
         if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
             // 展开cell，根据内容自动调整高度
-            [questionCell cellAutoLayoutHeight];
+            [questionCell cellAutoLayoutHeight:self.questionContents[indexPath.row]];
             CGSize size = [questionCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
             return size.height + 1;
         }else{
@@ -180,8 +228,7 @@ typedef enum{
     }
     self.currentOpenIndexPath = indexPath;
 
-    
-    
+
 //    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView reloadData];
 }

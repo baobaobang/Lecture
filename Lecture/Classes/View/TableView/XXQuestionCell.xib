@@ -20,21 +20,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugt-QU-GAQ" userLabel="topView">
                                 <rect key="frame" x="8" y="0.0" width="243" height="20"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_vip" translatesAutoresizingMaskIntoConstraints="NO" id="oPZ-FD-V5Q">
-                                        <rect key="frame" x="50" y="0.0" width="20" height="20"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="u9k-wZ-pfZ"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="钱丽丽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctT-iZ-BTt" userLabel="userNameLabel">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="0eU-Jk-vee"/>
+                                            <constraint firstAttribute="width" constant="50" id="6k8-45-ADd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="0eU-Jk-vee"/>
+                                            </mask>
+                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lss-cM-vsn" customClass="XXButton">
                                         <rect key="frame" x="213" y="0.0" width="30" height="20"/>
@@ -44,10 +43,17 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="屏蔽"/>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oPZ-FD-V5Q">
+                                        <rect key="frame" x="51" y="3" width="28" height="17"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="u9k-wZ-pfZ"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="oPZ-FD-V5Q" firstAttribute="leading" secondItem="ctT-iZ-BTt" secondAttribute="trailing" id="2yf-ah-YAO"/>
+                                    <constraint firstItem="oPZ-FD-V5Q" firstAttribute="leading" secondItem="ctT-iZ-BTt" secondAttribute="trailing" constant="1" id="2yf-ah-YAO"/>
                                     <constraint firstAttribute="bottom" secondItem="lss-cM-vsn" secondAttribute="bottom" id="5cd-sm-6ca"/>
                                     <constraint firstItem="ctT-iZ-BTt" firstAttribute="leading" secondItem="ugt-QU-GAQ" secondAttribute="leading" id="JCP-dx-Pot"/>
                                     <constraint firstAttribute="bottom" secondItem="ctT-iZ-BTt" secondAttribute="bottom" id="Ktw-q2-w8S"/>
@@ -55,7 +61,7 @@
                                     <constraint firstItem="ctT-iZ-BTt" firstAttribute="top" secondItem="ugt-QU-GAQ" secondAttribute="top" id="Y1R-lK-pQL"/>
                                     <constraint firstItem="lss-cM-vsn" firstAttribute="top" secondItem="ugt-QU-GAQ" secondAttribute="top" id="jFQ-w6-59f"/>
                                     <constraint firstAttribute="bottom" secondItem="oPZ-FD-V5Q" secondAttribute="bottom" id="kIO-UF-zLC"/>
-                                    <constraint firstItem="oPZ-FD-V5Q" firstAttribute="top" secondItem="ugt-QU-GAQ" secondAttribute="top" id="lxf-xf-tAv"/>
+                                    <constraint firstItem="oPZ-FD-V5Q" firstAttribute="top" secondItem="ugt-QU-GAQ" secondAttribute="top" constant="3" id="lxf-xf-tAv"/>
                                     <constraint firstAttribute="height" constant="20" id="mAG-7C-iEA"/>
                                 </constraints>
                             </view>
@@ -119,7 +125,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="avatar_vip" width="17" height="17"/>
         <image name="user_1" width="200" height="198"/>
     </resources>
 </document>

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface XXExpertProfileCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 + (instancetype)expertProfileCellInTableView:(UITableView *)tableView;
 - (void)cellAutoLayoutHeight;
+
+-(void)cellAutoLayoutHeight:(NSString *)str;
 @end

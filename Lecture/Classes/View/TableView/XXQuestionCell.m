@@ -14,12 +14,6 @@
 @interface XXQuestionCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;
-@property (nonatomic, weak) XXQuestionToolbar *toolBar;
-
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userLevelView;
-@property (weak, nonatomic) IBOutlet UIButton *userIconBtn;
-@property (weak, nonatomic) IBOutlet UILabel *questionContentLabel;
 
 
 
@@ -62,9 +56,12 @@
 
     // Configure the view for the selected state
 }
--(void)cellAutoLayoutHeight{
+
+// cell高度自动适应label内容
+-(void)cellAutoLayoutHeight:(NSString *)text{
     self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.contentLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentLabel.frame);
+    self.contentLabel.text = text;
 }
 
 - (void)setQuestion:(XXQuestion *)question{
