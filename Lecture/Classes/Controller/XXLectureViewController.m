@@ -11,16 +11,16 @@
 #import "HWNavigationController.h"
 #import "XXExpertProfileCell.h"
 #import "XXExpertProfileHeaderView.h"
-#import "XXSelectedQuestionCell.h"
-#import "XXSelectedQuestionHeaderView.h"
+#import "XXQuestionCell.h"
+#import "XXQuestionHeaderView.h"
 
 #define XXNavigationTitleFont 18
 #define XXExpertProfileCellHeight 80
-#define XXSelectedQuestionCellHeight 100
+#define XXQuestionCellHeight 100
 
 typedef enum{
     XXExpertProfileSection, // 专家简介
-    XXSelectedQuestionSection // 精选提问
+    XXQuestionSection // 精选提问
 }XXTableViewSection;
 
 @interface XXLectureViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -48,7 +48,7 @@ typedef enum{
     [self.playerView addSubview:playerView];
     
     // 设置报名活动按钮颜色
-    self.joinBtn.backgroundColor = HWSelectedQuestionTintColor;
+    self.joinBtn.backgroundColor = HWQuestionTintColor;
     
     //
     self.currentOpenIndexPath = [NSIndexPath indexPathForItem:-1 inSection:-1];
@@ -103,7 +103,7 @@ typedef enum{
         XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
         return expertCell;
     }else{
-        XXSelectedQuestionCell *questionCell = [XXSelectedQuestionCell selectedQuestionCellInTableView:tableView];
+        XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];
         
         // 屏蔽按钮的显示与隐藏
         if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
@@ -122,7 +122,7 @@ typedef enum{
     if (section == XXExpertProfileSection) {
         return [XXExpertProfileHeaderView headerView];
     }else{
-        return [XXSelectedQuestionHeaderView headerView];
+        return [XXQuestionHeaderView headerView];
     }
 }
 
@@ -142,7 +142,7 @@ typedef enum{
             return XXExpertProfileCellHeight;
         }
     }else{// 精选提问部分
-        XXSelectedQuestionCell *questionCell = [XXSelectedQuestionCell selectedQuestionCellInTableView:tableView];
+        XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];
         if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
             // 展开cell，根据内容自动调整高度
             [questionCell cellAutoLayoutHeight];
@@ -150,7 +150,7 @@ typedef enum{
             return size.height + 1;
         }else{
             // 折叠cell，默认高度
-            return XXSelectedQuestionCellHeight;
+            return XXQuestionCellHeight;
         }
     }
 }
@@ -160,7 +160,7 @@ typedef enum{
     if (indexPath.section == XXExpertProfileSection) {
         return XXExpertProfileCellHeight;
     }else{
-        return XXSelectedQuestionCellHeight;
+        return XXQuestionCellHeight;
     }
 }
 

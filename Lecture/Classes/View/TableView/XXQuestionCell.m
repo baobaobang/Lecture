@@ -1,17 +1,17 @@
 //
-//  XXSelectedQuestionCell.m
+//  XXQuestionCell.m
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/10.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "XXSelectedQuestionCell.h"
+#import "XXQuestionCell.h"
 #import "XXQuestionToolbar.h"
 #import "XXQuestion.h"
 
 
-@interface XXSelectedQuestionCell ()
+@interface XXQuestionCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;
 @property (nonatomic, weak) XXQuestionToolbar *toolBar;
@@ -24,14 +24,14 @@
 
 
 @end
-@implementation XXSelectedQuestionCell
+@implementation XXQuestionCell
 
 //创建自定义可重用的cell对象
-+ (instancetype)selectedQuestionCellInTableView:(UITableView *)tableView{
-    static NSString *reuseId = @"selectedQuestionCell";
-    XXSelectedQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
++ (instancetype)QuestionCellInTableView:(UITableView *)tableView{
+    static NSString *reuseId = @"QuestionCell";
+    XXQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"XXSelectedQuestionCell" owner:nil options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"XXQuestionCell" owner:nil options:nil] lastObject];
         // 设置cell选中时不变色
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -47,7 +47,7 @@
     self.toolBar = toolBar;
     
     // 设置屏蔽按钮的背景颜色和字体颜色
-    self.shieldBtn.backgroundColor = HWSelectedQuestionTintColor;
+    self.shieldBtn.backgroundColor = HWQuestionTintColor;
     [self.shieldBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 

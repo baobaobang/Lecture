@@ -1,5 +1,5 @@
 //
-//  XXSelectedQuestionCell.h
+//  XXQuestionCell.h
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/10.
@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 @class XXQuestion;
 
-@interface XXSelectedQuestionCell : UITableViewCell
-+ (instancetype)selectedQuestionCellInTableView:(UITableView *)tableView;
+@interface XXQuestionCell : UITableViewCell
++ (instancetype)QuestionCellInTableView:(UITableView *)tableView;
 - (void)cellAutoLayoutHeight;
 
 @property (weak, nonatomic) IBOutlet XXButton *shieldBtn;

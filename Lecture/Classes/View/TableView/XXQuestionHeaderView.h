@@ -1,5 +1,5 @@
 //
-//  XXSelectedQuestionHeaderView.h
+//  XXQuestionHeaderView.h
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/10.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XXSelectedQuestionHeaderView : UIView
+@interface XXQuestionHeaderView : UIView
 
 + (instancetype)headerView;
 @end

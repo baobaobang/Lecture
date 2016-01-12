@@ -45,10 +45,10 @@
 		2D7708C31C42AA3000788B04 /* XXExpertProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */; };
 		2D7708C61C42AF1F00788B04 /* XXExpertProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708C51C42AF1F00788B04 /* XXExpertProfileHeaderView.m */; };
 		2D7708C81C42AF4D00788B04 /* XXExpertProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C71C42AF4D00788B04 /* XXExpertProfileHeaderView.xib */; };
-		2D7708CA1C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C91C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib */; };
-		2D7708CD1C42B17900788B04 /* XXSelectedQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708CC1C42B17900788B04 /* XXSelectedQuestionHeaderView.m */; };
-		2D7708D11C42B24100788B04 /* XXSelectedQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708CF1C42B24100788B04 /* XXSelectedQuestionCell.m */; };
-		2D7708D21C42B24100788B04 /* XXSelectedQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708D01C42B24100788B04 /* XXSelectedQuestionCell.xib */; };
+		2D7708CA1C42B15C00788B04 /* XXQuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C91C42B15C00788B04 /* XXQuestionHeaderView.xib */; };
+		2D7708CD1C42B17900788B04 /* XXQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708CC1C42B17900788B04 /* XXQuestionHeaderView.m */; };
+		2D7708D11C42B24100788B04 /* XXQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708CF1C42B24100788B04 /* XXQuestionCell.m */; };
+		2D7708D21C42B24100788B04 /* XXQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708D01C42B24100788B04 /* XXQuestionCell.xib */; };
 		2D7708D51C42BCFD00788B04 /* XXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708D41C42BCFD00788B04 /* XXButton.m */; };
 		2DA99D341C44B0CB00CD02D7 /* 回答问题.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D201C44B0CB00CD02D7 /* 回答问题.mp3 */; };
 		2DA99D741C44B75500CD02D7 /* 上呼吸道的概念.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D611C44B75500CD02D7 /* 上呼吸道的概念.png */; };
@@ -160,12 +160,12 @@
 		2D7708C41C42AF1F00788B04 /* XXExpertProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileHeaderView.h; sourceTree = "<group>"; };
 		2D7708C51C42AF1F00788B04 /* XXExpertProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpertProfileHeaderView.m; sourceTree = "<group>"; };
 		2D7708C71C42AF4D00788B04 /* XXExpertProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXExpertProfileHeaderView.xib; sourceTree = "<group>"; };
-		2D7708C91C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXSelectedQuestionHeaderView.xib; sourceTree = "<group>"; };
-		2D7708CB1C42B17900788B04 /* XXSelectedQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSelectedQuestionHeaderView.h; sourceTree = "<group>"; };
-		2D7708CC1C42B17900788B04 /* XXSelectedQuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSelectedQuestionHeaderView.m; sourceTree = "<group>"; };
-		2D7708CE1C42B24100788B04 /* XXSelectedQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSelectedQuestionCell.h; sourceTree = "<group>"; };
-		2D7708CF1C42B24100788B04 /* XXSelectedQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSelectedQuestionCell.m; sourceTree = "<group>"; };
-		2D7708D01C42B24100788B04 /* XXSelectedQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXSelectedQuestionCell.xib; sourceTree = "<group>"; };
+		2D7708C91C42B15C00788B04 /* XXQuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionHeaderView.xib; sourceTree = "<group>"; };
+		2D7708CB1C42B17900788B04 /* XXQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionHeaderView.h; sourceTree = "<group>"; };
+		2D7708CC1C42B17900788B04 /* XXQuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionHeaderView.m; sourceTree = "<group>"; };
+		2D7708CE1C42B24100788B04 /* XXQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionCell.h; sourceTree = "<group>"; };
+		2D7708CF1C42B24100788B04 /* XXQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionCell.m; sourceTree = "<group>"; };
+		2D7708D01C42B24100788B04 /* XXQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionCell.xib; sourceTree = "<group>"; };
 		2D7708D31C42BCFD00788B04 /* XXButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXButton.h; sourceTree = "<group>"; };
 		2D7708D41C42BCFD00788B04 /* XXButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXButton.m; sourceTree = "<group>"; };
 		2DA99D201C44B0CB00CD02D7 /* 回答问题.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "回答问题.mp3"; sourceTree = "<group>"; };
@@ -470,15 +470,15 @@
 				2D7708BF1C42AA3000788B04 /* XXExpertProfileCell.h */,
 				2D7708C01C42AA3000788B04 /* XXExpertProfileCell.m */,
 				2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */,
-				2D7708CE1C42B24100788B04 /* XXSelectedQuestionCell.h */,
-				2D7708CF1C42B24100788B04 /* XXSelectedQuestionCell.m */,
-				2D7708D01C42B24100788B04 /* XXSelectedQuestionCell.xib */,
+				2D7708CE1C42B24100788B04 /* XXQuestionCell.h */,
+				2D7708CF1C42B24100788B04 /* XXQuestionCell.m */,
+				2D7708D01C42B24100788B04 /* XXQuestionCell.xib */,
 				2D7708C41C42AF1F00788B04 /* XXExpertProfileHeaderView.h */,
 				2D7708C51C42AF1F00788B04 /* XXExpertProfileHeaderView.m */,
 				2D7708C71C42AF4D00788B04 /* XXExpertProfileHeaderView.xib */,
-				2D7708CB1C42B17900788B04 /* XXSelectedQuestionHeaderView.h */,
-				2D7708CC1C42B17900788B04 /* XXSelectedQuestionHeaderView.m */,
-				2D7708C91C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib */,
+				2D7708CB1C42B17900788B04 /* XXQuestionHeaderView.h */,
+				2D7708CC1C42B17900788B04 /* XXQuestionHeaderView.m */,
+				2D7708C91C42B15C00788B04 /* XXQuestionHeaderView.xib */,
 				2D1E8A411C43B3F000E0F24D /* XXQuestionToolbar.h */,
 				2D1E8A421C43B3F000E0F24D /* XXQuestionToolbar.m */,
 			);
@@ -687,9 +687,9 @@
 				2DA99D761C44B75500CD02D7 /* 为什么容易感冒.png in Resources */,
 				2DA99D7B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 in Resources */,
 				2D1D20161C3F89FE0093C310 /* XXPlayerView.xib in Resources */,
-				2D7708D21C42B24100788B04 /* XXSelectedQuestionCell.xib in Resources */,
+				2D7708D21C42B24100788B04 /* XXQuestionCell.xib in Resources */,
 				2DA99D7C1C44B75500CD02D7 /* 感冒的原因.mp3 in Resources */,
-				2D7708CA1C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib in Resources */,
+				2D7708CA1C42B15C00788B04 /* XXQuestionHeaderView.xib in Resources */,
 				2DA99D7D1C44B75500CD02D7 /* 为什么容易感冒.mp3 in Resources */,
 				2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */,
 				2DA99D7A1C44B75500CD02D7 /* 什么是感冒.mp3 in Resources */,
@@ -741,13 +741,13 @@
 				2D1C56351C3FB45F0002514D /* UIImage+CZ.m in Sources */,
 				2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */,
 				2D7708C61C42AF1F00788B04 /* XXExpertProfileHeaderView.m in Sources */,
-				2D7708D11C42B24100788B04 /* XXSelectedQuestionCell.m in Sources */,
+				2D7708D11C42B24100788B04 /* XXQuestionCell.m in Sources */,
 				2D7708D51C42BCFD00788B04 /* XXButton.m in Sources */,
 				2D4F2F271C4117F900CDAC0E /* HMCollectionCell.m in Sources */,
 				2D1D02221C3EA74F0056B10C /* main.m in Sources */,
 				2D1C56161C3FABB10002514D /* MJMethod.m in Sources */,
 				2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */,
-				2D7708CD1C42B17900788B04 /* XXSelectedQuestionHeaderView.m in Sources */,
+				2D7708CD1C42B17900788B04 /* XXQuestionHeaderView.m in Sources */,
 				2D1C56151C3FABB10002514D /* MJMember.m in Sources */,
 				2D7708C21C42AA3000788B04 /* XXExpertProfileCell.m in Sources */,
 				2D1C561A1C3FABB10002514D /* NSObject+MJKeyValue.m in Sources */,
