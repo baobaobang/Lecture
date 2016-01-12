@@ -182,7 +182,8 @@ typedef enum{
 
     
     
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView reloadData];
 }
 
 @end

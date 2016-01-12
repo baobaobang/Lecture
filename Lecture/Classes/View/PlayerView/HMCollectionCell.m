@@ -21,6 +21,4 @@
     self.imageView.image = [UIImage imageNamed:music.icon];
 }
 
-
-
 @end
