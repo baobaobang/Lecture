@@ -27,7 +27,7 @@ typedef enum{
     XXQuestionSection // 精选提问
 }XXTableViewSection;
 
-@interface XXLectureViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface XXLectureViewController ()<UITableViewDataSource, UITableViewDelegate, XXQuestionToolbarDelegate>
 /**  */
 @property (weak, nonatomic) IBOutlet XXPlayerView *playerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -59,6 +59,7 @@ typedef enum{
     
     //
     self.currentOpenIndexPath = [NSIndexPath indexPathForItem:-1 inSection:-1];
+    
 }
 
 - (NSArray *)questions
@@ -135,6 +136,8 @@ typedef enum{
         return expertCell;
     }else{
         XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];
+        
+        questionCell.toolBar.delegate = self;
         
         // 屏蔽按钮的显示与隐藏
         if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
@@ -257,6 +260,11 @@ typedef enum{
 
 //    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView reloadData];
+}
+
+#pragma mark - XXQuestionToolbar的按钮被点击了
+- (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
+    [self.tableView reloadData];
 }
 
 @end

@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "XXQuestion.h"
+typedef enum{
+    XXQuestionToolbarButtonTypeRetweet,
+    XXQuestionToolbarButtonTypeComment,
+    XXQuestionToolbarButtonTypeUnlike
+}XXQuestionToolbarButtonType;
+
+@class XXQuestionToolbar;
+@protocol XXQuestionToolbarDelegate <NSObject>
+@optional
+- (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type;
+
+@end
 
 @interface XXQuestionToolbar : UIView
 
@@ -17,4 +29,6 @@
 @property (nonatomic, weak) UIButton *commentBtn;
 @property (nonatomic, weak) UIButton *attitudeBtn;
 + (instancetype)toolbar;
+
+@property (nonatomic, weak) id<XXQuestionToolbarDelegate> delegate;
 @end

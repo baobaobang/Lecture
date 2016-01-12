@@ -12,6 +12,8 @@
 #define XXQuestionToolbarCommentTitle @"回复"
 #define XXQuestionToolbarUnlikeTitle @"棒"
 
+
+
 @interface XXQuestionToolbar()
 /** 里面存放所有的按钮 */
 @property (nonatomic, strong) NSMutableArray *btns;
@@ -50,9 +52,9 @@
 //        self.backgroundColor = HWTestColor;
         
         // 添加按钮
-        self.shareBtn = [self setupBtn:XXQuestionToolbarRetweetTitle icon:@"timeline_icon_retweet"];
-        self.commentBtn = [self setupBtn:XXQuestionToolbarCommentTitle icon:@"timeline_icon_comment"];
-        self.attitudeBtn = [self setupBtn:XXQuestionToolbarUnlikeTitle icon:@"timeline_icon_unlike"];
+        self.shareBtn = [self setupBtn:XXQuestionToolbarRetweetTitle icon:@"timeline_icon_retweet" type:XXQuestionToolbarButtonTypeRetweet];
+        self.commentBtn = [self setupBtn:XXQuestionToolbarCommentTitle icon:@"timeline_icon_comment" type:XXQuestionToolbarButtonTypeComment];
+        self.attitudeBtn = [self setupBtn:XXQuestionToolbarUnlikeTitle icon:@"timeline_icon_unlike" type:XXQuestionToolbarButtonTypeUnlike];
         
         // 添加分割线
         [self setupDivider];
@@ -77,7 +79,7 @@
  * @param title : 按钮文字
  * @param icon : 按钮图标
  */
-- (UIButton *)setupBtn:(NSString *)title icon:(NSString *)icon
+- (UIButton *)setupBtn:(NSString *)title icon:(NSString *)icon type:(XXQuestionToolbarButtonType)type
 {
     UIButton *btn = [[UIButton alloc] init];
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
@@ -86,11 +88,29 @@
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    
+    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    btn.tag = type;
     [self addSubview:btn];
     
     [self.btns addObject:btn];
     
     return btn;
+}
+
+//TODO:
+- (void)btnClick:(UIButton *)btn{
+    switch (btn.tag) {
+        case XXQuestionToolbarButtonTypeUnlike:
+            self.question.like = !self.question.like;
+            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
+                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeUnlike];
+            }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)layoutSubviews
@@ -133,6 +153,12 @@
     [self setupBtnCount:question.comments_count btn:self.commentBtn title:XXQuestionToolbarCommentTitle];
     // 赞
     [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:XXQuestionToolbarUnlikeTitle];
+    
+    if (question.like) {
+        [self.attitudeBtn setImage:[UIImage imageNamed:@"timeline_icon_like"] forState:UIControlStateNormal];
+    }else{
+        [self.attitudeBtn setImage:[UIImage imageNamed:@"timeline_icon_unlike"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)setupBtnCount:(int)count btn:(UIButton *)btn title:(NSString *)title

@@ -15,5 +15,7 @@
 @property (nonatomic, assign) NSInteger comments_count;
 /**	NSInteger	表态数*/
 @property (nonatomic, assign) NSInteger attitudes_count;
+/**	BOOL    是否点赞*/
+@property (nonatomic, assign) BOOL like;
 
 @end

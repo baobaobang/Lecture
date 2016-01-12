@@ -9,6 +9,8 @@
 		<integer>3</integer>
 		<key>attitudes_count</key>
 		<integer>133</integer>
+		<key>like</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>retweets_count</key>
@@ -17,6 +19,8 @@
 		<integer>0</integer>
 		<key>attitudes_count</key>
 		<integer>0</integer>
+		<key>like</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>retweets_count</key>
@@ -25,6 +29,8 @@
 		<integer>1313</integer>
 		<key>attitudes_count</key>
 		<integer>112</integer>
+		<key>like</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>retweets_count</key>
@@ -33,6 +39,8 @@
 		<integer>13</integer>
 		<key>attitudes_count</key>
 		<integer>2323</integer>
+		<key>like</key>
+		<false/>
 	</dict>
 </array>
 </plist>
