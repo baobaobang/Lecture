@@ -114,6 +114,11 @@ typedef enum{
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == XXExpertProfileSection) {
         XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
+        // 设计专家头像为原型
+        CGFloat borderWidth = expertCell.imageView.width;
+        UIImage *expertIcon = [UIImage circleImageWithName:@"expert_2" borderWidth:borderWidth borderColor:[UIColor clearColor]];
+        [expertCell.expertIconBtn setBackgroundImage:expertIcon forState:UIControlStateNormal];
+
         return expertCell;
     }else{
         XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];

@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface XXExpertProfileCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *expertIconBtn;
+@property (weak, nonatomic) IBOutlet UILabel *expertNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *expertDepartmentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *expertFieldLabel;
+
 + (instancetype)expertProfileCellInTableView:(UITableView *)tableView;
 - (void)cellAutoLayoutHeight;
 

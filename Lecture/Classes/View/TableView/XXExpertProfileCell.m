@@ -40,9 +40,9 @@
 }
 
 -(void)cellAutoLayoutHeight:(NSString *)str{
-    self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.contentLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentLabel.frame);
-    self.contentLabel.text = str;
+    self.expertFieldLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.expertFieldLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.expertFieldLabel.frame);
+    self.expertFieldLabel.text = str;
 }
 
 @end
