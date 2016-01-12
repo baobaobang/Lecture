@@ -635,6 +635,7 @@
 				TargetAttributes = {
 					2D1D01D81C3EA3910056B10C = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 8TM9F2U9GU;
 					};
 					2D1D01F11C3EA3910056B10C = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -890,10 +891,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = Lecture/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ChenXu.Lecture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -904,10 +907,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = Lecture/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ChenXu.Lecture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
