@@ -99,10 +99,20 @@
 }
 
 //TODO:
+/**
+ *  按钮点击
+ *
+ *  @param btn 点击的按钮
+ */
 - (void)btnClick:(UIButton *)btn{
     switch (btn.tag) {
         case XXQuestionToolbarButtonTypeUnlike:
             self.question.like = !self.question.like;
+            if (self.question.like) {// 点赞增加数字
+                self.question.attitudes_count++;
+            }else{
+                self.question.attitudes_count--;
+            }
             if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
                 [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeUnlike];
             }
@@ -163,7 +173,7 @@
 
 - (void)setupBtnCount:(int)count btn:(UIButton *)btn title:(NSString *)title
 {
-    if (count) { // 数字不为0
+    if (count > 0) { // 数字不为0
         if (count < 10000) { // 不足10000：直接显示数字，比如786、7986
             title = [NSString stringWithFormat:@"%d", count];
         } else { // 达到10000：显示xx.x万，不要有.0的情况

@@ -20,7 +20,7 @@
 		<key>attitudes_count</key>
 		<integer>0</integer>
 		<key>like</key>
-		<true/>
+		<false/>
 	</dict>
 	<dict>
 		<key>retweets_count</key>
