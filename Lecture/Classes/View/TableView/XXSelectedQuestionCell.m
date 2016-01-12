@@ -16,6 +16,12 @@
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;
 @property (nonatomic, weak) XXQuestionToolbar *toolBar;
 
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userLevelView;
+@property (weak, nonatomic) IBOutlet UIButton *userIconBtn;
+@property (weak, nonatomic) IBOutlet UILabel *questionContentLabel;
+
+
 
 @end
 @implementation XXSelectedQuestionCell
@@ -59,6 +65,12 @@
 -(void)cellAutoLayoutHeight{
     self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.contentLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentLabel.frame);
+}
+
+- (void)setQuestion:(XXQuestion *)question{
+    _question = question;
+    
+    
 }
 
 @end

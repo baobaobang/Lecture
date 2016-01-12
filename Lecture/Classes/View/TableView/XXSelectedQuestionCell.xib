@@ -27,7 +27,7 @@
                                             <constraint firstAttribute="width" constant="20" id="u9k-wZ-pfZ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="钱丽丽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctT-iZ-BTt" userLabel="专家名称">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="钱丽丽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctT-iZ-BTt" userLabel="userNameLabel">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="0eU-Jk-vee"/>
@@ -108,8 +108,12 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLabel" destination="1RT-kW-5KC" id="kb4-hU-HYs"/>
+                <outlet property="questionContentLabel" destination="1RT-kW-5KC" id="nvT-Q3-EKf"/>
                 <outlet property="shieldBtn" destination="lss-cM-vsn" id="xxJ-m0-Gy1"/>
                 <outlet property="toolBarView" destination="zo8-TU-FJx" id="8ah-b9-2BW"/>
+                <outlet property="userIconBtn" destination="qpu-vz-9IQ" id="rc2-CF-bnH"/>
+                <outlet property="userLevelView" destination="oPZ-FD-V5Q" id="b91-SD-P6G"/>
+                <outlet property="userNameLabel" destination="ctT-iZ-BTt" id="Vd5-gb-H0l"/>
             </connections>
             <point key="canvasLocation" x="194" y="54"/>
         </tableViewCell>
