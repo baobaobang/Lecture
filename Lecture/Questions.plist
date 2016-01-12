@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>retweets_count</key>
+		<integer>12</integer>
+		<key>comments_count</key>
+		<integer>3</integer>
+		<key>attitudes_count</key>
+		<integer>133</integer>
+	</dict>
+	<dict>
+		<key>retweets_count</key>
+		<integer>0</integer>
+		<key>comments_count</key>
+		<integer>0</integer>
+		<key>attitudes_count</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>retweets_count</key>
+		<integer>11331</integer>
+		<key>comments_count</key>
+		<integer>1313</integer>
+		<key>attitudes_count</key>
+		<integer>112</integer>
+	</dict>
+	<dict>
+		<key>retweets_count</key>
+		<integer>1</integer>
+		<key>comments_count</key>
+		<integer>13</integer>
+		<key>attitudes_count</key>
+		<integer>2323</integer>
+	</dict>
+</array>
+</plist>

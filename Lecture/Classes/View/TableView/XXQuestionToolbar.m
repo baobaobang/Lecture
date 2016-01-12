@@ -7,17 +7,16 @@
 //
 
 #import "XXQuestionToolbar.h"
-#import "XXQuestion.h"
+
+#define XXQuestionToolbarRetweetTitle @"分享"
+#define XXQuestionToolbarCommentTitle @"回复"
+#define XXQuestionToolbarUnlikeTitle @"棒"
 
 @interface XXQuestionToolbar()
 /** 里面存放所有的按钮 */
 @property (nonatomic, strong) NSMutableArray *btns;
 /** 里面存放所有的分割线 */
 @property (nonatomic, strong) NSMutableArray *dividers;
-
-@property (nonatomic, weak) UIButton *shareBtn;
-@property (nonatomic, weak) UIButton *commentBtn;
-@property (nonatomic, weak) UIButton *attitudeBtn;
 @end
 
 @implementation XXQuestionToolbar
@@ -51,9 +50,9 @@
 //        self.backgroundColor = HWTestColor;
         
         // 添加按钮
-        self.shareBtn = [self setupBtn:@"转发" icon:@"timeline_icon_retweet"];
-        self.commentBtn = [self setupBtn:@"评论" icon:@"timeline_icon_comment"];
-        self.attitudeBtn = [self setupBtn:@"棒" icon:@"timeline_icon_unlike"];
+        self.shareBtn = [self setupBtn:XXQuestionToolbarRetweetTitle icon:@"timeline_icon_retweet"];
+        self.commentBtn = [self setupBtn:XXQuestionToolbarCommentTitle icon:@"timeline_icon_comment"];
+        self.attitudeBtn = [self setupBtn:XXQuestionToolbarUnlikeTitle icon:@"timeline_icon_unlike"];
         
         // 添加分割线
         [self setupDivider];
@@ -124,16 +123,16 @@
 - (void)setQuestion:(XXQuestion *)question
 {
     _question = question;
-    question.retweets_count = 580456; // 58.7万
-    question.comments_count = 100004; // 1万
-    question.attitudes_count = 604; // 604
+//    question.retweets_count = 580456; // 58.7万
+//    question.comments_count = 100004; // 1万
+//    question.attitudes_count = 604; // 604
     
     // 转发
-    [self setupBtnCount:question.retweets_count btn:self.shareBtn title:@"转发"];
+    [self setupBtnCount:question.retweets_count btn:self.shareBtn title:XXQuestionToolbarRetweetTitle];
     // 评论
-    [self setupBtnCount:question.comments_count btn:self.commentBtn title:@"评论"];
+    [self setupBtnCount:question.comments_count btn:self.commentBtn title:XXQuestionToolbarCommentTitle];
     // 赞
-    [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:@"棒"];
+    [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:XXQuestionToolbarUnlikeTitle];
 }
 
 - (void)setupBtnCount:(int)count btn:(UIButton *)btn title:(NSString *)title

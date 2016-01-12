@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXQuestion;
+#import "XXQuestion.h"
 
 @interface XXQuestionToolbar : UIView
 
 @property (nonatomic, strong) XXQuestion *question;
+
+@property (nonatomic, weak) UIButton *shareBtn;
+@property (nonatomic, weak) UIButton *commentBtn;
+@property (nonatomic, weak) UIButton *attitudeBtn;
 + (instancetype)toolbar;
 @end

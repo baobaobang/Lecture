@@ -33,6 +33,7 @@
 		2D1D20161C3F89FE0093C310 /* XXPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D20151C3F89FE0093C310 /* XXPlayerView.xib */; };
 		2D1E8A431C43B3F000E0F24D /* XXQuestionToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E8A421C43B3F000E0F24D /* XXQuestionToolbar.m */; };
 		2D1E8A4C1C43B60C00E0F24D /* XXQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E8A4B1C43B60C00E0F24D /* XXQuestion.m */; };
+		2D253DF81C44F8EE006AD55E /* Questions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D253DF71C44F8EE006AD55E /* Questions.plist */; };
 		2D4F2F271C4117F900CDAC0E /* HMCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4F2F251C4117F900CDAC0E /* HMCollectionCell.m */; };
 		2D4F2F281C4117F900CDAC0E /* HMCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D4F2F261C4117F900CDAC0E /* HMCollectionCell.xib */; };
 		2D5798761C40D58D007A0423 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798711C40D58D007A0423 /* UIBarButtonItem+Extension.m */; };
@@ -138,6 +139,7 @@
 		2D1E8A421C43B3F000E0F24D /* XXQuestionToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionToolbar.m; sourceTree = "<group>"; };
 		2D1E8A4A1C43B60C00E0F24D /* XXQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestion.h; sourceTree = "<group>"; };
 		2D1E8A4B1C43B60C00E0F24D /* XXQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestion.m; sourceTree = "<group>"; };
+		2D253DF71C44F8EE006AD55E /* Questions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Questions.plist; sourceTree = "<group>"; };
 		2D4F2F241C4117F900CDAC0E /* HMCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMCollectionCell.h; sourceTree = "<group>"; };
 		2D4F2F251C4117F900CDAC0E /* HMCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMCollectionCell.m; sourceTree = "<group>"; };
 		2D4F2F261C4117F900CDAC0E /* HMCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMCollectionCell.xib; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				2DA99D671C44B75500CD02D7 /* MP3 */,
 				2DA99D1F1C44B0CB00CD02D7 /* 回答 */,
 				2DE542971C423C3D00D4D4D9 /* Musics.plist */,
+				2D253DF71C44F8EE006AD55E /* Questions.plist */,
 				2D1C55EC1C3FA7030002514D /* Assets.xcassets */,
 				2D1D01E51C3EA3910056B10C /* Main.storyboard */,
 				2D1D01EA1C3EA3910056B10C /* LaunchScreen.storyboard */,
@@ -695,6 +698,7 @@
 				2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */,
 				2DA99D7A1C44B75500CD02D7 /* 什么是感冒.mp3 in Resources */,
 				2DA99D7F1C44B75500CD02D7 /* 两种特殊情况.mp3 in Resources */,
+				2D253DF81C44F8EE006AD55E /* Questions.plist in Resources */,
 				2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

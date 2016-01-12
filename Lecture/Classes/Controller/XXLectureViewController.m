@@ -13,6 +13,8 @@
 #import "XXExpertProfileHeaderView.h"
 #import "XXQuestionCell.h"
 #import "XXQuestionHeaderView.h"
+#import "XXQuestionToolbar.h"
+#import "MJExtension.h"
 
 #define XXNavigationTitleFont 18
 #define XXExpertProfileCellHeight 80
@@ -36,6 +38,8 @@ typedef enum{
 @property (nonatomic, assign) BOOL isOpenCell;
 
 @property (nonatomic, strong) NSArray *questionContents;
+
+@property (nonatomic, strong) NSArray *questions;
 @end
 
 @implementation XXLectureViewController
@@ -56,6 +60,15 @@ typedef enum{
     //
     self.currentOpenIndexPath = [NSIndexPath indexPathForItem:-1 inSection:-1];
 }
+
+- (NSArray *)questions
+{
+    if (!_questions) {
+        _questions = [XXQuestion objectArrayWithFilename:@"Questions.plist"];
+    }
+    return _questions;
+}
+
 
 - (NSArray *)questionContents
 {
@@ -132,13 +145,21 @@ typedef enum{
             questionCell.shieldBtn.hidden = YES;
         }
         
+        
+//        @property (nonatomic, weak) UIButton *shareBtn;
+//        @property (nonatomic, weak) UIButton *commentBtn;
+//        @property (nonatomic, weak) UIButton *attitudeBtn;
         // 假数据
+        XXQuestionToolbar *toolbar = questionCell.toolBar;
+        toolbar.question = self.questions[indexPath.row];
+        
         switch (indexPath.row) {
             case 0:
                 questionCell.userNameLabel.text = @"李灵黛";
                 questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_1"];
                 [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_1"] forState:UIControlStateNormal];
                 questionCell.questionContentLabel.text = @"张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了";
+                
                 break;
             case 1:
                 
