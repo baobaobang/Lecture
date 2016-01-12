@@ -39,6 +39,10 @@
     XXQuestionToolbar *toolBar = [XXQuestionToolbar toolbar];
     [self.toolBarView addSubview:toolBar];
     self.toolBar = toolBar;
+    
+    // 设置屏蔽按钮的背景颜色和字体颜色
+    self.shieldBtn.backgroundColor = HWSelectedQuestionTintColor;
+    [self.shieldBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 - (void)layoutSubviews{

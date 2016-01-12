@@ -45,6 +45,9 @@
 // 项目默认颜色（浅蓝色）
 #define HWTintColor HWColor(47, 180, 254)
 
+// 精选提问默认颜色（浅绿色）
+#define HWSelectedQuestionTintColor HWColor(75, 217, 130)
+
 // 通知中心
 #define HWNotificationCenter [NSNotificationCenter defaultCenter]
 
