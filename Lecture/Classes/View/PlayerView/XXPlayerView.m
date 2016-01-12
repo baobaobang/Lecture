@@ -217,7 +217,6 @@
     
     // 设置cell的数据
     cell.music = self.musics[indexPath.item];
-    cell.backgroundColor = HWTestColor;
 
     return cell;
 }

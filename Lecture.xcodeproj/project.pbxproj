@@ -51,18 +51,18 @@
 		2D7708D21C42B24100788B04 /* XXSelectedQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708D01C42B24100788B04 /* XXSelectedQuestionCell.xib */; };
 		2D7708D51C42BCFD00788B04 /* XXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708D41C42BCFD00788B04 /* XXButton.m */; };
 		2DA99D341C44B0CB00CD02D7 /* 回答问题.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D201C44B0CB00CD02D7 /* 回答问题.mp3 */; };
-		2DA99D541C44B2ED00CD02D7 /* 什么是感冒.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D431C44B2ED00CD02D7 /* 什么是感冒.mp3 */; };
-		2DA99D551C44B2ED00CD02D7 /* 什么是感冒.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D441C44B2ED00CD02D7 /* 什么是感冒.png */; };
-		2DA99D561C44B2ED00CD02D7 /* 上呼吸道的概念.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D461C44B2ED00CD02D7 /* 上呼吸道的概念.mp3 */; };
-		2DA99D571C44B2ED00CD02D7 /* 上呼吸道的概念.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D471C44B2ED00CD02D7 /* 上呼吸道的概念.png */; };
-		2DA99D581C44B2ED00CD02D7 /* 感冒的原因.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D491C44B2ED00CD02D7 /* 感冒的原因.png */; };
-		2DA99D591C44B2ED00CD02D7 /* 感冒的原因.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D4A1C44B2ED00CD02D7 /* 感冒的原因.mp3 */; };
-		2DA99D5A1C44B2ED00CD02D7 /* 为什么容易感冒.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D4C1C44B2ED00CD02D7 /* 为什么容易感冒.mp3 */; };
-		2DA99D5B1C44B2ED00CD02D7 /* 为什么容易感冒.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D4D1C44B2ED00CD02D7 /* 为什么容易感冒.png */; };
-		2DA99D5C1C44B2ED00CD02D7 /* 感冒的症状.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D4F1C44B2ED00CD02D7 /* 感冒的症状.mp3 */; };
-		2DA99D5D1C44B2ED00CD02D7 /* 感冒的症状.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D501C44B2ED00CD02D7 /* 感冒的症状.png */; };
-		2DA99D5E1C44B2ED00CD02D7 /* 两种特殊情况.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D521C44B2ED00CD02D7 /* 两种特殊情况.mp3 */; };
-		2DA99D5F1C44B2ED00CD02D7 /* 两种特殊情况.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D531C44B2ED00CD02D7 /* 两种特殊情况.png */; };
+		2DA99D741C44B75500CD02D7 /* 上呼吸道的概念.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D611C44B75500CD02D7 /* 上呼吸道的概念.png */; };
+		2DA99D751C44B75500CD02D7 /* 两种特殊情况.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D621C44B75500CD02D7 /* 两种特殊情况.png */; };
+		2DA99D761C44B75500CD02D7 /* 为什么容易感冒.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D631C44B75500CD02D7 /* 为什么容易感冒.png */; };
+		2DA99D771C44B75500CD02D7 /* 什么是感冒.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D641C44B75500CD02D7 /* 什么是感冒.png */; };
+		2DA99D781C44B75500CD02D7 /* 感冒的原因.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D651C44B75500CD02D7 /* 感冒的原因.png */; };
+		2DA99D791C44B75500CD02D7 /* 感冒的症状.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D661C44B75500CD02D7 /* 感冒的症状.png */; };
+		2DA99D7A1C44B75500CD02D7 /* 什么是感冒.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D691C44B75500CD02D7 /* 什么是感冒.mp3 */; };
+		2DA99D7B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D6B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 */; };
+		2DA99D7C1C44B75500CD02D7 /* 感冒的原因.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D6D1C44B75500CD02D7 /* 感冒的原因.mp3 */; };
+		2DA99D7D1C44B75500CD02D7 /* 为什么容易感冒.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D6F1C44B75500CD02D7 /* 为什么容易感冒.mp3 */; };
+		2DA99D7E1C44B75500CD02D7 /* 感冒的症状.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D711C44B75500CD02D7 /* 感冒的症状.mp3 */; };
+		2DA99D7F1C44B75500CD02D7 /* 两种特殊情况.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D731C44B75500CD02D7 /* 两种特殊情况.mp3 */; };
 		2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DE542971C423C3D00D4D4D9 /* Musics.plist */; };
 		2DE542A01C423C6C00D4D4D9 /* HMMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5429F1C423C6C00D4D4D9 /* HMMusic.m */; };
 		2DEB533E1C40DE5100D3E547 /* HWConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DEB533D1C40DE5100D3E547 /* HWConst.m */; };
@@ -169,18 +169,18 @@
 		2D7708D31C42BCFD00788B04 /* XXButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXButton.h; sourceTree = "<group>"; };
 		2D7708D41C42BCFD00788B04 /* XXButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXButton.m; sourceTree = "<group>"; };
 		2DA99D201C44B0CB00CD02D7 /* 回答问题.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "回答问题.mp3"; sourceTree = "<group>"; };
-		2DA99D431C44B2ED00CD02D7 /* 什么是感冒.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "什么是感冒.mp3"; sourceTree = "<group>"; };
-		2DA99D441C44B2ED00CD02D7 /* 什么是感冒.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "什么是感冒.png"; sourceTree = "<group>"; };
-		2DA99D461C44B2ED00CD02D7 /* 上呼吸道的概念.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "上呼吸道的概念.mp3"; sourceTree = "<group>"; };
-		2DA99D471C44B2ED00CD02D7 /* 上呼吸道的概念.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上呼吸道的概念.png"; sourceTree = "<group>"; };
-		2DA99D491C44B2ED00CD02D7 /* 感冒的原因.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "感冒的原因.png"; sourceTree = "<group>"; };
-		2DA99D4A1C44B2ED00CD02D7 /* 感冒的原因.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "感冒的原因.mp3"; sourceTree = "<group>"; };
-		2DA99D4C1C44B2ED00CD02D7 /* 为什么容易感冒.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "为什么容易感冒.mp3"; sourceTree = "<group>"; };
-		2DA99D4D1C44B2ED00CD02D7 /* 为什么容易感冒.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "为什么容易感冒.png"; sourceTree = "<group>"; };
-		2DA99D4F1C44B2ED00CD02D7 /* 感冒的症状.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "感冒的症状.mp3"; sourceTree = "<group>"; };
-		2DA99D501C44B2ED00CD02D7 /* 感冒的症状.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "感冒的症状.png"; sourceTree = "<group>"; };
-		2DA99D521C44B2ED00CD02D7 /* 两种特殊情况.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "两种特殊情况.mp3"; sourceTree = "<group>"; };
-		2DA99D531C44B2ED00CD02D7 /* 两种特殊情况.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "两种特殊情况.png"; sourceTree = "<group>"; };
+		2DA99D611C44B75500CD02D7 /* 上呼吸道的概念.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上呼吸道的概念.png"; sourceTree = "<group>"; };
+		2DA99D621C44B75500CD02D7 /* 两种特殊情况.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "两种特殊情况.png"; sourceTree = "<group>"; };
+		2DA99D631C44B75500CD02D7 /* 为什么容易感冒.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "为什么容易感冒.png"; sourceTree = "<group>"; };
+		2DA99D641C44B75500CD02D7 /* 什么是感冒.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "什么是感冒.png"; sourceTree = "<group>"; };
+		2DA99D651C44B75500CD02D7 /* 感冒的原因.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "感冒的原因.png"; sourceTree = "<group>"; };
+		2DA99D661C44B75500CD02D7 /* 感冒的症状.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "感冒的症状.png"; sourceTree = "<group>"; };
+		2DA99D691C44B75500CD02D7 /* 什么是感冒.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "什么是感冒.mp3"; sourceTree = "<group>"; };
+		2DA99D6B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "上呼吸道的概念.mp3"; sourceTree = "<group>"; };
+		2DA99D6D1C44B75500CD02D7 /* 感冒的原因.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "感冒的原因.mp3"; sourceTree = "<group>"; };
+		2DA99D6F1C44B75500CD02D7 /* 为什么容易感冒.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "为什么容易感冒.mp3"; sourceTree = "<group>"; };
+		2DA99D711C44B75500CD02D7 /* 感冒的症状.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "感冒的症状.mp3"; sourceTree = "<group>"; };
+		2DA99D731C44B75500CD02D7 /* 两种特殊情况.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "两种特殊情况.mp3"; sourceTree = "<group>"; };
 		2DE542971C423C3D00D4D4D9 /* Musics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Musics.plist; sourceTree = "<group>"; };
 		2DE5429E1C423C6C00D4D4D9 /* HMMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMMusic.h; sourceTree = "<group>"; };
 		2DE5429F1C423C6C00D4D4D9 /* HMMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMMusic.m; sourceTree = "<group>"; };
@@ -278,7 +278,8 @@
 		2D1D01DC1C3EA3910056B10C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2DA99D411C44B2ED00CD02D7 /* ppt */,
+				2DA99D601C44B75500CD02D7 /* 讲座图片 */,
+				2DA99D671C44B75500CD02D7 /* MP3 */,
 				2DA99D1F1C44B0CB00CD02D7 /* 回答 */,
 				2DE542971C423C3D00D4D4D9 /* Musics.plist */,
 				2D1C55EC1C3FA7030002514D /* Assets.xcassets */,
@@ -492,69 +493,76 @@
 			path = "回答";
 			sourceTree = "<group>";
 		};
-		2DA99D411C44B2ED00CD02D7 /* ppt */ = {
+		2DA99D601C44B75500CD02D7 /* 讲座图片 */ = {
 			isa = PBXGroup;
 			children = (
-				2DA99D421C44B2ED00CD02D7 /* 1什么是感冒 */,
-				2DA99D451C44B2ED00CD02D7 /* 2概念 */,
-				2DA99D481C44B2ED00CD02D7 /* 3感冒的原因 */,
-				2DA99D4B1C44B2ED00CD02D7 /* 4为什么 */,
-				2DA99D4E1C44B2ED00CD02D7 /* 5感冒的症状 */,
-				2DA99D511C44B2ED00CD02D7 /* 6特殊 */,
+				2DA99D611C44B75500CD02D7 /* 上呼吸道的概念.png */,
+				2DA99D621C44B75500CD02D7 /* 两种特殊情况.png */,
+				2DA99D631C44B75500CD02D7 /* 为什么容易感冒.png */,
+				2DA99D641C44B75500CD02D7 /* 什么是感冒.png */,
+				2DA99D651C44B75500CD02D7 /* 感冒的原因.png */,
+				2DA99D661C44B75500CD02D7 /* 感冒的症状.png */,
 			);
-			path = ppt;
+			path = "讲座图片";
 			sourceTree = "<group>";
 		};
-		2DA99D421C44B2ED00CD02D7 /* 1什么是感冒 */ = {
+		2DA99D671C44B75500CD02D7 /* MP3 */ = {
 			isa = PBXGroup;
 			children = (
-				2DA99D431C44B2ED00CD02D7 /* 什么是感冒.mp3 */,
-				2DA99D441C44B2ED00CD02D7 /* 什么是感冒.png */,
+				2DA99D681C44B75500CD02D7 /* 1什么是感冒 */,
+				2DA99D6A1C44B75500CD02D7 /* 2概念 */,
+				2DA99D6C1C44B75500CD02D7 /* 3感冒的原因 */,
+				2DA99D6E1C44B75500CD02D7 /* 4为什么 */,
+				2DA99D701C44B75500CD02D7 /* 5感冒的症状 */,
+				2DA99D721C44B75500CD02D7 /* 6特殊 */,
+			);
+			path = MP3;
+			sourceTree = "<group>";
+		};
+		2DA99D681C44B75500CD02D7 /* 1什么是感冒 */ = {
+			isa = PBXGroup;
+			children = (
+				2DA99D691C44B75500CD02D7 /* 什么是感冒.mp3 */,
 			);
 			path = "1什么是感冒";
 			sourceTree = "<group>";
 		};
-		2DA99D451C44B2ED00CD02D7 /* 2概念 */ = {
+		2DA99D6A1C44B75500CD02D7 /* 2概念 */ = {
 			isa = PBXGroup;
 			children = (
-				2DA99D461C44B2ED00CD02D7 /* 上呼吸道的概念.mp3 */,
-				2DA99D471C44B2ED00CD02D7 /* 上呼吸道的概念.png */,
+				2DA99D6B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 */,
 			);
 			path = "2概念";
 			sourceTree = "<group>";
 		};
-		2DA99D481C44B2ED00CD02D7 /* 3感冒的原因 */ = {
+		2DA99D6C1C44B75500CD02D7 /* 3感冒的原因 */ = {
 			isa = PBXGroup;
 			children = (
-				2DA99D491C44B2ED00CD02D7 /* 感冒的原因.png */,
-				2DA99D4A1C44B2ED00CD02D7 /* 感冒的原因.mp3 */,
+				2DA99D6D1C44B75500CD02D7 /* 感冒的原因.mp3 */,
 			);
 			path = "3感冒的原因";
 			sourceTree = "<group>";
 		};
-		2DA99D4B1C44B2ED00CD02D7 /* 4为什么 */ = {
+		2DA99D6E1C44B75500CD02D7 /* 4为什么 */ = {
 			isa = PBXGroup;
 			children = (
-				2DA99D4C1C44B2ED00CD02D7 /* 为什么容易感冒.mp3 */,
-				2DA99D4D1C44B2ED00CD02D7 /* 为什么容易感冒.png */,
+				2DA99D6F1C44B75500CD02D7 /* 为什么容易感冒.mp3 */,
 			);
 			path = "4为什么";
 			sourceTree = "<group>";
 		};
-		2DA99D4E1C44B2ED00CD02D7 /* 5感冒的症状 */ = {
+		2DA99D701C44B75500CD02D7 /* 5感冒的症状 */ = {
 			isa = PBXGroup;
 			children = (
-				2DA99D4F1C44B2ED00CD02D7 /* 感冒的症状.mp3 */,
-				2DA99D501C44B2ED00CD02D7 /* 感冒的症状.png */,
+				2DA99D711C44B75500CD02D7 /* 感冒的症状.mp3 */,
 			);
 			path = "5感冒的症状";
 			sourceTree = "<group>";
 		};
-		2DA99D511C44B2ED00CD02D7 /* 6特殊 */ = {
+		2DA99D721C44B75500CD02D7 /* 6特殊 */ = {
 			isa = PBXGroup;
 			children = (
-				2DA99D521C44B2ED00CD02D7 /* 两种特殊情况.mp3 */,
-				2DA99D531C44B2ED00CD02D7 /* 两种特殊情况.png */,
+				2DA99D731C44B75500CD02D7 /* 两种特殊情况.mp3 */,
 			);
 			path = "6特殊";
 			sourceTree = "<group>";
@@ -663,29 +671,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DA99D5A1C44B2ED00CD02D7 /* 为什么容易感冒.mp3 in Resources */,
 				2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */,
-				2DA99D591C44B2ED00CD02D7 /* 感冒的原因.mp3 in Resources */,
-				2DA99D581C44B2ED00CD02D7 /* 感冒的原因.png in Resources */,
 				2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */,
 				2D4F2F281C4117F900CDAC0E /* HMCollectionCell.xib in Resources */,
+				2DA99D751C44B75500CD02D7 /* 两种特殊情况.png in Resources */,
+				2DA99D781C44B75500CD02D7 /* 感冒的原因.png in Resources */,
+				2DA99D771C44B75500CD02D7 /* 什么是感冒.png in Resources */,
 				2D7708C81C42AF4D00788B04 /* XXExpertProfileHeaderView.xib in Resources */,
-				2DA99D551C44B2ED00CD02D7 /* 什么是感冒.png in Resources */,
 				2D7708C31C42AA3000788B04 /* XXExpertProfileCell.xib in Resources */,
-				2DA99D5B1C44B2ED00CD02D7 /* 为什么容易感冒.png in Resources */,
-				2DA99D5D1C44B2ED00CD02D7 /* 感冒的症状.png in Resources */,
 				2D1D022C1C3EAB170056B10C /* XXLectureViewController.xib in Resources */,
+				2DA99D741C44B75500CD02D7 /* 上呼吸道的概念.png in Resources */,
+				2DA99D791C44B75500CD02D7 /* 感冒的症状.png in Resources */,
+				2DA99D7E1C44B75500CD02D7 /* 感冒的症状.mp3 in Resources */,
 				2DA99D341C44B0CB00CD02D7 /* 回答问题.mp3 in Resources */,
-				2DA99D5E1C44B2ED00CD02D7 /* 两种特殊情况.mp3 in Resources */,
+				2DA99D761C44B75500CD02D7 /* 为什么容易感冒.png in Resources */,
+				2DA99D7B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 in Resources */,
 				2D1D20161C3F89FE0093C310 /* XXPlayerView.xib in Resources */,
-				2DA99D541C44B2ED00CD02D7 /* 什么是感冒.mp3 in Resources */,
-				2DA99D571C44B2ED00CD02D7 /* 上呼吸道的概念.png in Resources */,
 				2D7708D21C42B24100788B04 /* XXSelectedQuestionCell.xib in Resources */,
+				2DA99D7C1C44B75500CD02D7 /* 感冒的原因.mp3 in Resources */,
 				2D7708CA1C42B15C00788B04 /* XXSelectedQuestionHeaderView.xib in Resources */,
-				2DA99D5F1C44B2ED00CD02D7 /* 两种特殊情况.png in Resources */,
+				2DA99D7D1C44B75500CD02D7 /* 为什么容易感冒.mp3 in Resources */,
 				2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */,
-				2DA99D561C44B2ED00CD02D7 /* 上呼吸道的概念.mp3 in Resources */,
-				2DA99D5C1C44B2ED00CD02D7 /* 感冒的症状.mp3 in Resources */,
+				2DA99D7A1C44B75500CD02D7 /* 什么是感冒.mp3 in Resources */,
+				2DA99D7F1C44B75500CD02D7 /* 两种特殊情况.mp3 in Resources */,
 				2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

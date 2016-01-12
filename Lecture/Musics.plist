@@ -12,7 +12,7 @@
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>什么是感冒.png</string>
+		<string>什么是感冒</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -24,7 +24,7 @@
 		<key>singerIcon</key>
 		<string>nanquan_icon.jpg</string>
 		<key>icon</key>
-		<string>上呼吸道的概念.png</string>
+		<string>上呼吸道的概念</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -36,7 +36,7 @@
 		<key>singerIcon</key>
 		<string>zxy_icon.jpg</string>
 		<key>icon</key>
-		<string>感冒的原因.png</string>
+		<string>感冒的原因</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -48,7 +48,7 @@
 		<key>singerIcon</key>
 		<string>jj_icon.png</string>
 		<key>icon</key>
-		<string>为什么容易感冒.png</string>
+		<string>为什么容易感冒</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -60,7 +60,7 @@
 		<key>singerIcon</key>
 		<string>eason_icon.jpg</string>
 		<key>icon</key>
-		<string>感冒的症状.png</string>
+		<string>感冒的症状</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -72,7 +72,7 @@
 		<key>singerIcon</key>
 		<string>eason_icon.jpg</string>
 		<key>icon</key>
-		<string>两种特殊情况.png</string>
+		<string>两种特殊情况</string>
 	</dict>
 </array>
 </plist>
