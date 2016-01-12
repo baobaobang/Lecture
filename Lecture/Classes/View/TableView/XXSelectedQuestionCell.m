@@ -10,10 +10,12 @@
 #import "XXQuestionToolbar.h"
 #import "XXQuestion.h"
 
+
 @interface XXSelectedQuestionCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;
 @property (nonatomic, weak) XXQuestionToolbar *toolBar;
+
 
 @end
 @implementation XXSelectedQuestionCell

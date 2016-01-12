@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface XXSelectedQuestionCell : UITableViewCell
 + (instancetype)selectedQuestionCellInTableView:(UITableView *)tableView;
 - (void)cellAutoLayoutHeight;
+
+@property (weak, nonatomic) IBOutlet XXButton *shieldBtn;
 @end

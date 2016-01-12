@@ -103,8 +103,18 @@ typedef enum{
         XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
         return expertCell;
     }else{
-        XXSelectedQuestionCell *selectedCell = [XXSelectedQuestionCell selectedQuestionCellInTableView:tableView];
-        return selectedCell;
+        XXSelectedQuestionCell *questionCell = [XXSelectedQuestionCell selectedQuestionCellInTableView:tableView];
+        
+        // 屏蔽按钮的显示与隐藏
+        if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
+            // 展开cell，显示屏蔽按钮
+            questionCell.shieldBtn.hidden = NO;
+        }else{
+            // 折叠cell，隐藏屏蔽按钮
+            questionCell.shieldBtn.hidden = YES;
+        }
+        
+        return questionCell;
     }
 }
 
@@ -135,7 +145,6 @@ typedef enum{
         XXSelectedQuestionCell *questionCell = [XXSelectedQuestionCell selectedQuestionCellInTableView:tableView];
         if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
             // 展开cell，根据内容自动调整高度
-            
             [questionCell cellAutoLayoutHeight];
             CGSize size = [questionCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
             return size.height + 1;
@@ -170,6 +179,8 @@ typedef enum{
         self.isOpenCell = YES;
     }
     self.currentOpenIndexPath = indexPath;
+
+    
     
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }

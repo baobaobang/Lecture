@@ -44,7 +44,7 @@
                                             <constraint firstAttribute="width" constant="50" id="0eU-Jk-vee"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -90,7 +90,7 @@
                             <constraint firstAttribute="height" constant="35" id="I4v-kZ-w7E"/>
                             <constraint firstAttribute="width" constant="35" id="wrE-JW-7le"/>
                         </constraints>
-                        <state key="normal" backgroundImage="expert_1"/>
+                        <state key="normal" backgroundImage="user_1"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zo8-TU-FJx" userLabel="toolbar" customClass="XXQuestionToolbar">
                         <rect key="frame" x="0.0" y="69" width="320" height="30"/>
@@ -118,6 +118,7 @@
             <animations/>
             <connections>
                 <outlet property="contentLabel" destination="1RT-kW-5KC" id="kb4-hU-HYs"/>
+                <outlet property="shieldBtn" destination="lss-cM-vsn" id="xxJ-m0-Gy1"/>
                 <outlet property="toolBarView" destination="zo8-TU-FJx" id="8ah-b9-2BW"/>
             </connections>
             <point key="canvasLocation" x="194" y="54"/>
@@ -125,6 +126,6 @@
     </objects>
     <resources>
         <image name="avatar_vip" width="17" height="17"/>
-        <image name="expert_1" width="140" height="140"/>
+        <image name="user_1" width="200" height="198"/>
     </resources>
 </document>

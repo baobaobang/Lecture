@@ -48,11 +48,12 @@
     self = [super initWithFrame:frame];
     if (self) {
 //        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
+//        self.backgroundColor = HWTestColor;
         
         // 添加按钮
         self.shareBtn = [self setupBtn:@"转发" icon:@"timeline_icon_retweet"];
         self.commentBtn = [self setupBtn:@"评论" icon:@"timeline_icon_comment"];
-        self.attitudeBtn = [self setupBtn:@"赞" icon:@"timeline_icon_unlike"];
+        self.attitudeBtn = [self setupBtn:@"棒" icon:@"timeline_icon_unlike"];
         
         // 添加分割线
         [self setupDivider];
@@ -132,7 +133,7 @@
     // 评论
     [self setupBtnCount:question.comments_count btn:self.commentBtn title:@"评论"];
     // 赞
-    [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:@"赞"];
+    [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:@"棒"];
 }
 
 - (void)setupBtnCount:(int)count btn:(UIButton *)btn title:(NSString *)title

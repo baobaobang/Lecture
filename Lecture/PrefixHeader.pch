@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 
 #import "HWConst.h"
+#import "XXButton.h"
 
 #import "UIButton+CZ.h"
 #import "UIImage+CZ.h"
