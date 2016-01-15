@@ -27,6 +27,7 @@
 + (instancetype)headerView{
     return [[[NSBundle mainBundle] loadNibNamed:@"XXQuestionHeaderView" owner:nil options:nil] lastObject];
 }
+
 - (IBAction)btnClick:(XXButton *)btn {
     btn.enabled = NO;
 }
