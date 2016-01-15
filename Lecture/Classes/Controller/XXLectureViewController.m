@@ -172,6 +172,11 @@ static NSString * const questionHeaderId = @"questionHeaderId";
     }
 }
 
+#pragma mark - headerView的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 35;
+}
+
 #pragma mark - cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
@@ -212,10 +217,6 @@ static NSString * const questionHeaderId = @"questionHeaderId";
     }
 }
 
-#pragma mark - headerView的高度
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 44;
-}
 
 #pragma mark - 点击cell后的反应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

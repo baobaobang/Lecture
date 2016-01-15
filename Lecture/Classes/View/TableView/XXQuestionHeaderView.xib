@@ -3,51 +3,56 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="HdW-RH-oUn" customClass="XXQuestionHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-dk-cFB" customClass="XXButton">
-                    <rect key="frame" x="239.5" y="10" width="70.5" height="26"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDF-fc-FsA">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-dk-cFB" customClass="XXButton">
+                            <rect key="frame" x="240" y="5" width="70" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="ldA-2i-ulG"/>
+                            </constraints>
+                            <state key="normal" title="我要提问">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClick:" destination="HdW-RH-oUn" eventType="touchUpInside" id="g08-LQ-OMs"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精选提问" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubc-84-nLB">
+                            <rect key="frame" x="15" y="5" width="70" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="xTw-nP-xgm"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="4t3-dk-cFB" secondAttribute="height" multiplier="68:25" id="8XB-w4-eON"/>
-                        <constraint firstAttribute="width" constant="70" id="Ysj-qa-g5S"/>
+                        <constraint firstItem="4t3-dk-cFB" firstAttribute="top" secondItem="hDF-fc-FsA" secondAttribute="top" constant="5" id="Iv3-Oe-Tgb"/>
+                        <constraint firstItem="ubc-84-nLB" firstAttribute="leading" secondItem="hDF-fc-FsA" secondAttribute="leading" constant="15" id="SZf-Vu-Qfk"/>
+                        <constraint firstItem="ubc-84-nLB" firstAttribute="top" secondItem="hDF-fc-FsA" secondAttribute="top" constant="5" id="cR7-Nf-IXt"/>
+                        <constraint firstAttribute="trailing" secondItem="4t3-dk-cFB" secondAttribute="trailing" constant="10" id="hvG-p4-XVu"/>
+                        <constraint firstAttribute="bottom" secondItem="ubc-84-nLB" secondAttribute="bottom" constant="5" id="ihH-ox-AXT"/>
+                        <constraint firstAttribute="bottom" secondItem="4t3-dk-cFB" secondAttribute="bottom" constant="5" id="pcb-fr-1eQ"/>
                     </constraints>
-                    <state key="normal" title="我要提问">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="8XB-w4-eON"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="btnClick:" destination="HdW-RH-oUn" eventType="touchUpInside" id="g08-LQ-OMs"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精选提问" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubc-84-nLB">
-                    <rect key="frame" x="15" y="11" width="68" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="ubc-84-nLB" secondAttribute="height" multiplier="68:21" id="MY9-JR-Qlb"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="4t3-dk-cFB" firstAttribute="top" secondItem="HdW-RH-oUn" secondAttribute="top" constant="10" id="AWI-K8-hDR"/>
-                <constraint firstItem="ubc-84-nLB" firstAttribute="top" secondItem="HdW-RH-oUn" secondAttribute="top" constant="11" id="BCC-eL-PoZ"/>
-                <constraint firstAttribute="bottom" secondItem="4t3-dk-cFB" secondAttribute="bottom" constant="8" id="Hyx-f8-WbY"/>
-                <constraint firstItem="ubc-84-nLB" firstAttribute="leading" secondItem="HdW-RH-oUn" secondAttribute="leading" constant="15" id="ay4-XR-1OT"/>
-                <constraint firstAttribute="trailing" secondItem="4t3-dk-cFB" secondAttribute="trailing" constant="10" id="hb2-Kz-qTd"/>
-                <constraint firstAttribute="bottom" secondItem="ubc-84-nLB" secondAttribute="bottom" constant="12" id="jSE-Xl-OBs"/>
+                <constraint firstAttribute="trailing" secondItem="hDF-fc-FsA" secondAttribute="trailing" id="3wp-zy-8TM"/>
+                <constraint firstItem="hDF-fc-FsA" firstAttribute="leading" secondItem="HdW-RH-oUn" secondAttribute="leading" id="85p-6I-pbd"/>
+                <constraint firstItem="hDF-fc-FsA" firstAttribute="top" secondItem="HdW-RH-oUn" secondAttribute="top" id="YRo-hV-QK7"/>
+                <constraint firstAttribute="bottom" secondItem="hDF-fc-FsA" secondAttribute="bottom" id="xPc-kG-Bgn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

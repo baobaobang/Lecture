@@ -25,6 +25,7 @@
     
     [self.followBtn setTitle:@"已关注" forState:UIControlStateSelected];
     [self.followBtn setBackgroundImage:[UIImage createImageWithColor:HWSelectedColor] forState:UIControlStateSelected];
+
 }
 
 - (IBAction)btnClick:(UIButton *)btn {
