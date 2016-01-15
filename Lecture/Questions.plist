@@ -18,7 +18,7 @@
 		<key>replys_count</key>
 		<integer>100</integer>
 		<key>attitudes_count</key>
-		<integer>2</integer>
+		<integer>5</integer>
 		<key>like</key>
 		<false/>
 	</dict>
@@ -26,7 +26,7 @@
 		<key>shares_count</key>
 		<integer>11331</integer>
 		<key>replys_count</key>
-		<integer>1313</integer>
+		<integer>3</integer>
 		<key>attitudes_count</key>
 		<integer>1</integer>
 		<key>like</key>
@@ -36,7 +36,7 @@
 		<key>shares_count</key>
 		<integer>1</integer>
 		<key>replys_count</key>
-		<integer>13</integer>
+		<integer>4</integer>
 		<key>attitudes_count</key>
 		<integer>3</integer>
 		<key>like</key>

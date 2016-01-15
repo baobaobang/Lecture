@@ -126,7 +126,7 @@ typedef enum{
 
 // cell创建和数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == XXExpertProfileSection) {
+    if (indexPath.section == XXExpertProfileSection) {// 专家简介section
         XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
         // 设计专家头像为原型
         CGFloat borderWidth = expertCell.imageView.width;
@@ -134,7 +134,7 @@ typedef enum{
         [expertCell.expertIconBtn setBackgroundImage:expertIcon forState:UIControlStateNormal];
 
         return expertCell;
-    }else{
+    }else{// 精选提问section
         XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];
         
         questionCell.toolBar.delegate = self;
@@ -148,14 +148,11 @@ typedef enum{
             questionCell.shieldBtn.hidden = YES;
         }
         
-        
-//        @property (nonatomic, weak) UIButton *shareBtn;
-//        @property (nonatomic, weak) UIButton *replyBtn;
-//        @property (nonatomic, weak) UIButton *attitudeBtn;
-        // 假数据
+        // toolbar假数据
         XXQuestionToolbar *toolbar = questionCell.toolBar;
         toolbar.question = self.questions[indexPath.row];
         
+        // 问题的假数据
         switch (indexPath.row) {
             case 0:
                 questionCell.userNameLabel.text = @"李灵黛";
@@ -265,10 +262,19 @@ typedef enum{
 
 #pragma mark - XXQuestionToolbar的按钮被点击了
 - (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
-    // 刷新toolbar对应的cell
-    XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview.superview;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    if (type == XXQuestionToolbarButtonTypeUnlike) {// 点击点赞按钮刷新整个表格
+        // 将cell按照点赞数来排序，需要将question数组排序
+        [self.questions sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+        [self.tableView reloadData];
+        
+    }else{// 点击分享和评论按钮，只刷新toolbar对应的cell
+        XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview.superview;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    
+    [self.tableView reloadData];
+    
 }
 
 

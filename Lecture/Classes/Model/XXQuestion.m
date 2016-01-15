@@ -9,5 +9,21 @@
 #import "XXQuestion.h"
 
 @implementation XXQuestion
-
+- (NSComparisonResult)compareAttitudesCount:(XXQuestion *)other{
+//    if (self.attitudes_count > other.attitudes_count) {
+//        return NSOrderedAscending;
+//    }else if(self.attitudes_count < other.attitudes_count){
+//        return NSOrderedDescending;
+//    }else{
+//        return NSOrderedSame;
+//    }
+    
+    if (self.replys_count > other.replys_count) {
+        return NSOrderedAscending;
+    }else if(self.replys_count < other.replys_count){
+        return NSOrderedDescending;
+    }else{
+        return NSOrderedSame;
+    }
+}
 @end

@@ -18,4 +18,5 @@
 /**	BOOL    是否点赞*/
 @property (nonatomic, assign) BOOL like;
 
+- (NSComparisonResult)compareAttitudesCount:(XXQuestion *)other;
 @end
