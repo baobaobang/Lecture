@@ -8,7 +8,7 @@
 
 #import "XXQuestionToolbar.h"
 
-#define XXQuestionToolbarRetweetTitle @"分享"
+#define XXQuestionToolbarShareTitle @"分享"
 #define XXQuestionToolbarReplyTitle @"回复"
 #define XXQuestionToolbarUnlikeTitle @"棒"
 
@@ -52,7 +52,7 @@
 //        self.backgroundColor = HWTestColor;
         
         // 添加按钮
-        self.shareBtn = [self setupBtn:XXQuestionToolbarRetweetTitle icon:@"timeline_icon_retweet" type:XXQuestionToolbarButtonTypeRetweet];
+        self.shareBtn = [self setupBtn:XXQuestionToolbarShareTitle icon:@"timeline_icon_share" type:XXQuestionToolbarButtonTypeShare];
         self.replyBtn = [self setupBtn:XXQuestionToolbarReplyTitle icon:@"timeline_icon_reply" type:XXQuestionToolbarButtonTypeReply];
         self.attitudeBtn = [self setupBtn:XXQuestionToolbarUnlikeTitle icon:@"timeline_icon_unlike" type:XXQuestionToolbarButtonTypeUnlike];
         
@@ -154,12 +154,12 @@
 - (void)setQuestion:(XXQuestion *)question
 {
     _question = question;
-//    question.retweets_count = 580456; // 58.7万
+//    question.shares_count = 580456; // 58.7万
 //    question.replys_count = 100004; // 1万
 //    question.attitudes_count = 604; // 604
     
     // 转发
-    [self setupBtnCount:question.retweets_count btn:self.shareBtn title:XXQuestionToolbarRetweetTitle];
+    [self setupBtnCount:question.shares_count btn:self.shareBtn title:XXQuestionToolbarShareTitle];
     // 评论
     [self setupBtnCount:question.replys_count btn:self.replyBtn title:XXQuestionToolbarReplyTitle];
     // 赞

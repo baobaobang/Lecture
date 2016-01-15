@@ -10,7 +10,7 @@
 
 @interface XXQuestion : NSObject
 /**	NSInteger	转发数*/
-@property (nonatomic, assign) NSInteger retweets_count;
+@property (nonatomic, assign) NSInteger shares_count;
 /**	NSInteger	评论数*/
 @property (nonatomic, assign) NSInteger replys_count;
 /**	NSInteger	表态数*/
