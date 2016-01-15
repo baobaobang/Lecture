@@ -12,7 +12,7 @@
 /**	NSInteger	转发数*/
 @property (nonatomic, assign) NSInteger retweets_count;
 /**	NSInteger	评论数*/
-@property (nonatomic, assign) NSInteger comments_count;
+@property (nonatomic, assign) NSInteger replys_count;
 /**	NSInteger	表态数*/
 @property (nonatomic, assign) NSInteger attitudes_count;
 /**	BOOL    是否点赞*/

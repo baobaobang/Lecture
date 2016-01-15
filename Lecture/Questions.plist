@@ -5,7 +5,7 @@
 	<dict>
 		<key>retweets_count</key>
 		<integer>12</integer>
-		<key>comments_count</key>
+		<key>replys_count</key>
 		<integer>3</integer>
 		<key>attitudes_count</key>
 		<integer>133</integer>
@@ -15,7 +15,7 @@
 	<dict>
 		<key>retweets_count</key>
 		<integer>0</integer>
-		<key>comments_count</key>
+		<key>replys_count</key>
 		<integer>0</integer>
 		<key>attitudes_count</key>
 		<integer>0</integer>
@@ -25,7 +25,7 @@
 	<dict>
 		<key>retweets_count</key>
 		<integer>11331</integer>
-		<key>comments_count</key>
+		<key>replys_count</key>
 		<integer>1313</integer>
 		<key>attitudes_count</key>
 		<integer>112</integer>
@@ -35,7 +35,7 @@
 	<dict>
 		<key>retweets_count</key>
 		<integer>1</integer>
-		<key>comments_count</key>
+		<key>replys_count</key>
 		<integer>13</integer>
 		<key>attitudes_count</key>
 		<integer>2323</integer>

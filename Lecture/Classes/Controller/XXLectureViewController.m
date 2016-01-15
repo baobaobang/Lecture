@@ -150,7 +150,7 @@ typedef enum{
         
         
 //        @property (nonatomic, weak) UIButton *shareBtn;
-//        @property (nonatomic, weak) UIButton *commentBtn;
+//        @property (nonatomic, weak) UIButton *replyBtn;
 //        @property (nonatomic, weak) UIButton *attitudeBtn;
         // 假数据
         XXQuestionToolbar *toolbar = questionCell.toolBar;

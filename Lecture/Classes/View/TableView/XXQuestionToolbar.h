@@ -10,7 +10,7 @@
 #import "XXQuestion.h"
 typedef enum{
     XXQuestionToolbarButtonTypeRetweet,
-    XXQuestionToolbarButtonTypeComment,
+    XXQuestionToolbarButtonTypeReply,
     XXQuestionToolbarButtonTypeUnlike
 }XXQuestionToolbarButtonType;
 
@@ -26,7 +26,7 @@ typedef enum{
 @property (nonatomic, strong) XXQuestion *question;
 
 @property (nonatomic, weak) UIButton *shareBtn;
-@property (nonatomic, weak) UIButton *commentBtn;
+@property (nonatomic, weak) UIButton *replyBtn;
 @property (nonatomic, weak) UIButton *attitudeBtn;
 + (instancetype)toolbar;
 

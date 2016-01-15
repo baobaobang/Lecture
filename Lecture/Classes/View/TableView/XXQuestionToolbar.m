@@ -9,7 +9,7 @@
 #import "XXQuestionToolbar.h"
 
 #define XXQuestionToolbarRetweetTitle @"分享"
-#define XXQuestionToolbarCommentTitle @"回复"
+#define XXQuestionToolbarReplyTitle @"回复"
 #define XXQuestionToolbarUnlikeTitle @"棒"
 
 
@@ -53,7 +53,7 @@
         
         // 添加按钮
         self.shareBtn = [self setupBtn:XXQuestionToolbarRetweetTitle icon:@"timeline_icon_retweet" type:XXQuestionToolbarButtonTypeRetweet];
-        self.commentBtn = [self setupBtn:XXQuestionToolbarCommentTitle icon:@"timeline_icon_comment" type:XXQuestionToolbarButtonTypeComment];
+        self.replyBtn = [self setupBtn:XXQuestionToolbarReplyTitle icon:@"timeline_icon_reply" type:XXQuestionToolbarButtonTypeReply];
         self.attitudeBtn = [self setupBtn:XXQuestionToolbarUnlikeTitle icon:@"timeline_icon_unlike" type:XXQuestionToolbarButtonTypeUnlike];
         
         // 添加分割线
@@ -106,7 +106,7 @@
  */
 - (void)btnClick:(UIButton *)btn{
     switch (btn.tag) {
-        case XXQuestionToolbarButtonTypeUnlike:
+        case XXQuestionToolbarButtonTypeUnlike: // 点赞
             self.question.like = !self.question.like;
             if (self.question.like) {// 点赞增加数字
                 self.question.attitudes_count++;
@@ -117,6 +117,7 @@
                 [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeUnlike];
             }
             break;
+
             
         default:
             break;
@@ -154,13 +155,13 @@
 {
     _question = question;
 //    question.retweets_count = 580456; // 58.7万
-//    question.comments_count = 100004; // 1万
+//    question.replys_count = 100004; // 1万
 //    question.attitudes_count = 604; // 604
     
     // 转发
     [self setupBtnCount:question.retweets_count btn:self.shareBtn title:XXQuestionToolbarRetweetTitle];
     // 评论
-    [self setupBtnCount:question.comments_count btn:self.commentBtn title:XXQuestionToolbarCommentTitle];
+    [self setupBtnCount:question.replys_count btn:self.replyBtn title:XXQuestionToolbarReplyTitle];
     // 赞
     [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:XXQuestionToolbarUnlikeTitle];
     
