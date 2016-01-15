@@ -221,10 +221,12 @@ typedef enum{
         self.isOpenCell = YES;
     }
     self.currentOpenIndexPath = indexPath;
-
-
-//    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [tableView reloadData];
+    
+//    [tableView reloadData];
+    
+    // 一般在UITableView执行：删除行，插入行，删除分组，插入分组时，使用下面两句来协调UITableView的动画效果。
+    [tableView beginUpdates];
+    [tableView endUpdates];
 }
 
 #pragma mark - XXQuestionToolbar的按钮被点击了

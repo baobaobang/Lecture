@@ -111,6 +111,11 @@
                     <constraint firstAttribute="bottom" secondItem="4bG-0n-0CA" secondAttribute="bottom" constant="32.5" id="t8f-bl-pRD"/>
                     <constraint firstItem="zo8-TU-FJx" firstAttribute="leading" secondItem="1je-AZ-g7P" secondAttribute="leading" id="xQh-zM-ZRP"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="s5w-os-3bN"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLabel" destination="1RT-kW-5KC" id="kb4-hU-HYs"/>

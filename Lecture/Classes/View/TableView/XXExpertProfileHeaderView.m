@@ -31,7 +31,8 @@
 }
 
 - (IBAction)btnClick:(UIButton *)btn {
-        btn.selected = !btn.selected;
+    
+    btn.selected = !btn.selected;
 }
 
 @end
