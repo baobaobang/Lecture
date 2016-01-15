@@ -230,17 +230,27 @@ typedef enum{
 #pragma mark - XXQuestionToolbar的按钮被点击了
 - (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
     
-    if (type == XXQuestionToolbarButtonTypeUnlike) {// 点击点赞按钮刷新整个表格
-        // 将将question数组排序按照点赞数来排序，再刷新表格和cell顺序
-        self.questions = [self.questions sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-        [self.tableView reloadData];
+    if (type == XXQuestionToolbarButtonTypeUnlike) {// 点击点赞按钮
         
-    }else{// 点击分享和评论按钮，只刷新toolbar对应的cell
+        // 将将question数组排序按照点赞数来排序，再刷新表格和cell顺序
+        NSUInteger oldRow = [self.questions indexOfObject:toolbar.question];
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:XXQuestionSection];
+        [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];// 先刷新点赞数目
+        
+        self.questions = [self.questions sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+        NSUInteger newRow = [self.questions indexOfObject:toolbar.question];
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:XXQuestionSection];
+        
+        [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];// 再移动cell顺序
+        
+    }else{// 点击分享和评论按钮
+        
         XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview.superview;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
+
 
 
 @end

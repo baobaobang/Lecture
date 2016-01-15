@@ -29,7 +29,7 @@
 		<key>replys_count</key>
 		<integer>6</integer>
 		<key>attitudes_count</key>
-		<integer>5</integer>
+		<integer>0</integer>
 		<key>like</key>
 		<false/>
 		<key>content</key>
@@ -71,7 +71,7 @@
 		<key>replys_count</key>
 		<integer>4</integer>
 		<key>attitudes_count</key>
-		<integer>4</integer>
+		<integer>5</integer>
 		<key>like</key>
 		<false/>
 		<key>content</key>
