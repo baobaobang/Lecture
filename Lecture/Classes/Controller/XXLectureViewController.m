@@ -66,19 +66,20 @@ typedef enum{
 {
     if (!_questions) {
         _questions = [XXQuestion objectArrayWithFilename:@"Questions.plist"];
+        // 按照点赞数排序
         _questions = [_questions sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
     }
     return _questions;
 }
 
 
-- (NSArray *)questionContents
-{
-    if (!_questionContents) {
-        _questionContents = @[@"张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了", @"孩子在家不咳嗽～出门就咳嗽怎么办", @"一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害", @"这几天新闻说上海流感比较多，H1N1,希望老师多讲讲"];
-    }
-    return _questionContents;
-}
+//- (NSArray *)questionContents
+//{
+//    if (!_questionContents) {
+//        _questionContents = @[@"张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了", @"孩子在家不咳嗽～出门就咳嗽怎么办", @"一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害", @"这几天新闻说上海流感比较多，H1N1,希望老师多讲讲"];
+//    }
+//    return _questionContents;
+//}
 
 
 /**
@@ -185,7 +186,8 @@ typedef enum{
         XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];
         if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
             // 展开cell，根据内容自动调整高度
-            [questionCell cellAutoLayoutHeight:self.questionContents[indexPath.row]];
+            XXQuestion *question = self.questions[indexPath.row];
+            [questionCell cellAutoLayoutHeight:question.content];
             CGSize size = [questionCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
             return MAX((size.height + 1), XXQuestionCellHeight);
         }else{
