@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>icon</key>
+		<string>expert_2</string>
+		<key>name</key>
+		<string>刘亚停</string>
+		<key>level</key>
+		<string>avatar_vip</string>
+		<key>department</key>
+		<string>儿科</string>
+		<key>hospital</key>
+		<string> 广州市和睦家医院</string>
+		<key>profile</key>
+		<string>毕业于郑州大学临床医学专业，获医学学士学位，后在广东中山大学获儿科学硕士学位，并曾在香港中文大学威尔斯亲王医院进行儿童白血病的临床研究。</string>
+	</dict>
+</array>
+</plist>

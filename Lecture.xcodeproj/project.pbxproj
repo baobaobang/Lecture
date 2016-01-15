@@ -43,6 +43,8 @@
 		2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798801C40D67A007A0423 /* NSString+Emoji.m */; };
 		2D5798841C40D90F007A0423 /* HWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798831C40D90F007A0423 /* HWNavigationController.m */; };
 		2D5AB4321C48CBDE00B1578B /* XXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5AB4311C48CBDE00B1578B /* XXUser.m */; };
+		2D5AB4351C49243200B1578B /* XXExpert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5AB4341C49243200B1578B /* XXExpert.m */; };
+		2D5AB4371C49256900B1578B /* Experts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D5AB4361C49256900B1578B /* Experts.plist */; };
 		2D7708C21C42AA3000788B04 /* XXExpertProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708C01C42AA3000788B04 /* XXExpertProfileCell.m */; };
 		2D7708C31C42AA3000788B04 /* XXExpertProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */; };
 		2D7708C61C42AF1F00788B04 /* XXExpertProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708C51C42AF1F00788B04 /* XXExpertProfileHeaderView.m */; };
@@ -159,6 +161,9 @@
 		2D5798831C40D90F007A0423 /* HWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWNavigationController.m; sourceTree = "<group>"; };
 		2D5AB4301C48CBDE00B1578B /* XXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = XXUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2D5AB4311C48CBDE00B1578B /* XXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXUser.m; sourceTree = "<group>"; };
+		2D5AB4331C49243200B1578B /* XXExpert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpert.h; sourceTree = "<group>"; };
+		2D5AB4341C49243200B1578B /* XXExpert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpert.m; sourceTree = "<group>"; };
+		2D5AB4361C49256900B1578B /* Experts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Experts.plist; sourceTree = "<group>"; };
 		2D7708BF1C42AA3000788B04 /* XXExpertProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileCell.h; sourceTree = "<group>"; };
 		2D7708C01C42AA3000788B04 /* XXExpertProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpertProfileCell.m; sourceTree = "<group>"; };
 		2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXExpertProfileCell.xib; sourceTree = "<group>"; };
@@ -288,6 +293,7 @@
 				2DA99D1F1C44B0CB00CD02D7 /* 回答 */,
 				2DE542971C423C3D00D4D4D9 /* Musics.plist */,
 				2D253DF71C44F8EE006AD55E /* Questions.plist */,
+				2D5AB4361C49256900B1578B /* Experts.plist */,
 				2D1C55EC1C3FA7030002514D /* Assets.xcassets */,
 				2D1D01E51C3EA3910056B10C /* Main.storyboard */,
 				2D1D01EA1C3EA3910056B10C /* LaunchScreen.storyboard */,
@@ -435,6 +441,8 @@
 				2D1E8A4B1C43B60C00E0F24D /* XXQuestion.m */,
 				2D5AB4301C48CBDE00B1578B /* XXUser.h */,
 				2D5AB4311C48CBDE00B1578B /* XXUser.m */,
+				2D5AB4331C49243200B1578B /* XXExpert.h */,
+				2D5AB4341C49243200B1578B /* XXExpert.m */,
 				2DE5429E1C423C6C00D4D4D9 /* HMMusic.h */,
 				2DE5429F1C423C6C00D4D4D9 /* HMMusic.m */,
 			);
@@ -702,6 +710,7 @@
 				2DA99D7D1C44B75500CD02D7 /* 为什么容易感冒.mp3 in Resources */,
 				2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */,
 				2DA99D7A1C44B75500CD02D7 /* 什么是感冒.mp3 in Resources */,
+				2D5AB4371C49256900B1578B /* Experts.plist in Resources */,
 				2DA99D7F1C44B75500CD02D7 /* 两种特殊情况.mp3 in Resources */,
 				2D253DF81C44F8EE006AD55E /* Questions.plist in Resources */,
 				2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */,
@@ -740,6 +749,7 @@
 				2D1E8A4C1C43B60C00E0F24D /* XXQuestion.m in Sources */,
 				2D1D20131C3F731D0093C310 /* UIView+Extension.m in Sources */,
 				2D57987E1C40D63A007A0423 /* NSString+Extension.m in Sources */,
+				2D5AB4351C49243200B1578B /* XXExpert.m in Sources */,
 				2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */,
 				2DE542A01C423C6C00D4D4D9 /* HMMusic.m in Sources */,
 				2D1C56131C3FABB10002514D /* MJArgument.m in Sources */,

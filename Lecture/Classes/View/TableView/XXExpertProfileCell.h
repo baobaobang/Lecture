@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XXExpert;
 
 @interface XXExpertProfileCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *expertIconBtn;
-@property (weak, nonatomic) IBOutlet UILabel *expertNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *expertDepartmentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *expertFieldLabel;
+
+/** 专家数据模型 */
+@property (nonatomic, strong) XXExpert *expert;
 
 + (instancetype)expertProfileCellInTableView:(UITableView *)tableView;
 - (void)cellAutoLayoutHeight;
 
 -(void)cellAutoLayoutHeight:(NSString *)str;
+
 @end

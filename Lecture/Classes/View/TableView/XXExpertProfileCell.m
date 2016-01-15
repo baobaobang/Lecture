@@ -7,8 +7,16 @@
 //
 
 #import "XXExpertProfileCell.h"
+#import "XXExpert.h"
 
 @interface XXExpertProfileCell ()
+
+@property (weak, nonatomic) IBOutlet UIButton *iconBtn;// 专家头像
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;// 名字
+@property (weak, nonatomic) IBOutlet UIImageView *levelView;// 等级
+@property (weak, nonatomic) IBOutlet UILabel *departmentLabel;// 科室
+@property (weak, nonatomic) IBOutlet UILabel *hospitalLabel;// 医院
+@property (weak, nonatomic) IBOutlet UILabel *profileLabel;// 简介
 
 @end
 
@@ -39,10 +47,41 @@
 
 }
 
+/**
+ *  计算cell根据label内容自适应高度
+ *
+ *  @param str label内容
+ */
 -(void)cellAutoLayoutHeight:(NSString *)str{
-    self.expertFieldLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.expertFieldLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.expertFieldLabel.frame);
-    self.expertFieldLabel.text = str;
+    self.profileLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.profileLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.profileLabel.frame);
+    self.profileLabel.text = str;
+}
+
+// 给cell的子控件赋值
+- (void)setExpert:(XXExpert *)expert{
+    _expert = expert;
+    
+    // 专家头像(圆形)
+    CGFloat borderWidth = self.iconBtn.width;
+    UIImage *expertIcon = [UIImage circleImageWithName:expert.icon borderWidth:borderWidth borderColor:[UIColor clearColor]];
+    [self.iconBtn setBackgroundImage:expertIcon forState:UIControlStateNormal];
+    
+    // 名字
+    self.nameLabel.text = expert.name;
+    
+    // 等级
+    self.levelView.image = [UIImage imageNamed:expert.level];
+    
+    // 科室
+    self.departmentLabel.text = expert.department;
+    
+    // 医院
+    self.hospitalLabel.text = expert.hospital;
+    
+    // 简介
+    self.profileLabel.text = expert.profile;
+
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "XXQuestionHeaderView.h"
 #import "XXQuestionToolbar.h"
 #import "MJExtension.h"
+#import "XXExpert.h"
 
 #define XXNavigationTitleFont 18
 #define XXExpertProfileCellHeight 80
@@ -37,9 +38,8 @@ typedef enum{
 /** 是否有cell处于打开状态，同一时间只能有一个cell处于打开状态 */
 @property (nonatomic, assign) BOOL isOpenCell;
 
-@property (nonatomic, strong) NSArray *questionContents;
-
 @property (nonatomic, strong) NSArray *questions;
+@property (nonatomic, strong) NSArray *experts;
 @end
 
 @implementation XXLectureViewController
@@ -72,14 +72,13 @@ typedef enum{
     return _questions;
 }
 
-
-//- (NSArray *)questionContents
-//{
-//    if (!_questionContents) {
-//        _questionContents = @[@"张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了", @"孩子在家不咳嗽～出门就咳嗽怎么办", @"一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害", @"这几天新闻说上海流感比较多，H1N1,希望老师多讲讲"];
-//    }
-//    return _questionContents;
-//}
+- (NSArray *)experts
+{
+    if (!_experts) {
+        _experts = [XXExpert objectArrayWithFilename:@"Experts.plist"];
+    }
+    return _experts;
+}
 
 
 /**
@@ -130,12 +129,10 @@ typedef enum{
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == XXExpertProfileSection) {// 专家简介section
         XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
-        // 设计专家头像为原型
-        CGFloat borderWidth = expertCell.imageView.width;
-        UIImage *expertIcon = [UIImage circleImageWithName:@"expert_2" borderWidth:borderWidth borderColor:[UIColor clearColor]];
-        [expertCell.expertIconBtn setBackgroundImage:expertIcon forState:UIControlStateNormal];
+        expertCell.expert = self.experts[indexPath.row];
 
         return expertCell;
+        
     }else{// 精选提问section
         XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];
         
