@@ -4,21 +4,21 @@
 <array>
 	<dict>
 		<key>shares_count</key>
-		<integer>12</integer>
+		<integer>0</integer>
 		<key>replys_count</key>
-		<integer>3</integer>
+		<integer>0</integer>
 		<key>attitudes_count</key>
-		<integer>133</integer>
+		<integer>0</integer>
 		<key>like</key>
 		<false/>
 	</dict>
 	<dict>
 		<key>shares_count</key>
-		<integer>0</integer>
+		<integer>9999</integer>
 		<key>replys_count</key>
-		<integer>0</integer>
+		<integer>100</integer>
 		<key>attitudes_count</key>
-		<integer>0</integer>
+		<integer>2</integer>
 		<key>like</key>
 		<false/>
 	</dict>
@@ -28,7 +28,7 @@
 		<key>replys_count</key>
 		<integer>1313</integer>
 		<key>attitudes_count</key>
-		<integer>112</integer>
+		<integer>1</integer>
 		<key>like</key>
 		<false/>
 	</dict>
@@ -38,7 +38,7 @@
 		<key>replys_count</key>
 		<integer>13</integer>
 		<key>attitudes_count</key>
-		<integer>2323</integer>
+		<integer>3</integer>
 		<key>like</key>
 		<false/>
 	</dict>

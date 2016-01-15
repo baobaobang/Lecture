@@ -106,9 +106,22 @@
  */
 - (void)btnClick:(UIButton *)btn{
     switch (btn.tag) {
-        case XXQuestionToolbarButtonTypeUnlike: // 点赞
+        case XXQuestionToolbarButtonTypeShare: // 分享
+            self.question.shares_count++;
+            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
+                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeShare];
+            }
+            break;
+        case XXQuestionToolbarButtonTypeReply: // 回复
+            self.question.replys_count++;
+            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
+                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeReply];
+            }
+            break;
+        case XXQuestionToolbarButtonTypeUnlike: // 棒
             self.question.like = !self.question.like;
-            if (self.question.like) {// 点赞增加数字
+            // 点棒可以增加和减少数字
+            if (self.question.like) {
                 self.question.attitudes_count++;
             }else{
                 self.question.attitudes_count--;

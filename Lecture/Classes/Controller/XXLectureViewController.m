@@ -265,7 +265,10 @@ typedef enum{
 
 #pragma mark - XXQuestionToolbar的按钮被点击了
 - (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
-    [self.tableView reloadData];
+    // 刷新toolbar对应的cell
+    XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 
