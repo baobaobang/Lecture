@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XXExpert;
+@interface XXExpertProfileHeaderView : UITableViewHeaderFooterView
 
-@interface XXExpertProfileHeaderView : UIView
-+ (instancetype)headerView;
+@property (nonatomic, strong) XXExpert *expert;
+//+ (instancetype)headerViewInTableView:(UITableView *)tableView;
 
 @end

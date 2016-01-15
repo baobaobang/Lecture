@@ -7,6 +7,7 @@
 //
 
 #import "XXExpertProfileHeaderView.h"
+#import "XXExpert.h"
 
 @interface XXExpertProfileHeaderView ()
 @property (weak, nonatomic) IBOutlet UIButton *followBtn;
@@ -24,10 +25,6 @@
     
     [self.followBtn setTitle:@"已关注" forState:UIControlStateSelected];
     [self.followBtn setBackgroundImage:[UIImage createImageWithColor:HWSelectedColor] forState:UIControlStateSelected];
-}
-
-+ (instancetype)headerView{
-    return [[[NSBundle mainBundle] loadNibNamed:@"XXExpertProfileHeaderView" owner:nil options:nil] lastObject];
 }
 
 - (IBAction)btnClick:(UIButton *)btn {

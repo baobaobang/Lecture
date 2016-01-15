@@ -40,9 +40,13 @@ typedef enum{
 
 @property (nonatomic, strong) NSArray *questions;
 @property (nonatomic, strong) NSArray *experts;
+
 @end
 
 @implementation XXLectureViewController
+
+static NSString * const expertHeaderId = @"expertHeaderId";
+static NSString * const questionHeaderId = @"questionHeaderId";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,6 +64,9 @@ typedef enum{
     //
     self.currentOpenIndexPath = [NSIndexPath indexPathForItem:-1 inSection:-1];
     
+    // 注册headerview
+    [self.tableView registerNib:[UINib nibWithNibName:@"XXExpertProfileHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:expertHeaderId];
+    [self.tableView registerNib:[UINib nibWithNibName:@"XXQuestionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:questionHeaderId];
 }
 
 - (NSArray *)questions
@@ -157,9 +164,11 @@ typedef enum{
 #pragma mark - 自定义的headerView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == XXExpertProfileSection) {
-        return [XXExpertProfileHeaderView headerView];
+        XXExpertProfileHeaderView *expertHeader = (XXExpertProfileHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:expertHeaderId];
+        return expertHeader;
     }else{
-        return [XXQuestionHeaderView headerView];
+        XXQuestionHeaderView *questionHeader = (XXQuestionHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:questionHeaderId];
+        return questionHeader;
     }
 }
 

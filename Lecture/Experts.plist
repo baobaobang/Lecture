@@ -15,6 +15,8 @@
 		<string> 广州市和睦家医院</string>
 		<key>profile</key>
 		<string>毕业于郑州大学临床医学专业，获医学学士学位，后在广东中山大学获儿科学硕士学位，并曾在香港中文大学威尔斯亲王医院进行儿童白血病的临床研究。</string>
+		<key>follow</key>
+		<false/>
 	</dict>
 </array>
 </plist>

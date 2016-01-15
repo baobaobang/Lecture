@@ -12,15 +12,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专家简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzD-T2-3NO">
-                    <rect key="frame" x="15" y="11" width="68" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="EzD-T2-3NO" secondAttribute="height" multiplier="68:21" id="89a-0d-kWj"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2P7-76-IcK" customClass="XXButton">
                     <rect key="frame" x="240" y="10" width="70" height="27"/>
                     <constraints>
@@ -39,6 +30,15 @@
                         <action selector="btnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7Lr-Mf-U3L"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专家简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzD-T2-3NO">
+                    <rect key="frame" x="15" y="11" width="68" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="EzD-T2-3NO" secondAttribute="height" multiplier="68:21" id="89a-0d-kWj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

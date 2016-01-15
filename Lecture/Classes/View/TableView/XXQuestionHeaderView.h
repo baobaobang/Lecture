@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XXQuestionHeaderView : UIView
+@interface XXQuestionHeaderView : UITableViewHeaderFooterView
 
-+ (instancetype)headerView;
 @end

@@ -21,4 +21,6 @@
 @property (nonatomic, copy) NSString *hospital;
 /** 专家简介 */
 @property (nonatomic, copy) NSString *profile;
+/** 是否已关注专家 */
+@property (nonatomic, assign, getter=isFollow) BOOL follow;
 @end
