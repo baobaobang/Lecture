@@ -18,10 +18,11 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     
+    // 设置关注按钮的Normal状态和Selected状态
     [self.followBtn setTitle:@"关注" forState:UIControlStateNormal];
     [self.followBtn setBackgroundImage:[UIImage createImageWithColor:HWTintColor] forState:UIControlStateNormal];
     
-    [self.followBtn setTitle:@"取消关注" forState:UIControlStateSelected];
+    [self.followBtn setTitle:@"已关注" forState:UIControlStateSelected];
     [self.followBtn setBackgroundImage:[UIImage createImageWithColor:HWSelectedColor] forState:UIControlStateSelected];
 }
 
