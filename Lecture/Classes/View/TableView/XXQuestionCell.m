@@ -12,10 +12,13 @@
 
 
 @interface XXQuestionCell ()
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userVipView;
+@property (weak, nonatomic) IBOutlet UIButton *userIconBtn;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @end
 @implementation XXQuestionCell
@@ -64,10 +67,18 @@
     self.contentLabel.text = text;
 }
 
+// 给cell的子控件赋值
 - (void)setQuestion:(XXQuestion *)question{
+    
     _question = question;
     
+    self.toolBar.question = question;
+    XXUser *user = question.user;
     
+    self.contentLabel.text = question.content;
+    self.userNameLabel.text = user.name;
+    self.userVipView.image = [UIImage imageNamed:user.vip];
+    [self.userIconBtn setBackgroundImage:[UIImage imageNamed:user.icon] forState:UIControlStateNormal];
 }
 
 @end

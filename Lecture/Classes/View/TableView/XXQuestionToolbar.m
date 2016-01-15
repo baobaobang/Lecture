@@ -167,9 +167,6 @@
 - (void)setQuestion:(XXQuestion *)question
 {
     _question = question;
-//    question.shares_count = 580456; // 58.7万
-//    question.replys_count = 100004; // 1万
-//    question.attitudes_count = 604; // 604
     
     // 转发
     [self setupBtnCount:question.shares_count btn:self.shareBtn title:XXQuestionToolbarShareTitle];

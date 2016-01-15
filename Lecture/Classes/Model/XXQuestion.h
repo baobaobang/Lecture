@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XXUser.h"
 
 @interface XXQuestion : NSObject
 /**	NSInteger	转发数*/
@@ -17,6 +18,10 @@
 @property (nonatomic, assign) NSInteger attitudes_count;
 /**	BOOL    是否点赞*/
 @property (nonatomic, assign) BOOL like;
+/**	XXUser	用户*/
+@property (nonatomic, strong) XXUser *user;
+/**	NSString	提问内容*/
+@property (nonatomic, copy) NSString *content;
 
 - (NSComparisonResult)compareAttitudesCount:(XXQuestion *)other;
 @end

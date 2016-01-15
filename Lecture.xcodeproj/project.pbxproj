@@ -42,6 +42,7 @@
 		2D57987E1C40D63A007A0423 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D57987D1C40D63A007A0423 /* NSString+Extension.m */; };
 		2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798801C40D67A007A0423 /* NSString+Emoji.m */; };
 		2D5798841C40D90F007A0423 /* HWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798831C40D90F007A0423 /* HWNavigationController.m */; };
+		2D5AB4321C48CBDE00B1578B /* XXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5AB4311C48CBDE00B1578B /* XXUser.m */; };
 		2D7708C21C42AA3000788B04 /* XXExpertProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708C01C42AA3000788B04 /* XXExpertProfileCell.m */; };
 		2D7708C31C42AA3000788B04 /* XXExpertProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */; };
 		2D7708C61C42AF1F00788B04 /* XXExpertProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7708C51C42AF1F00788B04 /* XXExpertProfileHeaderView.m */; };
@@ -127,7 +128,7 @@
 		2D1D02181C3EA74F0056B10C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2D1D02191C3EA74F0056B10C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D1D02281C3EAB170056B10C /* XXLectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLectureViewController.h; sourceTree = "<group>"; };
-		2D1D02291C3EAB170056B10C /* XXLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLectureViewController.m; sourceTree = "<group>"; };
+		2D1D02291C3EAB170056B10C /* XXLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = XXLectureViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2D1D022A1C3EAB170056B10C /* XXLectureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXLectureViewController.xib; sourceTree = "<group>"; };
 		2D1D022D1C3EB2C10056B10C /* XXPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXPlayerView.h; sourceTree = "<group>"; };
 		2D1D022E1C3EB2C10056B10C /* XXPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXPlayerView.m; sourceTree = "<group>"; };
@@ -156,6 +157,8 @@
 		2D5798801C40D67A007A0423 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		2D5798821C40D90F007A0423 /* HWNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWNavigationController.h; sourceTree = "<group>"; };
 		2D5798831C40D90F007A0423 /* HWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWNavigationController.m; sourceTree = "<group>"; };
+		2D5AB4301C48CBDE00B1578B /* XXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = XXUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2D5AB4311C48CBDE00B1578B /* XXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXUser.m; sourceTree = "<group>"; };
 		2D7708BF1C42AA3000788B04 /* XXExpertProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileCell.h; sourceTree = "<group>"; };
 		2D7708C01C42AA3000788B04 /* XXExpertProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpertProfileCell.m; sourceTree = "<group>"; };
 		2D7708C11C42AA3000788B04 /* XXExpertProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXExpertProfileCell.xib; sourceTree = "<group>"; };
@@ -165,7 +168,7 @@
 		2D7708C91C42B15C00788B04 /* XXQuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionHeaderView.xib; sourceTree = "<group>"; };
 		2D7708CB1C42B17900788B04 /* XXQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionHeaderView.h; sourceTree = "<group>"; };
 		2D7708CC1C42B17900788B04 /* XXQuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionHeaderView.m; sourceTree = "<group>"; };
-		2D7708CE1C42B24100788B04 /* XXQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionCell.h; sourceTree = "<group>"; };
+		2D7708CE1C42B24100788B04 /* XXQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = XXQuestionCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2D7708CF1C42B24100788B04 /* XXQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionCell.m; sourceTree = "<group>"; };
 		2D7708D01C42B24100788B04 /* XXQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionCell.xib; sourceTree = "<group>"; };
 		2D7708D31C42BCFD00788B04 /* XXButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXButton.h; sourceTree = "<group>"; };
@@ -430,6 +433,8 @@
 			children = (
 				2D1E8A4A1C43B60C00E0F24D /* XXQuestion.h */,
 				2D1E8A4B1C43B60C00E0F24D /* XXQuestion.m */,
+				2D5AB4301C48CBDE00B1578B /* XXUser.h */,
+				2D5AB4311C48CBDE00B1578B /* XXUser.m */,
 				2DE5429E1C423C6C00D4D4D9 /* HMMusic.h */,
 				2DE5429F1C423C6C00D4D4D9 /* HMMusic.m */,
 			);
@@ -750,6 +755,7 @@
 				2D7708D51C42BCFD00788B04 /* XXButton.m in Sources */,
 				2D4F2F271C4117F900CDAC0E /* HMCollectionCell.m in Sources */,
 				2D1D02221C3EA74F0056B10C /* main.m in Sources */,
+				2D5AB4321C48CBDE00B1578B /* XXUser.m in Sources */,
 				2D1C56161C3FABB10002514D /* MJMethod.m in Sources */,
 				2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */,
 				2D7708CD1C42B17900788B04 /* XXQuestionHeaderView.m in Sources */,

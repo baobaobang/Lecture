@@ -148,44 +148,43 @@ typedef enum{
             questionCell.shieldBtn.hidden = YES;
         }
         
-        // toolbar假数据
-        XXQuestionToolbar *toolbar = questionCell.toolBar;
-        toolbar.question = self.questions[indexPath.row];
+        // 给cell的子控件赋值
+        questionCell.question = self.questions[indexPath.row];
         
-        // 问题的假数据
-        switch (indexPath.row) {
-            case 0:
-                questionCell.userNameLabel.text = @"李灵黛";
-                questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_1"];
-                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_1"] forState:UIControlStateNormal];
-                questionCell.questionContentLabel.text = @"张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了";
-                
-                break;
-            case 1:
-                
-                questionCell.userNameLabel.text = @"冷文卿";
-                questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_2"];
-                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_2"] forState:UIControlStateNormal];
-                questionCell.questionContentLabel.text = @"孩子在家不咳嗽～出门就咳嗽怎么办";
-                break;
-            case 2:
-                
-                questionCell.userNameLabel.text = @"李念";
-                questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_3"];
-                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_3"] forState:UIControlStateNormal];
-                questionCell.questionContentLabel.text = @"一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害";
-                break;
-            case 3:
-                
-                questionCell.userNameLabel.text = @"魏天霞";
-                questionCell.userLevelView.image = [UIImage imageNamed:@"user_vip_1"];
-                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_4"] forState:UIControlStateNormal];
-                questionCell.questionContentLabel.text = @"这几天新闻说上海流感比较多，H1N1,希望老师多讲讲";
-                break;
-                
-            default:
-                break;
-        }
+//        switch (indexPath.row) {
+//            case 0:
+//                questionCell.userNameLabel.text = @"李灵黛";
+//                questionCell.userVipView.image = [UIImage imageNamed:@"user_vip_1"];
+//                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_1"] forState:UIControlStateNormal];
+//                questionCell.questionContentLabel.text = @"张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了";
+//                
+//                break;
+//            case 1:
+//                
+//                questionCell.userNameLabel.text = @"冷文卿";
+//                questionCell.userVipView.image = [UIImage imageNamed:@"user_vip_2"];
+//                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_2"] forState:UIControlStateNormal];
+//                questionCell.questionContentLabel.text = @"孩子在家不咳嗽～出门就咳嗽怎么办";
+//                break;
+//            case 2:
+//                
+//                questionCell.userNameLabel.text = @"李念";
+//                questionCell.userVipView.image = [UIImage imageNamed:@"user_vip_3"];
+//                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_3"] forState:UIControlStateNormal];
+//                questionCell.questionContentLabel.text = @"一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害";
+//                break;
+//            case 3:
+//                
+//                questionCell.userNameLabel.text = @"魏天霞";
+//                questionCell.userVipView.image = [UIImage imageNamed:@"user_vip_1"];
+//                [questionCell.userIconBtn setBackgroundImage:[UIImage imageNamed:@"userIcon_4"] forState:UIControlStateNormal];
+//                questionCell.questionContentLabel.text = @"这几天新闻说上海流感比较多，H1N1,希望老师多讲讲";
+//                break;
+//                
+//            default:
+//                break;
+//        }
+
         
         return questionCell;
     }

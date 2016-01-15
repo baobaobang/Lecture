@@ -19,12 +19,8 @@
  */
 -(void)cellAutoLayoutHeight:(NSString *)text;
 
-@property (nonatomic, weak) XXQuestionToolbar *toolBar;
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userLevelView;
-@property (weak, nonatomic) IBOutlet UIButton *userIconBtn;
-@property (weak, nonatomic) IBOutlet UILabel *questionContentLabel;
 @property (weak, nonatomic) IBOutlet XXButton *shieldBtn;
 
 @property (nonatomic, strong) XXQuestion *question;
+@property (nonatomic, weak) XXQuestionToolbar *toolBar;
 @end
