@@ -211,7 +211,7 @@ typedef enum{
             // 展开cell，根据内容自动调整高度
             [expertCell cellAutoLayoutHeight:XXExpertProfileText];
             CGSize size = [expertCell.contentView systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
-            return size.height + 1;
+            return  MAX((size.height + 1), XXExpertProfileCellHeight);
             
         }else{
             // 折叠cell，默认高度
@@ -224,7 +224,7 @@ typedef enum{
             // 展开cell，根据内容自动调整高度
             [questionCell cellAutoLayoutHeight:self.questionContents[indexPath.row]];
             CGSize size = [questionCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-            return size.height + 1;
+            return MAX((size.height + 1), XXQuestionCellHeight);
         }else{
             // 折叠cell，默认高度
             return XXQuestionCellHeight;
