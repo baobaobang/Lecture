@@ -11,7 +11,10 @@
 @interface UIImage (CZ)
 
 
-
+/**
+ *颜色值转换成图片
+ */
++ (UIImage*) createImageWithColor: (UIColor*) color;
 
 /**
  *  返回一张自由拉伸的图片

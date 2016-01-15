@@ -24,4 +24,8 @@
     }
     return self;
 }
+
+- (void)setHighlighted:(BOOL)highlighted{
+    
+}
 @end

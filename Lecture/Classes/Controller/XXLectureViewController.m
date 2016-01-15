@@ -194,6 +194,7 @@ typedef enum{
     }
 }
 
+#pragma mark - 自定义的headerView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == XXExpertProfileSection) {
         return [XXExpertProfileHeaderView headerView];
@@ -266,5 +267,7 @@ typedef enum{
 - (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
     [self.tableView reloadData];
 }
+
+
 
 @end

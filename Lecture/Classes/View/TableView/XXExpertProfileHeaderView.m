@@ -18,11 +18,19 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     
-    self.followBtn.backgroundColor = HWTintColor;
+    [self.followBtn setTitle:@"关注" forState:UIControlStateNormal];
+    [self.followBtn setBackgroundImage:[UIImage createImageWithColor:HWTintColor] forState:UIControlStateNormal];
+    
+    [self.followBtn setTitle:@"取消关注" forState:UIControlStateSelected];
+    [self.followBtn setBackgroundImage:[UIImage createImageWithColor:HWSelectedColor] forState:UIControlStateSelected];
 }
 
 + (instancetype)headerView{
     return [[[NSBundle mainBundle] loadNibNamed:@"XXExpertProfileHeaderView" owner:nil options:nil] lastObject];
+}
+
+- (IBAction)btnClick:(UIButton *)btn {
+        btn.selected = !btn.selected;
 }
 
 @end

@@ -16,10 +16,19 @@
                     <rect key="frame" x="239.5" y="10" width="70.5" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="4t3-dk-cFB" secondAttribute="height" multiplier="68:25" id="8XB-w4-eON"/>
+                        <constraint firstAttribute="width" constant="70" id="Ysj-qa-g5S"/>
                     </constraints>
                     <state key="normal" title="我要提问">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="8XB-w4-eON"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="btnClick:" destination="HdW-RH-oUn" eventType="touchUpInside" id="g08-LQ-OMs"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精选提问" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubc-84-nLB">
                     <rect key="frame" x="15" y="11" width="68" height="21"/>

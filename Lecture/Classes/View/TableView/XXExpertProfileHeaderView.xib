@@ -22,13 +22,22 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2P7-76-IcK" customClass="XXButton">
-                    <rect key="frame" x="268.5" y="10" width="41.5" height="27"/>
+                    <rect key="frame" x="240" y="10" width="70" height="27"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="70" id="K1K-hn-4wL"/>
                         <constraint firstAttribute="width" secondItem="2P7-76-IcK" secondAttribute="height" multiplier="23:15" id="hOb-aT-Ty6"/>
                     </constraints>
                     <state key="normal" title="关注">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="hOb-aT-Ty6"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="btnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7Lr-Mf-U3L"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
