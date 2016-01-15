@@ -63,8 +63,7 @@
     _expert = expert;
     
     // 专家头像(圆形)
-    CGFloat borderWidth = self.iconBtn.width;
-    UIImage *expertIcon = [UIImage circleImageWithName:expert.icon borderWidth:borderWidth borderColor:[UIColor clearColor]];
+    UIImage *expertIcon = [UIImage circleImageWithName:expert.icon borderWidth:0 borderColor:[UIColor clearColor]];
     [self.iconBtn setBackgroundImage:expertIcon forState:UIControlStateNormal];
     
     // 名字
