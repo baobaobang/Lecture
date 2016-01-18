@@ -228,12 +228,12 @@ static NSString * const questionHeaderId = @"questionHeaderId";
         self.isOpenCell = YES;
     }
     self.currentOpenIndexPath = indexPath;
+
+    [tableView reloadData];
     
-//    [tableView reloadData];
-    
-    // 一般在UITableView执行：删除行，插入行，删除分组，插入分组时，使用下面两句来协调UITableView的动画效果。
-    [tableView beginUpdates];
-    [tableView endUpdates];
+    // 一般在UITableView执行：删除行，插入行，删除分组，插入分组时，使用下面两句来协调UITableView的动画效果。但是用在这里，屏蔽按钮的显示会出现bug
+//    [tableView beginUpdates];
+//    [tableView endUpdates];
 }
 
 #pragma mark - XXQuestionToolbar的按钮被点击了
