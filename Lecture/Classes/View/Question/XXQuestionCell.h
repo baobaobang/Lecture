@@ -10,16 +10,6 @@
 @class XXQuestion, XXQuestionToolbar;
 
 @interface XXQuestionCell : UITableViewCell
-+ (instancetype)QuestionCellInTableView:(UITableView *)tableView;
-
-/**
- *  cell高度自动适应label内容
- *
- *  @param text label内容
- */
--(void)cellAutoLayoutHeight:(NSString *)text;
-
-@property (weak, nonatomic) IBOutlet XXButton *shieldBtn;
 
 @property (nonatomic, strong) XXQuestion *question;
 @property (nonatomic, weak) XXQuestionToolbar *toolBar;

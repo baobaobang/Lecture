@@ -12,6 +12,7 @@
 
 #import "HWConst.h"
 #import "XXButton.h"
+#import "MJExtension.h"
 
 #import "UIButton+CZ.h"
 #import "UIImage+CZ.h"

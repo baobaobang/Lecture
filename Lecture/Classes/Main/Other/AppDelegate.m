@@ -21,6 +21,7 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     XXLectureViewController *rootVc = [[XXLectureViewController alloc] init];
+    rootVc.view.frame = window.frame;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rootVc];
     

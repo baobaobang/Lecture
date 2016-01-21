@@ -14,9 +14,4 @@
 /** 专家数据模型 */
 @property (nonatomic, strong) XXExpert *expert;
 
-+ (instancetype)expertProfileCellInTableView:(UITableView *)tableView;
-- (void)cellAutoLayoutHeight;
-
--(void)cellAutoLayoutHeight:(NSString *)str;
-
 @end
