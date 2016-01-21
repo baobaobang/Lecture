@@ -61,7 +61,8 @@
     [self.navigationController.navigationBar setTitleTextAttributes:attr];
     
     /* 设置导航栏的背景颜色 */
-    self.navigationController.navigationBar.barTintColor = HWTintColor;
+    // 这里设置无效
+//    self.navigationController.navigationBar.barTintColor = HWTintColor;
 }
 
 - (void)setupPlayerVc{

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "XXLectureViewController.h"
+#import "HWNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +24,7 @@
     XXLectureViewController *rootVc = [[XXLectureViewController alloc] init];
     rootVc.view.frame = window.frame;
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rootVc];
+    HWNavigationController *nav = [[HWNavigationController alloc] initWithRootViewController:rootVc];
     
     window.rootViewController = nav;
     
