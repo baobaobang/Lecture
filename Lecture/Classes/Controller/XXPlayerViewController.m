@@ -13,6 +13,7 @@
 #import "UIButton+CZ.h"
 #import "HMCollectionCell.h"
 #import "HMMusic.h"
+#import <MBProgressHUD.h>
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define HMMaxSections 3
@@ -178,26 +179,41 @@
 
 -(void)previous{
     
-    if (self.currentItem == 0) return;
-    
-    // 当前不是第一首，就更改索引为上一首
-    self.currentItem --;
-
-    // 有动画滚动到对应currentItem的位置
-    [self scrollToItemWithAnimation:self.currentItem];
+    if (self.currentItem == 0){ // 如果是第一首
+        [self showHudWithMessage:@"已经是第一首了"];
+    }else{
+        
+        // 当前不是第一首，就更改索引为上一首
+        self.currentItem --;
+        
+        // 有动画滚动到对应currentItem的位置
+        [self scrollToItemWithAnimation:self.currentItem];
+    }
 }
 
-#pragma mark 下一首
+#pragma mark - 下一首
 
 -(void)next{
     
-    if (self.currentItem == self.musics.count - 1) return;
+    if (self.currentItem == self.musics.count - 1) { // 如果是最后一首
+        [self showHudWithMessage:@"已经是最后一首了"];
         
-    // 当前不是最后一首，更改索引为下一首
+    }else{
+        // 当前不是最后一首，更改索引为下一首
         self.currentItem ++;
+        
+        // 有动画滚动到对应currentItem的位置
+        [self scrollToItemWithAnimation:self.currentItem];
+    }
+}
+
+- (void)showHudWithMessage:(NSString *)message{
     
-    // 有动画滚动到对应currentItem的位置
-    [self scrollToItemWithAnimation:self.currentItem];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.playerPicView animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = message;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:1];
 }
 
 #pragma mark - 有动画滚动到对应currentItem的位置
