@@ -37,5 +37,12 @@ extern NSString * const XXPlayerPicViewWillShow;
 // 高宽比
 #define XXPlayerPicViewHeightWidthRatio 0.5
 
+// 状态栏和导航栏的总高度
 #define XXStatusAndNavBarHeight 64
+
+// 专家简介部分的高度
+#define XXExpertProfileViewHeight 115
+
+// 报名活动按钮的高度
+#define XXJoinButtonHeight 44
 @end

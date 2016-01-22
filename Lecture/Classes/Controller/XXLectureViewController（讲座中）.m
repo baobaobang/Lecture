@@ -16,28 +16,30 @@
 @property (nonatomic, weak) XXPlayerViewController *playerVc;
 @property (nonatomic, weak) XXExpertProfileViewController *expertVc;
 @property (nonatomic, weak) XXQuestionViewController *questionVc;
-@property (nonatomic, weak) XXButton *joinBtn;
+@property (nonatomic, weak) XXButton *postQuestionBtn;
 
 @end
 
 @implementation XXLectureViewController
+#pragma mark - 懒加载
 
+#pragma mark - 生命周期
 - (void)viewDidLoad{
     
     // 设置导航栏
     [self setupNav];
     
-    // 设置playerVc
+    // 设置讲座图片和音频部分
     [self setupPlayerVc];
     
-    // 设置expertVc
+    // 设置专家简介
     [self setupExpertVc];
     
-    // 设置questionVc
+    // 设置在线交流部分
     [self setupQuestionVc];
     
-    // 设置joinBtn，报名活动按钮
-    [self setupJoinBtn];
+    // 设置我要提问按钮
+    [self setupPostQuestionBtn];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -50,11 +52,13 @@
     [HWNotificationCenter removeObserver:self];
 }
 
+#pragma mark - 收到通知后的处理
+
 - (void)hidePlayerPicView{
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.y -= self.playerVc.playerPicView.height;
         // 在上移控制器的view的时候，同步下移报名按钮，这样就可以保证报名按钮一直在最下方
-        self.joinBtn.y += self.playerVc.playerPicView.height;
+        self.postQuestionBtn.y += self.playerVc.playerPicView.height;
     } completion:^(BOOL finished) {
         
     }];
@@ -63,11 +67,13 @@
 - (void)showPlayerPicView{
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.y += self.playerVc.playerPicView.height;
-        self.joinBtn.y -= self.playerVc.playerPicView.height;
+        self.postQuestionBtn.y -= self.playerVc.playerPicView.height;
     } completion:^(BOOL finished) {
         
     }];
 }
+
+#pragma mark - 初始化
 
 /**
  *  设置导航栏内容
@@ -122,18 +128,18 @@
 }
 
 // 设置报名活动按钮
-- (void)setupJoinBtn{
+- (void)setupPostQuestionBtn{
     
-    XXButton *joinBtn = [[XXButton alloc] init];
-    [joinBtn setTitle:@"报名活动" forState:UIControlStateNormal];
-    joinBtn.backgroundColor = HWQuestionTintColor;
-    [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    joinBtn.width = [UIScreen mainScreen].bounds.size.width;
-    joinBtn.height = 44;
-    joinBtn.x = 0;
-    joinBtn.y = self.view.height - joinBtn.height;
-    [self.view addSubview:joinBtn];
-    self.joinBtn = joinBtn;
+    XXButton *postQuestionBtn = [[XXButton alloc] init];
+    [postQuestionBtn setTitle:@"我要提问" forState:UIControlStateNormal];
+    postQuestionBtn.backgroundColor = HWQuestionTintColor;
+    [postQuestionBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;
+    postQuestionBtn.height = XXJoinButtonHeight;
+    postQuestionBtn.x = 0;
+    postQuestionBtn.y = self.view.height - postQuestionBtn.height;
+    [self.view addSubview:postQuestionBtn];
+    self.postQuestionBtn = postQuestionBtn;
 }
 
 
