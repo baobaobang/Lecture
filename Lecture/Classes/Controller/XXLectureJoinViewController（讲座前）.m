@@ -13,7 +13,7 @@
 #import "XXExpertProfileViewController.h"
 #import "XXQuestionViewController.h"
 
-@interface XXLectureJoinViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface XXLectureJoinViewController ()
 @property (nonatomic, weak) UIImageView *picView;
 
 @property (nonatomic, strong) XXLecture *lecture;

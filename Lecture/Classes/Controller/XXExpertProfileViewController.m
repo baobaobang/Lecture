@@ -10,6 +10,7 @@
 #import "XXExpert.h"
 #import "XXExpertProfileCell.h"
 #import "XXExpertProfileHeaderView.h"
+#import <UITableView+FDTemplateLayoutCell.h>
 
 
 #define XXExpertProfileCellHeight 80
@@ -36,7 +37,7 @@ static NSString * const expertHeaderId = @"expertHeaderId";
     [super viewDidLoad];
     
     // 注册cell
-    [self.tableView registerClass:[XXExpertProfileCell class] forCellReuseIdentifier:expertProfileCellReuseId];
+    [self.tableView registerNib:[UINib nibWithNibName:@"XXExpertProfileCell" bundle:nil] forCellReuseIdentifier:expertProfileCellReuseId];
     
     // 注册headerview
     [self.tableView registerNib:[UINib nibWithNibName:@"XXExpertProfileHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:expertHeaderId];
@@ -57,18 +58,25 @@ static NSString * const expertHeaderId = @"expertHeaderId";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    XXExpertProfileCell *expertCell = [[XXExpertProfileCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:expertProfileCellReuseId];
+    XXExpertProfileCell *expertCell = [tableView dequeueReusableCellWithIdentifier:expertProfileCellReuseId forIndexPath:indexPath];
     expertCell.expert = self.experts[indexPath.row];
     
     return expertCell;
 }
 
+#pragma mark - cell的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [tableView fd_heightForCellWithIdentifier:expertProfileCellReuseId cacheByIndexPath:indexPath configuration:^(XXExpertProfileCell *cell) {
+        // configurations
+    }];
+    
+}
 #pragma mark - 自定义的headerView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     XXExpertProfileHeaderView *expertHeader = (XXExpertProfileHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:expertHeaderId];
     return expertHeader;
-
 }
 
 #pragma mark - headerView的高度
@@ -76,20 +84,6 @@ static NSString * const expertHeaderId = @"expertHeaderId";
     return 35;
 }
 
-#pragma mark - cell的高度
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//
-//    XXExpertProfileCell *expertCell = [XXExpertProfileCell expertProfileCellInTableView:tableView];
-//
-//    // cell根据内容自动调整高度
-//    [expertCell cellAutoLayoutHeight:XXExpertProfileText];
-//    CGSize size = [expertCell.contentView systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
-//    return  MAX((size.height + 1), XXExpertProfileCellHeight);
-    
-    return 80;
-
-}
 
 
 @end
