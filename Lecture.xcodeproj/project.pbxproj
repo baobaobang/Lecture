@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D065B301C52046700282CFD /* XXLecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B2F1C52046700282CFD /* XXLecture.m */; };
 		2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C55EC1C3FA7030002514D /* Assets.xcassets */; };
 		2D1C56131C3FABB10002514D /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56011C3FABB10002514D /* MJArgument.m */; };
 		2D1C56141C3FABB10002514D /* MJIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56041C3FABB10002514D /* MJIvar.m */; };
@@ -96,6 +97,8 @@
 
 /* Begin PBXFileReference section */
 		2487C46B0BA874F4A9AD1EC0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D065B2E1C52046700282CFD /* XXLecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLecture.h; sourceTree = "<group>"; };
+		2D065B2F1C52046700282CFD /* XXLecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLecture.m; sourceTree = "<group>"; };
 		2D1C55EC1C3FA7030002514D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1C56001C3FABB10002514D /* MJArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJArgument.h; sourceTree = "<group>"; };
 		2D1C56011C3FABB10002514D /* MJArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJArgument.m; sourceTree = "<group>"; };
@@ -370,10 +373,10 @@
 		2D1D02101C3EA74F0056B10C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2D1D02281C3EAB170056B10C /* XXLectureViewController.h */,
-				2D1D02291C3EAB170056B10C /* XXLectureViewController（讲座中）.m */,
 				2D63F08E1C51D5850043C39D /* XXLectureJoinViewController.h */,
 				2D63F08F1C51D5850043C39D /* XXLectureJoinViewController（讲座前）.m */,
+				2D1D02281C3EAB170056B10C /* XXLectureViewController.h */,
+				2D1D02291C3EAB170056B10C /* XXLectureViewController（讲座中）.m */,
 				2D63F08B1C51D1CA0043C39D /* XXHomeViewController.h */,
 				2D63F08C1C51D1CA0043C39D /* XXHomeViewController.m */,
 				2D6BBE571C4FBA0700F27D13 /* XXPlayerViewController.h */,
@@ -486,6 +489,8 @@
 				2D6BBE4B1C4FB69500F27D13 /* Question */,
 				2D6BBE4E1C4FB69500F27D13 /* XXUser.h */,
 				2D6BBE4F1C4FB69500F27D13 /* XXUser.m */,
+				2D065B2E1C52046700282CFD /* XXLecture.h */,
+				2D065B2F1C52046700282CFD /* XXLecture.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -947,6 +952,7 @@
 				2D6BBE401C4FB5FD00F27D13 /* XXQuestionCell.m in Sources */,
 				2D1C561A1C3FABB10002514D /* NSObject+MJKeyValue.m in Sources */,
 				2D6BBE531C4FB69500F27D13 /* XXUser.m in Sources */,
+				2D065B301C52046700282CFD /* XXLecture.m in Sources */,
 				2D1D022B1C3EAB170056B10C /* XXLectureViewController（讲座中）.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
