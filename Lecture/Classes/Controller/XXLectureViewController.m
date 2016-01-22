@@ -152,7 +152,7 @@
 
 - (void)leftItemClick
 {
-    NSLog(@"leftItemClick");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)rightItemClick

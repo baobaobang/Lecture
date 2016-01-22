@@ -36,6 +36,7 @@
 		2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798801C40D67A007A0423 /* NSString+Emoji.m */; };
 		2D5798841C40D90F007A0423 /* HWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798831C40D90F007A0423 /* HWNavigationController.m */; };
 		2D5AB4371C49256900B1578B /* Experts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D5AB4361C49256900B1578B /* Experts.plist */; };
+		2D63F08D1C51D1CA0043C39D /* XXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63F08C1C51D1CA0043C39D /* XXHomeViewController.m */; };
 		2D6BBE1E1C4F772900F27D13 /* XXExpertProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6BBE1D1C4F772900F27D13 /* XXExpertProfileViewController.m */; };
 		2D6BBE381C4FB5FD00F27D13 /* XXExpertProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6BBE231C4FB5FD00F27D13 /* XXExpertProfileCell.m */; };
 		2D6BBE391C4FB5FD00F27D13 /* XXExpertProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6BBE241C4FB5FD00F27D13 /* XXExpertProfileCell.xib */; };
@@ -152,6 +153,8 @@
 		2D5798821C40D90F007A0423 /* HWNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWNavigationController.h; sourceTree = "<group>"; };
 		2D5798831C40D90F007A0423 /* HWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWNavigationController.m; sourceTree = "<group>"; };
 		2D5AB4361C49256900B1578B /* Experts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Experts.plist; sourceTree = "<group>"; };
+		2D63F08B1C51D1CA0043C39D /* XXHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXHomeViewController.h; sourceTree = "<group>"; };
+		2D63F08C1C51D1CA0043C39D /* XXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXHomeViewController.m; sourceTree = "<group>"; };
 		2D6BBE1C1C4F772900F27D13 /* XXExpertProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileViewController.h; sourceTree = "<group>"; };
 		2D6BBE1D1C4F772900F27D13 /* XXExpertProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpertProfileViewController.m; sourceTree = "<group>"; };
 		2D6BBE221C4FB5FD00F27D13 /* XXExpertProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileCell.h; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 			children = (
 				2D1D02281C3EAB170056B10C /* XXLectureViewController.h */,
 				2D1D02291C3EAB170056B10C /* XXLectureViewController.m */,
+				2D63F08B1C51D1CA0043C39D /* XXHomeViewController.h */,
+				2D63F08C1C51D1CA0043C39D /* XXHomeViewController.m */,
 				2D6BBE571C4FBA0700F27D13 /* XXPlayerViewController.h */,
 				2D6BBE581C4FBA0700F27D13 /* XXPlayerViewController.m */,
 				2D6BBE1C1C4F772900F27D13 /* XXExpertProfileViewController.h */,
@@ -925,6 +930,7 @@
 				2D6BBE5F1C4FCE9B00F27D13 /* XXPlayerPicView.m in Sources */,
 				2D6BBE511C4FB69500F27D13 /* HMMusic.m in Sources */,
 				2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */,
+				2D63F08D1C51D1CA0043C39D /* XXHomeViewController.m in Sources */,
 				2D1C56151C3FABB10002514D /* MJMember.m in Sources */,
 				2D6BBE401C4FB5FD00F27D13 /* XXQuestionCell.m in Sources */,
 				2D1C561A1C3FABB10002514D /* NSObject+MJKeyValue.m in Sources */,
