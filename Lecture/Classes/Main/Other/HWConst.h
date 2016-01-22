@@ -14,4 +14,6 @@
 
 extern const CGFloat PlayerToolBarHeight;
 extern NSString * const HMCollectionViewCellIdentifier;
+extern NSString * const XXPlayerPicViewWillHide;
+extern NSString * const XXPlayerPicViewWillShow;
 @end

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XXPlayerPicView.h"
+
 @class HMMusic;
 @interface XXPlayerViewController : UIViewController
 
@@ -14,4 +16,6 @@
 @property(nonatomic,strong)HMMusic *currentMusic;
 // 播放状态 默认暂停状态
 @property(assign,nonatomic,getter=isPlaying)BOOL playing;
+
+@property (nonatomic, weak) XXPlayerPicView *playerPicView;
 @end

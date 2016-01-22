@@ -7,7 +7,6 @@
 //
 
 #import "XXPlayerViewController.h"
-#import "XXPlayerPicView.h"
 #import "XXPlayerToolBar.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIButton+CZ.h"
@@ -20,7 +19,6 @@
 
 @interface XXPlayerViewController ()<AVAudioPlayerDelegate, XXPlayerToolBarDelegate, XXPlayerPicViewDelegate, XXPlayerMaskViewDelegate>
 
-@property (nonatomic, weak) XXPlayerPicView *playerPicView;
 @property (nonatomic, weak) XXPlayerToolBar *playerToolBar;
 /** 播放器 */
 @property(nonatomic,strong)AVAudioPlayer *player;
@@ -58,6 +56,7 @@
     // 设置显示的item索引，即要播放的音乐
     self.currentItem = 0;
 }
+
 
 
 #pragma mark - 初始化

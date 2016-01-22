@@ -351,6 +351,7 @@
 				2D1D021E1C3EA74F0056B10C /* View */,
 				2D1D02101C3EA74F0056B10C /* Controller */,
 				2D1C55F51C3FAA450002514D /* Tool */,
+				2D1D02161C3EA74F0056B10C /* Other */,
 				2D1D02111C3EA74F0056B10C /* Main */,
 				2D1D021D1C3EA74F0056B10C /* Temp */,
 			);
@@ -379,7 +380,6 @@
 				2D1D02131C3EA74F0056B10C /* Controller */,
 				2D1D02141C3EA74F0056B10C /* Lib */,
 				2D1D02151C3EA74F0056B10C /* Model */,
-				2D1D02161C3EA74F0056B10C /* Other */,
 				2D1D021A1C3EA74F0056B10C /* Tool */,
 				2D1D021B1C3EA74F0056B10C /* View */,
 			);
@@ -444,7 +444,8 @@
 				2DEB533D1C40DE5100D3E547 /* HWConst.m */,
 				2D1D02191C3EA74F0056B10C /* main.m */,
 			);
-			path = Other;
+			name = Other;
+			path = Main/Other;
 			sourceTree = "<group>";
 		};
 		2D1D021A1C3EA74F0056B10C /* Tool */ = {

@@ -12,6 +12,7 @@
 #import "XXExpertProfileViewController.h"
 #import "XXQuestionViewController.h"
 
+
 #define XXNavigationTitleFont 18
 
 @interface XXLectureViewController ()
@@ -38,10 +39,37 @@
     // 设置questionVc
     [self setupQuestionVc];
     
-    // 设置joinBtn
+    // 设置joinBtn，报名活动按钮
     [self setupJoinBtn];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    // 注册观察者，接收XXExpertProfileHeaderView发出的通知
+    [HWNotificationCenter addObserver:self selector:@selector(hidePlayerPicView) name:XXPlayerPicViewWillHide object:nil];
+    [HWNotificationCenter addObserver:self selector:@selector(showPlayerPicView) name:XXPlayerPicViewWillShow object:nil];
+}
+
+- (void)dealloc{
+    [HWNotificationCenter removeObserver:self];
+}
+
+- (void)hidePlayerPicView{
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.view.y -= self.playerVc.playerPicView.height;
+        // 在上移控制器的view的时候，同步下移报名按钮，这样就可以保证报名按钮一直在最下方
+        self.joinBtn.y += self.playerVc.playerPicView.height;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)showPlayerPicView{
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.view.y += self.playerVc.playerPicView.height;
+        self.joinBtn.y -= self.playerVc.playerPicView.height;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 /**
@@ -109,7 +137,7 @@
     [joinBtn setTitle:@"报名活动" forState:UIControlStateNormal];
     joinBtn.backgroundColor = HWQuestionTintColor;
     [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    joinBtn.width = self.view.width;
+    joinBtn.width = [UIScreen mainScreen].bounds.size.width;
     joinBtn.height = 44;
     joinBtn.x = 0;
     joinBtn.y = self.view.height - joinBtn.height;
@@ -121,7 +149,6 @@
 - (void)joinBtnClick:(XXButton *)btn{
     
 }
-
 
 - (void)leftItemClick
 {

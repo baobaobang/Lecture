@@ -11,4 +11,6 @@
 @implementation HWConst
 const CGFloat PlayerToolBarHeight = 34;
 NSString * const HMCollectionViewCellIdentifier = @"HMCollectionViewCellIdentifier";
+NSString * const XXPlayerPicViewWillHide = @"XXPlayerPicViewWillHide";
+NSString * const XXPlayerPicViewWillShow = @"XXPlayerPicViewWillShow";
 @end

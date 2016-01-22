@@ -61,4 +61,7 @@
 // 打印测试
 #define HWTestLog HWLog(@"%s", __func__)
 
+// 主窗口
+#define XXKeyWindow [UIApplication sharedApplication].keyWindow
+
 #endif /* PrefixHeader_pch */
