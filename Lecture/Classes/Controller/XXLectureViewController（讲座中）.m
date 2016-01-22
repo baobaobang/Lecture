@@ -12,9 +12,6 @@
 #import "XXExpertProfileViewController.h"
 #import "XXQuestionViewController.h"
 
-
-
-
 @interface XXLectureViewController ()
 @property (nonatomic, weak) XXPlayerViewController *playerVc;
 @property (nonatomic, weak) XXExpertProfileViewController *expertVc;
@@ -91,7 +88,7 @@
     
     XXPlayerViewController *playerVc = [[XXPlayerViewController alloc] init];
     playerVc.view.x = 0;
-    playerVc.view.y = 64;
+    playerVc.view.y = XXStatusAndNavBarHeight;
     playerVc.view.width = self.view.width;
     // playerVc.view的高度在计算完子view的高度后才能得到
     [self addChildViewController:playerVc];

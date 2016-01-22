@@ -7,13 +7,17 @@
 //
 
 #import "XXLectureJoinViewController.h"
+#import "HMCollectionCell.h"
+#import "XXCollectionView.h"
 
-@interface XXLectureJoinViewController ()
+@interface XXLectureJoinViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
 
 @implementation XXLectureJoinViewController
+#pragma mark - 懒加载
 
+#pragma mark - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -32,13 +36,14 @@
     [self setupQuestionVc];
 }
 
+#pragma mark - 初始化
+
 - (void)setupNav{
     /* 导航栏标题 */
     self.title = @"公益讲堂";
 }
 
 - (void)setupPicView{
-    
 }
 
 - (void)setupExpertVc{
@@ -48,6 +53,7 @@
 - (void)setupQuestionVc{
     
 }
+
 
 
 @end

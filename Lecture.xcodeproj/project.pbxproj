@@ -38,6 +38,7 @@
 		2D5AB4371C49256900B1578B /* Experts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D5AB4361C49256900B1578B /* Experts.plist */; };
 		2D63F08D1C51D1CA0043C39D /* XXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63F08C1C51D1CA0043C39D /* XXHomeViewController.m */; };
 		2D63F0901C51D5850043C39D /* XXLectureJoinViewController（讲座前）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63F08F1C51D5850043C39D /* XXLectureJoinViewController（讲座前）.m */; };
+		2D63F0931C51E1530043C39D /* XXCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63F0921C51E1530043C39D /* XXCollectionView.m */; };
 		2D6BBE1E1C4F772900F27D13 /* XXExpertProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6BBE1D1C4F772900F27D13 /* XXExpertProfileViewController.m */; };
 		2D6BBE381C4FB5FD00F27D13 /* XXExpertProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6BBE231C4FB5FD00F27D13 /* XXExpertProfileCell.m */; };
 		2D6BBE391C4FB5FD00F27D13 /* XXExpertProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6BBE241C4FB5FD00F27D13 /* XXExpertProfileCell.xib */; };
@@ -158,6 +159,8 @@
 		2D63F08C1C51D1CA0043C39D /* XXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXHomeViewController.m; sourceTree = "<group>"; };
 		2D63F08E1C51D5850043C39D /* XXLectureJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLectureJoinViewController.h; sourceTree = "<group>"; };
 		2D63F08F1C51D5850043C39D /* XXLectureJoinViewController（讲座前）.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XXLectureJoinViewController（讲座前）.m"; sourceTree = "<group>"; };
+		2D63F0911C51E1530043C39D /* XXCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCollectionView.h; sourceTree = "<group>"; };
+		2D63F0921C51E1530043C39D /* XXCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCollectionView.m; sourceTree = "<group>"; };
 		2D6BBE1C1C4F772900F27D13 /* XXExpertProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileViewController.h; sourceTree = "<group>"; };
 		2D6BBE1D1C4F772900F27D13 /* XXExpertProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpertProfileViewController.m; sourceTree = "<group>"; };
 		2D6BBE221C4FB5FD00F27D13 /* XXExpertProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileCell.h; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 		2D6BBE6C1C4FD10A00F27D13 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				2D63F0911C51E1530043C39D /* XXCollectionView.h */,
+				2D63F0921C51E1530043C39D /* XXCollectionView.m */,
 				2D6BBE291C4FB5FD00F27D13 /* HMCollectionCell.h */,
 				2D6BBE2A1C4FB5FD00F27D13 /* HMCollectionCell.m */,
 			);
@@ -925,6 +930,7 @@
 				2D6BBE421C4FB5FD00F27D13 /* XXQuestionHeaderView.m in Sources */,
 				2DEB533E1C40DE5100D3E547 /* HWConst.m in Sources */,
 				2D1D02211C3EA74F0056B10C /* AppDelegate.m in Sources */,
+				2D63F0931C51E1530043C39D /* XXCollectionView.m in Sources */,
 				2D6BBE651C4FCF5700F27D13 /* XXPlayerMaskView.m in Sources */,
 				2D6BBE1E1C4F772900F27D13 /* XXExpertProfileViewController.m in Sources */,
 				2D1C56171C3FABB10002514D /* MJType.m in Sources */,

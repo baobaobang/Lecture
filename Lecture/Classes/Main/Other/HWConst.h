@@ -28,13 +28,14 @@ extern NSString * const XXPlayerPicViewWillShow;
 // 项目默认选中状态颜色（浅浅蓝色）
 #define HWSelectedColor HWColor(175, 220, 250)
 
-
-
 // 精选提问默认颜色（浅绿色）
 #define HWQuestionTintColor HWColor(75, 217, 130)
 
 // 精选提问选中状态颜色（深绿色）
 #define HWQuestionSelectedColor HWColor(5, 128, 0)
 
+// 高宽比
+#define XXPlayerPicViewHeightWidthRatio 0.5
 
+#define XXStatusAndNavBarHeight 64
 @end

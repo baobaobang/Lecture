@@ -8,6 +8,7 @@
 
 #import "XXPlayerPicView.h"
 #import "HMCollectionCell.h"
+#import "XXCollectionView.h"
 
 @interface XXPlayerPicView ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @end
@@ -28,30 +29,15 @@
 
 - (void)setupCollectionView{
     
-    // UICollectionViewFlowLayout
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-    [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-//    layout.itemSize = self.bounds.size;// 需要在后面设置才有用
-    layout.minimumInteritemSpacing = 0;
-    layout.minimumLineSpacing = 0; //上下的间距
-    layout.sectionInset = UIEdgeInsetsZero;
-    layout.footerReferenceSize = CGSizeZero;
-    layout.headerReferenceSize = CGSizeZero;
-    
-    // 其他属性
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
-    
-    collectionView.dataSource = self;
-    collectionView.delegate = self;
-    collectionView.pagingEnabled = YES; // 自动分页
-    collectionView.showsHorizontalScrollIndicator = NO;
-    collectionView.showsVerticalScrollIndicator = NO;
-    collectionView.bounces = NO;
+    XXCollectionView *collectionView = [[XXCollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
     [self addSubview:collectionView];
     self.collectionView = collectionView;
+    // 设置数据源和代理
+    collectionView.dataSource = self;
+    collectionView.delegate = self;
     // 注册collectionView的cell
     [self.collectionView registerClass:[HMCollectionCell class] forCellWithReuseIdentifier:HMCollectionViewCellIdentifier];
-    
 }
 
 - (void)setupMaskView{
