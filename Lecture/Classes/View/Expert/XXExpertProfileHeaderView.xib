@@ -16,12 +16,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专家简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzD-T2-3NO">
-                            <rect key="frame" x="15" y="5" width="70" height="25"/>
+                            <rect key="frame" x="13" y="5" width="72" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="70" id="9g9-ih-3tm"/>
+                                <constraint firstAttribute="width" constant="72" id="9g9-ih-3tm"/>
                                 <constraint firstAttribute="width" secondItem="EzD-T2-3NO" secondAttribute="height" multiplier="68:21" id="HZL-Fe-rJy"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
@@ -36,6 +36,7 @@
                                 <constraint firstAttribute="width" constant="70" id="GQ6-qd-UHj"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="UQ5-zt-xzo"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="关注">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -64,11 +65,11 @@
                         <constraint firstAttribute="bottom" secondItem="2P7-76-IcK" secondAttribute="bottom" constant="5" id="DnZ-tG-MtL"/>
                         <constraint firstItem="e47-Le-E5B" firstAttribute="centerX" secondItem="9zs-VV-ewb" secondAttribute="centerX" constant="9" id="TX6-cN-3SF"/>
                         <constraint firstAttribute="trailing" secondItem="2P7-76-IcK" secondAttribute="trailing" constant="10" id="URi-g1-3dZ"/>
-                        <constraint firstAttribute="bottom" secondItem="EzD-T2-3NO" secondAttribute="bottom" constant="5" id="VKc-wl-bOc"/>
+                        <constraint firstAttribute="bottom" secondItem="EzD-T2-3NO" secondAttribute="bottom" constant="8" id="VKc-wl-bOc"/>
                         <constraint firstAttribute="trailing" secondItem="2P7-76-IcK" secondAttribute="trailing" constant="10" id="cGt-XA-4bM"/>
                         <constraint firstItem="2P7-76-IcK" firstAttribute="top" secondItem="9zs-VV-ewb" secondAttribute="top" constant="5" id="jSk-bn-NYI"/>
                         <constraint firstItem="EzD-T2-3NO" firstAttribute="top" secondItem="9zs-VV-ewb" secondAttribute="top" constant="5" id="lOO-fz-iP1"/>
-                        <constraint firstItem="EzD-T2-3NO" firstAttribute="leading" secondItem="9zs-VV-ewb" secondAttribute="leading" constant="15" id="uVF-ld-72x"/>
+                        <constraint firstItem="EzD-T2-3NO" firstAttribute="leading" secondItem="9zs-VV-ewb" secondAttribute="leading" constant="13" id="uVF-ld-72x"/>
                         <constraint firstItem="e47-Le-E5B" firstAttribute="centerY" secondItem="9zs-VV-ewb" secondAttribute="centerY" constant="-2.5" id="xzy-u7-DFy"/>
                     </constraints>
                     <variation key="default">

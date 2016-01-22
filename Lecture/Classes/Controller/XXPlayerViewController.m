@@ -99,7 +99,7 @@
     
     // 设置slider 按钮的图片
     UIImage *originSliderImage = [UIImage imageNamed:@"playbar_slider_thumb"];
-    UIImage *scaledSliderImage = [UIImage originImage:originSliderImage scaleToSize:CGSizeMake(PlayerToolBarHeight, PlayerToolBarHeight)];
+    UIImage *scaledSliderImage = [originSliderImage imageScaleToSize:CGSizeMake(PlayerToolBarHeight, PlayerToolBarHeight)];
     [playerToolBar.timeSlider setThumbImage:scaledSliderImage forState:UIControlStateNormal];
 }
 

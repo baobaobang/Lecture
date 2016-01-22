@@ -43,5 +43,11 @@
  *
  *  @return 缩放后的图片
  */
-+ (UIImage *)originImage:(UIImage*)image scaleToSize:(CGSize)size;
+- (UIImage *)imageScaleToSize:(CGSize)size;
+
+/**
+ *  不渲染图片
+ */
+- (UIImage *)imageRenderingModeAlwaysOriginal;
+
 @end

@@ -128,11 +128,11 @@
     
 }
 
-+ (UIImage *)originImage:(UIImage *)image scaleToSize:(CGSize)size
+- (UIImage *)imageScaleToSize:(CGSize)size
 {
     UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
     
-    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
+    [self drawInRect:CGRectMake(0,0, size.width, size.height)];
     
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -140,4 +140,13 @@
     
     return scaledImage;
 }
+
+/**
+ *  不渲染图片
+ */
+- (UIImage *)imageRenderingModeAlwaysOriginal{
+    
+    return [self imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
 @end

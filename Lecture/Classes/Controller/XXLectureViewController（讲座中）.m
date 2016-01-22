@@ -108,7 +108,7 @@
     expertVc.view.x = 0;
     expertVc.view.y = CGRectGetMaxY(self.playerVc.view.frame);
     expertVc.view.width = self.view.width;
-    expertVc.view.height = 115;
+    expertVc.view.height = XXExpertProfileViewHeight;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
     self.expertVc = expertVc;

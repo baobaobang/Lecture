@@ -11,6 +11,12 @@
 
 @implementation UIButton (CZ)
 
+
+/**
+ *  设置button为圆角
+ *
+ *  @param radius 圆角半径
+ */
 - (void)cornerRadius:(CGFloat)radius{
     self.layer.cornerRadius = radius;
     self.layer.masksToBounds = YES;

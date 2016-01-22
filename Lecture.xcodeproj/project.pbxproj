@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D065B301C52046700282CFD /* XXLecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B2F1C52046700282CFD /* XXLecture.m */; };
+		2D065B321C522E3500282CFD /* XXQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D065B311C522E3500282CFD /* XXQuestionCell.xib */; };
 		2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C55EC1C3FA7030002514D /* Assets.xcassets */; };
 		2D1C56131C3FABB10002514D /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56011C3FABB10002514D /* MJArgument.m */; };
 		2D1C56141C3FABB10002514D /* MJIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56041C3FABB10002514D /* MJIvar.m */; };
@@ -99,6 +100,7 @@
 		2487C46B0BA874F4A9AD1EC0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D065B2E1C52046700282CFD /* XXLecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLecture.h; sourceTree = "<group>"; };
 		2D065B2F1C52046700282CFD /* XXLecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLecture.m; sourceTree = "<group>"; };
+		2D065B311C522E3500282CFD /* XXQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionCell.xib; sourceTree = "<group>"; };
 		2D1C55EC1C3FA7030002514D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1C56001C3FABB10002514D /* MJArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJArgument.h; sourceTree = "<group>"; };
 		2D1C56011C3FABB10002514D /* MJArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJArgument.m; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 			children = (
 				2D6BBE301C4FB5FD00F27D13 /* XXQuestionCell.h */,
 				2D6BBE311C4FB5FD00F27D13 /* XXQuestionCell.m */,
+				2D065B311C522E3500282CFD /* XXQuestionCell.xib */,
 				2D6BBE331C4FB5FD00F27D13 /* XXQuestionHeaderView.h */,
 				2D6BBE341C4FB5FD00F27D13 /* XXQuestionHeaderView.m */,
 				2D6BBE351C4FB5FD00F27D13 /* XXQuestionHeaderView.xib */,
@@ -821,6 +824,7 @@
 				2DA99D751C44B75500CD02D7 /* 两种特殊情况.png in Resources */,
 				2D6BBE431C4FB5FD00F27D13 /* XXQuestionHeaderView.xib in Resources */,
 				2DA99D781C44B75500CD02D7 /* 感冒的原因.png in Resources */,
+				2D065B321C522E3500282CFD /* XXQuestionCell.xib in Resources */,
 				2DA99D771C44B75500CD02D7 /* 什么是感冒.png in Resources */,
 				2DA99D741C44B75500CD02D7 /* 上呼吸道的概念.png in Resources */,
 				2DA99D791C44B75500CD02D7 /* 感冒的症状.png in Resources */,

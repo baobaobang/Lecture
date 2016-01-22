@@ -11,7 +11,6 @@
 #import "XXQuestionHeaderView.h"
 #import "XXQuestionToolbar.h"
 
-#define XXQuestionHeaderViewHeight 35
 static NSString * const questionHeaderId = @"questionHeaderId";
 static NSString * const questionCellReuseId = @"QuestionCell";
 
@@ -78,7 +77,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 
 #pragma mark - headerView的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return XXQuestionHeaderViewHeight;
+    return XXHeaderViewHeight;
 }
 
 #pragma mark - cell的高度

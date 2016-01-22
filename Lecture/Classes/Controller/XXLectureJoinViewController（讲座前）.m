@@ -103,8 +103,19 @@
     picView.width = self.view.width;
     picView.height = XXPlayerPicViewHeightWidthRatio * picView.width;
     picView.image = [UIImage imageNamed:self.lecture.profilePic];
+    picView.userInteractionEnabled = YES;
     [self.view addSubview:picView];
     self.picView = picView;
+    
+    // 创建分享按钮
+    UIButton *shareBtn = [[UIButton alloc] init];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    shareBtn.width = 25;
+    shareBtn.height = shareBtn.width;
+    shareBtn.x = picView.width - shareBtn.width - 10;
+    shareBtn.y = 10;
+    [shareBtn addTarget:self action:@selector(clickShareLectureBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.picView addSubview:shareBtn];
 }
 
 - (void)setupExpertVc{
@@ -142,10 +153,18 @@
     joinBtn.height = XXJoinButtonHeight;
     joinBtn.x = 0;
     joinBtn.y = self.view.height - joinBtn.height;
+    
+    UIImage *joinBtnImage = [[[UIImage imageNamed:@"enroll"] imageScaleToSize:CGSizeMake(20, 20)] imageRenderingModeAlwaysOriginal];
+    [joinBtn setImage:joinBtnImage forState:UIControlStateNormal];
+    [joinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+    
     [self.view addSubview:joinBtn];
     self.joinBtn = joinBtn;
 }
 
+- (void)clickShareLectureBtn{
+    
+}
 
 - (void)joinBtnClick:(XXButton *)btn{
     

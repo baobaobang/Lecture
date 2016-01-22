@@ -23,6 +23,10 @@
     // 设置关注按钮的Normal状态和Selected状态
     [self.followBtn setTitle:@"关注" forState:UIControlStateNormal];
     [self.followBtn setBackgroundImage:[UIImage createImageWithColor:HWTintColor] forState:UIControlStateNormal];
+
+    UIImage *followBtnImage = [[[UIImage imageNamed:@"add"] imageScaleToSize:CGSizeMake(10, 10)] imageRenderingModeAlwaysOriginal];
+    [self.followBtn setImage:followBtnImage forState:UIControlStateNormal];
+    [self.followBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
     [self.followBtn setTitle:@"已关注" forState:UIControlStateSelected];
     [self.followBtn setBackgroundImage:[UIImage createImageWithColor:HWSelectedColor] forState:UIControlStateSelected];

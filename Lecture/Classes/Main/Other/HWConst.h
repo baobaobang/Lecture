@@ -41,8 +41,11 @@ extern NSString * const XXPlayerPicViewWillShow;
 #define XXStatusAndNavBarHeight 64
 
 // 专家简介部分的高度
-#define XXExpertProfileViewHeight 115
+#define XXExpertProfileViewHeight 120
 
 // 报名活动按钮的高度
 #define XXJoinButtonHeight 44
+
+// tableview header的高度
+#define XXHeaderViewHeight 35
 @end
