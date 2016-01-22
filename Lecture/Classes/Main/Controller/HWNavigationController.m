@@ -16,33 +16,50 @@
 
 + (void)initialize
 {
-    // 设置整个项目所有item的主题样式
-    UIBarButtonItem *item = [UIBarButtonItem appearance];
+    // 设置导航栏的统一样式
+    UINavigationBar *navBar = [UINavigationBar appearance];
+    // 导航栏背景色
+    navBar.barTintColor = HWTintColor;
+    // 设置返回，左，右 item的字体颜色
+    [navBar setTintColor:HWTintTitleColor];
     
-    // 设置普通状态
-    // key：NS****AttributeName
-    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    // 字体颜色
-    textAttrs[NSForegroundColorAttributeName] = HWTintColor;
-    // 字体大小
-    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
-    [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
-    
-    // 设置不可用状态
-//    NSMutableDictionary *disableTextAttrs = [NSMutableDictionary dictionary];
-//    disableTextAttrs[NSForegroundColorAttributeName] = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.7];
-//    disableTextAttrs[NSFontAttributeName] = textAttrs[NSFontAttributeName];
-    //    [item setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
-    
-    // 设置导航栏的背景色
-    [UINavigationBar appearance].barTintColor = HWTintColor;
+    // 设置标题
+    NSMutableDictionary *titleAttrs = [NSMutableDictionary dictionary];
+    // 标题颜色
+    titleAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    // 标题字体
+    titleAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
+    navBar.titleTextAttributes = titleAttrs;
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 }
+
+//// 设置BarButtonItem文字的主题样式
+//+ (void)setupBarButtonItem{
+//    
+//    // 设置整个项目
+//    UIBarButtonItem *item = [UIBarButtonItem appearance];
+//    // 设置普通状态
+//    // key：NS****AttributeName
+//    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+//    // 字体颜色
+//    textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+//    // 字体大小
+//    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
+//    [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+//    
+//    
+//    // 设置不可用状态
+//    //    NSMutableDictionary *disableTextAttrs = [NSMutableDictionary dictionary];
+//    //    disableTextAttrs[NSForegroundColorAttributeName] = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.7];
+//    //    disableTextAttrs[NSFontAttributeName] = textAttrs[NSFontAttributeName];
+//    //    [item setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
+//}
+
 
 ///**
 // *  重写这个方法目的：能够拦截所有push进来的控制器

@@ -8,6 +8,7 @@
 
 #import "XXHomeViewController.h"
 #import "XXLectureViewController.h"
+#import "XXLectureJoinViewController.h"
 
 @interface XXHomeViewController ()
 
@@ -24,7 +25,7 @@
     beforeBtn.backgroundColor = HWTintColor;
     [beforeBtn setTitle:@"讲座前" forState:UIControlStateNormal];
     beforeBtn.frame = CGRectMake(40, 80, 60, 40);
-    [beforeBtn addTarget:self action:@selector(toBefore) forControlEvents:UIControlEventTouchUpInside];
+    [beforeBtn addTarget:self action:@selector(toJoinLecture) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:beforeBtn];
     
     UIButton *lectureBtn = [[UIButton alloc] init];
@@ -37,13 +38,17 @@
     
 }
 
-- (void)toBefore{
-    XXLectureViewController *vc = [[XXLectureViewController alloc] init];
+
+- (void)toJoinLecture{
+    XXLectureJoinViewController *vc = [[XXLectureJoinViewController alloc] init];
     vc.view.frame = self.view.bounds;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)toLecture{
+    XXLectureViewController *vc = [[XXLectureViewController alloc] init];
+    vc.view.frame = self.view.bounds;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

@@ -13,7 +13,7 @@
 #import "XXQuestionViewController.h"
 
 
-#define XXNavigationTitleFont 18
+
 
 @interface XXLectureViewController ()
 @property (nonatomic, weak) XXPlayerViewController *playerVc;
@@ -80,13 +80,7 @@
     /* 设置导航栏上面的内容 */
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(leftItemClick) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(rightItemClick) image:@"navigationbar_pop" highImage:@"navigationbar_pop_highlighted"];
-    
-    /* 导航栏标题 */
-    self.title = @"公益讲堂";
-    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
-    attr[NSFontAttributeName] = [UIFont systemFontOfSize:XXNavigationTitleFont];
-    attr[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    [self.navigationController.navigationBar setTitleTextAttributes:attr];
+
     
     /* 设置导航栏的背景颜色 */
     // 这里设置无效
