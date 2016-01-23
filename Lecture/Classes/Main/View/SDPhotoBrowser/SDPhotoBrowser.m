@@ -70,6 +70,7 @@
         indexLabel.text = [NSString stringWithFormat:@"1/%ld", (long)self.imageCount];
     }
     _indexLabel = indexLabel;
+    indexLabel.hidden = YES;
     [self addSubview:indexLabel];
     
     // 2.保存按钮
@@ -81,6 +82,7 @@
     saveButton.clipsToBounds = YES;
     [saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
     _saveButton = saveButton;
+    saveButton.hidden = YES;
     [self addSubview:saveButton];
 }
 
@@ -318,6 +320,8 @@
         _hasShowedFistView = YES;
         [tempView removeFromSuperview];
         _scrollView.hidden = NO;
+        _indexLabel.hidden = NO;
+        _saveButton.hidden = NO;
         // 这里会再调用一次layoutSubviews
     }];
 }
