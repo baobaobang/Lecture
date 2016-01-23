@@ -19,9 +19,9 @@
     // 设置导航栏的统一样式
     UINavigationBar *navBar = [UINavigationBar appearance];
     // 导航栏背景色
-    navBar.barTintColor = XXTintColor;
+    navBar.barTintColor = XXColorTint;
     // 设置返回，左，右 item的字体颜色
-    [navBar setTintColor:XXTintTitleColor];
+    [navBar setTintColor:XXColorText];
     
     // 设置标题
     NSMutableDictionary *titleAttrs = [NSMutableDictionary dictionary];

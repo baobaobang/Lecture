@@ -22,14 +22,14 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIButton *beforeBtn = [[UIButton alloc] init];
-    beforeBtn.backgroundColor = XXTintColor;
+    beforeBtn.backgroundColor = XXColorTint;
     [beforeBtn setTitle:@"讲座前" forState:UIControlStateNormal];
     beforeBtn.frame = CGRectMake(40, 80, 60, 40);
     [beforeBtn addTarget:self action:@selector(toJoinLecture) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:beforeBtn];
     
     UIButton *lectureBtn = [[UIButton alloc] init];
-    lectureBtn.backgroundColor = XXTintColor;
+    lectureBtn.backgroundColor = XXColorTint;
     [lectureBtn setTitle:@"讲座中" forState:UIControlStateNormal];
     lectureBtn.frame = CGRectMake(40, 160, 60, 40);
     [lectureBtn addTarget:self action:@selector(toLecture) forControlEvents:UIControlEventTouchUpInside];

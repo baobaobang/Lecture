@@ -101,7 +101,7 @@
     
     /* 设置导航栏的背景颜色 */
     // 这里设置无效
-//    self.navigationController.navigationBar.barTintColor = XXTintColor;
+//    self.navigationController.navigationBar.barTintColor = XXColorTint;
 }
 
 - (void)setupPlayerVc{
@@ -146,7 +146,7 @@
     
     XXButton *postQuestionBtn = [[XXButton alloc] init];
     [postQuestionBtn setTitle:@"我要提问" forState:UIControlStateNormal];
-    postQuestionBtn.backgroundColor = XXQuestionTintColor;
+    postQuestionBtn.backgroundColor = XXColorGreen;
     [postQuestionBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;
     postQuestionBtn.height = XXJoinButtonHeight;

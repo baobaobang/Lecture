@@ -12,28 +12,29 @@
 #import "XXLecture.h"
 #import "XXExpertProfileViewController.h"
 #import "XXQuestionViewController.h"
+#import "XXJoinLectureActionSheet.h"
+#import <MJExtension.h>
 
-@interface XXLectureJoinViewController ()
+@interface XXLectureJoinViewController ()<XXJoinLectureActionSheetDelegate>
 @property (nonatomic, weak) UIImageView *picView;
 
-@property (nonatomic, strong) XXLecture *lecture;
+@property (nonatomic, strong) NSArray *lectures;
 @property (nonatomic, weak) XXExpertProfileViewController *expertVc;
 @property (nonatomic, weak) XXQuestionViewController *questionVc;
 @property (nonatomic, weak) XXButton *joinBtn;
+
 @end
 
 @implementation XXLectureJoinViewController
 #pragma mark - 懒加载
 
-- (XXLecture *)lecture
+- (NSArray *)lectures
 {
-    if (!_lecture) {
-        _lecture = [[XXLecture alloc] init];
-        _lecture.profilePic = @"讲座介绍图";
+    if (!_lectures) {
+        _lectures = [XXLecture mj_objectArrayWithFilename:@"Lectures.plist"];
     }
-    return _lecture;
+    return _lectures;
 }
-
 
 #pragma mark - 生命周期
 - (void)viewDidLoad {
@@ -113,7 +114,8 @@
     picView.y = XXStatusAndNavBarHeight;
     picView.width = self.view.width;
     picView.height = XXPlayerPicViewHeightWidthRatio * picView.width;
-    picView.image = [UIImage imageNamed:self.lecture.profilePic];
+    XXLecture *lecture = [self.lectures lastObject];
+    picView.image = [UIImage imageNamed:lecture.profilePic];
     picView.userInteractionEnabled = YES;
     [self.view addSubview:picView];
     self.picView = picView;
@@ -161,7 +163,12 @@
     
     XXButton *joinBtn = [[XXButton alloc] init];
     [joinBtn setTitle:@"我要报名" forState:UIControlStateNormal];
-    joinBtn.backgroundColor = XXQuestionTintColor;
+    [joinBtn setTitle:@"已报名" forState:UIControlStateDisabled];
+
+    // 用纯色image作为背景可以实现按钮在disable状态下颜色变浅的效果
+    [joinBtn setBackgroundImage:[UIImage createImageWithColor:XXColorGreen] forState:UIControlStateNormal];
+    //    joinBtn.backgroundColor = XXColorGreen;
+    
     [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     joinBtn.width = [UIScreen mainScreen].bounds.size.width;
     joinBtn.height = XXJoinButtonHeight;
@@ -182,8 +189,21 @@
     
 }
 
+
+#pragma mark - 点击报名
 - (void)joinBtnClick:(XXButton *)btn{
     
+    XXJoinLectureActionSheet *sheet = [[XXJoinLectureActionSheet alloc] init];
+    sheet.delegate = self;
+    sheet.lecture = [self.lectures lastObject];;
+    [sheet showInView:self.view];
+}
+
+#pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
+- (void)joinLectureActionSheet:(XXJoinLectureActionSheet *)sheet didClickDoneButton:(UIButton *)btn{
+    
+    self.joinBtn.enabled = NO;
+    //TODO: 点击确认报名后，扣除积分等
 }
 
 @end

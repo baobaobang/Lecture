@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XXExpert.h"
 
 @interface XXLecture : NSObject
 // 讲座id

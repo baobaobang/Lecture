@@ -33,22 +33,6 @@
 #define XXLog(...)
 #endif
 
-// RGB颜色
-#define XXColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
-// 随机色
-#define XXRandomColor XXColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
-
-// 测试颜色
-#define XXTestColor [UIColor redColor]
-
-// 通知中心
-#define XXNotificationCenter [NSNotificationCenter defaultCenter]
-
-// 打印测试
-#define XXTestLog XXLog(@"%s", __func__)
-
-// 主窗口
-#define XXKeyWindow [UIApplication sharedApplication].keyWindow
 
 #endif /* PrefixHeader_pch */

@@ -17,6 +17,7 @@
 		2D065B4B1C53700000282CFD /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B461C53700000282CFD /* SDPhotoBrowser.m */; };
 		2D065B4C1C53700000282CFD /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B491C53700000282CFD /* SDWaitingView.m */; };
 		2D065B4E1C53BFA500282CFD /* Lectures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D065B4D1C53BFA500282CFD /* Lectures.plist */; };
+		2D065B511C53C51300282CFD /* XXJoinLectureActionSheet（报名弹窗）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B501C53C51300282CFD /* XXJoinLectureActionSheet（报名弹窗）.m */; };
 		2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C55EC1C3FA7030002514D /* Assets.xcassets */; };
 		2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C562E1C3FB45F0002514D /* NSString+CZ.m */; };
 		2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56301C3FB45F0002514D /* UIButton+CZ.m */; };
@@ -116,6 +117,8 @@
 		2D065B481C53700000282CFD /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
 		2D065B491C53700000282CFD /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		2D065B4D1C53BFA500282CFD /* Lectures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lectures.plist; sourceTree = "<group>"; };
+		2D065B4F1C53C51300282CFD /* XXJoinLectureActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XXJoinLectureActionSheet.h; path = Question/XXJoinLectureActionSheet.h; sourceTree = "<group>"; };
+		2D065B501C53C51300282CFD /* XXJoinLectureActionSheet（报名弹窗）.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "XXJoinLectureActionSheet（报名弹窗）.m"; path = "Question/XXJoinLectureActionSheet（报名弹窗）.m"; sourceTree = "<group>"; };
 		2D1C55EC1C3FA7030002514D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1C562D1C3FB45F0002514D /* NSString+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CZ.h"; sourceTree = "<group>"; };
 		2D1C562E1C3FB45F0002514D /* NSString+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CZ.m"; sourceTree = "<group>"; };
@@ -493,6 +496,8 @@
 		2D1D021E1C3EA74F0056B10C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2D065B4F1C53C51300282CFD /* XXJoinLectureActionSheet.h */,
+				2D065B501C53C51300282CFD /* XXJoinLectureActionSheet（报名弹窗）.m */,
 				2D6BBE281C4FB5FD00F27D13 /* PlayerView */,
 				2D6BBE211C4FB5FD00F27D13 /* ExpertView */,
 				2D6BBE2F1C4FB5FD00F27D13 /* QuestionView */,
@@ -915,6 +920,7 @@
 				2D6BBE621C4FCEB500F27D13 /* XXPlayerToolBar.m in Sources */,
 				2D6BBE521C4FB69500F27D13 /* XXQuestion.m in Sources */,
 				2D6BBE591C4FBA0700F27D13 /* XXPlayerViewController.m in Sources */,
+				2D065B511C53C51300282CFD /* XXJoinLectureActionSheet（报名弹窗）.m in Sources */,
 				2D5798841C40D90F007A0423 /* XXNavigationController.m in Sources */,
 				2D5798761C40D58D007A0423 /* UIBarButtonItem+Extension.m in Sources */,
 				2D6BBE441C4FB5FD00F27D13 /* XXQuestionToolbar.m in Sources */,

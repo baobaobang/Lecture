@@ -24,14 +24,15 @@
     
     UIImage *postQuestionBtnImage = [[[UIImage imageNamed:@"question"] imageScaleToSize:CGSizeMake(5, 20)] imageRenderingModeAlwaysOriginal];
     [self.postQuestionBtn setImage:postQuestionBtnImage forState:UIControlStateNormal];
-    
-    [self.postQuestionBtn setBackgroundImage:[UIImage createImageWithColor:XXQuestionTintColor] forState:UIControlStateNormal];
+
+    // 用纯色image作为背景可以实现按钮在disable状态下颜色变浅的效果
+    [self.postQuestionBtn setBackgroundImage:[UIImage createImageWithColor:XXColorGreen] forState:UIControlStateNormal];
     
     [self.postQuestionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
     
     [self.postQuestionBtn setTitle:@"已提问" forState:UIControlStateDisabled];
-//    [self.postQuestionBtn setBackgroundColor:XXQuestionTintColor];
+//    [self.postQuestionBtn setBackgroundColor:XXColorGreen];
     
     
     [self.upAndDownBtn setBackgroundImage:[UIImage imageNamed:@"icon-up"] forState:UIControlStateNormal];
