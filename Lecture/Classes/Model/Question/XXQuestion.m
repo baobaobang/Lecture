@@ -7,6 +7,8 @@
 //
 
 #import "XXQuestion.h"
+#import <MJExtension.h>
+#import "XXQuestionPhoto.h"
 
 @implementation XXQuestion
 - (NSComparisonResult)compareAttitudesCount:(XXQuestion *)other{
@@ -18,5 +20,10 @@
     }else{
         return NSOrderedSame;
     }
+}
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"pic_urls" : [XXQuestionPhoto class]};
 }
 @end

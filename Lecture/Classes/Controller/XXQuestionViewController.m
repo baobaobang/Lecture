@@ -10,18 +10,46 @@
 #import "XXQuestionCell.h"
 #import "XXQuestionHeaderView.h"
 #import "XXQuestionToolbar.h"
+#import <MJExtension.h>
+#import "XXQuestionFrame.h"
 
 static NSString * const questionHeaderId = @"questionHeaderId";
 static NSString * const questionCellReuseId = @"QuestionCell";
 
 @interface XXQuestionViewController ()<XXQuestionToolbarDelegate>
 
-// 数据
-@property (nonatomic, strong) NSArray *questions;
+/**
+ *  模型数组
+ */
+@property (nonatomic, strong) NSMutableArray *questionFrames;
 
 @end
 
 @implementation XXQuestionViewController
+
+- (NSMutableArray *)questionFrames
+{
+    if (!_questionFrames) {
+        NSArray *questions = [XXQuestion mj_objectArrayWithFilename:@"Questions.plist"];
+        // 按照点赞数排序
+        questions = [questions sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+        self.questionFrames = [self questionFramesWithQuestions:questions];
+    }
+    return _questionFrames;
+}
+/**
+ *  将XXQuestion模型转为XXQuestionFrame模型
+ */
+- (NSArray *)questionFramesWithQuestions:(NSArray *)questions
+{
+    NSMutableArray *frames = [NSMutableArray array];
+    for (XXQuestion *question in questions) {
+        XXQuestionFrame *f = [[XXQuestionFrame alloc] init];
+        f.question = question;
+        [frames addObject:f];
+    }
+    return frames;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,16 +61,6 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"XXQuestionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:questionHeaderId];
 }
 
-- (NSArray *)questions
-{
-    if (!_questions) {
-        _questions = [XXQuestion objectArrayWithFilename:@"Questions.plist"];
-        // 按照点赞数排序
-        _questions = [_questions sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-    }
-    return _questions;
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -50,7 +68,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.questions.count;
+    return self.questionFrames.count;
 }
 
 // cell创建和数据
@@ -62,7 +80,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     questionCell.toolBar.delegate = self;
     
     // 给cell的子控件赋值
-    questionCell.question = self.questions[indexPath.row];
+    questionCell.questionFrame = self.questionFrames[indexPath.row];
     
     return questionCell;
 }
@@ -83,27 +101,10 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 #pragma mark - cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    XXQuestionCell *questionCell = [XXQuestionCell QuestionCellInTableView:tableView];
-//    if ([indexPath compare:self.currentOpenIndexPath] == NSOrderedSame && self.isOpenCell == YES) {
-//        // 展开cell，根据内容自动调整高度
-//        XXQuestion *question = self.questions[indexPath.row];
-//        [questionCell cellAutoLayoutHeight:question.content];
-//        CGSize size = [questionCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-//        return MAX((size.height + 1), XXQuestionCellHeight);
-//    }else{
-//        // 折叠cell，默认高度
-//        return XXQuestionCellHeight;
-//    }
-    return 80;
+    XXQuestionFrame *frame = self.questionFrames[indexPath.row];
+    return frame.cellHeight;
     
 }
-
-#pragma mark - 估算的cell的高度
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 80;
-}
-
 
 #pragma mark - 点击cell后的反应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,12 +116,12 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     if (type == XXQuestionToolbarButtonTypeUnlike) {// 点击点赞按钮
         
         // 将将question数组排序按照点赞数来排序，再刷新表格和cell顺序
-        NSUInteger oldRow = [self.questions indexOfObject:toolbar.question];
+        NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.question];
         NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
         [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];// 先刷新点赞数目
         
-        self.questions = [self.questions sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-        NSUInteger newRow = [self.questions indexOfObject:toolbar.question];
+        self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+        NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.question];
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
         
         [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];// 再移动cell顺序

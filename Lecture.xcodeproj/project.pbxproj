@@ -9,16 +9,11 @@
 /* Begin PBXBuildFile section */
 		2D065B301C52046700282CFD /* XXLecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B2F1C52046700282CFD /* XXLecture.m */; };
 		2D065B321C522E3500282CFD /* XXQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D065B311C522E3500282CFD /* XXQuestionCell.xib */; };
+		2D065B351C525FA500282CFD /* XXQuestionFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B341C525FA500282CFD /* XXQuestionFrame.m */; };
+		2D065B3B1C52632600282CFD /* XXQuestionPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B3A1C52632600282CFD /* XXQuestionPhoto.m */; };
+		2D065B3E1C526A9600282CFD /* XXQuestionPhotosView(相册).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B3D1C526A9600282CFD /* XXQuestionPhotosView(相册).m */; };
+		2D065B411C526B2600282CFD /* XXQuestionPhotoView(单个照片).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B401C526B2600282CFD /* XXQuestionPhotoView(单个照片).m */; };
 		2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C55EC1C3FA7030002514D /* Assets.xcassets */; };
-		2D1C56131C3FABB10002514D /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56011C3FABB10002514D /* MJArgument.m */; };
-		2D1C56141C3FABB10002514D /* MJIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56041C3FABB10002514D /* MJIvar.m */; };
-		2D1C56151C3FABB10002514D /* MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56061C3FABB10002514D /* MJMember.m */; };
-		2D1C56161C3FABB10002514D /* MJMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56081C3FABB10002514D /* MJMethod.m */; };
-		2D1C56171C3FABB10002514D /* MJType.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C560A1C3FABB10002514D /* MJType.m */; };
-		2D1C56181C3FABB10002514D /* MJTypeEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C560C1C3FABB10002514D /* MJTypeEncoding.m */; };
-		2D1C56191C3FABB10002514D /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C560E1C3FABB10002514D /* NSObject+MJCoding.m */; };
-		2D1C561A1C3FABB10002514D /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56101C3FABB10002514D /* NSObject+MJKeyValue.m */; };
-		2D1C561B1C3FABB10002514D /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56121C3FABB10002514D /* NSObject+MJMember.m */; };
 		2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C562E1C3FB45F0002514D /* NSString+CZ.m */; };
 		2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56301C3FB45F0002514D /* UIButton+CZ.m */; };
 		2D1C56351C3FB45F0002514D /* UIImage+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56321C3FB45F0002514D /* UIImage+CZ.m */; };
@@ -101,26 +96,15 @@
 		2D065B2E1C52046700282CFD /* XXLecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLecture.h; sourceTree = "<group>"; };
 		2D065B2F1C52046700282CFD /* XXLecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLecture.m; sourceTree = "<group>"; };
 		2D065B311C522E3500282CFD /* XXQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionCell.xib; sourceTree = "<group>"; };
+		2D065B331C525FA500282CFD /* XXQuestionFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionFrame.h; sourceTree = "<group>"; };
+		2D065B341C525FA500282CFD /* XXQuestionFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionFrame.m; sourceTree = "<group>"; };
+		2D065B391C52632600282CFD /* XXQuestionPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionPhoto.h; sourceTree = "<group>"; };
+		2D065B3A1C52632600282CFD /* XXQuestionPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionPhoto.m; sourceTree = "<group>"; };
+		2D065B3C1C526A9600282CFD /* XXQuestionPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionPhotosView.h; sourceTree = "<group>"; };
+		2D065B3D1C526A9600282CFD /* XXQuestionPhotosView(相册).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XXQuestionPhotosView(相册).m"; sourceTree = "<group>"; };
+		2D065B3F1C526B2600282CFD /* XXQuestionPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionPhotoView.h; sourceTree = "<group>"; };
+		2D065B401C526B2600282CFD /* XXQuestionPhotoView(单个照片).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XXQuestionPhotoView(单个照片).m"; sourceTree = "<group>"; };
 		2D1C55EC1C3FA7030002514D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2D1C56001C3FABB10002514D /* MJArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJArgument.h; sourceTree = "<group>"; };
-		2D1C56011C3FABB10002514D /* MJArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJArgument.m; sourceTree = "<group>"; };
-		2D1C56021C3FABB10002514D /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
-		2D1C56031C3FABB10002514D /* MJIvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJIvar.h; sourceTree = "<group>"; };
-		2D1C56041C3FABB10002514D /* MJIvar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJIvar.m; sourceTree = "<group>"; };
-		2D1C56051C3FABB10002514D /* MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMember.h; sourceTree = "<group>"; };
-		2D1C56061C3FABB10002514D /* MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMember.m; sourceTree = "<group>"; };
-		2D1C56071C3FABB10002514D /* MJMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMethod.h; sourceTree = "<group>"; };
-		2D1C56081C3FABB10002514D /* MJMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMethod.m; sourceTree = "<group>"; };
-		2D1C56091C3FABB10002514D /* MJType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJType.h; sourceTree = "<group>"; };
-		2D1C560A1C3FABB10002514D /* MJType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJType.m; sourceTree = "<group>"; };
-		2D1C560B1C3FABB10002514D /* MJTypeEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTypeEncoding.h; sourceTree = "<group>"; };
-		2D1C560C1C3FABB10002514D /* MJTypeEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTypeEncoding.m; sourceTree = "<group>"; };
-		2D1C560D1C3FABB10002514D /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
-		2D1C560E1C3FABB10002514D /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
-		2D1C560F1C3FABB10002514D /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
-		2D1C56101C3FABB10002514D /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
-		2D1C56111C3FABB10002514D /* NSObject+MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJMember.h"; sourceTree = "<group>"; };
-		2D1C56121C3FABB10002514D /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
 		2D1C562D1C3FB45F0002514D /* NSString+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CZ.h"; sourceTree = "<group>"; };
 		2D1C562E1C3FB45F0002514D /* NSString+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CZ.m"; sourceTree = "<group>"; };
 		2D1C562F1C3FB45F0002514D /* UIButton+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CZ.h"; sourceTree = "<group>"; };
@@ -263,32 +247,6 @@
 			children = (
 			);
 			path = Tool;
-			sourceTree = "<group>";
-		};
-		2D1C55FF1C3FABB10002514D /* MJExtension */ = {
-			isa = PBXGroup;
-			children = (
-				2D1C56001C3FABB10002514D /* MJArgument.h */,
-				2D1C56011C3FABB10002514D /* MJArgument.m */,
-				2D1C56021C3FABB10002514D /* MJExtension.h */,
-				2D1C56031C3FABB10002514D /* MJIvar.h */,
-				2D1C56041C3FABB10002514D /* MJIvar.m */,
-				2D1C56051C3FABB10002514D /* MJMember.h */,
-				2D1C56061C3FABB10002514D /* MJMember.m */,
-				2D1C56071C3FABB10002514D /* MJMethod.h */,
-				2D1C56081C3FABB10002514D /* MJMethod.m */,
-				2D1C56091C3FABB10002514D /* MJType.h */,
-				2D1C560A1C3FABB10002514D /* MJType.m */,
-				2D1C560B1C3FABB10002514D /* MJTypeEncoding.h */,
-				2D1C560C1C3FABB10002514D /* MJTypeEncoding.m */,
-				2D1C560D1C3FABB10002514D /* NSObject+MJCoding.h */,
-				2D1C560E1C3FABB10002514D /* NSObject+MJCoding.m */,
-				2D1C560F1C3FABB10002514D /* NSObject+MJKeyValue.h */,
-				2D1C56101C3FABB10002514D /* NSObject+MJKeyValue.m */,
-				2D1C56111C3FABB10002514D /* NSObject+MJMember.h */,
-				2D1C56121C3FABB10002514D /* NSObject+MJMember.m */,
-			);
-			path = MJExtension;
 			sourceTree = "<group>";
 		};
 		2D1D01D01C3EA3910056B10C = {
@@ -441,7 +399,6 @@
 		2D1D02141C3EA74F0056B10C /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				2D1C55FF1C3FABB10002514D /* MJExtension */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -549,6 +506,10 @@
 				2D6BBE351C4FB5FD00F27D13 /* XXQuestionHeaderView.xib */,
 				2D6BBE361C4FB5FD00F27D13 /* XXQuestionToolbar.h */,
 				2D6BBE371C4FB5FD00F27D13 /* XXQuestionToolbar.m */,
+				2D065B3C1C526A9600282CFD /* XXQuestionPhotosView.h */,
+				2D065B3D1C526A9600282CFD /* XXQuestionPhotosView(相册).m */,
+				2D065B3F1C526B2600282CFD /* XXQuestionPhotoView.h */,
+				2D065B401C526B2600282CFD /* XXQuestionPhotoView(单个照片).m */,
 			);
 			name = QuestionView;
 			path = Question;
@@ -577,6 +538,10 @@
 			children = (
 				2D6BBE4C1C4FB69500F27D13 /* XXQuestion.h */,
 				2D6BBE4D1C4FB69500F27D13 /* XXQuestion.m */,
+				2D065B331C525FA500282CFD /* XXQuestionFrame.h */,
+				2D065B341C525FA500282CFD /* XXQuestionFrame.m */,
+				2D065B391C52632600282CFD /* XXQuestionPhoto.h */,
+				2D065B3A1C52632600282CFD /* XXQuestionPhoto.m */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -914,26 +879,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D1C561B1C3FABB10002514D /* NSObject+MJMember.m in Sources */,
 				2D5798771C40D58D007A0423 /* UITextView+Extension.m in Sources */,
-				2D1C56191C3FABB10002514D /* NSObject+MJCoding.m in Sources */,
 				2D6BBE3A1C4FB5FD00F27D13 /* XXExpertProfileHeaderView.m in Sources */,
 				2D6BBE621C4FCEB500F27D13 /* XXPlayerToolBar.m in Sources */,
 				2D6BBE521C4FB69500F27D13 /* XXQuestion.m in Sources */,
-				2D1C56141C3FABB10002514D /* MJIvar.m in Sources */,
-				2D1C56181C3FABB10002514D /* MJTypeEncoding.m in Sources */,
 				2D6BBE591C4FBA0700F27D13 /* XXPlayerViewController.m in Sources */,
 				2D5798841C40D90F007A0423 /* HWNavigationController.m in Sources */,
 				2D5798761C40D58D007A0423 /* UIBarButtonItem+Extension.m in Sources */,
 				2D6BBE441C4FB5FD00F27D13 /* XXQuestionToolbar.m in Sources */,
 				2D1D20131C3F731D0093C310 /* UIView+Extension.m in Sources */,
 				2D6BBE381C4FB5FD00F27D13 /* XXExpertProfileCell.m in Sources */,
+				2D065B411C526B2600282CFD /* XXQuestionPhotoView(单个照片).m in Sources */,
 				2D57987E1C40D63A007A0423 /* NSString+Extension.m in Sources */,
 				2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */,
+				2D065B3B1C52632600282CFD /* XXQuestionPhoto.m in Sources */,
 				2D6BBE3C1C4FB5FD00F27D13 /* HMCollectionCell.m in Sources */,
-				2D1C56131C3FABB10002514D /* MJArgument.m in Sources */,
 				2D6BBE501C4FB69500F27D13 /* XXExpert.m in Sources */,
 				2D57987B1C40D599007A0423 /* NSDate+Extension.m in Sources */,
+				2D065B351C525FA500282CFD /* XXQuestionFrame.m in Sources */,
 				2D6BBE561C4FB9F900F27D13 /* XXQuestionViewController.m in Sources */,
 				2D63F0901C51D5850043C39D /* XXLectureJoinViewController（讲座前）.m in Sources */,
 				2D6BBE421C4FB5FD00F27D13 /* XXQuestionHeaderView.m in Sources */,
@@ -942,19 +905,16 @@
 				2D63F0931C51E1530043C39D /* XXCollectionView.m in Sources */,
 				2D6BBE651C4FCF5700F27D13 /* XXPlayerMaskView.m in Sources */,
 				2D6BBE1E1C4F772900F27D13 /* XXExpertProfileViewController.m in Sources */,
-				2D1C56171C3FABB10002514D /* MJType.m in Sources */,
 				2D1C56351C3FB45F0002514D /* UIImage+CZ.m in Sources */,
 				2D6BBE5C1C4FBB3E00F27D13 /* XXButton.m in Sources */,
 				2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */,
 				2D1D02221C3EA74F0056B10C /* main.m in Sources */,
-				2D1C56161C3FABB10002514D /* MJMethod.m in Sources */,
 				2D6BBE5F1C4FCE9B00F27D13 /* XXPlayerPicView.m in Sources */,
 				2D6BBE511C4FB69500F27D13 /* HMMusic.m in Sources */,
 				2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */,
 				2D63F08D1C51D1CA0043C39D /* XXHomeViewController.m in Sources */,
-				2D1C56151C3FABB10002514D /* MJMember.m in Sources */,
+				2D065B3E1C526A9600282CFD /* XXQuestionPhotosView(相册).m in Sources */,
 				2D6BBE401C4FB5FD00F27D13 /* XXQuestionCell.m in Sources */,
-				2D1C561A1C3FABB10002514D /* NSObject+MJKeyValue.m in Sources */,
 				2D6BBE531C4FB69500F27D13 /* XXUser.m in Sources */,
 				2D065B301C52046700282CFD /* XXLecture.m in Sources */,
 				2D1D022B1C3EAB170056B10C /* XXLectureViewController（讲座中）.m in Sources */,

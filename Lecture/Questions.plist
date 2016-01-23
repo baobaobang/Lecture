@@ -3,88 +3,155 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>shares_count</key>
-		<integer>0</integer>
-		<key>replys_count</key>
-		<integer>0</integer>
-		<key>attitudes_count</key>
-		<integer>0</integer>
-		<key>like</key>
-		<false/>
-		<key>content</key>
+		<key>idstr</key>
+		<string>0</string>
+		<key>text</key>
 		<string>张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了</string>
 		<key>user</key>
 		<dict>
+			<key>idstr</key>
+			<string>0</string>
 			<key>name</key>
 			<string>李灵黛</string>
 			<key>vip</key>
+			<true/>
+			<key>vipLevel</key>
 			<string>user_vip_1</string>
 			<key>icon</key>
-			<string>userIcon_1</string>
+			<string>http://tp2.sinaimg.cn/1444865141/50/5708501090/1</string>
 		</dict>
-	</dict>
-	<dict>
+		<key>created_at</key>
+		<string>Mon Oct 20 08:37:20 +0800 2014</string>
+		<key>pic_urls</key>
+		<array>
+			<dict>
+				<key>thumbnail_pic</key>
+				<string>http://ww1.sinaimg.cn/thumbnail/561ee475jw1elhbncosu4j20qo18gjvr.jpg</string>
+			</dict>
+		</array>
 		<key>shares_count</key>
-		<integer>9999</integer>
-		<key>replys_count</key>
-		<integer>6</integer>
+		<integer>0</integer>
 		<key>attitudes_count</key>
 		<integer>0</integer>
 		<key>like</key>
 		<false/>
-		<key>content</key>
+	</dict>
+	<dict>
+		<key>idstr</key>
+		<string>0</string>
+		<key>text</key>
 		<string>孩子在家不咳嗽～出门就咳嗽怎么办</string>
 		<key>user</key>
 		<dict>
+			<key>idstr</key>
+			<string>1</string>
 			<key>name</key>
 			<string>冷文卿</string>
 			<key>vip</key>
+			<true/>
+			<key>vipLevel</key>
 			<string>user_vip_2</string>
 			<key>icon</key>
-			<string>userIcon_2</string>
+			<string>http://tp3.sinaimg.cn/2537882762/50/40051541732/1</string>
 		</dict>
-	</dict>
-	<dict>
+		<key>created_at</key>
+		<string>Mon Oct 20 08:37:10 +0800 2014</string>
+		<key>pic_urls</key>
+		<array/>
 		<key>shares_count</key>
-		<integer>11331</integer>
-		<key>replys_count</key>
-		<integer>3</integer>
+		<real>9999</real>
 		<key>attitudes_count</key>
-		<integer>5</integer>
+		<integer>0</integer>
 		<key>like</key>
 		<false/>
-		<key>content</key>
+	</dict>
+	<dict>
+		<key>idstr</key>
+		<string>0</string>
+		<key>text</key>
 		<string>一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害</string>
 		<key>user</key>
 		<dict>
+			<key>idstr</key>
+			<string>2</string>
 			<key>name</key>
 			<string>李念</string>
 			<key>vip</key>
+			<true/>
+			<key>vipLevel</key>
 			<string>user_vip_3</string>
 			<key>icon</key>
-			<string>userIcon_3</string>
+			<string>http://tp3.sinaimg.cn/2244250502/50/5625405769/0</string>
 		</dict>
+		<key>created_at</key>
+		<string>Mon Oct 20 08:37:10 +0800 2014</string>
+		<key>pic_urls</key>
+		<array>
+			<dict>
+				<key>thumbnail_pic</key>
+				<string>http://ww4.sinaimg.cn/thumbnail/9c6c023bgw1elh126zjdkj20hs0qowhk.jpg</string>
+			</dict>
+			<dict>
+				<key>thumbnail_pic</key>
+				<string>http://ww4.sinaimg.cn/thumbnail/9c6c023bgw1elh127tbofj20k00qogq9.jpg</string>
+			</dict>
+			<dict>
+				<key>thumbnail_pic</key>
+				<string>http://ww1.sinaimg.cn/thumbnail/9c6c023bgw1elh127ms4rj20k00qo41k.jpg</string>
+			</dict>
+		</array>
+		<key>shares_count</key>
+		<real>11331</real>
+		<key>attitudes_count</key>
+		<integer>3</integer>
+		<key>like</key>
+		<false/>
 	</dict>
 	<dict>
+		<key>idstr</key>
+		<string>3</string>
+		<key>text</key>
+		<string>这几天新闻说上海流感比较多，H1N1,希望老师多讲讲</string>
+		<key>user</key>
+		<dict>
+			<key>idstr</key>
+			<string>3</string>
+			<key>name</key>
+			<string>魏天霞</string>
+			<key>vip</key>
+			<true/>
+			<key>vipLevel</key>
+			<string>user_vip_4</string>
+			<key>icon</key>
+			<string>http://tp3.sinaimg.cn/2537882762/50/40051541732/1</string>
+		</dict>
+		<key>created_at</key>
+		<string>Mon Oct 20 08:37:10 +0800 2014</string>
+		<key>pic_urls</key>
+		<array>
+			<dict>
+				<key>thumbnail_pic</key>
+				<string>http://ww4.sinaimg.cn/thumbnail/9c6c023bgw1elh126zjdkj20hs0qowhk.jpg</string>
+			</dict>
+			<dict>
+				<key>thumbnail_pic</key>
+				<string>http://ww4.sinaimg.cn/thumbnail/9c6c023bgw1elh127tbofj20k00qogq9.jpg</string>
+			</dict>
+			<dict>
+				<key>thumbnail_pic</key>
+				<string>http://ww1.sinaimg.cn/thumbnail/9c6c023bgw1elh127ms4rj20k00qo41k.jpg</string>
+			</dict>
+			<dict>
+				<key>thumbnail_pic</key>
+				<string>http://ww4.sinaimg.cn/thumbnail/9c6c023bgw1elh128pg10j20qo0hsdjw.jpg</string>
+			</dict>
+		</array>
 		<key>shares_count</key>
 		<integer>1</integer>
-		<key>replys_count</key>
-		<integer>4</integer>
 		<key>attitudes_count</key>
 		<integer>5</integer>
 		<key>like</key>
 		<false/>
-		<key>content</key>
-		<string>这几天新闻说上海流感比较多，H1N1,希望老师多讲讲</string>
-		<key>user</key>
-		<dict>
-			<key>name</key>
-			<string>魏天霞</string>
-			<key>vip</key>
-			<string>user_vip_4</string>
-			<key>icon</key>
-			<string>userIcon_4</string>
-		</dict>
 	</dict>
 </array>
 </plist>

@@ -11,6 +11,7 @@
 #import "XXExpertProfileCell.h"
 #import "XXExpertProfileHeaderView.h"
 #import <UITableView+FDTemplateLayoutCell.h>
+#import <MJExtension.h>
 
 
 #define XXExpertProfileCellHeight 80

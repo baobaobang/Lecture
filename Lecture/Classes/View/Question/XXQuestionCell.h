@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXQuestion, XXQuestionToolbar;
+@class XXQuestion, XXQuestionToolbar, XXQuestionFrame;
 
 @interface XXQuestionCell : UITableViewCell
 
-@property (nonatomic, strong) XXQuestion *question;
 @property (nonatomic, weak) XXQuestionToolbar *toolBar;
+
+@property (nonatomic, strong) XXQuestionFrame *questionFrame;
 @end

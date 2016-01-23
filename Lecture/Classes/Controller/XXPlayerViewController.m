@@ -13,6 +13,7 @@
 #import "HMCollectionCell.h"
 #import "HMMusic.h"
 #import <MBProgressHUD.h>
+#import <MJExtension.h>
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define HMMaxSections 3

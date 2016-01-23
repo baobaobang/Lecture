@@ -10,18 +10,28 @@
 #import "XXUser.h"
 
 @interface XXQuestion : NSObject
-/**	NSInteger	转发数*/
-@property (nonatomic, assign) NSInteger shares_count;
-/**	NSInteger	评论数*/
-@property (nonatomic, assign) NSInteger replys_count;
-/**	NSInteger	表态数*/
-@property (nonatomic, assign) NSInteger attitudes_count;
-/**	BOOL    是否点赞*/
-@property (nonatomic, assign) BOOL like;
-/**	XXUser	用户*/
+
+/**	字符串型的问题ID*/
+@property (nonatomic, copy) NSString *idstr;
+
+/**	问题文字内容*/
+@property (nonatomic, copy) NSString *text;
+
+/**	用户信息*/
 @property (nonatomic, strong) XXUser *user;
-/**	NSString	提问内容*/
-@property (nonatomic, copy) NSString *content;
+
+/**	创建时间*/
+@property (nonatomic, copy) NSString *created_at;
+
+/** 配图地址。多图时返回多图链接。无配图返回“[]” */
+@property (nonatomic, strong) NSArray *pic_urls;
+
+/**	分享数*/
+@property (nonatomic, assign) NSUInteger shares_count;
+/**	点赞数*/
+@property (nonatomic, assign) NSUInteger attitudes_count;
+/**	是否点赞*/
+@property (nonatomic, assign) BOOL like;
 
 - (NSComparisonResult)compareAttitudesCount:(XXQuestion *)other;
 @end

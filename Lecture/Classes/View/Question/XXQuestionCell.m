@@ -9,56 +9,124 @@
 #import "XXQuestionCell.h"
 #import "XXQuestionToolbar.h"
 #import "XXQuestion.h"
-
+#import "XXQuestionPhotosView.h"
+#import "XXQuestionFrame.h"
+#import <UIButton+WebCache.h>
 
 @interface XXQuestionCell ()
-@property (weak, nonatomic) IBOutlet UIView *toolBarView;
 
-
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userVipView;
-@property (weak, nonatomic) IBOutlet UIButton *userIconBtn;
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+/** 头像 */
+@property (nonatomic, weak) XXButton *iconView;
+/** 昵称 */
+@property (nonatomic, weak) UILabel *nameLabel;
+/** 会员图标 */
+@property (nonatomic, weak) UIImageView *vipView;
+/** 正文 */
+@property (nonatomic, weak) UILabel *contentLabel;
+/** 配图 */
+@property (nonatomic, weak) XXQuestionPhotosView *photosView;
+/** 工具条 */
+@property (nonatomic, weak) XXQuestionToolbar *toolbar;
 
 @end
 @implementation XXQuestionCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-
+        
+        self.backgroundColor = [UIColor clearColor];
         // 设置cell选中时不变色
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        // 初始化
+        [self setup];
     }
     return self;
 }
-//
-//- (void)awakeFromNib {
-//    // Initialization code
-//    // 初始化toolbar
-//    XXQuestionToolbar *toolBar = [XXQuestionToolbar toolbar];
-//    [self.toolBarView addSubview:toolBar];
-//    self.toolBar = toolBar;
-//}
-//
-//- (void)layoutSubviews{
-//    [super layoutSubviews];
-//    // 设置toolbar的frame
-//    self.toolBar.frame = self.toolBarView.bounds;
-//}
-//
-//
-//// 给cell的子控件赋值
-//- (void)setQuestion:(XXQuestion *)question{
-//    
-//    _question = question;
-//    
-//    self.toolBar.question = question;
-//    XXUser *user = question.user;
-//    
-//    self.contentLabel.text = question.content;
-//    self.userNameLabel.text = user.name;
-//    self.userVipView.image = [UIImage imageNamed:user.vip];
-//    [self.userIconBtn setBackgroundImage:[UIImage imageNamed:user.icon] forState:UIControlStateNormal];
-//}
+
+/**
+ * 初始化
+ */
+- (void)setup
+{
+    
+    /** 头像 */
+    XXButton *iconView = [[XXButton alloc] init];
+    [self.contentView addSubview:iconView];
+    self.iconView = iconView;
+    
+    /** 昵称 */
+    UILabel *nameLabel = [[UILabel alloc] init];
+    nameLabel.font = XXQuestionCellNameFont;
+    [self.contentView addSubview:nameLabel];
+    self.nameLabel = nameLabel;
+    
+    /** 会员图标 */
+    UIImageView *vipView = [[UIImageView alloc] init];
+    vipView.contentMode = UIViewContentModeCenter;
+    [self.contentView addSubview:vipView];
+    self.vipView = vipView;
+    
+    /** 正文 */
+    UILabel *contentLabel = [[UILabel alloc] init];
+    contentLabel.font = XXQuestionCellContentFont;
+    contentLabel.numberOfLines = 0;
+    [self.contentView addSubview:contentLabel];
+    self.contentLabel = contentLabel;
+    
+    /** 配图 */
+    XXQuestionPhotosView *photosView = [[XXQuestionPhotosView alloc] init];
+    [self.contentView addSubview:photosView];
+    self.photosView = photosView;
+    
+    /** 工具条 */
+    XXQuestionToolbar *toolbar = [XXQuestionToolbar toolbar];
+    [self.contentView addSubview:toolbar];
+    self.toolbar = toolbar;
+}
+
+- (void)setQuestionFrame:(XXQuestionFrame *)questionFrame
+{
+    _questionFrame = questionFrame;
+    
+    XXQuestion *question = questionFrame.question;
+    XXUser *user = question.user;
+    
+    /** 头像 */
+    self.iconView.frame = questionFrame.iconViewF;
+    [self.iconView sd_setBackgroundImageWithURL:[NSURL URLWithString:user.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
+    
+    /** 昵称 */
+    self.nameLabel.text = user.name;
+    self.nameLabel.frame = questionFrame.nameLabelF;
+    
+    /** 会员图标 */
+    if (user.isVip) {
+        self.vipView.hidden = NO;
+        
+        self.vipView.frame = questionFrame.vipViewF;
+        NSString *vipName = [NSString stringWithFormat:@"user_vip_%@", user.vipLevel];
+        self.vipView.image = [UIImage imageNamed:vipName];
+    } else {
+        self.vipView.hidden = YES;
+    }
+    
+    /** 正文 */
+    self.contentLabel.text = question.text;
+    self.contentLabel.frame = questionFrame.contentLabelF;
+    
+    /** 配图 */
+    if (question.pic_urls.count) {
+        self.photosView.frame = questionFrame.photosViewF;
+        self.photosView.photos = question.pic_urls;
+        self.photosView.hidden = NO;
+    } else {
+        self.photosView.hidden = YES;
+    }
+    
+    /** 工具条 */
+    self.toolbar.frame = questionFrame.toolbarF;
+    self.toolbar.question = question;
+}
 
 @end

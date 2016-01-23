@@ -70,19 +70,30 @@
 #pragma mark - 收到通知后的处理
 
 - (void)hidePicView{
+
+    // 需要上移的高度
+    CGFloat height = self.picView.height + XXExpertProfileViewHeight;
+    
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.y -= self.picView.height;
+        self.view.y -= height;
         // 在上移控制器的view的时候，同步下移报名按钮，这样就可以保证报名按钮一直在最下方
-        self.joinBtn.y += self.picView.height;
-    } completion:^(BOOL finished) {
+        self.joinBtn.y += height;
+        self.view.height += height;// 必须调整这个，否则导致tableView的下面一部分超出self.view，没法交互
         
+    } completion:^(BOOL finished) {
     }];
+    
 }
 
 - (void)showPicView{
+    
+    // 需要下移的高度
+    CGFloat height = self.picView.height + XXExpertProfileViewHeight;
+    
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.y += self.picView.height;
-        self.joinBtn.y -= self.picView.height;
+        self.view.y += height;
+        self.joinBtn.y -= height;
+        self.view.height -= height;
     } completion:^(BOOL finished) {
         
     }];
@@ -125,6 +136,7 @@
     expertVc.view.y = CGRectGetMaxY(self.picView.frame);
     expertVc.view.width = self.view.width;
     expertVc.view.height = XXExpertProfileViewHeight;
+//    expertVc.tableView.bounces = NO;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
     self.expertVc = expertVc;
@@ -136,11 +148,13 @@
     questionVc.view.x = 0;
     questionVc.view.y = CGRectGetMaxY(self.expertVc.view.frame);
     questionVc.view.width = self.view.width;
-    questionVc.view.height = self.view.height;
+    questionVc.view.height = self.view.height - questionVc.view.y - XXJoinButtonHeight;
+//    questionVc.tableView.bounces = NO;
     [self addChildViewController:questionVc];
     [self.view addSubview:questionVc.view];
     self.questionVc = questionVc;
 }
+
 
 // 设置报名活动按钮
 - (void)setupJoinBtn{
@@ -159,8 +173,10 @@
     [joinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
     
     [self.view addSubview:joinBtn];
+    [self.view bringSubviewToFront:joinBtn]; // 让joinBtn在最上层
     self.joinBtn = joinBtn;
 }
+
 
 - (void)clickShareLectureBtn{
     

@@ -7,12 +7,8 @@
 //
 
 #import "XXQuestionToolbar.h"
-
 #define XXQuestionToolbarShareTitle @"分享"
-#define XXQuestionToolbarReplyTitle @"回复"
 #define XXQuestionToolbarUnlikeTitle @"棒"
-
-
 
 @interface XXQuestionToolbar()
 /** 里面存放所有的按钮 */
@@ -53,7 +49,6 @@
         
         // 添加按钮
         self.shareBtn = [self setupBtn:XXQuestionToolbarShareTitle icon:@"timeline_icon_share" type:XXQuestionToolbarButtonTypeShare];
-        self.replyBtn = [self setupBtn:XXQuestionToolbarReplyTitle icon:@"timeline_icon_reply" type:XXQuestionToolbarButtonTypeReply];
         self.attitudeBtn = [self setupBtn:XXQuestionToolbarUnlikeTitle icon:@"timeline_icon_unlike" type:XXQuestionToolbarButtonTypeUnlike];
         
         // 添加分割线
@@ -112,13 +107,7 @@
                 [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeShare];
             }
             break;
-        case XXQuestionToolbarButtonTypeReply: // 回复
-            self.question.replys_count++;
-            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
-                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeReply];
-            }
-            break;
-        case XXQuestionToolbarButtonTypeUnlike: // 棒
+        case XXQuestionToolbarButtonTypeUnlike: // 点赞
             self.question.like = !self.question.like;
             // 点棒可以增加和减少数字
             if (self.question.like) {
@@ -159,7 +148,7 @@
         UIImageView *divider = self.dividers[i];
         divider.width = 1;
         divider.height = btnH;
-        divider.x = (i + 1) * btnW;
+        divider.x = i * btnW;
         divider.y = 0;
     }
 }
@@ -170,8 +159,6 @@
     
     // 转发
     [self setupBtnCount:question.shares_count btn:self.shareBtn title:XXQuestionToolbarShareTitle];
-    // 评论
-    [self setupBtnCount:question.replys_count btn:self.replyBtn title:XXQuestionToolbarReplyTitle];
     // 赞
     [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:XXQuestionToolbarUnlikeTitle];
     

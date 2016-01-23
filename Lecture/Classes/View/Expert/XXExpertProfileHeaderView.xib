@@ -49,28 +49,16 @@
                                 <action selector="followBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="bcX-3u-PwI"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e47-Le-E5B">
-                            <rect key="frame" x="139" y="0.0" width="60" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="6er-UJ-eQV"/>
-                                <constraint firstAttribute="height" constant="30" id="BKZ-18-ZGz"/>
-                            </constraints>
-                            <connections>
-                                <action selector="showAndHidePicView:" destination="iN0-l3-epB" eventType="touchUpInside" id="gBD-IM-pOx"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="2P7-76-IcK" secondAttribute="bottom" constant="5" id="DnZ-tG-MtL"/>
-                        <constraint firstItem="e47-Le-E5B" firstAttribute="centerX" secondItem="9zs-VV-ewb" secondAttribute="centerX" constant="9" id="TX6-cN-3SF"/>
                         <constraint firstAttribute="trailing" secondItem="2P7-76-IcK" secondAttribute="trailing" constant="10" id="URi-g1-3dZ"/>
                         <constraint firstAttribute="bottom" secondItem="EzD-T2-3NO" secondAttribute="bottom" constant="8" id="VKc-wl-bOc"/>
                         <constraint firstAttribute="trailing" secondItem="2P7-76-IcK" secondAttribute="trailing" constant="10" id="cGt-XA-4bM"/>
                         <constraint firstItem="2P7-76-IcK" firstAttribute="top" secondItem="9zs-VV-ewb" secondAttribute="top" constant="5" id="jSk-bn-NYI"/>
                         <constraint firstItem="EzD-T2-3NO" firstAttribute="top" secondItem="9zs-VV-ewb" secondAttribute="top" constant="5" id="lOO-fz-iP1"/>
                         <constraint firstItem="EzD-T2-3NO" firstAttribute="leading" secondItem="9zs-VV-ewb" secondAttribute="leading" constant="13" id="uVF-ld-72x"/>
-                        <constraint firstItem="e47-Le-E5B" firstAttribute="centerY" secondItem="9zs-VV-ewb" secondAttribute="centerY" constant="-2.5" id="xzy-u7-DFy"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -90,7 +78,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="followBtn" destination="2P7-76-IcK" id="w3l-4Y-KiK"/>
-                <outlet property="upAndDownBtn" destination="e47-Le-E5B" id="cZI-js-c1z"/>
             </connections>
             <point key="canvasLocation" x="129" y="221.5"/>
         </view>

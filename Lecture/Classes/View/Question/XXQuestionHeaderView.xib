@@ -14,8 +14,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDF-fc-FsA">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-dk-cFB" customClass="XXButton">
-                            <rect key="frame" x="240" y="5" width="70" height="25"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-dk-cFB" customClass="XXButton">
+                            <rect key="frame" x="242" y="5" width="70" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="ldA-2i-ulG"/>
                             </constraints>
@@ -35,10 +35,22 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hD-by-Ce3">
+                            <rect key="frame" x="130" y="3" width="60" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Phz-7w-otI"/>
+                                <constraint firstAttribute="width" constant="60" id="hAW-w4-zAa"/>
+                            </constraints>
+                            <connections>
+                                <action selector="showAndHidePicView:" destination="HdW-RH-oUn" eventType="touchUpInside" id="Kfr-fV-AYf"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="2hD-by-Ce3" firstAttribute="centerX" secondItem="hDF-fc-FsA" secondAttribute="centerX" id="3nk-cT-6kX"/>
                         <constraint firstItem="4t3-dk-cFB" firstAttribute="top" secondItem="hDF-fc-FsA" secondAttribute="top" constant="5" id="Iv3-Oe-Tgb"/>
+                        <constraint firstItem="2hD-by-Ce3" firstAttribute="centerY" secondItem="hDF-fc-FsA" secondAttribute="centerY" id="LUV-RY-OMd"/>
                         <constraint firstItem="ubc-84-nLB" firstAttribute="leading" secondItem="hDF-fc-FsA" secondAttribute="leading" constant="15" id="SZf-Vu-Qfk"/>
                         <constraint firstItem="ubc-84-nLB" firstAttribute="top" secondItem="hDF-fc-FsA" secondAttribute="top" constant="5" id="cR7-Nf-IXt"/>
                         <constraint firstAttribute="trailing" secondItem="4t3-dk-cFB" secondAttribute="trailing" constant="10" id="hvG-p4-XVu"/>
@@ -58,6 +70,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="postQuestionBtn" destination="4t3-dk-cFB" id="Yfv-Ea-Jqb"/>
+                <outlet property="upAndDownBtn" destination="2hD-by-Ce3" id="QnT-Z5-1mb"/>
             </connections>
             <point key="canvasLocation" x="129" y="221.5"/>
         </view>

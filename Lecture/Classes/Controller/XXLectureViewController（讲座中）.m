@@ -55,19 +55,33 @@
 #pragma mark - 收到通知后的处理
 
 - (void)hidePlayerPicView{
+    
+    // 需要上移的高度
+    CGFloat height = self.playerVc.playerPicView.height;
+    
+    // 先调整questionVc的高度
+    self.questionVc.view.height += height;
+    
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.y -= self.playerVc.playerPicView.height;
+        self.view.y -= height;
         // 在上移控制器的view的时候，同步下移报名按钮，这样就可以保证报名按钮一直在最下方
-        self.postQuestionBtn.y += self.playerVc.playerPicView.height;
+        self.postQuestionBtn.y += height;
     } completion:^(BOOL finished) {
         
     }];
 }
 
 - (void)showPlayerPicView{
+    
+    // 需要下移的高度
+    CGFloat height = self.playerVc.playerPicView.height;
+    
+    // 先调整questionVc的高度
+    self.questionVc.view.height -= height;
+    
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.y += self.playerVc.playerPicView.height;
-        self.postQuestionBtn.y -= self.playerVc.playerPicView.height;
+        self.view.y += height;
+        self.postQuestionBtn.y -= height;
     } completion:^(BOOL finished) {
         
     }];
