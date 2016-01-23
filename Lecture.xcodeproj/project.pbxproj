@@ -16,6 +16,7 @@
 		2D065B4A1C53700000282CFD /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B441C53700000282CFD /* SDBrowserImageView.m */; };
 		2D065B4B1C53700000282CFD /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B461C53700000282CFD /* SDPhotoBrowser.m */; };
 		2D065B4C1C53700000282CFD /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B491C53700000282CFD /* SDWaitingView.m */; };
+		2D065B4E1C53BFA500282CFD /* Lectures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D065B4D1C53BFA500282CFD /* Lectures.plist */; };
 		2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C55EC1C3FA7030002514D /* Assets.xcassets */; };
 		2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C562E1C3FB45F0002514D /* NSString+CZ.m */; };
 		2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56301C3FB45F0002514D /* UIButton+CZ.m */; };
@@ -114,6 +115,7 @@
 		2D065B471C53700000282CFD /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		2D065B481C53700000282CFD /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
 		2D065B491C53700000282CFD /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		2D065B4D1C53BFA500282CFD /* Lectures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lectures.plist; sourceTree = "<group>"; };
 		2D1C55EC1C3FA7030002514D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1C562D1C3FB45F0002514D /* NSString+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CZ.h"; sourceTree = "<group>"; };
 		2D1C562E1C3FB45F0002514D /* NSString+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CZ.m"; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				2DE542971C423C3D00D4D4D9 /* Musics.plist */,
 				2D253DF71C44F8EE006AD55E /* Questions.plist */,
 				2D5AB4361C49256900B1578B /* Experts.plist */,
+				2D065B4D1C53BFA500282CFD /* Lectures.plist */,
 				2D1C55EC1C3FA7030002514D /* Assets.xcassets */,
 				2D1D01E51C3EA3910056B10C /* Main.storyboard */,
 				2D1D01EA1C3EA3910056B10C /* LaunchScreen.storyboard */,
@@ -816,6 +819,7 @@
 				2D6BBE431C4FB5FD00F27D13 /* XXQuestionHeaderView.xib in Resources */,
 				2DA99D781C44B75500CD02D7 /* 感冒的原因.png in Resources */,
 				2D065B321C522E3500282CFD /* XXQuestionCell.xib in Resources */,
+				2D065B4E1C53BFA500282CFD /* Lectures.plist in Resources */,
 				2DA99D771C44B75500CD02D7 /* 什么是感冒.png in Resources */,
 				2DA99D741C44B75500CD02D7 /* 上呼吸道的概念.png in Resources */,
 				2DA99D791C44B75500CD02D7 /* 感冒的症状.png in Resources */,
