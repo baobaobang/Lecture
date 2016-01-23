@@ -11,16 +11,6 @@
 #import "XXQuestionPhoto.h"
 
 @implementation XXQuestion
-- (NSComparisonResult)compareAttitudesCount:(XXQuestion *)other{
-    
-    if (self.attitudes_count > other.attitudes_count) {
-        return NSOrderedAscending;
-    }else if(self.attitudes_count < other.attitudes_count){
-        return NSOrderedDescending;
-    }else{
-        return NSOrderedSame;
-    }
-}
 
 + (NSDictionary *)mj_objectClassInArray
 {

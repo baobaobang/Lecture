@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XXQuestion.h"
+#import "XXQuestionFrame.h"
+
+
 typedef enum{
     XXQuestionToolbarButtonTypeShare,
     XXQuestionToolbarButtonTypeReply,
@@ -23,7 +25,7 @@ typedef enum{
 
 @interface XXQuestionToolbar : UIView
 
-@property (nonatomic, strong) XXQuestion *question;
+@property (nonatomic, strong) XXQuestionFrame *questionFrame;
 
 @property (nonatomic, weak) UIButton *shareBtn;
 @property (nonatomic, weak) UIButton *replyBtn;

@@ -1,19 +1,19 @@
 //
-//  HMCollectionCell.m
+//  XXCollectionCell.m
 //  08-无限滚动
 //
 //  Created by apple on 14-5-31.
 //  Copyright (c) 2014年 itcast. All rights reserved.
 //
 
-#import "HMCollectionCell.h"
-#import "HMMusic.h"
+#import "XXCollectionCell.h"
+#import "XXMusic.h"
 
-@interface HMCollectionCell()
+@interface XXCollectionCell()
 @property (weak, nonatomic) UIImageView *imageView;
 @end
 
-@implementation HMCollectionCell
+@implementation XXCollectionCell
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -23,7 +23,7 @@
     }
     return self;
 }
-- (void)setMusic:(HMMusic *)music
+- (void)setMusic:(XXMusic *)music
 {
     _music = music;
     

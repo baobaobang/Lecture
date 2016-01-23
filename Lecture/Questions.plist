@@ -16,7 +16,7 @@
 			<key>vip</key>
 			<true/>
 			<key>vipLevel</key>
-			<string>user_vip_1</string>
+			<string>1</string>
 			<key>icon</key>
 			<string>http://tp2.sinaimg.cn/1444865141/50/5708501090/1</string>
 		</dict>
@@ -50,16 +50,16 @@
 			<key>vip</key>
 			<true/>
 			<key>vipLevel</key>
-			<string>user_vip_2</string>
+			<string>2</string>
 			<key>icon</key>
-			<string>http://tp3.sinaimg.cn/2537882762/50/40051541732/1</string>
+			<string>http://tp3.sinaimg.cn/2650847330/50/5696992871/0</string>
 		</dict>
 		<key>created_at</key>
 		<string>Mon Oct 20 08:37:10 +0800 2014</string>
 		<key>pic_urls</key>
 		<array/>
 		<key>shares_count</key>
-		<real>9999</real>
+		<integer>9999</integer>
 		<key>attitudes_count</key>
 		<integer>0</integer>
 		<key>like</key>
@@ -77,9 +77,9 @@
 			<key>name</key>
 			<string>李念</string>
 			<key>vip</key>
-			<true/>
+			<false/>
 			<key>vipLevel</key>
-			<string>user_vip_3</string>
+			<string>0</string>
 			<key>icon</key>
 			<string>http://tp3.sinaimg.cn/2244250502/50/5625405769/0</string>
 		</dict>
@@ -121,9 +121,9 @@
 			<key>vip</key>
 			<true/>
 			<key>vipLevel</key>
-			<string>user_vip_4</string>
+			<string>3</string>
 			<key>icon</key>
-			<string>http://tp3.sinaimg.cn/2537882762/50/40051541732/1</string>
+			<string>http://tp4.sinaimg.cn/1227058703/50/5665166440/1</string>
 		</dict>
 		<key>created_at</key>
 		<string>Mon Oct 20 08:37:10 +0800 2014</string>
@@ -149,7 +149,7 @@
 		<key>shares_count</key>
 		<integer>1</integer>
 		<key>attitudes_count</key>
-		<integer>5</integer>
+		<integer>3</integer>
 		<key>like</key>
 		<false/>
 	</dict>

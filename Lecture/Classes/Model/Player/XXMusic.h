@@ -1,5 +1,5 @@
 //
-//  HMMusic.h
+//  XXMusic.h
 //  02-黑马音乐
 //
 //  Created by apple on 14-8-8.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HMMusic : NSObject
+@interface XXMusic : NSObject
 /**
  *  歌曲名字
  */

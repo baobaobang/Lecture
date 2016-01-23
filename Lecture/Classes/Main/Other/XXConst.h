@@ -1,5 +1,5 @@
 //
-//  HWConst.h
+//  XXConst.h
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/9.
@@ -8,31 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HWConst : NSObject
+@interface XXConst : NSObject
 
 //extern NSString * const XXNavigationTitleFont;
 
 extern const CGFloat PlayerToolBarHeight;
-extern NSString * const HMCollectionViewCellIdentifier;
+extern NSString * const XXCollectionViewCellIdentifier;
 extern NSString * const XXPlayerPicViewWillHide;
 extern NSString * const XXPlayerPicViewWillShow;
-
+extern NSString * const XXQuestionToolbarShareButtonClick;
+extern NSString * const XXQuestionToolbarUnlikeButtonClick;
 
 
 // 项目默认颜色（浅蓝色）
-#define HWTintColor HWColor(47, 180, 254)
+#define XXTintColor XXColor(47, 180, 254)
 
 // 项目默认文字颜色
-#define HWTintTitleColor [UIColor whiteColor]
+#define XXTintTitleColor [UIColor whiteColor]
 
 // 项目默认选中状态颜色（浅浅蓝色）
-#define HWSelectedColor HWColor(175, 220, 250)
+#define XXSelectedColor XXColor(175, 220, 250)
 
 // 精选提问默认颜色（浅绿色）
-#define HWQuestionTintColor HWColor(75, 217, 130)
+#define XXQuestionTintColor XXColor(75, 217, 130)
 
 // 精选提问选中状态颜色（深绿色）
-#define HWQuestionSelectedColor HWColor(5, 128, 0)
+#define XXQuestionSelectedColor XXColor(5, 128, 0)
 
 // 高宽比
 #define XXPlayerPicViewHeightWidthRatio 0.5

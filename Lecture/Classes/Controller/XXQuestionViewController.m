@@ -26,14 +26,17 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 @end
 
 @implementation XXQuestionViewController
+#pragma mark - 懒加载
 
 - (NSMutableArray *)questionFrames
 {
     if (!_questionFrames) {
+        // 字典转模型
         NSArray *questions = [XXQuestion mj_objectArrayWithFilename:@"Questions.plist"];
+        // question模型转为questionFrames模型
+        _questionFrames = [self questionFramesWithQuestions:questions];
         // 按照点赞数排序
-        questions = [questions sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-        self.questionFrames = [self questionFramesWithQuestions:questions];
+        _questionFrames = [_questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
     }
     return _questionFrames;
 }
@@ -50,6 +53,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     }
     return frames;
 }
+#pragma mark - 生命周期
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,7 +63,63 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     
     // 注册headerview
     [self.tableView registerNib:[UINib nibWithNibName:@"XXQuestionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:questionHeaderId];
+    
+    // 添加观察者
+    [XXNotificationCenter addObserver:self selector:@selector(questionToolbarShareBtnClicked:) name:XXQuestionToolbarShareButtonClick object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(questionToolbarUnlikeBtnClicked:) name:XXQuestionToolbarUnlikeButtonClick object:nil];
 }
+
+- (void)dealloc{
+    [XXNotificationCenter removeObserver:self];
+}
+
+#pragma mark - 通知
+- (void)questionToolbarShareBtnClicked:(NSNotification *)noti{
+    XXQuestionToolbar * toolbar = noti.userInfo[@"toolbar"];
+    XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)questionToolbarUnlikeBtnClicked:(NSNotification *)noti{
+    // 将将question数组排序按照点赞数来排序，再刷新表格和cell顺序
+    XXQuestionToolbar * toolbar = noti.userInfo[@"toolbar"];
+    NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];// 先刷新点赞数目
+    
+    self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+    NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
+    
+    [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];// 再移动cell顺序
+}
+
+
+#pragma mark - XXQuestionToolbar的按钮被点击了
+//- (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
+//    
+//    if (type == XXQuestionToolbarButtonTypeUnlike) {// 点击点赞按钮
+//        
+//        // 将将question数组排序按照点赞数来排序，再刷新表格和cell顺序
+//        NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.question];
+//        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
+//        [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];// 先刷新点赞数目
+//        
+//        self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+//        NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.question];
+//        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
+//        
+//        [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];// 再移动cell顺序
+//        
+//    }else{// 点击分享按钮
+//        
+//        XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview.superview;
+//        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//    }
+//}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -77,6 +137,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     
     XXQuestionCell *questionCell = [[XXQuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:questionCellReuseId];
     
+    // 设置toolBar的代理
     questionCell.toolBar.delegate = self;
     
     // 给cell的子控件赋值
@@ -108,30 +169,6 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 
 #pragma mark - 点击cell后的反应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-}
-
-#pragma mark - XXQuestionToolbar的按钮被点击了
-- (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
-    
-    if (type == XXQuestionToolbarButtonTypeUnlike) {// 点击点赞按钮
-        
-        // 将将question数组排序按照点赞数来排序，再刷新表格和cell顺序
-        NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.question];
-        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];// 先刷新点赞数目
-        
-        self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-        NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.question];
-        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
-        
-        [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];// 再移动cell顺序
-        
-    }else{// 点击分享和评论按钮
-        
-        XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview.superview;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    }
 }
 
 @end

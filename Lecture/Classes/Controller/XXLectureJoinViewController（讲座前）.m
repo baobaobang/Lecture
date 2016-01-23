@@ -7,7 +7,7 @@
 //
 
 #import "XXLectureJoinViewController.h"
-#import "HMCollectionCell.h"
+#import "XXCollectionCell.h"
 #import "XXCollectionView.h"
 #import "XXLecture.h"
 #import "XXExpertProfileViewController.h"
@@ -59,12 +59,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     // 注册观察者，接收XXExpertProfileHeaderView发出的通知
-    [HWNotificationCenter addObserver:self selector:@selector(hidePicView) name:XXPlayerPicViewWillHide object:nil];
-    [HWNotificationCenter addObserver:self selector:@selector(showPicView) name:XXPlayerPicViewWillShow object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(hidePicView) name:XXPlayerPicViewWillHide object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(showPicView) name:XXPlayerPicViewWillShow object:nil];
 }
 
 - (void)dealloc{
-    [HWNotificationCenter removeObserver:self];
+    [XXNotificationCenter removeObserver:self];
 }
 
 #pragma mark - 收到通知后的处理
@@ -74,7 +74,7 @@
     // 需要上移的高度
     CGFloat height = self.picView.height + XXExpertProfileViewHeight;
     
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.y -= height;
         // 在上移控制器的view的时候，同步下移报名按钮，这样就可以保证报名按钮一直在最下方
         self.joinBtn.y += height;
@@ -90,7 +90,7 @@
     // 需要下移的高度
     CGFloat height = self.picView.height + XXExpertProfileViewHeight;
     
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.y += height;
         self.joinBtn.y -= height;
         self.view.height -= height;
@@ -161,7 +161,7 @@
     
     XXButton *joinBtn = [[XXButton alloc] init];
     [joinBtn setTitle:@"我要报名" forState:UIControlStateNormal];
-    joinBtn.backgroundColor = HWQuestionTintColor;
+    joinBtn.backgroundColor = XXQuestionTintColor;
     [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     joinBtn.width = [UIScreen mainScreen].bounds.size.width;
     joinBtn.height = XXJoinButtonHeight;

@@ -10,13 +10,13 @@
 #import "XXPlayerToolBar.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIButton+CZ.h"
-#import "HMCollectionCell.h"
-#import "HMMusic.h"
+#import "XXCollectionCell.h"
+#import "XXMusic.h"
 #import <MBProgressHUD.h>
 #import <MJExtension.h>
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
-#define HMMaxSections 3
+#define XXMaxSections 3
 
 @interface XXPlayerViewController ()<AVAudioPlayerDelegate, XXPlayerToolBarDelegate, XXPlayerPicViewDelegate, XXPlayerMaskViewDelegate>
 
@@ -39,7 +39,7 @@
 -(NSArray *)musics{
     
     if (!_musics) {
-        _musics = [HMMusic objectArrayWithFilename:@"Musics.plist"];
+        _musics = [XXMusic objectArrayWithFilename:@"Musics.plist"];
     }
     
     return _musics;
@@ -90,7 +90,7 @@
     playerToolBar.y = CGRectGetMaxY(self.playerPicView.frame);
     playerToolBar.width = self.view.width;
     playerToolBar.height = 30;
-    playerToolBar.backgroundColor = HWColor(38, 38, 38);
+    playerToolBar.backgroundColor = XXColor(38, 38, 38);
     playerToolBar.delegate = self;
     [self.view addSubview:playerToolBar];
     self.playerToolBar = playerToolBar;
@@ -120,7 +120,7 @@
 
 #pragma mark - 切换音乐，准备播放音乐，刷新相关控件
 
-- (void)setCurrentMusic:(HMMusic *)currentMusic{
+- (void)setCurrentMusic:(XXMusic *)currentMusic{
     _currentMusic = currentMusic;
     
     // 初始化一个 "音频播放器"player，一首音乐对应一个player

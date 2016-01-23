@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "XXPlayerPicView.h"
 
-@class HMMusic;
+@class XXMusic;
 @interface XXPlayerViewController : UIViewController
 
 //当前播放的音乐
-@property(nonatomic,strong)HMMusic *currentMusic;
+@property(nonatomic,strong)XXMusic *currentMusic;
 // 播放状态 默认暂停状态
 @property(assign,nonatomic,getter=isPlaying)BOOL playing;
 

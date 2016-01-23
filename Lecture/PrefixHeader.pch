@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-#import "HWConst.h"
+#import "XXConst.h"
 #import "XXButton.h"
 
 #import "UIButton+CZ.h"
@@ -28,25 +28,25 @@
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 
 #ifdef DEBUG // 处于开发阶段
-#define HWLog(...) NSLog(__VA_ARGS__)
+#define XXLog(...) NSLog(__VA_ARGS__)
 #else // 处于发布阶段
-#define HWLog(...)
+#define XXLog(...)
 #endif
 
 // RGB颜色
-#define HWColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define XXColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
 // 随机色
-#define HWRandomColor HWColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+#define XXRandomColor XXColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 
 // 测试颜色
-#define HWTestColor [UIColor redColor]
+#define XXTestColor [UIColor redColor]
 
 // 通知中心
-#define HWNotificationCenter [NSNotificationCenter defaultCenter]
+#define XXNotificationCenter [NSNotificationCenter defaultCenter]
 
 // 打印测试
-#define HWTestLog HWLog(@"%s", __func__)
+#define XXTestLog XXLog(@"%s", __func__)
 
 // 主窗口
 #define XXKeyWindow [UIApplication sharedApplication].keyWindow

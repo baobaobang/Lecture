@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "XXHomeViewController.h"
-#import "HWNavigationController.h"
+#import "XXNavigationController.h"
+#import "XXLectureJoinViewController.h"
+#import "XXLectureViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,10 +24,13 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     window.backgroundColor = [UIColor whiteColor];
     
-    XXHomeViewController *rootVc = [[XXHomeViewController alloc] init];
+//    XXHomeViewController *rootVc = [[XXHomeViewController alloc] init];
+    XXLectureJoinViewController *rootVc = [[XXLectureJoinViewController alloc] init];
+//    XXLectureViewController *rootVc =[[XXLectureViewController alloc] init];
+
     rootVc.view.frame = window.frame;
-    
-    HWNavigationController *nav = [[HWNavigationController alloc] initWithRootViewController:rootVc];
+
+    XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:rootVc];
     
     window.rootViewController = nav;
     

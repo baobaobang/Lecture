@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XXQuestion.h"
 
 // 昵称字体
 #define XXQuestionCellNameFont [UIFont systemFontOfSize:15]
@@ -25,8 +26,6 @@
 
 // cell的边框宽度
 #define XXQuestionCellBorderW 10
-
-@class XXQuestion;
 
 @interface XXQuestionFrame : NSObject
 
@@ -47,5 +46,8 @@
 
 /** cell的高度 */
 @property (nonatomic, assign) CGFloat cellHeight;
+
+
+- (NSComparisonResult)compareAttitudesCount:(XXQuestionFrame *)other;
 
 @end

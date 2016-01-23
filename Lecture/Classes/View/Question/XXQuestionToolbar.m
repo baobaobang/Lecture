@@ -45,7 +45,7 @@
     self = [super initWithFrame:frame];
     if (self) {
 //        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
-//        self.backgroundColor = HWTestColor;
+//        self.backgroundColor = XXTestColor;
         
         // 添加按钮
         self.shareBtn = [self setupBtn:XXQuestionToolbarShareTitle icon:@"timeline_icon_share" type:XXQuestionToolbarButtonTypeShare];
@@ -81,7 +81,7 @@
     btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
+    btn.adjustsImageWhenHighlighted = NO;
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -100,25 +100,29 @@
  *  @param btn 点击的按钮
  */
 - (void)btnClick:(UIButton *)btn{
+    XXQuestion *question = self.questionFrame.question;
+    
     switch (btn.tag) {
-        case XXQuestionToolbarButtonTypeShare: // 分享
-            self.question.shares_count++;
-            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
-                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeShare];
-            }
+        case XXQuestionToolbarButtonTypeShare:{ // 分享
+            question.shares_count++;
+            // 发出通知
+            NSNotification *notiShare = [NSNotification notificationWithName:XXQuestionToolbarShareButtonClick object:nil userInfo:@{@"toolbar":self}];
+            [XXNotificationCenter postNotification:notiShare];
             break;
-        case XXQuestionToolbarButtonTypeUnlike: // 点赞
-            self.question.like = !self.question.like;
+        }
+        case XXQuestionToolbarButtonTypeUnlike:{ // 点赞
+            question.like = !question.like;
             // 点棒可以增加和减少数字
-            if (self.question.like) {
-                self.question.attitudes_count++;
+            if (question.like) {
+                question.attitudes_count++;
             }else{
-                self.question.attitudes_count--;
+                question.attitudes_count--;
             }
-            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
-                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeUnlike];
-            }
+            // 发出通知
+            NSNotification *notiUnlike = [NSNotification notificationWithName:XXQuestionToolbarUnlikeButtonClick object:nil userInfo:@{@"toolbar":self}];
+            [XXNotificationCenter postNotification:notiUnlike];
             break;
+        }
 
             
         default:
@@ -153,9 +157,10 @@
     }
 }
 
-- (void)setQuestion:(XXQuestion *)question
+- (void)setQuestionFrame:(XXQuestionFrame *)questionFrame
 {
-    _question = question;
+    _questionFrame = questionFrame;
+    XXQuestion *question = questionFrame.question;
     
     // 转发
     [self setupBtnCount:question.shares_count btn:self.shareBtn title:XXQuestionToolbarShareTitle];

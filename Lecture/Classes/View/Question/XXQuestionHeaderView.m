@@ -25,13 +25,13 @@
     UIImage *postQuestionBtnImage = [[[UIImage imageNamed:@"question"] imageScaleToSize:CGSizeMake(5, 20)] imageRenderingModeAlwaysOriginal];
     [self.postQuestionBtn setImage:postQuestionBtnImage forState:UIControlStateNormal];
     
-    [self.postQuestionBtn setBackgroundImage:[UIImage createImageWithColor:HWQuestionTintColor] forState:UIControlStateNormal];
+    [self.postQuestionBtn setBackgroundImage:[UIImage createImageWithColor:XXQuestionTintColor] forState:UIControlStateNormal];
     
     [self.postQuestionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
     
     [self.postQuestionBtn setTitle:@"已提问" forState:UIControlStateDisabled];
-//    [self.postQuestionBtn setBackgroundColor:HWQuestionTintColor];
+//    [self.postQuestionBtn setBackgroundColor:XXQuestionTintColor];
     
     
     [self.upAndDownBtn setBackgroundImage:[UIImage imageNamed:@"icon-up"] forState:UIControlStateNormal];
@@ -52,10 +52,10 @@
     
     if (!btn.selected) {// 点击普通状态就收起picView
         NSNotification *notiHide = [NSNotification notificationWithName:XXPlayerPicViewWillHide object:nil];
-        [HWNotificationCenter postNotification:notiHide];
+        [XXNotificationCenter postNotification:notiHide];
     }else{// 点击选中状态就展开picView
         NSNotification *notiShow = [NSNotification notificationWithName:XXPlayerPicViewWillShow object:self];
-        [HWNotificationCenter postNotification:notiShow];
+        [XXNotificationCenter postNotification:notiShow];
     }
     
     btn.selected = !btn.selected;

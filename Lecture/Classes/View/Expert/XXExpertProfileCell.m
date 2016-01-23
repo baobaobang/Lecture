@@ -29,8 +29,6 @@
     // 设置灰色容器为圆角
     self.grayContentView.layer.cornerRadius = 5;
     [self.grayContentView.layer masksToBounds];
-    
-    [self.nameLabel sizeToFit];
 }
 
 // 给cell的子控件赋值

@@ -7,8 +7,6 @@
 //
 
 #import "XXQuestionFrame.h"
-#import "XXQuestion.h"
-#import "XXUser.h"
 #import "XXQuestionPhotosView.h"
 
 @implementation XXQuestionFrame
@@ -22,7 +20,7 @@
     CGFloat cellW = [UIScreen mainScreen].bounds.size.width;
 
     /** 头像 */
-    CGFloat iconWH = 45;
+    CGFloat iconWH = 44;
     CGFloat iconX = XXQuestionCellBorderW;
     CGFloat iconY = XXQuestionCellBorderW;
     self.iconViewF = CGRectMake(iconX, iconY, iconWH, iconWH);
@@ -33,12 +31,12 @@
     CGSize nameSize = [user.name sizeWithFont:XXQuestionCellNameFont];
     self.nameLabelF = (CGRect){{nameX, nameY}, nameSize};
     
-    /** 会员图标 */
+    /** vip会员图标 */
     if (user.isVip) {
         CGFloat vipX = CGRectGetMaxX(self.nameLabelF) + XXQuestionCellBorderW;
-        CGFloat vipY = nameY;
-        CGFloat vipH = nameSize.height;
-        CGFloat vipW = 30;
+        CGFloat vipY = nameY + 3;
+        CGFloat vipH = 15;
+        CGFloat vipW = 20;
         self.vipViewF = CGRectMake(vipX, vipY, vipW, vipH);
     }
     
@@ -52,7 +50,7 @@
     /** 配图 */
     CGFloat originalH = 0;
     if (question.pic_urls.count) { // 有配图
-        CGFloat photosX = contentX;
+        CGFloat photosX = nameX;
         CGFloat photosY = CGRectGetMaxY(self.contentLabelF) + XXQuestionCellBorderW;
         CGSize photosSize = [XXQuestionPhotosView sizeWithCount:question.pic_urls.count];
         self.photosViewF = (CGRect){{photosX, photosY}, photosSize};
@@ -65,11 +63,22 @@
     /** 工具条 */
     CGFloat toolbarX = nameX;
     CGFloat toolbarY = originalH;
-    CGFloat toolbarW = contentSize.width;
+    CGFloat toolbarW = maxW;
     CGFloat toolbarH = 35;
     self.toolbarF = CGRectMake(toolbarX, toolbarY, toolbarW, toolbarH);
     
     /* cell的高度 */
     self.cellHeight = CGRectGetMaxY(self.toolbarF);
+}
+
+- (NSComparisonResult)compareAttitudesCount:(XXQuestionFrame *)other{
+    
+    if (self.question.attitudes_count > other.question.attitudes_count) {
+        return NSOrderedAscending;
+    }else if(self.question.attitudes_count < other.question.attitudes_count){
+        return NSOrderedDescending;
+    }else{
+        return NSOrderedSame;
+    }
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "XXLectureViewController.h"
-#import "HWNavigationController.h"
+#import "XXNavigationController.h"
 #import "XXPlayerViewController.h"
 #import "XXExpertProfileViewController.h"
 #import "XXQuestionViewController.h"
@@ -44,12 +44,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     // 注册观察者，接收XXExpertProfileHeaderView发出的通知
-    [HWNotificationCenter addObserver:self selector:@selector(hidePlayerPicView) name:XXPlayerPicViewWillHide object:nil];
-    [HWNotificationCenter addObserver:self selector:@selector(showPlayerPicView) name:XXPlayerPicViewWillShow object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(hidePlayerPicView) name:XXPlayerPicViewWillHide object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(showPlayerPicView) name:XXPlayerPicViewWillShow object:nil];
 }
 
 - (void)dealloc{
-    [HWNotificationCenter removeObserver:self];
+    [XXNotificationCenter removeObserver:self];
 }
 
 #pragma mark - 收到通知后的处理
@@ -101,7 +101,7 @@
     
     /* 设置导航栏的背景颜色 */
     // 这里设置无效
-//    self.navigationController.navigationBar.barTintColor = HWTintColor;
+//    self.navigationController.navigationBar.barTintColor = XXTintColor;
 }
 
 - (void)setupPlayerVc{
@@ -146,7 +146,7 @@
     
     XXButton *postQuestionBtn = [[XXButton alloc] init];
     [postQuestionBtn setTitle:@"我要提问" forState:UIControlStateNormal];
-    postQuestionBtn.backgroundColor = HWQuestionTintColor;
+    postQuestionBtn.backgroundColor = XXQuestionTintColor;
     [postQuestionBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;
     postQuestionBtn.height = XXJoinButtonHeight;

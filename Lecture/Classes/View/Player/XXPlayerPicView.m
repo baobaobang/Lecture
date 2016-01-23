@@ -7,7 +7,7 @@
 //
 
 #import "XXPlayerPicView.h"
-#import "HMCollectionCell.h"
+#import "XXCollectionCell.h"
 #import "XXCollectionView.h"
 
 @interface XXPlayerPicView ()<UICollectionViewDataSource, UICollectionViewDelegate>
@@ -37,7 +37,7 @@
     collectionView.dataSource = self;
     collectionView.delegate = self;
     // 注册collectionView的cell
-    [self.collectionView registerClass:[HMCollectionCell class] forCellWithReuseIdentifier:HMCollectionViewCellIdentifier];
+    [self.collectionView registerClass:[XXCollectionCell class] forCellWithReuseIdentifier:XXCollectionViewCellIdentifier];
 }
 
 - (void)setupMaskView{
@@ -76,7 +76,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // 创建可重用的cell
-    HMCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:HMCollectionViewCellIdentifier forIndexPath:indexPath];
+    XXCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:XXCollectionViewCellIdentifier forIndexPath:indexPath];
     
     // 设置cell的数据
     cell.music = self.musics[indexPath.item];

@@ -99,7 +99,7 @@
                             <constraint firstAttribute="bottom" secondItem="LVf-ko-KxP" secondAttribute="bottom" constant="5" id="uCL-3i-Jpp"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMn-6i-T4e" userLabel="专家头像">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMn-6i-T4e" userLabel="专家头像">
                         <rect key="frame" x="10" y="5" width="55" height="55"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="55" id="9a7-Nc-OSJ"/>

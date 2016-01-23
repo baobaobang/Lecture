@@ -16,7 +16,7 @@
 @interface XXQuestionCell ()
 
 /** 头像 */
-@property (nonatomic, weak) XXButton *iconView;
+@property (nonatomic, weak) UIButton *iconView;
 /** 昵称 */
 @property (nonatomic, weak) UILabel *nameLabel;
 /** 会员图标 */
@@ -51,7 +51,8 @@
 {
     
     /** 头像 */
-    XXButton *iconView = [[XXButton alloc] init];
+    UIButton *iconView = [[UIButton alloc] init];
+    iconView.adjustsImageWhenHighlighted = NO;
     [self.contentView addSubview:iconView];
     self.iconView = iconView;
     
@@ -63,7 +64,7 @@
     
     /** 会员图标 */
     UIImageView *vipView = [[UIImageView alloc] init];
-    vipView.contentMode = UIViewContentModeCenter;
+    vipView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:vipView];
     self.vipView = vipView;
     
@@ -95,6 +96,8 @@
     /** 头像 */
     self.iconView.frame = questionFrame.iconViewF;
     [self.iconView sd_setBackgroundImageWithURL:[NSURL URLWithString:user.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
+    self.iconView.layer.cornerRadius = self.iconView.width / 2;
+    self.iconView.layer.masksToBounds = YES;
     
     /** 昵称 */
     self.nameLabel.text = user.name;
@@ -126,7 +129,7 @@
     
     /** 工具条 */
     self.toolbar.frame = questionFrame.toolbarF;
-    self.toolbar.question = question;
+    self.toolbar.questionFrame = questionFrame;
 }
 
 @end

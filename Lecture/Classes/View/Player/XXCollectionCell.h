@@ -1,5 +1,5 @@
 //
-//  HMCollectionCell.h
+//  XXCollectionCell.h
 //  08-无限滚动
 //
 //  Created by apple on 14-5-31.
@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HMMusic;
-@interface HMCollectionCell : UICollectionViewCell
-@property (nonatomic, strong) HMMusic *music;
+@class XXMusic;
+@interface XXCollectionCell : UICollectionViewCell
+@property (nonatomic, strong) XXMusic *music;
 @end

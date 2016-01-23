@@ -1,27 +1,27 @@
 //
-//  HWNavigationController.m
+//  XXNavigationController.m
 //  黑马微博2期
 //
 //  Created by apple on 14-10-7.
 //  Copyright (c) 2014年 heima. All rights reserved.
 //
 
-#import "HWNavigationController.h"
+#import "XXNavigationController.h"
 
-@interface HWNavigationController ()
+@interface XXNavigationController ()
 
 @end
 
-@implementation HWNavigationController
+@implementation XXNavigationController
 
 + (void)initialize
 {
     // 设置导航栏的统一样式
     UINavigationBar *navBar = [UINavigationBar appearance];
     // 导航栏背景色
-    navBar.barTintColor = HWTintColor;
+    navBar.barTintColor = XXTintColor;
     // 设置返回，左，右 item的字体颜色
-    [navBar setTintColor:HWTintTitleColor];
+    [navBar setTintColor:XXTintTitleColor];
     
     // 设置标题
     NSMutableDictionary *titleAttrs = [NSMutableDictionary dictionary];

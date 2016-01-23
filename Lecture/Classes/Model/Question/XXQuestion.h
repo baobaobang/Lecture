@@ -32,6 +32,4 @@
 @property (nonatomic, assign) NSUInteger attitudes_count;
 /**	是否点赞*/
 @property (nonatomic, assign) BOOL like;
-
-- (NSComparisonResult)compareAttitudesCount:(XXQuestion *)other;
 @end

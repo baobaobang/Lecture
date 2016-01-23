@@ -1,5 +1,5 @@
 //
-//  HWNavigationController.h
+//  XXNavigationController.h
 //  黑马微博2期
 //
 //  Created by apple on 14-10-7.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HWNavigationController : UINavigationController
+@interface XXNavigationController : UINavigationController
 
 @end
