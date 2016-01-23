@@ -33,8 +33,9 @@
     if (self) {
         // 内容模式
         self.contentMode = UIViewContentModeScaleAspectFill;
+        
         // 超出边框的内容都剪掉
-        self.clipsToBounds = YES;
+        self.layer.masksToBounds = YES;
     }
     return self;
 }

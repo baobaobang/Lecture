@@ -13,6 +13,9 @@
 		2D065B3B1C52632600282CFD /* XXQuestionPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B3A1C52632600282CFD /* XXQuestionPhoto.m */; };
 		2D065B3E1C526A9600282CFD /* XXQuestionPhotosView(相册).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B3D1C526A9600282CFD /* XXQuestionPhotosView(相册).m */; };
 		2D065B411C526B2600282CFD /* XXQuestionPhotoView(单个照片).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B401C526B2600282CFD /* XXQuestionPhotoView(单个照片).m */; };
+		2D065B4A1C53700000282CFD /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B441C53700000282CFD /* SDBrowserImageView.m */; };
+		2D065B4B1C53700000282CFD /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B461C53700000282CFD /* SDPhotoBrowser.m */; };
+		2D065B4C1C53700000282CFD /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D065B491C53700000282CFD /* SDWaitingView.m */; };
 		2D1C55ED1C3FA7030002514D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C55EC1C3FA7030002514D /* Assets.xcassets */; };
 		2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C562E1C3FB45F0002514D /* NSString+CZ.m */; };
 		2D1C56341C3FB45F0002514D /* UIButton+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C56301C3FB45F0002514D /* UIButton+CZ.m */; };
@@ -104,6 +107,13 @@
 		2D065B3D1C526A9600282CFD /* XXQuestionPhotosView(相册).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XXQuestionPhotosView(相册).m"; sourceTree = "<group>"; };
 		2D065B3F1C526B2600282CFD /* XXQuestionPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionPhotoView.h; sourceTree = "<group>"; };
 		2D065B401C526B2600282CFD /* XXQuestionPhotoView(单个照片).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XXQuestionPhotoView(单个照片).m"; sourceTree = "<group>"; };
+		2D065B431C53700000282CFD /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		2D065B441C53700000282CFD /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		2D065B451C53700000282CFD /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		2D065B461C53700000282CFD /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		2D065B471C53700000282CFD /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		2D065B481C53700000282CFD /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		2D065B491C53700000282CFD /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		2D1C55EC1C3FA7030002514D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1C562D1C3FB45F0002514D /* NSString+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CZ.h"; sourceTree = "<group>"; };
 		2D1C562E1C3FB45F0002514D /* NSString+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CZ.m"; sourceTree = "<group>"; };
@@ -240,6 +250,21 @@
 				E17BD05A64B3256DBE3F2972 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		2D065B421C53700000282CFD /* SDPhotoBrowser(图片浏览器) */ = {
+			isa = PBXGroup;
+			children = (
+				2D065B431C53700000282CFD /* SDBrowserImageView.h */,
+				2D065B441C53700000282CFD /* SDBrowserImageView.m */,
+				2D065B451C53700000282CFD /* SDPhotoBrowser.h */,
+				2D065B461C53700000282CFD /* SDPhotoBrowser.m */,
+				2D065B471C53700000282CFD /* SDPhotoBrowserConfig.h */,
+				2D065B481C53700000282CFD /* SDWaitingView.h */,
+				2D065B491C53700000282CFD /* SDWaitingView.m */,
+			);
+			name = "SDPhotoBrowser(图片浏览器)";
+			path = SDPhotoBrowser;
 			sourceTree = "<group>";
 		};
 		2D1C55F51C3FAA450002514D /* Tool */ = {
@@ -434,6 +459,7 @@
 		2D1D021B1C3EA74F0056B10C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2D065B421C53700000282CFD /* SDPhotoBrowser(图片浏览器) */,
 				2D6BBE5A1C4FBB3E00F27D13 /* XXButton.h */,
 				2D6BBE5B1C4FBB3E00F27D13 /* XXButton.m */,
 			);
@@ -881,6 +907,7 @@
 			files = (
 				2D5798771C40D58D007A0423 /* UITextView+Extension.m in Sources */,
 				2D6BBE3A1C4FB5FD00F27D13 /* XXExpertProfileHeaderView.m in Sources */,
+				2D065B4B1C53700000282CFD /* SDPhotoBrowser.m in Sources */,
 				2D6BBE621C4FCEB500F27D13 /* XXPlayerToolBar.m in Sources */,
 				2D6BBE521C4FB69500F27D13 /* XXQuestion.m in Sources */,
 				2D6BBE591C4FBA0700F27D13 /* XXPlayerViewController.m in Sources */,
@@ -889,6 +916,7 @@
 				2D6BBE441C4FB5FD00F27D13 /* XXQuestionToolbar.m in Sources */,
 				2D1D20131C3F731D0093C310 /* UIView+Extension.m in Sources */,
 				2D6BBE381C4FB5FD00F27D13 /* XXExpertProfileCell.m in Sources */,
+				2D065B4C1C53700000282CFD /* SDWaitingView.m in Sources */,
 				2D065B411C526B2600282CFD /* XXQuestionPhotoView(单个照片).m in Sources */,
 				2D57987E1C40D63A007A0423 /* NSString+Extension.m in Sources */,
 				2D1C56331C3FB45F0002514D /* NSString+CZ.m in Sources */,
@@ -903,6 +931,7 @@
 				2DEB533E1C40DE5100D3E547 /* XXConst.m in Sources */,
 				2D1D02211C3EA74F0056B10C /* AppDelegate.m in Sources */,
 				2D63F0931C51E1530043C39D /* XXCollectionView.m in Sources */,
+				2D065B4A1C53700000282CFD /* SDBrowserImageView.m in Sources */,
 				2D6BBE651C4FCF5700F27D13 /* XXPlayerMaskView.m in Sources */,
 				2D6BBE1E1C4F772900F27D13 /* XXExpertProfileViewController.m in Sources */,
 				2D1C56351C3FB45F0002514D /* UIImage+CZ.m in Sources */,
