@@ -142,6 +142,8 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 //TODO:这一部分以后放到XXQuestionVC中，用通知来做，属性的耦合性太强
 - (void)saveNewQuestion{
     
+    [self showProgress];
+    
     // 创建新的question模型
     XXQuestion *question = [[XXQuestion alloc] init];
     
@@ -208,10 +210,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     [self.questionVC.tableView reloadData];
     
     // 模拟网络延时，提示发送成功
-    
-    [self showProgress];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self hideProgress];
         [self showHUDText:@"发送成功！"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

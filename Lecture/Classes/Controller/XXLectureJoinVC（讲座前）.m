@@ -190,14 +190,14 @@
     
 }
 
-
 #pragma mark - 点击报名
 - (void)joinBtnClick:(XXButton *)btn{
     
     XXJoinLectureActionSheet *sheet = [[XXJoinLectureActionSheet alloc] init];
     sheet.delegate = self;
-    sheet.lecture = [self.lectures lastObject];;
-    [sheet showInView:self.view];
+    sheet.lecture = [self.lectures lastObject];
+    // 注意sheet要添加到窗口上，而非self.view上面，因为self.view会因为动画而改变frame，导致sheet的位置会变化
+    [sheet showInView:[[UIApplication sharedApplication].delegate window] ];
 }
 
 #pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
