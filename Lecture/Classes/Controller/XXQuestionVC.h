@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class XXUser;
 @interface XXQuestionVC : UITableViewController
 
+/**
+ *  模型数组
+ */
+@property (nonatomic, strong) NSMutableArray *questionFrames;
+
+
+/**
+ *  从本地加载数据
+ *
+ *  @return 返回加载的模型数组
+ */
+- (NSMutableArray *)loadData;
+
 @end
+
+

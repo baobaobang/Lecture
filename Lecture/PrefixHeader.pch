@@ -14,7 +14,7 @@
 #import "XXButton.h"
 
 #import "UIButton+CZ.h"
-#import "UIImage+CZ.h"
+#import "UIImage+CX.h"
 #import "NSString+CZ.h"
 
 #import "UIView+Extension.h"

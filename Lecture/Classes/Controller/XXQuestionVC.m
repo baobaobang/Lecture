@@ -20,25 +20,18 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 
 @interface XXQuestionVC ()<XXQuestionToolbarDelegate, XXQuestionHeaderViewDelegate>
 
-/**
- *  模型数组
- */
-@property (nonatomic, strong) NSMutableArray *questionFrames;
 
 @end
 
 @implementation XXQuestionVC
 #pragma mark - 懒加载
 
+
 - (NSMutableArray *)questionFrames
 {
     if (!_questionFrames) {
-        // 字典转模型
-        NSArray *questions = [XXQuestion mj_objectArrayWithFilename:@"Questions.plist"];
-        // question模型转为questionFrames模型
-        _questionFrames = [self questionFramesWithQuestions:questions];
-        // 按照点赞数排序
-        _questionFrames = [_questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+        
+        _questionFrames = [self loadData];
     }
     return _questionFrames;
 }
@@ -54,6 +47,26 @@ static NSString * const questionCellReuseId = @"QuestionCell";
         [frames addObject:f];
     }
     return frames;
+}
+
+#pragma mark - 从本地加载数据
+- (NSMutableArray *)loadData{
+    
+    // 字典转模型
+    // 方式一：从document目录下加载plist
+//    NSString *docmentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    //    NSString *plistPath = [docmentPath stringByAppendingPathComponent:@"Questions.plist"];
+    
+    // 方式二：从mainBundle目录下加载plist
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Questions.plist" ofType:nil];
+    
+    NSArray *questions = [XXQuestion mj_objectArrayWithFile:plistPath];
+    // question模型转为questionFrames模型
+    NSMutableArray *questionFrames = [self questionFramesWithQuestions:questions];
+    // 按照点赞数排序
+    questionFrames = [questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+    
+    return questionFrames;
 }
 #pragma mark - 生命周期
 
@@ -148,10 +161,11 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 
-#pragma mark - XXQuestionHeaderViewDelegate 点击提问按钮
+#pragma mark - 点击提问按钮跳到提问界面 XXQuestionHeaderViewDelegate
 - (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn
 {
     LZAlbumCreateVC *vc = [[LZAlbumCreateVC alloc] initWithNibName:@"LZAlbumCreateVC" bundle:nil];
+    vc.questionVC = self;
     vc.view.frame = self.view.frame;
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:nav animated:YES completion:nil];

@@ -1,15 +1,20 @@
 //
-//  UIImage+CZ.h
-//  QQZone-HD
+//  UIImage+CX.h
+//  Lecture
 //
-//  Created by Vincent_Guo on 14-6-16.
-//  Copyright (c) 2014年 vgios. All rights reserved.
+//  Created by 陈旭 on 16/1/11.
+//  Copyright © 2016年 陈旭. All rights reserved.
 //
+
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (CZ)
+@interface UIImage (CX)
 
+/**
+ *  将图片保存到本地沙盒中，返回保存的路径，文件为当前时间加编号
+ */
+- (NSString *)saveInSandBoxWithIndex:(NSInteger)index;
 
 /**
  *颜色值转换成图片

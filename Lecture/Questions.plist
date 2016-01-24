@@ -3,8 +3,6 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>idstr</key>
-		<string>0</string>
 		<key>text</key>
 		<string>张医生辛苦，听好多妈妈说宝宝接种了流感疫苗后感觉更容易感冒了，社区让打流感疫苗我吓的一直没去，是不是真的如此呢，前天带宝宝出了门回来夜里就发烧了</string>
 		<key>user</key>
@@ -34,13 +32,11 @@
 		<key>shares_count</key>
 		<integer>0</integer>
 		<key>attitudes_count</key>
-		<integer>0</integer>
+		<integer>3</integer>
 		<key>like</key>
-		<false/>
+		<true/>
 	</dict>
 	<dict>
-		<key>idstr</key>
-		<string>0</string>
 		<key>text</key>
 		<string>孩子在家不咳嗽～出门就咳嗽怎么办</string>
 		<key>user</key>
@@ -88,13 +84,11 @@
 		<key>shares_count</key>
 		<integer>9999</integer>
 		<key>attitudes_count</key>
-		<integer>0</integer>
+		<integer>3</integer>
 		<key>like</key>
-		<false/>
+		<true/>
 	</dict>
 	<dict>
-		<key>idstr</key>
-		<string>0</string>
 		<key>text</key>
 		<string>一岁孩子，感冒后总是咳嗽不好，好了两个星期了，但是一直咳嗽，不严重，就是好像嗓子有痰似的，尤其晚上睡觉醒后比较严重，白天咳嗽还不是很厉害</string>
 		<key>user</key>
@@ -124,13 +118,11 @@
 		<key>shares_count</key>
 		<real>11331</real>
 		<key>attitudes_count</key>
-		<integer>3</integer>
+		<integer>0</integer>
 		<key>like</key>
 		<false/>
 	</dict>
 	<dict>
-		<key>idstr</key>
-		<string>3</string>
 		<key>text</key>
 		<string>这几天新闻说上海流感比较多，H1N1,希望老师多讲讲</string>
 		<key>user</key>
@@ -153,7 +145,7 @@
 		<key>shares_count</key>
 		<integer>1</integer>
 		<key>attitudes_count</key>
-		<integer>3</integer>
+		<integer>0</integer>
 		<key>like</key>
 		<false/>
 	</dict>

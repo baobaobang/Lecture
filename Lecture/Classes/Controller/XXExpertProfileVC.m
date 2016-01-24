@@ -29,7 +29,7 @@ static NSString * const expertHeaderId = @"expertHeaderId";
 - (NSArray *)experts
 {
     if (!_experts) {
-        _experts = [XXExpert objectArrayWithFilename:@"Experts.plist"];
+        _experts = [XXExpert mj_objectArrayWithFilename:@"Experts.plist"];
     }
     return _experts;
 }

@@ -7,10 +7,10 @@
 //
 
 #import "LZBaseVC.h"
-//#import "LZAlbumVC.h"
+#import "XXQuestionVC.h"
 
 @interface LZAlbumCreateVC : LZBaseVC
 
-//@property (nonatomic,strong) LZAlbumVC* albumVC;
+@property (nonatomic,strong) XXQuestionVC* questionVC;
 
 @end

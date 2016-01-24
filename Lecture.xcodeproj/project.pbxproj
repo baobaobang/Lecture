@@ -27,7 +27,7 @@
 		2D6308DB1C549B2F0092F622 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308631C549B2F0092F622 /* NSString+Extension.m */; };
 		2D6308DC1C549B2F0092F622 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308651C549B2F0092F622 /* UIBarButtonItem+Extension.m */; };
 		2D6308DD1C549B2F0092F622 /* UIButton+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308671C549B2F0092F622 /* UIButton+CZ.m */; };
-		2D6308DE1C549B2F0092F622 /* UIImage+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308691C549B2F0092F622 /* UIImage+CZ.m */; };
+		2D6308DE1C549B2F0092F622 /* UIImage+CX.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308691C549B2F0092F622 /* UIImage+CX.m */; };
 		2D6308DF1C549B2F0092F622 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63086B1C549B2F0092F622 /* UITextView+Extension.m */; };
 		2D6308E01C549B2F0092F622 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63086D1C549B2F0092F622 /* UIView+Extension.m */; };
 		2D6308E11C549B2F0092F622 /* XXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308711C549B2F0092F622 /* XXNavigationController.m */; };
@@ -48,7 +48,7 @@
 		2D6308F01C549B2F0092F622 /* XXQuestionPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63089B1C549B2F0092F622 /* XXQuestionPhoto.m */; };
 		2D6308F11C549B2F0092F622 /* XXLecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63089D1C549B2F0092F622 /* XXLecture.m */; };
 		2D6308F21C549B2F0092F622 /* XXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63089F1C549B2F0092F622 /* XXUser.m */; };
-		2D6308F31C549B2F0092F622 /* LZAlbumCreateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308A31C549B2F0092F622 /* LZAlbumCreateVC.m */; };
+		2D6308F31C549B2F0092F622 /* LZAlbumCreateVC(提问).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308A31C549B2F0092F622 /* LZAlbumCreateVC(提问).m */; };
 		2D6308F41C549B2F0092F622 /* LZAlbumCreateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6308A41C549B2F0092F622 /* LZAlbumCreateVC.xib */; };
 		2D6308F51C549B2F0092F622 /* LZBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308A61C549B2F0092F622 /* LZBaseVC.m */; };
 		2D6308F61C549B2F0092F622 /* XHPhotographyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308AB1C549B2F0092F622 /* XHPhotographyHelper.m */; };
@@ -71,6 +71,7 @@
 		2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308CE1C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m */; };
 		2D6309081C549B2F0092F622 /* XXQuestionToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */; };
 		2D63090B1C549E340092F622 /* CXTextViewWithPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63090A1C549E340092F622 /* CXTextViewWithPlaceholder.m */; };
+		2D63090F1C54BBF50092F622 /* CurrentUser.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D63090E1C54BBF50092F622 /* CurrentUser.plist */; };
 		2DA99D341C44B0CB00CD02D7 /* 回答问题.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D201C44B0CB00CD02D7 /* 回答问题.mp3 */; };
 		2DA99D741C44B75500CD02D7 /* 上呼吸道的概念.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D611C44B75500CD02D7 /* 上呼吸道的概念.png */; };
 		2DA99D751C44B75500CD02D7 /* 两种特殊情况.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D621C44B75500CD02D7 /* 两种特殊情况.png */; };
@@ -146,8 +147,8 @@
 		2D6308651C549B2F0092F622 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		2D6308661C549B2F0092F622 /* UIButton+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CZ.h"; sourceTree = "<group>"; };
 		2D6308671C549B2F0092F622 /* UIButton+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CZ.m"; sourceTree = "<group>"; };
-		2D6308681C549B2F0092F622 /* UIImage+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CZ.h"; sourceTree = "<group>"; };
-		2D6308691C549B2F0092F622 /* UIImage+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CZ.m"; sourceTree = "<group>"; };
+		2D6308681C549B2F0092F622 /* UIImage+CX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CX.h"; sourceTree = "<group>"; };
+		2D6308691C549B2F0092F622 /* UIImage+CX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CX.m"; sourceTree = "<group>"; };
 		2D63086A1C549B2F0092F622 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
 		2D63086B1C549B2F0092F622 /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
 		2D63086C1C549B2F0092F622 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -189,7 +190,7 @@
 		2D63089E1C549B2F0092F622 /* XXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXUser.h; sourceTree = "<group>"; };
 		2D63089F1C549B2F0092F622 /* XXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXUser.m; sourceTree = "<group>"; };
 		2D6308A21C549B2F0092F622 /* LZAlbumCreateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZAlbumCreateVC.h; sourceTree = "<group>"; };
-		2D6308A31C549B2F0092F622 /* LZAlbumCreateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZAlbumCreateVC.m; sourceTree = "<group>"; };
+		2D6308A31C549B2F0092F622 /* LZAlbumCreateVC(提问).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LZAlbumCreateVC(提问).m"; sourceTree = "<group>"; };
 		2D6308A41C549B2F0092F622 /* LZAlbumCreateVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LZAlbumCreateVC.xib; sourceTree = "<group>"; };
 		2D6308A51C549B2F0092F622 /* LZBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZBaseVC.h; sourceTree = "<group>"; };
 		2D6308A61C549B2F0092F622 /* LZBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZBaseVC.m; sourceTree = "<group>"; };
@@ -229,6 +230,7 @@
 		2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionToolbar.m; sourceTree = "<group>"; };
 		2D6309091C549E340092F622 /* CXTextViewWithPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXTextViewWithPlaceholder.h; sourceTree = "<group>"; };
 		2D63090A1C549E340092F622 /* CXTextViewWithPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXTextViewWithPlaceholder.m; sourceTree = "<group>"; };
+		2D63090E1C54BBF50092F622 /* CurrentUser.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CurrentUser.plist; sourceTree = "<group>"; };
 		2DA99D201C44B0CB00CD02D7 /* 回答问题.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "回答问题.mp3"; sourceTree = "<group>"; };
 		2DA99D611C44B75500CD02D7 /* 上呼吸道的概念.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上呼吸道的概念.png"; sourceTree = "<group>"; };
 		2DA99D621C44B75500CD02D7 /* 两种特殊情况.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "两种特殊情况.png"; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				2DA99D671C44B75500CD02D7 /* MP3 */,
 				2DA99D1F1C44B0CB00CD02D7 /* 回答 */,
 				2D1D20141C3F733F0093C310 /* PrefixHeader.pch */,
+				2D63090E1C54BBF50092F622 /* CurrentUser.plist */,
 				2DE542971C423C3D00D4D4D9 /* Musics.plist */,
 				2D253DF71C44F8EE006AD55E /* Questions.plist */,
 				2D5AB4361C49256900B1578B /* Experts.plist */,
@@ -411,8 +414,8 @@
 				2D6308651C549B2F0092F622 /* UIBarButtonItem+Extension.m */,
 				2D6308661C549B2F0092F622 /* UIButton+CZ.h */,
 				2D6308671C549B2F0092F622 /* UIButton+CZ.m */,
-				2D6308681C549B2F0092F622 /* UIImage+CZ.h */,
-				2D6308691C549B2F0092F622 /* UIImage+CZ.m */,
+				2D6308681C549B2F0092F622 /* UIImage+CX.h */,
+				2D6308691C549B2F0092F622 /* UIImage+CX.m */,
 				2D63086A1C549B2F0092F622 /* UITextView+Extension.h */,
 				2D63086B1C549B2F0092F622 /* UITextView+Extension.m */,
 				2D63086C1C549B2F0092F622 /* UIView+Extension.h */,
@@ -577,7 +580,7 @@
 			isa = PBXGroup;
 			children = (
 				2D6308A21C549B2F0092F622 /* LZAlbumCreateVC.h */,
-				2D6308A31C549B2F0092F622 /* LZAlbumCreateVC.m */,
+				2D6308A31C549B2F0092F622 /* LZAlbumCreateVC(提问).m */,
 				2D6308A41C549B2F0092F622 /* LZAlbumCreateVC.xib */,
 				2D6308A51C549B2F0092F622 /* LZBaseVC.h */,
 				2D6308A61C549B2F0092F622 /* LZBaseVC.m */,
@@ -890,6 +893,7 @@
 				2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */,
 				2DA99D751C44B75500CD02D7 /* 两种特殊情况.png in Resources */,
 				2D6309051C549B2F0092F622 /* XXQuestionHeaderView.xib in Resources */,
+				2D63090F1C54BBF50092F622 /* CurrentUser.plist in Resources */,
 				2DA99D781C44B75500CD02D7 /* 感冒的原因.png in Resources */,
 				2D065B4E1C53BFA500282CFD /* Lectures.plist in Resources */,
 				2DA99D771C44B75500CD02D7 /* 什么是感冒.png in Resources */,
@@ -1004,7 +1008,7 @@
 				2D6308F51C549B2F0092F622 /* LZBaseVC.m in Sources */,
 				2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */,
 				2D6308ED1C549B2F0092F622 /* XXMusic.m in Sources */,
-				2D6308F31C549B2F0092F622 /* LZAlbumCreateVC.m in Sources */,
+				2D6308F31C549B2F0092F622 /* LZAlbumCreateVC(提问).m in Sources */,
 				2D6308E81C549B2F0092F622 /* SDBrowserImageView.m in Sources */,
 				2D6308D61C549B2F0092F622 /* XXPlayerVC.m in Sources */,
 				2D6308E71C549B2F0092F622 /* XXConst.m in Sources */,
@@ -1021,7 +1025,7 @@
 				2D6308DC1C549B2F0092F622 /* UIBarButtonItem+Extension.m in Sources */,
 				2D6308D71C549B2F0092F622 /* XXQuestionVC.m in Sources */,
 				2D6308D51C549B2F0092F622 /* XXLectureVC（讲座中）.m in Sources */,
-				2D6308DE1C549B2F0092F622 /* UIImage+CZ.m in Sources */,
+				2D6308DE1C549B2F0092F622 /* UIImage+CX.m in Sources */,
 				2D6309061C549B2F0092F622 /* XXQuestionPhotosView(相册).m in Sources */,
 				2D6308E41C549B2F0092F622 /* MBProgressHUD.m in Sources */,
 				2D6308E21C549B2F0092F622 /* MBProgressHUD+CZ.m in Sources */,

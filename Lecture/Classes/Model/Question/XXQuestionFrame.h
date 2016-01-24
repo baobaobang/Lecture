@@ -50,4 +50,5 @@
 
 - (NSComparisonResult)compareAttitudesCount:(XXQuestionFrame *)other;
 
+
 @end

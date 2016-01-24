@@ -12,6 +12,10 @@
 #import "LZAlbumPhotoCollectionViewCell.h"
 //#import "AppDelegate.h"
 #import "CXTextViewWithPlaceholder.h"
+#import "XXQuestion.h"
+#import "XXQuestionFrame.h"
+#import <MJExtension.h>
+#import "XXQuestionPhoto.h"
 
 static CGFloat kLZAlbumCreateVCPhotoSize = 60; // 每张图片的大小
 static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
@@ -24,12 +28,12 @@ static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 @property (weak, nonatomic) IBOutlet CXTextViewWithPlaceholder *textView;
 
 /**
- *  图片容器
+ *  图片展示容器
  */
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 
 /**
- *  选中的照片组
+ *  要发送的所有图片
  */
 @property (nonatomic,strong) NSMutableArray* selectPhotos;
 
@@ -106,26 +110,114 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 #pragma mark - 发送提问
 -(void)createFeed{
-    if(self.textView.text.length!=0){
-        WEAKSELF
-        [self showProgress];
-        [self runInGlobalQueue:^{
-            NSError* error;
-            //TODO: 点击发送后的异步网络处理
-            //            [[LZAlbumManager manager] createAlbumWithText:self.contentTextField.text photos:self.selectPhotos error:&error];
-            [weakSelf runInMainQueue:^{ // 刷新精选提问界面
-                [weakSelf hideProgress];
-                if(error==nil){
-                    //                    [_albumVC refresh];//TODO:
-                    [weakSelf dismiss];
-                }else{
-                    [weakSelf alertError:error];
-                }
-            }];
-        }];
-    }else{
-        [self alert:@"文字不能为空！"];
+    
+    // 先用本地数据替代
+    [self saveNewQuestion]; // 保存数据
+    [self refreshQuestionVc]; // 刷新页面
+    
+    //TODO: 点击发送后的异步网络处理
+//    if(self.contentTextField.text.length!=0 || self.selectPhotos.count!=0){
+//        WEAKSELF
+//        [self showProgress];
+//        [self runInGlobalQueue:^{
+//            NSError* error;
+//            [[LZAlbumManager manager] createAlbumWithText:self.contentTextField.text photos:self.selectPhotos error:&error];
+//            [weakSelf runInMainQueue:^{
+//                [weakSelf hideProgress];
+//                if(error==nil){
+//                    [_albumVC refresh];
+//                    [weakSelf dismiss];
+//                }else{
+//                    [weakSelf alertError:error];
+//                }
+//            }];
+//        }];
+//    }else{
+//        [self alert:@"请完善内容"];
+//    }
+}
+
+
+#pragma mark - 这一部分以后放到XXQuestionVC中，用通知来做，属性的耦合性太强
+//TODO:这一部分以后放到XXQuestionVC中，用通知来做，属性的耦合性太强
+- (void)saveNewQuestion{
+    
+    // 创建新的question模型
+    XXQuestion *question = [[XXQuestion alloc] init];
+    
+    // 先将图片保存到本地 //TODO: 上传到服务器
+    NSMutableArray *pic_urlsM = [[NSMutableArray alloc] init];
+    NSUInteger count = self.selectPhotos.count;
+    for (NSUInteger i = 0; i < count; i++) {
+        UIImage *image = self.selectPhotos[i];
+        NSString *urlStr = [image saveInSandBoxWithIndex:i];
+        XXQuestionPhoto *photo = [[XXQuestionPhoto alloc] init];
+        photo.thumbnail_pic = urlStr;
+        photo.highQuality_pic = urlStr;
+        [pic_urlsM addObject:photo];
     }
+    question.pic_urls = pic_urlsM;
+    
+    question.text = self.textView.text;
+
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMMddHHmmss"];
+    question.created_at = [formatter stringFromDate:[NSDate date]];
+    
+    question.shares_count = 0;
+//    question.digUsers = [NSMutableArray array];
+    
+    
+    NSMutableArray *questions = [self questionsWithQuestionFrames:self.questionVC.questionFrames];
+    
+    // 让当前用户为数组中最后一个问题的用户
+    XXQuestion *lastQuestion = [questions lastObject];
+    question.user = lastQuestion.user;
+    
+    // 将新question插入到数组最前面
+    [questions insertObject:question atIndex:0];
+    
+    // 将模型数组转换为字典数组，再重新写入plist
+    // 方式一：从document目录下加载plist
+//    NSString *docmentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *plistPath = [docmentPath stringByAppendingPathComponent:@"Questions.plist"];
+    
+    // 方式二：从mainBundle目录下加载plist
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Questions.plist" ofType:nil];
+    [[NSMutableArray mj_keyValuesArrayWithObjectArray:questions] writeToFile:plistPath atomically:YES];
+}
+
+/**
+ *  将XXQuestionFrame模型转为XXQuestion模型
+ */
+- (NSMutableArray *)questionsWithQuestionFrames:(NSArray *)questionFrames
+{
+    NSMutableArray *questions = [NSMutableArray array];
+    for (XXQuestionFrame *frame in questionFrames) {
+        [questions addObject:frame.question];
+    }
+    return questions;
+}
+
+// 发送成功后
+- (void)refreshQuestionVc{
+    
+    // 因为修改了plist，需要从本地重新加载数据，再刷新精选提问界面
+    self.questionVC.questionFrames = [self.questionVC loadData];
+    [self.questionVC.tableView reloadData];
+    
+    // 模拟网络延时，提示发送成功
+    
+    [self showProgress];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hideProgress];
+        [self showHUDText:@"发送成功！"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismiss];
+        });
+    });
 }
 
 #pragma mark - 取消提问

@@ -7,7 +7,14 @@
 //
 
 #import "XXUser.h"
+#import <MJExtension.h>
 
 @implementation XXUser
-
+//+ (instancetype)currentUser{
+//    
+//    if (!self) {
+//        self = [[self mj_objectArrayWithFilename:@"CurrentUser.plist"] lastObject];
+//    }
+//    return self;
+//}
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "UIButton+CZ.h"
-#import "UIImage+CZ.h"
+#import "UIImage+CX.h"
 
 @implementation UIButton (CZ)
 

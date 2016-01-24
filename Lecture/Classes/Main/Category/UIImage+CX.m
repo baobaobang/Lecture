@@ -1,14 +1,37 @@
 //
-//  UIImage+CZ.m
-//  QQZone-HD
+//  UIImage+CX.m
+//  Lecture
 //
-//  Created by Vincent_Guo on 14-6-16.
-//  Copyright (c) 2014年 vgios. All rights reserved.
+//  Created by 陈旭 on 16/1/11.
+//  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "UIImage+CZ.h"
+#import "UIImage+CX.h"
 
-@implementation UIImage (CZ)
+@implementation UIImage (CX)
+
+/**
+ *  将图片保存到本地沙盒中，返回保存的路径，文件为当前时间加编号
+ */
+- (NSString *)saveInSandBoxWithIndex:(NSInteger)index{
+    // 沙盒路径
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) firstObject];
+    
+    // 为了保证图片的唯一性，用当前时间加编号作为图片的名字
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMMddHHmmss"];
+    NSString *dateStr = [formatter stringFromDate:[NSDate date]];
+    
+    // 图片路径
+    NSString *imagePath = [path stringByAppendingFormat:@"/%@_%ld.png", dateStr, index];
+    
+    BOOL result = [UIImagePNGRepresentation(self)writeToFile:imagePath atomically:YES];// 保存成功会返回YES
+    if (result) {
+        return imagePath;
+    }else{
+        return nil;
+    }
+}
 
 /**
  *颜色值转换成图片

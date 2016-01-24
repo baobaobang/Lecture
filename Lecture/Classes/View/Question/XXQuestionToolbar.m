@@ -110,7 +110,14 @@
             [XXNotificationCenter postNotification:notiShare];
             break;
         }
-        case XXQuestionToolbarButtonTypeUnlike:{ // 点赞
+        case XXQuestionToolbarButtonTypeUnlike:{ // 点赞可以增加和减少数字
+
+//            if ([question isCurrentUserLike]) { // 如果已经点赞过，就取消点赞
+//                [question.digUsers removeObject:[XXUser currentUser]];
+//            }else{
+//                [question.digUsers addObject:[XXUser currentUser]];
+//            }
+            
             question.like = !question.like;
             // 点棒可以增加和减少数字
             if (question.like) {
@@ -118,6 +125,7 @@
             }else{
                 question.attitudes_count--;
             }
+            
             // 发出通知
             NSNotification *notiUnlike = [NSNotification notificationWithName:XXQuestionToolbarUnlikeButtonClick object:nil userInfo:@{@"toolbar":self}];
             [XXNotificationCenter postNotification:notiUnlike];
@@ -166,6 +174,7 @@
     [self setupBtnCount:question.shares_count btn:self.shareBtn title:XXQuestionToolbarShareTitle];
     // 赞
     [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:XXQuestionToolbarUnlikeTitle];
+    //TODO:
     
     if (question.like) {
         [self.attitudeBtn setImage:[UIImage imageNamed:@"timeline_icon_like"] forState:UIControlStateNormal];

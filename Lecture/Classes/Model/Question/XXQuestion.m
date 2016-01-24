@@ -14,6 +14,13 @@
 
 + (NSDictionary *)mj_objectClassInArray
 {
-    return @{@"pic_urls" : [XXQuestionPhoto class]};
+    return @{@"pic_urls" : [XXQuestionPhoto class], @"digUsers" : [XXUser class]};
 }
+
+
+//// 当前用户是否点赞过
+//- (BOOL)isCurrentUserLike{
+//    return [self.digUsers containsObject:[XXUser currentUser]];
+//}
+
 @end
