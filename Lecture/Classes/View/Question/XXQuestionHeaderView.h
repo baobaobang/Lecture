@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XXQuestionHeaderView;
 
+@protocol XXQuestionHeaderViewDelegate <NSObject>
+
+@optional
+- (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn;
+
+@end
 @interface XXQuestionHeaderView : UITableViewHeaderFooterView
-
+@property (nonatomic, weak) id<XXQuestionHeaderViewDelegate> delegate;
 @end

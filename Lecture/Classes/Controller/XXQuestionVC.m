@@ -12,11 +12,13 @@
 #import "XXQuestionToolbar.h"
 #import <MJExtension.h>
 #import "XXQuestionFrame.h"
+#import "LZAlbumCreateVC.h"
+#import "XXNavigationController.h"
 
 static NSString * const questionHeaderId = @"questionHeaderId";
 static NSString * const questionCellReuseId = @"QuestionCell";
 
-@interface XXQuestionVC ()<XXQuestionToolbarDelegate>
+@interface XXQuestionVC ()<XXQuestionToolbarDelegate, XXQuestionHeaderViewDelegate>
 
 /**
  *  模型数组
@@ -73,7 +75,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     [XXNotificationCenter removeObserver:self];
 }
 
-#pragma mark - 通知
+#pragma mark - 处理Toolbar上的按钮被点击后发来的通知
 - (void)questionToolbarShareBtnClicked:(NSNotification *)noti{
     XXQuestionToolbar * toolbar = noti.userInfo[@"toolbar"];
     XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview;
@@ -94,32 +96,6 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     
     [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];// 再移动cell顺序
 }
-
-
-#pragma mark - XXQuestionToolbar的按钮被点击了
-//- (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
-//    
-//    if (type == XXQuestionToolbarButtonTypeUnlike) {// 点击点赞按钮
-//        
-//        // 将将question数组排序按照点赞数来排序，再刷新表格和cell顺序
-//        NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.question];
-//        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
-//        [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];// 先刷新点赞数目
-//        
-//        self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-//        NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.question];
-//        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
-//        
-//        [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];// 再移动cell顺序
-//        
-//    }else{// 点击分享按钮
-//        
-//        XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview.superview;
-//        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//    }
-//}
-
 
 #pragma mark - UITableViewDataSource
 
@@ -150,6 +126,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     XXQuestionHeaderView *questionHeader = (XXQuestionHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:questionHeaderId];
+    questionHeader.delegate = self;
     return questionHeader;
     
 }
@@ -170,5 +147,15 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 #pragma mark - 点击cell后的反应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
+
+#pragma mark - XXQuestionHeaderViewDelegate 点击提问按钮
+- (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn
+{
+    LZAlbumCreateVC *vc = [[LZAlbumCreateVC alloc] initWithNibName:@"LZAlbumCreateVC" bundle:nil];
+    vc.view.frame = self.view.frame;
+    XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
+
 
 @end

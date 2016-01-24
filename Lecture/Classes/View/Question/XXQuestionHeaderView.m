@@ -41,9 +41,12 @@
     
 }
 
-
+// 点击提问按钮
 - (IBAction)btnClick:(XXButton *)btn {
-    btn.enabled = NO;
+    
+    if ([self.delegate respondsToSelector:@selector(questionHeaderView:didClickPostQuestionBtn:)]) {
+        [self.delegate questionHeaderView:self didClickPostQuestionBtn:btn];
+    }
 }
 
 /**

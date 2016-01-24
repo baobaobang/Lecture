@@ -19,6 +19,8 @@ extern NSString * const XXPlayerPicViewWillShow;
 extern NSString * const XXQuestionToolbarShareButtonClick;
 extern NSString * const XXQuestionToolbarUnlikeButtonClick;
 
+#define WEAKSELF  typeof(self) __weak weakSelf=self;
+
 // RGB颜色
 #define XXColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
