@@ -16,7 +16,7 @@
 static CGFloat kLZAlbumCreateVCPhotoSize = 60; // 每张图片的大小
 static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 
-@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UIAlertViewDelegate>
 
 /**
  *  文字容器
@@ -66,7 +66,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(createFeed)];
     self.navigationItem.rightBarButtonItem.enabled = NO; // 一进入的时候没有文字，因此发送按钮不可用
     
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
 }
 
 - (void)setupTextView{
@@ -104,11 +104,6 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     self.navigationItem.rightBarButtonItem.enabled = self.textView.hasText;
 }
 
-#pragma mark - 取消提问
--(void)dismiss{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark - 发送提问
 -(void)createFeed{
     if(self.textView.text.length!=0){
@@ -117,11 +112,11 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
         [self runInGlobalQueue:^{
             NSError* error;
             //TODO: 点击发送后的异步网络处理
-//            [[LZAlbumManager manager] createAlbumWithText:self.contentTextField.text photos:self.selectPhotos error:&error];
+            //            [[LZAlbumManager manager] createAlbumWithText:self.contentTextField.text photos:self.selectPhotos error:&error];
             [weakSelf runInMainQueue:^{ // 刷新精选提问界面
                 [weakSelf hideProgress];
                 if(error==nil){
-//                    [_albumVC refresh];//TODO:
+                    //                    [_albumVC refresh];//TODO:
                     [weakSelf dismiss];
                 }else{
                     [weakSelf alertError:error];
@@ -132,6 +127,26 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
         [self alert:@"文字不能为空！"];
     }
 }
+
+#pragma mark - 取消提问
+
+- (void)cancel{
+    UIAlertView *alertView=[[UIAlertView alloc]
+                            initWithTitle:@"退出此次编辑？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) { // 点击退出
+        [self dismiss];
+    }
+}
+
+#pragma mark - 退出控制器
+-(void)dismiss{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - Propertys
 -(XHPhotographyHelper*)photographyHelper{
