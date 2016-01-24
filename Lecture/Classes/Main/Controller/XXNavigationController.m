@@ -66,7 +66,7 @@
 // *
 // *  @param viewController 即将push进来的控制器
 // */
-//- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+//- (void)pushVC:(UIVC *)viewController animated:(BOOL)animated
 //{
 //    if (self.viewControllers.count > 0) { // 这时push进来的控制器viewController，不是第一个子控制器（不是根控制器）
 //        /* 自动显示和隐藏tabbar */
@@ -80,19 +80,19 @@
 //        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(more) image:@"navigationbar_more" highImage:@"navigationbar_more_highlighted"];
 //    }
 //
-//    [super pushViewController:viewController animated:animated];
+//    [super pushVC:viewController animated:animated];
 //}
 //
 //- (void)back
 //{
 //#warning 这里要用self，不是self.navigationController
 //    // 因为self本来就是一个导航控制器，self.navigationController这里是nil的
-//    [self popViewControllerAnimated:YES];
+//    [self popVCAnimated:YES];
 //}
 //
 //- (void)more
 //{
-//    [self popToRootViewControllerAnimated:YES];
+//    [self popToRootVCAnimated:YES];
 //}
 
 @end

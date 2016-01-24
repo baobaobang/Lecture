@@ -1,5 +1,5 @@
 //
-//  XXHomeViewController.h
+//  XXLectureJoinVC.h
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/22.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XXHomeViewController : UIViewController
+@interface XXLectureJoinVC : UIViewController
 
 @end

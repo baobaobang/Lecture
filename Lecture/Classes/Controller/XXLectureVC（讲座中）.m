@@ -1,26 +1,26 @@
 //
-//  XXLectureViewController.m
+//  XXLectureVC.m
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/7.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "XXLectureViewController.h"
+#import "XXLectureVC.h"
 #import "XXNavigationController.h"
-#import "XXPlayerViewController.h"
-#import "XXExpertProfileViewController.h"
-#import "XXQuestionViewController.h"
+#import "XXPlayerVC.h"
+#import "XXExpertProfileVC.h"
+#import "XXQuestionVC.h"
 
-@interface XXLectureViewController ()
-@property (nonatomic, weak) XXPlayerViewController *playerVc;
-@property (nonatomic, weak) XXExpertProfileViewController *expertVc;
-@property (nonatomic, weak) XXQuestionViewController *questionVc;
+@interface XXLectureVC ()
+@property (nonatomic, weak) XXPlayerVC *playerVc;
+@property (nonatomic, weak) XXExpertProfileVC *expertVc;
+@property (nonatomic, weak) XXQuestionVC *questionVc;
 @property (nonatomic, weak) XXButton *postQuestionBtn;
 
 @end
 
-@implementation XXLectureViewController
+@implementation XXLectureVC
 #pragma mark - 懒加载
 
 #pragma mark - 生命周期
@@ -106,7 +106,7 @@
 
 - (void)setupPlayerVc{
     
-    XXPlayerViewController *playerVc = [[XXPlayerViewController alloc] init];
+    XXPlayerVC *playerVc = [[XXPlayerVC alloc] init];
     playerVc.view.x = 0;
     playerVc.view.y = XXStatusAndNavBarHeight;
     playerVc.view.width = self.view.width;
@@ -118,7 +118,7 @@
 
 - (void)setupExpertVc{
     
-    XXExpertProfileViewController *expertVc = [[XXExpertProfileViewController alloc] init];
+    XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];
     expertVc.view.x = 0;
     expertVc.view.y = CGRectGetMaxY(self.playerVc.view.frame);
     expertVc.view.width = self.view.width;
@@ -131,7 +131,7 @@
 
 - (void)setupQuestionVc{
     
-    XXQuestionViewController *questionVc = [[XXQuestionViewController alloc] init];
+    XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
     questionVc.view.x = 0;
     questionVc.view.y = CGRectGetMaxY(self.expertVc.view.frame);
     questionVc.view.width = self.view.width;

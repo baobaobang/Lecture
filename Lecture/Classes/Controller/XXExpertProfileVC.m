@@ -1,12 +1,12 @@
 //
-//  XXExpertProfileViewController.m
+//  XXExpertProfileVC.m
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/20.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "XXExpertProfileViewController.h"
+#import "XXExpertProfileVC.h"
 #import "XXExpert.h"
 #import "XXExpertProfileCell.h"
 #import "XXExpertProfileHeaderView.h"
@@ -18,12 +18,12 @@
 static NSString * const expertProfileCellReuseId = @"expertProfileCell";
 static NSString * const expertHeaderId = @"expertHeaderId";
 
-@interface XXExpertProfileViewController ()
+@interface XXExpertProfileVC ()
 // 模型数据组
 @property (nonatomic, strong) NSArray *experts;
 @end
 
-@implementation XXExpertProfileViewController
+@implementation XXExpertProfileVC
 
 
 - (NSArray *)experts

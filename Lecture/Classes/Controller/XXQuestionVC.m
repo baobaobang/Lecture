@@ -1,12 +1,12 @@
 //
-//  XXQuestionViewController.m
+//  XXQuestionVC.m
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/20.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "XXQuestionViewController.h"
+#import "XXQuestionVC.h"
 #import "XXQuestionCell.h"
 #import "XXQuestionHeaderView.h"
 #import "XXQuestionToolbar.h"
@@ -16,7 +16,7 @@
 static NSString * const questionHeaderId = @"questionHeaderId";
 static NSString * const questionCellReuseId = @"QuestionCell";
 
-@interface XXQuestionViewController ()<XXQuestionToolbarDelegate>
+@interface XXQuestionVC ()<XXQuestionToolbarDelegate>
 
 /**
  *  模型数组
@@ -25,7 +25,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 
 @end
 
-@implementation XXQuestionViewController
+@implementation XXQuestionVC
 #pragma mark - 懒加载
 
 - (NSMutableArray *)questionFrames

@@ -1,12 +1,12 @@
 //
-//  XXPlayerViewController.m
+//  XXPlayerVC.m
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/20.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "XXPlayerViewController.h"
+#import "XXPlayerVC.h"
 #import "XXPlayerToolBar.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIButton+CZ.h"
@@ -18,7 +18,7 @@
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define XXMaxSections 3
 
-@interface XXPlayerViewController ()<AVAudioPlayerDelegate, XXPlayerToolBarDelegate, XXPlayerPicViewDelegate, XXPlayerMaskViewDelegate>
+@interface XXPlayerVC ()<AVAudioPlayerDelegate, XXPlayerToolBarDelegate, XXPlayerPicViewDelegate, XXPlayerMaskViewDelegate>
 
 @property (nonatomic, weak) XXPlayerToolBar *playerToolBar;
 /** 播放器 */
@@ -31,7 +31,7 @@
 @property(strong,nonatomic) NSArray *musics;
 @end
 
-@implementation XXPlayerViewController
+@implementation XXPlayerVC
 
 
 #pragma mark - 懒加载

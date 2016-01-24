@@ -1,5 +1,5 @@
 //
-//  XXExpertProfileViewController.h
+//  XXQuestionVC.h
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/20.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XXExpertProfileViewController : UITableViewController
+@interface XXQuestionVC : UITableViewController
 
 @end

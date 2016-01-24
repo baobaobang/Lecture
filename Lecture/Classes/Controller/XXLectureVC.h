@@ -1,5 +1,5 @@
 //
-//  XXLectureViewController.h
+//  XXLectureVC.h
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/7.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XXLectureViewController : UIViewController
+@interface XXLectureVC : UIViewController
 
 @end

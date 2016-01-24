@@ -1,5 +1,5 @@
 //
-//  XXPlayerViewController.h
+//  XXPlayerVC.h
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/20.
@@ -10,7 +10,7 @@
 #import "XXPlayerPicView.h"
 
 @class XXMusic;
-@interface XXPlayerViewController : UIViewController
+@interface XXPlayerVC : UIViewController
 
 //当前播放的音乐
 @property(nonatomic,strong)XXMusic *currentMusic;

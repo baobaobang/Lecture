@@ -1,32 +1,32 @@
 //
-//  XXLectureJoinViewController.m
+//  XXLectureJoinVC.m
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/22.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "XXLectureJoinViewController.h"
+#import "XXLectureJoinVC.h"
 #import "XXCollectionCell.h"
 #import "XXCollectionView.h"
 #import "XXLecture.h"
-#import "XXExpertProfileViewController.h"
-#import "XXQuestionViewController.h"
+#import "XXExpertProfileVC.h"
+#import "XXQuestionVC.h"
 #import "XXJoinLectureActionSheet.h"
 #import <MJExtension.h>
 #import "MBProgressHUD+CZ.h"
 
-@interface XXLectureJoinViewController ()<XXJoinLectureActionSheetDelegate>
+@interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate>
 @property (nonatomic, weak) UIImageView *picView;
 
 @property (nonatomic, strong) NSArray *lectures;
-@property (nonatomic, weak) XXExpertProfileViewController *expertVc;
-@property (nonatomic, weak) XXQuestionViewController *questionVc;
+@property (nonatomic, weak) XXExpertProfileVC *expertVc;
+@property (nonatomic, weak) XXQuestionVC *questionVc;
 @property (nonatomic, weak) XXButton *joinBtn;
 
 @end
 
-@implementation XXLectureJoinViewController
+@implementation XXLectureJoinVC
 #pragma mark - 懒加载
 
 - (NSArray *)lectures
@@ -134,7 +134,7 @@
 
 - (void)setupExpertVc{
     
-    XXExpertProfileViewController *expertVc = [[XXExpertProfileViewController alloc] init];
+    XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];
     expertVc.view.x = 0;
     expertVc.view.y = CGRectGetMaxY(self.picView.frame);
     expertVc.view.width = self.view.width;
@@ -147,7 +147,7 @@
 
 - (void)setupQuestionVc{
     
-    XXQuestionViewController *questionVc = [[XXQuestionViewController alloc] init];
+    XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
     questionVc.view.x = 0;
     questionVc.view.y = CGRectGetMaxY(self.expertVc.view.frame);
     questionVc.view.width = self.view.width;
@@ -203,9 +203,9 @@
 #pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
 - (void)joinLectureActionSheet:(XXJoinLectureActionSheet *)sheet didClickDoneButton:(UIButton *)btn{
     
-    //TODO: 点击确认报名后，扣除积分等
+    //TODO: 点击确认报名后，网络请求，扣除积分等，报名失败的情况
     // 如果报名成功
-    [MBProgressHUD showMessage:@"正在加载。。。" toView:self.view];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [MBProgressHUD hideHUDForView:self.view animated:NO];
         [MBProgressHUD showSuccess:@"报名成功！" toView:self.view];

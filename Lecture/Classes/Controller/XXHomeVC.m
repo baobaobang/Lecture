@@ -1,20 +1,20 @@
 //
-//  XXHomeViewController.m
+//  XXHomeVC.m
 //  Lecture
 //
 //  Created by 陈旭 on 16/1/22.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "XXHomeViewController.h"
-#import "XXLectureViewController.h"
-#import "XXLectureJoinViewController.h"
+#import "XXHomeVC.h"
+#import "XXLectureVC.h"
+#import "XXLectureJoinVC.h"
 
-@interface XXHomeViewController ()
+@interface XXHomeVC ()
 
 @end
 
-@implementation XXHomeViewController
+@implementation XXHomeVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,13 +40,13 @@
 
 
 - (void)toJoinLecture{
-    XXLectureJoinViewController *vc = [[XXLectureJoinViewController alloc] init];
+    XXLectureJoinVC *vc = [[XXLectureJoinVC alloc] init];
     vc.view.frame = self.view.bounds;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)toLecture{
-    XXLectureViewController *vc = [[XXLectureViewController alloc] init];
+    XXLectureVC *vc = [[XXLectureVC alloc] init];
     vc.view.frame = self.view.bounds;
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -58,7 +58,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
+    // Get the new view controller using [segue destinationVC].
     // Pass the selected object to the new view controller.
 }
 */
