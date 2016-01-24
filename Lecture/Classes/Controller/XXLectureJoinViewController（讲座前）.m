@@ -14,6 +14,7 @@
 #import "XXQuestionViewController.h"
 #import "XXJoinLectureActionSheet.h"
 #import <MJExtension.h>
+#import "MBProgressHUD+CZ.h"
 
 @interface XXLectureJoinViewController ()<XXJoinLectureActionSheetDelegate>
 @property (nonatomic, weak) UIImageView *picView;
@@ -202,8 +203,16 @@
 #pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
 - (void)joinLectureActionSheet:(XXJoinLectureActionSheet *)sheet didClickDoneButton:(UIButton *)btn{
     
-    self.joinBtn.enabled = NO;
     //TODO: 点击确认报名后，扣除积分等
+    // 如果报名成功
+    [MBProgressHUD showMessage:@"正在加载。。。" toView:self.view];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+        [MBProgressHUD showSuccess:@"报名成功！" toView:self.view];
+        self.joinBtn.enabled = NO;
+    });
+    
+    
 }
 
 @end

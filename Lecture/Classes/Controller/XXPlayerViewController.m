@@ -12,7 +12,7 @@
 #import "UIButton+CZ.h"
 #import "XXCollectionCell.h"
 #import "XXMusic.h"
-#import <MBProgressHUD.h>
+#import "MBProgressHUD.h"
 #import <MJExtension.h>
 
 #define PlayerCurrentTimeKeyPath @"currentTime"

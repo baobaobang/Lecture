@@ -38,6 +38,9 @@
 		2D5798811C40D67A007A0423 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798801C40D67A007A0423 /* NSString+Emoji.m */; };
 		2D5798841C40D90F007A0423 /* XXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5798831C40D90F007A0423 /* XXNavigationController.m */; };
 		2D5AB4371C49256900B1578B /* Experts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D5AB4361C49256900B1578B /* Experts.plist */; };
+		2D63082E1C5471CC0092F622 /* MBProgressHUD+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63082A1C5471CC0092F622 /* MBProgressHUD+CZ.m */; };
+		2D63082F1C5471CC0092F622 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2D63082B1C5471CC0092F622 /* MBProgressHUD.bundle */; };
+		2D6308301C5471CC0092F622 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63082D1C5471CC0092F622 /* MBProgressHUD.m */; };
 		2D63F08D1C51D1CA0043C39D /* XXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63F08C1C51D1CA0043C39D /* XXHomeViewController.m */; };
 		2D63F0901C51D5850043C39D /* XXLectureJoinViewController（讲座前）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63F08F1C51D5850043C39D /* XXLectureJoinViewController（讲座前）.m */; };
 		2D63F0931C51E1530043C39D /* XXCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63F0921C51E1530043C39D /* XXCollectionView.m */; };
@@ -159,6 +162,11 @@
 		2D5798821C40D90F007A0423 /* XXNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNavigationController.h; sourceTree = "<group>"; };
 		2D5798831C40D90F007A0423 /* XXNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNavigationController.m; sourceTree = "<group>"; };
 		2D5AB4361C49256900B1578B /* Experts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Experts.plist; sourceTree = "<group>"; };
+		2D6308291C5471CC0092F622 /* MBProgressHUD+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CZ.h"; sourceTree = "<group>"; };
+		2D63082A1C5471CC0092F622 /* MBProgressHUD+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CZ.m"; sourceTree = "<group>"; };
+		2D63082B1C5471CC0092F622 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		2D63082C1C5471CC0092F622 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		2D63082D1C5471CC0092F622 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		2D63F08B1C51D1CA0043C39D /* XXHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXHomeViewController.h; sourceTree = "<group>"; };
 		2D63F08C1C51D1CA0043C39D /* XXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXHomeViewController.m; sourceTree = "<group>"; };
 		2D63F08E1C51D5850043C39D /* XXLectureJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLectureJoinViewController.h; sourceTree = "<group>"; };
@@ -430,6 +438,7 @@
 		2D1D02141C3EA74F0056B10C /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				2D6308281C5471CC0092F622 /* MBProgressHUD */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -503,6 +512,18 @@
 				2D6BBE2F1C4FB5FD00F27D13 /* QuestionView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2D6308281C5471CC0092F622 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				2D6308291C5471CC0092F622 /* MBProgressHUD+CZ.h */,
+				2D63082A1C5471CC0092F622 /* MBProgressHUD+CZ.m */,
+				2D63082B1C5471CC0092F622 /* MBProgressHUD.bundle */,
+				2D63082C1C5471CC0092F622 /* MBProgressHUD.h */,
+				2D63082D1C5471CC0092F622 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		2D6BBE211C4FB5FD00F27D13 /* ExpertView */ = {
@@ -835,6 +856,7 @@
 				2DA99D7B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 in Resources */,
 				2DA99D7C1C44B75500CD02D7 /* 感冒的原因.mp3 in Resources */,
 				2DA99D7D1C44B75500CD02D7 /* 为什么容易感冒.mp3 in Resources */,
+				2D63082F1C5471CC0092F622 /* MBProgressHUD.bundle in Resources */,
 				2D6BBE3B1C4FB5FD00F27D13 /* XXExpertProfileHeaderView.xib in Resources */,
 				2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */,
 				2DA99D7A1C44B75500CD02D7 /* 什么是感冒.mp3 in Resources */,
@@ -936,6 +958,7 @@
 				2D57987B1C40D599007A0423 /* NSDate+Extension.m in Sources */,
 				2D065B351C525FA500282CFD /* XXQuestionFrame.m in Sources */,
 				2D6BBE561C4FB9F900F27D13 /* XXQuestionViewController.m in Sources */,
+				2D6308301C5471CC0092F622 /* MBProgressHUD.m in Sources */,
 				2D63F0901C51D5850043C39D /* XXLectureJoinViewController（讲座前）.m in Sources */,
 				2D6BBE421C4FB5FD00F27D13 /* XXQuestionHeaderView.m in Sources */,
 				2DEB533E1C40DE5100D3E547 /* XXConst.m in Sources */,
@@ -956,6 +979,7 @@
 				2D6BBE401C4FB5FD00F27D13 /* XXQuestionCell.m in Sources */,
 				2D6BBE531C4FB69500F27D13 /* XXUser.m in Sources */,
 				2D065B301C52046700282CFD /* XXLecture.m in Sources */,
+				2D63082E1C5471CC0092F622 /* MBProgressHUD+CZ.m in Sources */,
 				2D1D022B1C3EAB170056B10C /* XXLectureViewController（讲座中）.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
