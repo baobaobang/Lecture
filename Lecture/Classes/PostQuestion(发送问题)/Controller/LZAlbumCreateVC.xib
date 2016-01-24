@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LZAlbumCreateVC">
             <connections>
-                <outlet property="contentTextField" destination="nPt-wu-dJx" id="JBk-Ck-1Hg"/>
                 <outlet property="photoCollectionView" destination="bOy-0L-s4S" id="SQP-ew-Duk"/>
+                <outlet property="textView" destination="lF8-Rs-mTL" id="jw3-We-WmD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,20 +17,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="每人只能提一个问题，请珍惜" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nPt-wu-dJx">
-                    <rect key="frame" x="15" y="80" width="290" height="100"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lF8-Rs-mTL" customClass="CXTextViewWithPlaceholder">
+                    <rect key="frame" x="15" y="74" width="290" height="150"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="Vc9-Jw-j0l"/>
+                        <constraint firstAttribute="height" constant="150" id="IOg-nr-cCZ"/>
                     </constraints>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                </textField>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bOy-0L-s4S">
-                    <rect key="frame" x="15" y="188" width="290" height="130"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bOy-0L-s4S">
+                    <rect key="frame" x="15" y="234" width="290" height="60"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="130" id="hpD-uH-Ekb"/>
+                        <constraint firstAttribute="height" constant="60" id="hpD-uH-Ekb"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6aQ-F1-etr">
                         <size key="itemSize" width="50" height="50"/>
@@ -47,11 +47,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="bOy-0L-s4S" secondAttribute="trailing" constant="15" id="5mM-Nt-ioj"/>
-                <constraint firstItem="nPt-wu-dJx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="Kb5-pe-noE"/>
-                <constraint firstItem="bOy-0L-s4S" firstAttribute="top" secondItem="nPt-wu-dJx" secondAttribute="bottom" constant="8" id="eG3-Ez-VHy"/>
+                <constraint firstItem="lF8-Rs-mTL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="DO2-uJ-qFR"/>
+                <constraint firstItem="lF8-Rs-mTL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="Xr0-Pr-MTw"/>
+                <constraint firstAttribute="trailing" secondItem="lF8-Rs-mTL" secondAttribute="trailing" constant="15" id="cb1-Te-dsA"/>
                 <constraint firstItem="bOy-0L-s4S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="gR7-o7-san"/>
-                <constraint firstAttribute="trailing" secondItem="nPt-wu-dJx" secondAttribute="trailing" constant="15" id="jVQ-hi-7Au"/>
-                <constraint firstItem="nPt-wu-dJx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="w4K-NC-VxB"/>
+                <constraint firstItem="bOy-0L-s4S" firstAttribute="top" secondItem="lF8-Rs-mTL" secondAttribute="bottom" constant="10" id="zZz-GH-bkW"/>
             </constraints>
             <point key="canvasLocation" x="649" y="388"/>
         </view>

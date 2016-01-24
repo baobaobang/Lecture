@@ -18,6 +18,8 @@ extern NSString * const XXPlayerPicViewWillHide;
 extern NSString * const XXPlayerPicViewWillShow;
 extern NSString * const XXQuestionToolbarShareButtonClick;
 extern NSString * const XXQuestionToolbarUnlikeButtonClick;
+// 删除文字的通知
+extern NSString * const XXTextDidDeleteNotification;
 
 #define WEAKSELF  typeof(self) __weak weakSelf=self;
 

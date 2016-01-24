@@ -70,6 +70,7 @@
 		2D6309061C549B2F0092F622 /* XXQuestionPhotosView(相册).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308CC1C549B2F0092F622 /* XXQuestionPhotosView(相册).m */; };
 		2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308CE1C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m */; };
 		2D6309081C549B2F0092F622 /* XXQuestionToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */; };
+		2D63090B1C549E340092F622 /* CXTextViewWithPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63090A1C549E340092F622 /* CXTextViewWithPlaceholder.m */; };
 		2DA99D341C44B0CB00CD02D7 /* 回答问题.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D201C44B0CB00CD02D7 /* 回答问题.mp3 */; };
 		2DA99D741C44B75500CD02D7 /* 上呼吸道的概念.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D611C44B75500CD02D7 /* 上呼吸道的概念.png */; };
 		2DA99D751C44B75500CD02D7 /* 两种特殊情况.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D621C44B75500CD02D7 /* 两种特殊情况.png */; };
@@ -226,6 +227,8 @@
 		2D6308CF1C549B2F0092F622 /* XXQuestionPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionPhotoView.h; sourceTree = "<group>"; };
 		2D6308D01C549B2F0092F622 /* XXQuestionToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionToolbar.h; sourceTree = "<group>"; };
 		2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionToolbar.m; sourceTree = "<group>"; };
+		2D6309091C549E340092F622 /* CXTextViewWithPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXTextViewWithPlaceholder.h; sourceTree = "<group>"; };
+		2D63090A1C549E340092F622 /* CXTextViewWithPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXTextViewWithPlaceholder.m; sourceTree = "<group>"; };
 		2DA99D201C44B0CB00CD02D7 /* 回答问题.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "回答问题.mp3"; sourceTree = "<group>"; };
 		2DA99D611C44B75500CD02D7 /* 上呼吸道的概念.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上呼吸道的概念.png"; sourceTree = "<group>"; };
 		2DA99D621C44B75500CD02D7 /* 两种特殊情况.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "两种特殊情况.png"; sourceTree = "<group>"; };
@@ -611,6 +614,8 @@
 			children = (
 				2D6308AD1C549B2F0092F622 /* LZAlbumPhotoCollectionViewCell.h */,
 				2D6308AE1C549B2F0092F622 /* LZAlbumPhotoCollectionViewCell.m */,
+				2D6309091C549E340092F622 /* CXTextViewWithPlaceholder.h */,
+				2D63090A1C549E340092F622 /* CXTextViewWithPlaceholder.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -993,6 +998,7 @@
 				2D6309041C549B2F0092F622 /* XXQuestionHeaderView.m in Sources */,
 				2D6308F81C549B2F0092F622 /* XXExpertProfileCell.m in Sources */,
 				2D6308FF1C549B2F0092F622 /* XXPlayerPicView.m in Sources */,
+				2D63090B1C549E340092F622 /* CXTextViewWithPlaceholder.m in Sources */,
 				2D6308D91C549B2F0092F622 /* NSString+CZ.m in Sources */,
 				2D6308D81C549B2F0092F622 /* NSDate+Extension.m in Sources */,
 				2D6308F51C549B2F0092F622 /* LZBaseVC.m in Sources */,

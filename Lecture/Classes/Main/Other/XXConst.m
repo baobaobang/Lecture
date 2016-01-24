@@ -15,4 +15,7 @@ NSString * const XXPlayerPicViewWillHide = @"XXPlayerPicViewWillHide";
 NSString * const XXPlayerPicViewWillShow = @"XXPlayerPicViewWillShow";
 NSString * const XXQuestionToolbarShareButtonClick = @"XXQuestionToolbarShareButtonClick";
 NSString * const XXQuestionToolbarUnlikeButtonClick = @"XXQuestionToolbarShareButtonClick";
+
+// 删除文字的通知
+NSString * const XXTextDidDeleteNotification = @"XXTextDidDeleteNotification";
 @end
