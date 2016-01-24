@@ -103,15 +103,8 @@
     
     
     __weak SDBrowserImageView *imageViewWeak = self;
-    
-    // 先从本地加载，如果没有再从网络加载 //TODO: 这一部分为测试用，开始从服务器加载就删除
-    _scrollImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-    [_scrollImageView setNeedsDisplay];
-    if (_scrollImageView.image) return;
-    
-    
 
-    // 网络加载图片
+    // 网络加载大图
     [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         imageViewWeak.progress = (CGFloat)receivedSize / expectedSize;
         
@@ -120,17 +113,17 @@
         
         
         if (error) { //TODO: 这一部分本地测试的时候先注释了，网络加载的时候再打开
-//            UILabel *label = [[UILabel alloc] init];
-//            label.bounds = CGRectMake(0, 0, 160, 30);
-//            label.center = CGPointMake(imageViewWeak.bounds.size.width * 0.5, imageViewWeak.bounds.size.height * 0.5);
-//            label.text = @"图片加载失败";
-//            label.font = [UIFont systemFontOfSize:16];
-//            label.textColor = [UIColor whiteColor];
-//            label.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-//            label.layer.cornerRadius = 5;
-//            label.clipsToBounds = YES;
-//            label.textAlignment = NSTextAlignmentCenter;
-//            [imageViewWeak addSubview:label];
+            UILabel *label = [[UILabel alloc] init];
+            label.bounds = CGRectMake(0, 0, 160, 30);
+            label.center = CGPointMake(imageViewWeak.bounds.size.width * 0.5, imageViewWeak.bounds.size.height * 0.5);
+            label.text = @"图片加载失败";
+            label.font = [UIFont systemFontOfSize:16];
+            label.textColor = [UIColor whiteColor];
+            label.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+            label.layer.cornerRadius = 5;
+            label.clipsToBounds = YES;
+            label.textAlignment = NSTextAlignmentCenter;
+            [imageViewWeak addSubview:label];
         } else {
             _scrollImageView.image = image;
             [_scrollImageView setNeedsDisplay];

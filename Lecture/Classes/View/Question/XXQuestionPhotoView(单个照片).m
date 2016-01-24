@@ -45,18 +45,13 @@
 {
     _photo = photo;
     
-    // 先从本地加载，如果没有再从网络加载 //TODO: 这一部分为测试用，开始从服务器加载就删除
-    self.image = [UIImage imageWithContentsOfFile:photo.thumbnail_pic];
-    
-    
-    if (!self.image){
-        // 本地没有再从网络加载
-        [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (error) {
-                NSLog(@"%@", error);
-            }
-        }];
-    }
+    // 从网络加载缩小图
+    [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (error) {
+            NSLog(@"%@", error);
+        }
+    }];
+
     
     // 显示\隐藏gif控件
     // 判断是够以gif或者GIF结尾
