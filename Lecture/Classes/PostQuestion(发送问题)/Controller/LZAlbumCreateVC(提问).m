@@ -294,7 +294,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 {
     if(indexPath.row==_selectPhotos.count){ // 点击➕按钮
         //TODO: 现在只能从相册中选取图片，等会添加照相
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"从手机相册中选取", nil];
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照-单拍", @"拍照-连拍",@"从手机相册中选取", nil];
         // iOS8下面属性设置无效
 //        sheet.actionSheetStyle =  UIActionSheetStyleBlackOpaque;
         [sheet showInView:self.view];
@@ -313,9 +313,11 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 #pragma mark - UIActionSheetDelegate 判断从哪里选取图片，相册还是相机
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
 
-    if (buttonIndex == 0) { // 拍照
-        NSLog(@"xiangji");
-    }else if(buttonIndex == 1){ // 从相册中选取
+    if (buttonIndex == 0) { // 拍照-单拍
+        [self presentCameraSingle];
+    }else if(buttonIndex == 1){ // 拍照-连拍
+        [self presentCameraContinuous];
+    }else if(buttonIndex == 2){ // 从相册中选取
         [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImageBroswer];
     }else{
         
@@ -323,15 +325,15 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 }
 
 // 修改ActionSheet的字体颜色，iOS8下面属性设置无效
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
-{
-    for (UIView *subView in actionSheet.subviews) {
-        if ([subView isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton*)subView;
-            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        }
-    }
-}
+//- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+//{
+//    for (UIView *subView in actionSheet.subviews) {
+//        if ([subView isKindOfClass:[UIButton class]]) {
+//            UIButton *button = (UIButton*)subView;
+//            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        }
+//    }
+//}
 
 #pragma mark - LGPhotoBrowser
 
@@ -346,7 +348,48 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     [pickerVc showPickerVc:self];
 }
 
-#pragma mark - LGPhotoPickerViewControllerDelegate 返回选择的所有图片
+/**
+ *  初始化自定义相机（单拍）
+ */
+- (void)presentCameraSingle {
+    ZLCameraViewController *cameraVC = [[ZLCameraViewController alloc] init];
+    // 拍照最多个数
+    cameraVC.maxCount = 1;
+    // 单拍
+    cameraVC.cameraType = ZLCameraSingle;
+    cameraVC.callback = ^(NSArray *cameras){
+        //在这里得到拍照结果
+        //数组元素是ZLCamera对象
+         ZLCamera *cameraPhoto = cameras[0];
+         UIImage *image = cameraPhoto.photoImage;
+        [self.selectPhotos addObject:image];
+        [self showPhotos];
+    };
+    [cameraVC showPickerVc:self];
+}
+
+/**
+ *  初始化自定义相机（连拍）
+ */
+- (void)presentCameraContinuous {
+    ZLCameraViewController *cameraVC = [[ZLCameraViewController alloc] init];
+    // 拍照最多个数
+    cameraVC.maxCount = kLZAlbumPhotosLimitCount - self.selectPhotos.count;
+    // 连拍
+    cameraVC.cameraType = ZLCameraContinuous;
+    cameraVC.callback = ^(NSArray *cameras){
+        //在这里得到拍照结果
+        //数组元素是ZLCamera对象
+        for (ZLCamera *cameraPhoto in cameras) {
+            UIImage *image = cameraPhoto.photoImage;
+            [self.selectPhotos addObject:image];
+        }
+        [self showPhotos];
+    };
+    [cameraVC showPickerVc:self];
+}
+
+#pragma mark - LGPhotoPickerViewControllerDelegate 返回从相册中选择的所有图片
 
 - (void)pickerViewControllerDoneAsstes:(NSArray *)assets isOriginal:(BOOL)original{
 
@@ -357,7 +400,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
             [self.selectPhotos addObject:image];
         }
 
-        [self.photoCollectionView reloadData];
+        [self showPhotos];
     }
     
     // 提醒是否发送原图
@@ -366,6 +409,11 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     //    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送图片" message:[NSString stringWithFormat:@"您选择了%ld张图片\n是否原图：%@",(long)num,isOriginal] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
     //    [alertView show];
     
+}
+
+#pragma mark - 展示选取或者拍摄的图片
+- (void)showPhotos{
+    [self.photoCollectionView reloadData];
 }
 
 @end
