@@ -21,7 +21,7 @@
 static CGFloat kLZAlbumCreateVCPhotoSize = 60; // 每张图片的大小
 static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 
-@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate>
+@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate>
 
 /**
  *  文字容器
@@ -61,8 +61,6 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     
     // 设置图片
     [self setupPhotoCollectionView];
-    
-    
 }
 
 #pragma mark - 初始化
@@ -80,6 +78,8 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 - (void)setupTextView{
     _textView.placeholder = @"每人只能提一个问题，请珍惜！";
     
+    _textView.delegate = self;
+    
     // 文字改变的通知
     [XXNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:_textView];
     
@@ -94,6 +94,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     // 有导航控制器的时候，如果控制器里面只有一个ScrollView，ScrollView就会默认往下调整64
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
+
 
 #pragma mark - 监听TextView的方法
 /**
@@ -292,6 +293,8 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.textView resignFirstResponder];
+    
     if(indexPath.row==_selectPhotos.count){ // 点击➕按钮
         //TODO: 现在只能从相册中选取图片，等会添加照相
         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照-单拍", @"拍照-连拍",@"从手机相册中选取", nil];
