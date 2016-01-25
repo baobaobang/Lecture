@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
     
     // 设置导航栏
     [self setupNav];
@@ -55,7 +55,7 @@
     // 设置精选提问部分
     [self setupQuestionVc];
     
-    // 设置joinBtn，报名活动按钮
+    // 设置报名活动按钮
     [self setupJoinBtn];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -65,20 +65,11 @@
     [XXNotificationCenter addObserver:self selector:@selector(showPicView) name:XXPlayerPicViewWillShow object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    NSLog(@"view--%@",NSStringFromCGRect(self.view.frame) );
-    NSLog(@"questionVc--%@",NSStringFromCGRect(self.questionVc.view.frame) );
-    NSLog(@"joinBtn--%@",NSStringFromCGRect(self.joinBtn.frame) );
-    NSLog(@"picView--%@",NSStringFromCGRect(self.picView.frame) );
-}
-
 - (void)dealloc{
     [XXNotificationCenter removeObserver:self];
 }
 
-#pragma mark - 收到展开和收起头部通知后的处理
+#pragma mark - 收起头部
 
 - (void)hidePicView{
 
@@ -86,26 +77,24 @@
     CGFloat height = self.picView.height + XXExpertProfileViewHeight;
     
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.y -= height;
-        // 在上移控制器的view的时候，同步下移报名按钮，这样就可以保证报名按钮一直在最下方
-        self.joinBtn.y += height;
-        self.view.height += height;// 必须调整这个，否则导致tableView的下面一部分超出self.view，没法交互
+        // 只需要让questionVc上移的同时增加高度
+        self.questionVc.view.y -= height;
+        self.questionVc.view.height += height;
         
     } completion:^(BOOL finished) {
         NSLog(@"%f", self.joinBtn.y);
     }];
-    
 }
 
+#pragma mark - 展开头部
 - (void)showPicView{
     
     // 需要下移的高度
     CGFloat height = self.picView.height + XXExpertProfileViewHeight;
     
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.y += height;
-        self.joinBtn.y -= height;
-        self.view.height -= height;
+        self.questionVc.view.y += height;
+        self.questionVc.view.height -= height;
     } completion:^(BOOL finished) {
         
     }];
@@ -181,6 +170,7 @@
     //    joinBtn.backgroundColor = XXColorGreen;
     
     [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     joinBtn.width = [UIScreen mainScreen].bounds.size.width;
     joinBtn.height = XXJoinButtonHeight;
     joinBtn.x = 0;
@@ -189,15 +179,14 @@
     UIImage *joinBtnImage = [[[UIImage imageNamed:@"enroll"] imageScaleToSize:CGSizeMake(20, 20)] imageRenderingModeAlwaysOriginal];
     [joinBtn setImage:joinBtnImage forState:UIControlStateNormal];
     [joinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-    
+
     [self.view addSubview:joinBtn];
-    [self.view bringSubviewToFront:joinBtn]; // 让joinBtn在最上层
     self.joinBtn = joinBtn;
 }
 
 
 - (void)clickShareLectureBtn{
-    
+    //TODO: 点击分享按钮
 }
 
 #pragma mark - 点击报名
@@ -207,7 +196,7 @@
     sheet.delegate = self;
     sheet.lecture = [self.lectures lastObject];
     // 注意sheet要添加到窗口上，而非self.view上面，因为self.view会因为动画而改变frame，导致sheet的位置会变化
-    [sheet showInView:XXWindow];
+    [sheet showInView:XXKeyWindow];
 }
 
 #pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
@@ -215,14 +204,12 @@
     
     //TODO: 点击确认报名后，网络请求，扣除积分等，报名失败的情况
     // 如果报名成功
-    [MBProgressHUD showHUDAddedTo:XXWindow animated:YES];
+    [MBProgressHUD showHUDAddedTo:XXKeyWindow animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUDForView:XXWindow animated:NO];
-        [MBProgressHUD showSuccess:@"报名成功！" toView:XXWindow];
+        [MBProgressHUD hideHUDForView:XXKeyWindow animated:NO];
+        [MBProgressHUD showSuccess:@"报名成功！" toView:XXKeyWindow];
         self.joinBtn.enabled = NO;
     });
-    
-    
 }
 
 @end

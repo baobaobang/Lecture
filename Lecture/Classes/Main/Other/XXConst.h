@@ -23,7 +23,11 @@ extern NSString * const XXTextDidDeleteNotification;
 
 #define WEAKSELF  typeof(self) __weak weakSelf=self;
 
-#define XXWindow [[UIApplication sharedApplication].delegate window]
+// 主窗口
+#define XXKeyWindow [UIApplication sharedApplication].keyWindow
+
+// 最顶层的window
+#define XXTopWindow [[UIApplication sharedApplication].windows lastObject]
 
 // RGB颜色
 #define XXColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
@@ -39,9 +43,6 @@ extern NSString * const XXTextDidDeleteNotification;
 
 // 打印测试
 #define XXTestLog XXLog(@"%s", __func__)
-
-// 主窗口
-#define XXKeyWindow [UIApplication sharedApplication].keyWindow
 
 // 屏幕的宽度
 #define XXScreenWidth [UIScreen mainScreen].bounds.size.width
