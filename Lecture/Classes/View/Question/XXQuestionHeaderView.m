@@ -34,10 +34,14 @@
     [self.postQuestionBtn setTitle:@"已提问" forState:UIControlStateDisabled];
 //    [self.postQuestionBtn setBackgroundColor:XXColorGreen];
     
-    
-    [self.upAndDownBtn setBackgroundImage:[UIImage imageNamed:@"icon-up"] forState:UIControlStateNormal];
-    [self.upAndDownBtn setBackgroundImage:[UIImage imageNamed:@"icon-down"] forState:UIControlStateSelected];
-    self.upAndDownBtn.tintColor = [UIColor whiteColor];// 取消选中状态下的小蓝点
+    // 收起按钮用图片表示
+//    [self.upAndDownBtn setBackgroundImage:[UIImage imageNamed:@"icon-up"] forState:UIControlStateNormal];
+//    [self.upAndDownBtn setBackgroundImage:[UIImage imageNamed:@"icon-down"] forState:UIControlStateSelected];
+//    self.upAndDownBtn.tintColor = [UIColor whiteColor];// 取消选中状态下的小蓝点
+    // 收起按钮用文字表示
+    [self.upAndDownBtn setTitle:@"收起讲座介绍" forState:UIControlStateNormal];
+    [self.upAndDownBtn setTitle:@"展开讲座介绍" forState:UIControlStateSelected];
+    //TODO: 改收起按钮的文字颜色和背景色
     
 }
 

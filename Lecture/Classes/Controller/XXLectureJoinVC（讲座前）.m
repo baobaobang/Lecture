@@ -65,6 +65,15 @@
     [XXNotificationCenter addObserver:self selector:@selector(showPicView) name:XXPlayerPicViewWillShow object:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    NSLog(@"view--%@",NSStringFromCGRect(self.view.frame) );
+    NSLog(@"questionVc--%@",NSStringFromCGRect(self.questionVc.view.frame) );
+    NSLog(@"joinBtn--%@",NSStringFromCGRect(self.joinBtn.frame) );
+    NSLog(@"picView--%@",NSStringFromCGRect(self.picView.frame) );
+}
+
 - (void)dealloc{
     [XXNotificationCenter removeObserver:self];
 }
@@ -122,7 +131,7 @@
     [self.view addSubview:picView];
     self.picView = picView;
     
-    // 创建分享按钮
+    // 创建分享按钮//TODO: 放到导航栏
     UIButton *shareBtn = [[UIButton alloc] init];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     shareBtn.width = 25;

@@ -108,7 +108,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     self.navigationItem.rightBarButtonItem.enabled = self.textView.hasText;
 }
 
-#pragma mark - 发送提问
+#pragma mark - 点击发送按钮，发送提问
 -(void)createFeed{
     
     // 先用本地数据替代
@@ -229,6 +229,10 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) { // 点击退出
+        //???: 如果是从收起状态发起提问，点击取消回到讲座前页面后，虽然还是收起状态，但是self.view会下移到展开状态，而且没有调用我的展开动画方法
+        // 重新加载数据是为了让收起按钮恢复到展开状态
+        [self.questionVC.tableView reloadData];
+        
         [self dismiss];
     }
 }
