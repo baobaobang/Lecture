@@ -21,7 +21,7 @@
 static CGFloat kLZAlbumCreateVCPhotoSize = 60; // 每张图片的大小
 static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 
-@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UIAlertViewDelegate, LGPhotoPickerViewControllerDelegate>
+@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate>
 
 /**
  *  文字容器
@@ -294,7 +294,11 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 {
     if(indexPath.row==_selectPhotos.count){ // 点击➕按钮
         //TODO: 现在只能从相册中选取图片，等会添加照相
-        [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImageBroswer];
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"从手机相册中选取", nil];
+        // iOS8下面属性设置无效
+//        sheet.actionSheetStyle =  UIActionSheetStyleBlackOpaque;
+        [sheet showInView:self.view];
+        
     }
 }
 
@@ -304,6 +308,29 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
+}
+
+#pragma mark - UIActionSheetDelegate 判断从哪里选取图片，相册还是相机
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if (buttonIndex == 0) { // 拍照
+        NSLog(@"xiangji");
+    }else if(buttonIndex == 1){ // 从相册中选取
+        [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImageBroswer];
+    }else{
+        
+    }
+}
+
+// 修改ActionSheet的字体颜色，iOS8下面属性设置无效
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    for (UIView *subView in actionSheet.subviews) {
+        if ([subView isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton*)subView;
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        }
+    }
 }
 
 #pragma mark - LGPhotoBrowser
@@ -325,8 +352,8 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
     if (assets) {
         
-        for (LGPhotoPickerBrowserPhoto *photo in assets) {
-            UIImage *image = photo.thumbImage;
+        for (LGPhotoAssets *asset in assets) {
+            UIImage *image = asset.originImage;
             [self.selectPhotos addObject:image];
         }
 
