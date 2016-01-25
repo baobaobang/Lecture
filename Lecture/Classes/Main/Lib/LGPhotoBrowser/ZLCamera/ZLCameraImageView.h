@@ -28,5 +28,8 @@
  */
 @property (assign, nonatomic, getter = isEdit) BOOL edit;
 
-
+/**
+ *  删除的小红叉
+ */
+@property (strong, nonatomic) UIImageView *deleBjView;
 @end

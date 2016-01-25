@@ -260,9 +260,9 @@ static CGFloat BOTTOM_HEIGHT = 60;
         UIImage *image = camera.thumbImage;
         ZLCameraImageView *imageView = [[ZLCameraImageView alloc] init];
         imageView.delegatge = self;
-        imageView.edit = YES;
         imageView.image = image;
         imageView.frame = cell.bounds;
+        imageView.edit = YES; // 这个要放在imageView.frame = cell.bounds;后面
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         [cell.contentView addSubview:imageView];
     }

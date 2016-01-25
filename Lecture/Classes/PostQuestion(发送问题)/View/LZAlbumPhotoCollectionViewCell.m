@@ -10,9 +10,9 @@
 
 @implementation LZAlbumPhotoCollectionViewCell
 
--(UIImageView*)photoImageView{
+-(ZLCameraImageView *)photoImageView{
     if(_photoImageView==nil){
-        _photoImageView=[[UIImageView alloc] initWithFrame:self.bounds];
+        _photoImageView=[[ZLCameraImageView alloc] initWithFrame:self.bounds];
         _photoImageView.contentMode=UIViewContentModeScaleAspectFill;
         _photoImageView.layer.masksToBounds=YES;
     }

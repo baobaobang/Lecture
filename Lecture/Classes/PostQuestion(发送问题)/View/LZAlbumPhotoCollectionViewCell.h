@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZLCameraImageView.h"
 
 @interface LZAlbumPhotoCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic,strong) NSIndexPath* indexPath;
 
-@property (nonatomic,strong) UIImageView* photoImageView;
+@property (nonatomic,strong) ZLCameraImageView* photoImageView;
 
 @end

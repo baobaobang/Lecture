@@ -17,11 +17,12 @@
 #import <MJExtension.h>
 #import "XXQuestionPhoto.h"
 #import "LGPhoto.h"
+#import "ZLCameraImageView.h"
 
 static CGFloat kLZAlbumCreateVCPhotoSize = 60; // 每张图片的大小
 static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 
-@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,LGPhotoPickerBrowserViewControllerDataSource,LGPhotoPickerBrowserViewControllerDelegate>
+@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,LGPhotoPickerBrowserViewControllerDataSource,LGPhotoPickerBrowserViewControllerDelegate, ZLCameraImageViewDelegate>
 
 /**
  *  文字容器
@@ -281,10 +282,13 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     if(indexPath.row==self.selectPhotos.count){ // 最后一个cell为加号按钮
         cell.photoImageView.image=[UIImage imageNamed:@"AlbumAddBtn"];
         cell.photoImageView.highlightedImage=[UIImage imageNamed:@"AlbumAddBtnHL"];
+        cell.photoImageView.deleBjView.hidden= YES;
         return cell;
     }else{
         cell.photoImageView.image=self.selectPhotos[indexPath.row];
         cell.photoImageView.highlightedImage=nil;
+        cell.photoImageView.deleBjView.hidden = NO; //显示红叉
+        cell.photoImageView.delegatge = self; // 设置代理，点红叉才能删除
         return cell;
     }
 }
@@ -471,6 +475,18 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 #pragma mark - 展示选取或者拍摄的图片
 - (void)showPhotos{
+    [self.photoCollectionView reloadData];
+}
+
+#pragma mark - 点击小图右上角的叉号删除已经展示的小图
+- (void)deleteImageView:(ZLCameraImageView *)imageView{
+    NSMutableArray *arrM = [self.selectPhotos mutableCopy];
+    for (UIImage *image in self.selectPhotos) {
+        if ([image isEqual:imageView.image]) {
+            [arrM removeObject:image];
+        }
+    }
+    self.selectPhotos = arrM;
     [self.photoCollectionView reloadData];
 }
 
