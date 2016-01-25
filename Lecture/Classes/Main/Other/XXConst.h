@@ -23,6 +23,8 @@ extern NSString * const XXTextDidDeleteNotification;
 
 #define WEAKSELF  typeof(self) __weak weakSelf=self;
 
+#define XXWindow [[UIApplication sharedApplication].delegate window]
+
 // RGB颜色
 #define XXColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 

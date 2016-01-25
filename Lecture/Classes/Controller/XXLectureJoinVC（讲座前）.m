@@ -69,7 +69,7 @@
     [XXNotificationCenter removeObserver:self];
 }
 
-#pragma mark - 收到通知后的处理
+#pragma mark - 收到展开和收起头部通知后的处理
 
 - (void)hidePicView{
 
@@ -83,6 +83,7 @@
         self.view.height += height;// 必须调整这个，否则导致tableView的下面一部分超出self.view，没法交互
         
     } completion:^(BOOL finished) {
+        NSLog(@"%f", self.joinBtn.y);
     }];
     
 }
@@ -197,7 +198,7 @@
     sheet.delegate = self;
     sheet.lecture = [self.lectures lastObject];
     // 注意sheet要添加到窗口上，而非self.view上面，因为self.view会因为动画而改变frame，导致sheet的位置会变化
-    [sheet showInView:[[UIApplication sharedApplication].delegate window] ];
+    [sheet showInView:XXWindow];
 }
 
 #pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
@@ -205,10 +206,10 @@
     
     //TODO: 点击确认报名后，网络请求，扣除积分等，报名失败的情况
     // 如果报名成功
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:XXWindow animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUDForView:self.view animated:NO];
-        [MBProgressHUD showSuccess:@"报名成功！" toView:self.view];
+        [MBProgressHUD hideHUDForView:XXWindow animated:NO];
+        [MBProgressHUD showSuccess:@"报名成功！" toView:XXWindow];
         self.joinBtn.enabled = NO;
     });
     
