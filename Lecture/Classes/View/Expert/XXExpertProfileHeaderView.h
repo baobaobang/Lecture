@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXExpert;
-@interface XXExpertProfileHeaderView : UITableViewHeaderFooterView
+@class XXExpert, XXExpertProfileHeaderView;
+@protocol XXExpertProfileHeaderViewDelegate <NSObject>
+
+@optional
+- (void)expertProfileHeaderView:(XXExpertProfileHeaderView *)headerView didClickFollowBtn:(UIButton *)btn;
+@end
+@interface XXExpertProfileHeaderView : UIView
 
 @property (nonatomic, strong) XXExpert *expert;
 //+ (instancetype)headerViewInTableView:(UITableView *)tableView;
-
+@property (nonatomic, weak) id<XXExpertProfileHeaderViewDelegate> delegate;
 @end

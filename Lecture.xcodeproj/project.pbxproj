@@ -633,8 +633,8 @@
 		2D6308B01C549B2F0092F622 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2D6308B11C549B2F0092F622 /* Expert */,
 				2D6308B81C549B2F0092F622 /* Player */,
+				2D6308B11C549B2F0092F622 /* Expert */,
 				2D6308C31C549B2F0092F622 /* Question */,
 			);
 			path = View;

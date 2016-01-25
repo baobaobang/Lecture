@@ -16,14 +16,15 @@
 #import <MJExtension.h>
 #import "MBProgressHUD+CZ.h"
 #import "XXQuestionHeaderView.h"
+#import "XXExpertProfileHeaderView.h"
 #import "LZAlbumCreateVC.h"
 #import "XXNavigationController.h"
 
-@interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate>
+@interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
 
 @property (nonatomic, strong) NSArray *lectures;
-//@property (nonatomic, weak) XXExpertHeaderView *expertHeaderView;
+@property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
 @property (nonatomic, weak) XXQuestionHeaderView *questionHeaderView;
 @property (nonatomic, weak) XXQuestionVC *questionVc;
@@ -54,13 +55,16 @@
     // 设置讲座介绍图片
     [self setupPicView];
     
-    // 设置专家简介部分
+    // 设置专家简介头部
+    [self setupExpertHeaderView];
+    
+    // 设置专家简介
     [self setupExpertVc];
     
-    // 设置精选提问头部部分
+    // 设置精选提问头部
     [self setupQuestionHeaderView];
     
-    // 设置精选提问部分
+    // 设置精选提问部
     [self setupQuestionVc];
     
     // 设置报名活动按钮
@@ -83,7 +87,7 @@
 - (void)hidePicView{
 
     // 需要上移的高度
-    CGFloat height = self.picView.height + XXExpertProfileViewHeight;
+    CGFloat height = self.picView.height + XXExpertHeaderViewHeight + XXExpertProfileViewHeight;
     
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.questionHeaderView.y -= height;
@@ -98,7 +102,7 @@
 - (void)showPicView{
     
     // 需要下移的高度
-    CGFloat height = self.picView.height + XXExpertProfileViewHeight;
+    CGFloat height = self.picView.height + XXExpertHeaderViewHeight + XXExpertProfileViewHeight;
     
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.questionHeaderView.y += height;
@@ -133,15 +137,28 @@
     self.picView = picView;
 }
 
+// 专家简介头部
+- (void)setupExpertHeaderView{
+    
+    XXExpertProfileHeaderView *expertHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXExpertProfileHeaderView" owner:nil options:0]lastObject];
+    expertHeaderView.x = 0;
+    expertHeaderView.y = CGRectGetMaxY(self.picView.frame);
+    expertHeaderView.height = XXExpertHeaderViewHeight;
+    expertHeaderView.width = self.view.width;
+    
+    expertHeaderView.delegate = self; // 设置代理
+    [self.view addSubview:expertHeaderView];
+    self.expertHeaderView = expertHeaderView;
+}
+
 // 专家简介
 - (void)setupExpertVc{
     
     XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];
     expertVc.view.x = 0;
-    expertVc.view.y = CGRectGetMaxY(self.picView.frame);
+    expertVc.view.y = CGRectGetMaxY(self.expertHeaderView.frame);
     expertVc.view.width = self.view.width;
     expertVc.view.height = XXExpertProfileViewHeight;
-//    expertVc.tableView.bounces = NO;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
     self.expertVc = expertVc;
@@ -231,6 +248,11 @@
         [MBProgressHUD showSuccess:@"报名成功！" toView:XXKeyWindow];
         self.joinBtn.enabled = NO;
     });
+}
+
+#pragma mark - 点击关注按钮 XXExpertProfileHeaderViewDelegate
+- (void)expertProfileHeaderView:(XXExpertProfileHeaderView *)headerView didClickFollowBtn:(UIButton *)btn{
+    XXLog(@"follow");//TODO:点击关注按钮
 }
 
 #pragma mark - 点击提问按钮跳到提问界面 XXQuestionHeaderViewDelegate

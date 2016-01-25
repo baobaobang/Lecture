@@ -33,6 +33,10 @@
 
 - (IBAction)followBtnClick:(UIButton *)btn {
     
+    if ([self.delegate respondsToSelector:@selector(expertProfileHeaderView:didClickFollowBtn:)]) {
+        [self.delegate expertProfileHeaderView:self didClickFollowBtn:btn];
+    }
+    
     btn.selected = !btn.selected;
 }
 

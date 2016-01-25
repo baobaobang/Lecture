@@ -9,14 +9,12 @@
 #import "XXExpertProfileVC.h"
 #import "XXExpert.h"
 #import "XXExpertProfileCell.h"
-#import "XXExpertProfileHeaderView.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <MJExtension.h>
 
 
 #define XXExpertProfileCellHeight 80
 static NSString * const expertProfileCellReuseId = @"expertProfileCell";
-static NSString * const expertHeaderId = @"expertHeaderId";
 
 @interface XXExpertProfileVC ()
 // 模型数据组
@@ -39,9 +37,6 @@ static NSString * const expertHeaderId = @"expertHeaderId";
     
     // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"XXExpertProfileCell" bundle:nil] forCellReuseIdentifier:expertProfileCellReuseId];
-    
-    // 注册headerview
-    [self.tableView registerNib:[UINib nibWithNibName:@"XXExpertProfileHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:expertHeaderId];
 }
 
 #pragma mark - Table view data source
@@ -73,18 +68,6 @@ static NSString * const expertHeaderId = @"expertHeaderId";
     }];
     
 }
-#pragma mark - 自定义的headerView
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    XXExpertProfileHeaderView *expertHeader = (XXExpertProfileHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:expertHeaderId];
-    return expertHeader;
-}
-
-#pragma mark - headerView的高度
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return XXExpertHeaderViewHeight;
-}
-
 
 
 @end
