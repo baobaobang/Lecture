@@ -294,20 +294,6 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 {
     if(indexPath.row==_selectPhotos.count){ // 点击➕按钮
         //TODO: 现在只能从相册中选取图片，等会添加照相
-//        [self.photographyHelper showOnPickerViewControllerSourceType:
-//         UIImagePickerControllerSourceTypePhotoLibrary onViewController:self compled:^(UIImage *image, NSDictionary *editingInfo) {
-//            if (image) {
-//                [self addImage:image];
-//            } else {
-//                if (!editingInfo)
-//                    return ;
-//                image=[editingInfo valueForKey:UIImagePickerControllerOriginalImage];
-//                if(image){
-//                    [self addImage:image];
-//                }
-//            }
-//        }];
-        
         [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImagePicker];
     }
 }
@@ -330,12 +316,12 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 #pragma mark - LGPhotoBrowser
 
 /**
- *  初始化相册选择器
+ *  初始化相册选择器 LGPhotoPickerViewController
  */
 - (void)presentPhotoPickerViewControllerWithStyle:(LGShowImageType)style {
     LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:style];
     pickerVc.status = PickerViewShowStatusCameraRoll;
-    pickerVc.maxCount = kLZAlbumPhotosLimitCount;   // 最多能选几张图片
+    pickerVc.maxCount = kLZAlbumPhotosLimitCount - self.selectPhotos.count;   // 最多能选图片的张数
     pickerVc.delegate = self;
     self.showType = style;
     [pickerVc showPickerVc:self];
@@ -347,9 +333,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 - (void)pickerViewControllerDoneAsstes:(NSArray *)assets isOriginal:(BOOL)original{
 
-    NSLog(@"---%@", assets);
     if (assets) {
-        NSLog(@"---%@", assets);
         
         for (LGPhotoPickerBrowserPhoto *photo in assets) {
             UIImage *image = photo.thumbImage;
