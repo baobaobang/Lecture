@@ -105,6 +105,9 @@
 - (void)setupNav{
     /* 导航栏标题 */
     self.title = @"公益讲堂";
+    
+    // 创建分享按钮//TODO: 分享按钮换图片
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(clickShareLectureBtn) bgImage:@"share" bgHighImage:@"share"];;
 }
 
 - (void)setupPicView{
@@ -119,16 +122,6 @@
     picView.userInteractionEnabled = YES;
     [self.view addSubview:picView];
     self.picView = picView;
-    
-    // 创建分享按钮//TODO: 放到导航栏
-    UIButton *shareBtn = [[UIButton alloc] init];
-    [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
-    shareBtn.width = 25;
-    shareBtn.height = shareBtn.width;
-    shareBtn.x = picView.width - shareBtn.width - 10;
-    shareBtn.y = 10;
-    [shareBtn addTarget:self action:@selector(clickShareLectureBtn) forControlEvents:UIControlEventTouchUpInside];
-    [self.picView addSubview:shareBtn];
 }
 
 - (void)setupExpertVc{
@@ -187,6 +180,7 @@
 
 - (void)clickShareLectureBtn{
     //TODO: 点击分享按钮
+    XXLog(@"clickShareLectureBtn");
 }
 
 #pragma mark - 点击报名
