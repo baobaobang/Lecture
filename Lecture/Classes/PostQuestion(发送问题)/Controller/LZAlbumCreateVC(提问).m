@@ -21,7 +21,7 @@
 static CGFloat kLZAlbumCreateVCPhotoSize = 60; // 每张图片的大小
 static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 
-@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate>
+@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,LGPhotoPickerBrowserViewControllerDataSource,LGPhotoPickerBrowserViewControllerDelegate>
 
 /**
  *  文字容器
@@ -41,6 +41,8 @@ static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 @property (strong,nonatomic) XHPhotographyHelper* photographyHelper;
 
 @property (nonatomic, assign) LGShowImageType showType;
+
+@property (nonatomic, strong)NSMutableArray *LGPhotoPickerBrowserPhotoArray;
 
 @end
 
@@ -77,8 +79,6 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 - (void)setupTextView{
     _textView.placeholder = @"每人只能提一个问题，请珍惜！";
-    
-    _textView.delegate = self;
     
     // 文字改变的通知
     [XXNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:_textView];
@@ -291,6 +291,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 #pragma mark - UICollectionViewDelegate
 
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.textView resignFirstResponder];
@@ -302,6 +303,11 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 //        sheet.actionSheetStyle =  UIActionSheetStyleBlackOpaque;
         [sheet showInView:self.view];
         
+    }else{ // 点击小图
+        // 给照片浏览器传image的时候先包装成LGPhotoPickerBrowserPhoto对象
+        [self prepareForPhotoBroswerWithImage];
+        // 调出图片浏览器
+        [self pushPhotoBroswerWithStyle:LGShowImageTypeImageBroswer];
     }
 }
 
@@ -338,7 +344,31 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 //    }
 //}
 
-#pragma mark - LGPhotoBrowser
+#pragma mark - LGPhotoBrowser(图片浏览器，相册选取器，单拍和连拍)
+
+/**
+ *  给照片浏览器传image的时候先包装成LGPhotoPickerBrowserPhoto对象
+ */
+- (void)prepareForPhotoBroswerWithImage {
+    self.LGPhotoPickerBrowserPhotoArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < self.selectPhotos.count; i++) {
+        LGPhotoPickerBrowserPhoto *photo = [[LGPhotoPickerBrowserPhoto alloc] init];
+        photo.photoImage = self.selectPhotos[i];
+        [self.LGPhotoPickerBrowserPhotoArray addObject:photo];
+    }
+}
+
+/**
+ *  初始化图片浏览器
+ */
+- (void)pushPhotoBroswerWithStyle:(LGShowImageType)style{
+    LGPhotoPickerBrowserViewController *BroswerVC = [[LGPhotoPickerBrowserViewController alloc] init];
+    BroswerVC.delegate = self;
+    BroswerVC.dataSource = self;
+    BroswerVC.showType = style;
+    self.showType = style;
+    [self presentViewController:BroswerVC animated:YES completion:nil];
+}
 
 /**
  *  初始化相册选择器 LGPhotoPickerViewController
@@ -390,6 +420,31 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
         [self showPhotos];
     };
     [cameraVC showPickerVc:self];
+}
+
+#pragma mark - LGPhotoPickerBrowserViewControllerDataSource
+/**
+ *  每个组多少个图片
+ */
+- (NSInteger)photoBrowser:(LGPhotoPickerBrowserViewController *)photoBrowser numberOfItemsInSection:(NSUInteger)section{
+    if (self.showType == LGShowImageTypeImageBroswer) {
+        return self.LGPhotoPickerBrowserPhotoArray.count;
+    } else {
+        NSLog(@"非法数据源");
+        return 0;
+    }
+}
+
+/**
+ *  每个对应的IndexPath展示什么内容
+ */
+- (id<LGPhotoPickerBrowserPhoto>)photoBrowser:(LGPhotoPickerBrowserViewController *)pickerBrowser photoAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.showType == LGShowImageTypeImageBroswer) {
+        return [self.LGPhotoPickerBrowserPhotoArray objectAtIndex:indexPath.item];
+    } else {
+        NSLog(@"非法数据源");
+        return nil;
+    }
 }
 
 #pragma mark - LGPhotoPickerViewControllerDelegate 返回从相册中选择的所有图片
