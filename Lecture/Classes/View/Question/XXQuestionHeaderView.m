@@ -11,7 +11,7 @@
 @interface XXQuestionHeaderView ()
 @property (weak, nonatomic) IBOutlet XXButton *postQuestionBtn;
 
-@property (weak, nonatomic) IBOutlet UIButton *upAndDownBtn;
+@property (weak, nonatomic) IBOutlet UIButton *contractBtn;
 @end
 
 @implementation XXQuestionHeaderView
@@ -35,12 +35,12 @@
 //    [self.postQuestionBtn setBackgroundColor:XXColorGreen];
     
     // 收起按钮用图片表示
-//    [self.upAndDownBtn setBackgroundImage:[UIImage imageNamed:@"icon-up"] forState:UIControlStateNormal];
-//    [self.upAndDownBtn setBackgroundImage:[UIImage imageNamed:@"icon-down"] forState:UIControlStateSelected];
-//    self.upAndDownBtn.tintColor = [UIColor whiteColor];// 取消选中状态下的小蓝点
+//    [self.contractBtn setBackgroundImage:[UIImage imageNamed:@"icon-up"] forState:UIControlStateNormal];
+//    [self.contractBtn setBackgroundImage:[UIImage imageNamed:@"icon-down"] forState:UIControlStateSelected];
+//    self.contractBtn.tintColor = [UIColor whiteColor];// 取消选中状态下的小蓝点
     // 收起按钮用文字表示
-    [self.upAndDownBtn setTitle:@"收起讲座介绍" forState:UIControlStateNormal];
-    [self.upAndDownBtn setTitle:@"展开讲座介绍" forState:UIControlStateSelected];
+    [self.contractBtn setTitle:@"收起讲座介绍" forState:UIControlStateNormal];
+    [self.contractBtn setTitle:@"展开讲座介绍" forState:UIControlStateSelected];
     //TODO: 改收起按钮的文字颜色和背景色
     
 }
@@ -58,12 +58,8 @@
  */
 - (IBAction)showAndHidePicView:(UIButton *)btn {
     
-    if (!btn.selected) {// 点击普通状态就收起picView
-        NSNotification *notiHide = [NSNotification notificationWithName:XXPlayerPicViewWillHide object:nil];
-        [XXNotificationCenter postNotification:notiHide];
-    }else{// 点击选中状态就展开picView
-        NSNotification *notiShow = [NSNotification notificationWithName:XXPlayerPicViewWillShow object:self];
-        [XXNotificationCenter postNotification:notiShow];
+    if ([self.delegate respondsToSelector:@selector(questionHeaderView:didClickContractBtn:)]) {
+        [self.delegate questionHeaderView:self didClickContractBtn:btn];
     }
     
     btn.selected = !btn.selected;

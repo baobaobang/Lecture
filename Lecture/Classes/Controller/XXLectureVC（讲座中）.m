@@ -43,9 +43,6 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    // 注册观察者，接收XXExpertProfileHeaderView发出的通知
-    [XXNotificationCenter addObserver:self selector:@selector(hidePlayerPicView) name:XXPlayerPicViewWillHide object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(showPlayerPicView) name:XXPlayerPicViewWillShow object:nil];
 }
 
 - (void)dealloc{

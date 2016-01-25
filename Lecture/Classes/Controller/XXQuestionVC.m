@@ -8,17 +8,13 @@
 
 #import "XXQuestionVC.h"
 #import "XXQuestionCell.h"
-#import "XXQuestionHeaderView.h"
 #import "XXQuestionToolbar.h"
 #import <MJExtension.h>
 #import "XXQuestionFrame.h"
-#import "LZAlbumCreateVC.h"
-#import "XXNavigationController.h"
 
-static NSString * const questionHeaderId = @"questionHeaderId";
 static NSString * const questionCellReuseId = @"QuestionCell";
 
-@interface XXQuestionVC ()<XXQuestionToolbarDelegate, XXQuestionHeaderViewDelegate>
+@interface XXQuestionVC ()<XXQuestionToolbarDelegate>
 
 
 @end
@@ -76,12 +72,10 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:questionCellReuseId];
     
-    // 注册headerview
-    [self.tableView registerNib:[UINib nibWithNibName:@"XXQuestionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:questionHeaderId];
-    
     // 添加观察者
     [XXNotificationCenter addObserver:self selector:@selector(questionToolbarShareBtnClicked:) name:XXQuestionToolbarShareButtonClick object:nil];
     [XXNotificationCenter addObserver:self selector:@selector(questionToolbarUnlikeBtnClicked:) name:XXQuestionToolbarUnlikeButtonClick object:nil];
+    
 }
 
 - (void)dealloc{
@@ -135,20 +129,6 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     return questionCell;
 }
 
-#pragma mark - 自定义的headerView
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    XXQuestionHeaderView *questionHeader = (XXQuestionHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:questionHeaderId];
-    questionHeader.delegate = self;
-    return questionHeader;
-    
-}
-
-#pragma mark - headerView的高度
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return XXHeaderViewHeight;
-}
-
 #pragma mark - cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -159,16 +139,6 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 
 #pragma mark - 点击cell后的反应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-}
-
-#pragma mark - 点击提问按钮跳到提问界面 XXQuestionHeaderViewDelegate
-- (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn
-{
-    LZAlbumCreateVC *vc = [[LZAlbumCreateVC alloc] initWithNibName:@"LZAlbumCreateVC" bundle:nil];
-    vc.questionVC = self;
-    vc.view.frame = self.view.frame;
-    XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
-    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 

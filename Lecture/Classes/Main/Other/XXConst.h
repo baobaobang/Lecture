@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface XXConst : NSObject
-
-//extern NSString * const XXNavigationTitleFont;
-
+/** 数字*/
 extern const CGFloat PlayerToolBarHeight;
+extern const CGFloat XXExpertHeaderViewHeight;
+extern const CGFloat XXQuestionHeaderViewHeight;
 extern NSString * const XXCollectionViewCellIdentifier;
-extern NSString * const XXPlayerPicViewWillHide;
-extern NSString * const XXPlayerPicViewWillShow;
+
 extern NSString * const XXQuestionToolbarShareButtonClick;
 extern NSString * const XXQuestionToolbarUnlikeButtonClick;
 // 删除文字的通知
@@ -76,7 +75,4 @@ extern NSString * const XXTextDidDeleteNotification;
 
 // 报名活动按钮的高度
 #define XXJoinButtonHeight 44
-
-// tableview header的高度
-#define XXHeaderViewHeight 35
 @end

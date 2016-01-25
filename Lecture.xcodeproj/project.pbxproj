@@ -358,9 +358,9 @@
 			children = (
 				2D63085A1C549B2F0092F622 /* Main */,
 				2D6308A01C549B2F0092F622 /* PostQuestion(发送问题) */,
-				2D63084D1C549B2F0092F622 /* Controller */,
 				2D63088E1C549B2F0092F622 /* Model */,
 				2D6308B01C549B2F0092F622 /* View */,
+				2D63084D1C549B2F0092F622 /* Controller */,
 				2D6308AF1C549B2F0092F622 /* Temp */,
 			);
 			path = Classes;

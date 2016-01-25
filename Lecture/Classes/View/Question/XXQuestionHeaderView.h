@@ -13,8 +13,9 @@
 
 @optional
 - (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn;
+- (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickContractBtn:(UIButton *)btn;
 
 @end
-@interface XXQuestionHeaderView : UITableViewHeaderFooterView
+@interface XXQuestionHeaderView : UIView
 @property (nonatomic, weak) id<XXQuestionHeaderViewDelegate> delegate;
 @end

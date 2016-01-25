@@ -15,12 +15,17 @@
 #import "XXJoinLectureActionSheet.h"
 #import <MJExtension.h>
 #import "MBProgressHUD+CZ.h"
+#import "XXQuestionHeaderView.h"
+#import "LZAlbumCreateVC.h"
+#import "XXNavigationController.h"
 
-@interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate>
+@interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
 
 @property (nonatomic, strong) NSArray *lectures;
+//@property (nonatomic, weak) XXExpertHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
+@property (nonatomic, weak) XXQuestionHeaderView *questionHeaderView;
 @property (nonatomic, weak) XXQuestionVC *questionVc;
 @property (nonatomic, weak) XXButton *joinBtn;
 
@@ -52,6 +57,9 @@
     // 设置专家简介部分
     [self setupExpertVc];
     
+    // 设置精选提问头部部分
+    [self setupQuestionHeaderView];
+    
     // 设置精选提问部分
     [self setupQuestionVc];
     
@@ -60,16 +68,17 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    // 注册观察者，接收XXExpertProfileHeaderView发出的通知
-    [XXNotificationCenter addObserver:self selector:@selector(hidePicView) name:XXPlayerPicViewWillHide object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(showPicView) name:XXPlayerPicViewWillShow object:nil];
 }
 
-- (void)dealloc{
-    [XXNotificationCenter removeObserver:self];
-}
+#pragma mark - 收起头部和展开头部
 
-#pragma mark - 收起头部
+- (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickContractBtn:(UIButton *)btn{
+    if (!btn.selected) {
+        [self hidePicView];
+    }else{
+        [self showPicView];
+    }
+}
 
 - (void)hidePicView{
 
@@ -77,7 +86,7 @@
     CGFloat height = self.picView.height + XXExpertProfileViewHeight;
     
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        // 只需要让questionVc上移的同时增加高度
+        self.questionHeaderView.y -= height;
         self.questionVc.view.y -= height;
         self.questionVc.view.height += height;
         
@@ -86,13 +95,13 @@
     }];
 }
 
-#pragma mark - 展开头部
 - (void)showPicView{
     
     // 需要下移的高度
     CGFloat height = self.picView.height + XXExpertProfileViewHeight;
     
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.questionHeaderView.y += height;
         self.questionVc.view.y += height;
         self.questionVc.view.height -= height;
     } completion:^(BOOL finished) {
@@ -124,6 +133,7 @@
     self.picView = picView;
 }
 
+// 专家简介
 - (void)setupExpertVc{
     
     XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];
@@ -137,17 +147,34 @@
     self.expertVc = expertVc;
 }
 
+// 精选提问头部
+- (void)setupQuestionHeaderView{
+    XXQuestionHeaderView *questionHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXQuestionHeaderView" owner:nil options:0]lastObject];
+    questionHeaderView.x = 0;
+    questionHeaderView.y = CGRectGetMaxY(self.expertVc.view.frame);
+    questionHeaderView.height = XXQuestionHeaderViewHeight;
+    questionHeaderView.width = self.view.width;
+    
+    questionHeaderView.delegate = self; // 设置代理
+    [self.view addSubview:questionHeaderView];
+    self.questionHeaderView = questionHeaderView;
+}
+
+
+
+// 精选提问
 - (void)setupQuestionVc{
     
     XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
     questionVc.view.x = 0;
-    questionVc.view.y = CGRectGetMaxY(self.expertVc.view.frame);
+    questionVc.view.y = CGRectGetMaxY(self.questionHeaderView.frame);
     questionVc.view.width = self.view.width;
     questionVc.view.height = self.view.height - questionVc.view.y - XXJoinButtonHeight;
-//    questionVc.tableView.bounces = NO;
     [self addChildViewController:questionVc];
     [self.view addSubview:questionVc.view];
     self.questionVc = questionVc;
+    
+
 }
 
 
@@ -204,6 +231,16 @@
         [MBProgressHUD showSuccess:@"报名成功！" toView:XXKeyWindow];
         self.joinBtn.enabled = NO;
     });
+}
+
+#pragma mark - 点击提问按钮跳到提问界面 XXQuestionHeaderViewDelegate
+- (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn
+{
+    LZAlbumCreateVC *vc = [[LZAlbumCreateVC alloc] initWithNibName:@"LZAlbumCreateVC" bundle:nil];
+    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
+    vc.view.frame = self.view.frame;
+    XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 @end

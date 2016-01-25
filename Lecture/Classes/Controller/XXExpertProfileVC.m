@@ -82,7 +82,7 @@ static NSString * const expertHeaderId = @"expertHeaderId";
 
 #pragma mark - headerView的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return XXHeaderViewHeight;
+    return XXExpertHeaderViewHeight;
 }
 
 

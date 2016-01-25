@@ -10,9 +10,9 @@
 
 @implementation XXConst
 const CGFloat PlayerToolBarHeight = 34;
+const CGFloat XXExpertHeaderViewHeight = 44;
+const CGFloat XXQuestionHeaderViewHeight = 44; 
 NSString * const XXCollectionViewCellIdentifier = @"XXCollectionViewCellIdentifier";
-NSString * const XXPlayerPicViewWillHide = @"XXPlayerPicViewWillHide";
-NSString * const XXPlayerPicViewWillShow = @"XXPlayerPicViewWillShow";
 NSString * const XXQuestionToolbarShareButtonClick = @"XXQuestionToolbarShareButtonClick";
 NSString * const XXQuestionToolbarUnlikeButtonClick = @"XXQuestionToolbarShareButtonClick";
 
