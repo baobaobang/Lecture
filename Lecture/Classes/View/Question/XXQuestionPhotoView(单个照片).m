@@ -48,7 +48,7 @@
     // 从网络加载缩小图
     [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (error) {
-            NSLog(@"%@", error);
+            XXLog(@"%@", error);
         }
     }];
 

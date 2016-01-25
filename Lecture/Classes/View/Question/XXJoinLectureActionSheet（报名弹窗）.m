@@ -100,7 +100,7 @@
 
 - (void)setLecture:(XXLecture *)lecture{
     _lecture = lecture;
-    NSLog(@"%@", lecture.name);
+    
     // nameLabel
     _nameLabel.text = [NSString stringWithFormat:@"主题：%@", lecture.name];
     

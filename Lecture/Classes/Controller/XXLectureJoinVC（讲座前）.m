@@ -95,7 +95,6 @@
         self.questionVc.view.height += height;
         
     } completion:^(BOOL finished) {
-        NSLog(@"%f", self.joinBtn.y);
     }];
 }
 

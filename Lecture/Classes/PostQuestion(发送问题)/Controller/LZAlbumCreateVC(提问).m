@@ -16,11 +16,12 @@
 #import "XXQuestionFrame.h"
 #import <MJExtension.h>
 #import "XXQuestionPhoto.h"
+#import "LGPhoto.h"
 
 static CGFloat kLZAlbumCreateVCPhotoSize = 60; // 每张图片的大小
 static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 
-@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UIAlertViewDelegate>
+@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UIAlertViewDelegate, LGPhotoPickerViewControllerDelegate>
 
 /**
  *  文字容器
@@ -38,6 +39,8 @@ static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 @property (nonatomic,strong) NSMutableArray* selectPhotos;
 
 @property (strong,nonatomic) XHPhotographyHelper* photographyHelper;
+
+@property (nonatomic, assign) LGShowImageType showType;
 
 @end
 
@@ -58,6 +61,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     
     // 设置图片
     [self setupPhotoCollectionView];
+    
     
 }
 
@@ -290,19 +294,21 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 {
     if(indexPath.row==_selectPhotos.count){ // 点击➕按钮
         //TODO: 现在只能从相册中选取图片，等会添加照相
-        [self.photographyHelper showOnPickerViewControllerSourceType:
-         UIImagePickerControllerSourceTypePhotoLibrary onViewController:self compled:^(UIImage *image, NSDictionary *editingInfo) {
-            if (image) {
-                [self addImage:image];
-            } else {
-                if (!editingInfo)
-                    return ;
-                image=[editingInfo valueForKey:UIImagePickerControllerOriginalImage];
-                if(image){
-                    [self addImage:image];
-                }
-            }
-        }];
+//        [self.photographyHelper showOnPickerViewControllerSourceType:
+//         UIImagePickerControllerSourceTypePhotoLibrary onViewController:self compled:^(UIImage *image, NSDictionary *editingInfo) {
+//            if (image) {
+//                [self addImage:image];
+//            } else {
+//                if (!editingInfo)
+//                    return ;
+//                image=[editingInfo valueForKey:UIImagePickerControllerOriginalImage];
+//                if(image){
+//                    [self addImage:image];
+//                }
+//            }
+//        }];
+        
+        [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImagePicker];
     }
 }
 
@@ -320,5 +326,45 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     [self.photoCollectionView reloadData];
 }
 
+
+#pragma mark - LGPhotoBrowser
+
+/**
+ *  初始化相册选择器
+ */
+- (void)presentPhotoPickerViewControllerWithStyle:(LGShowImageType)style {
+    LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:style];
+    pickerVc.status = PickerViewShowStatusCameraRoll;
+    pickerVc.maxCount = kLZAlbumPhotosLimitCount;   // 最多能选几张图片
+    pickerVc.delegate = self;
+    self.showType = style;
+    [pickerVc showPickerVc:self];
+}
+
+
+
+#pragma mark - LGPhotoPickerViewControllerDelegate 返回选择的所有图片
+
+- (void)pickerViewControllerDoneAsstes:(NSArray *)assets isOriginal:(BOOL)original{
+
+    NSLog(@"---%@", assets);
+    if (assets) {
+        NSLog(@"---%@", assets);
+        
+        for (LGPhotoPickerBrowserPhoto *photo in assets) {
+            UIImage *image = photo.thumbImage;
+            [self.selectPhotos addObject:image];
+        }
+
+        [self.photoCollectionView reloadData];
+    }
+    
+    // 提醒是否发送原图
+    //    NSInteger num = (long)assets.count;
+    //    NSString *isOriginal = original? @"YES":@"NO";
+    //    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送图片" message:[NSString stringWithFormat:@"您选择了%ld张图片\n是否原图：%@",(long)num,isOriginal] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    //    [alertView show];
+    
+}
 
 @end

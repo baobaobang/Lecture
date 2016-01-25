@@ -255,7 +255,6 @@
     }else {
         self.currentItem = lastIndexPath.item;
     }
-    NSLog(@"%ld",self.currentItem);
 }
 
 #pragma mark - XXPlayerToolBarDelegate 控制slider
