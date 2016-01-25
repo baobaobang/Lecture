@@ -294,7 +294,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 {
     if(indexPath.row==_selectPhotos.count){ // 点击➕按钮
         //TODO: 现在只能从相册中选取图片，等会添加照相
-        [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImagePicker];
+        [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImageBroswer];
     }
 }
 
@@ -306,13 +306,6 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     return YES;
 }
 
-#pragma mark - 添加一张图片
--(void)addImage:(UIImage*)image{
-    [self.selectPhotos addObject:image];
-    [self.photoCollectionView reloadData];
-}
-
-
 #pragma mark - LGPhotoBrowser
 
 /**
@@ -320,14 +313,11 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
  */
 - (void)presentPhotoPickerViewControllerWithStyle:(LGShowImageType)style {
     LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:style];
-    pickerVc.status = PickerViewShowStatusCameraRoll;
+    pickerVc.status = PickerViewShowStatusCameraRoll; // 默认进入相机胶卷
     pickerVc.maxCount = kLZAlbumPhotosLimitCount - self.selectPhotos.count;   // 最多能选图片的张数
     pickerVc.delegate = self;
-    self.showType = style;
     [pickerVc showPickerVc:self];
 }
-
-
 
 #pragma mark - LGPhotoPickerViewControllerDelegate 返回选择的所有图片
 

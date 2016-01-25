@@ -25,8 +25,8 @@ typedef void(^ZLPickerBrowserViewControllerTapDisMissBlock)(NSInteger);
 
 //图片显示器分类
 typedef NS_ENUM(NSInteger, LGShowImageType) {
-    LGShowImageTypeImagePicker = 0, //照片选择器
-    LGShowImageTypeImageBroswer,    //照片浏览器
+    LGShowImageTypeImagePicker = 0, //照片选择器，有原图按钮
+    LGShowImageTypeImageBroswer,    //照片浏览器，无原图按钮
     LGShowImageTypeImageURL,        //网络图片浏览器
 };
 
