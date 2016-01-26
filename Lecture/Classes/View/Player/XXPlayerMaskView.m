@@ -50,7 +50,7 @@
         
         UIButton *bigPlayBtn = [[UIButton alloc] init];
         bigPlayBtn.tag = XXPlayerMaskViewButtonTypePlay;
-        [bigPlayBtn setNBg:@"playbar_playbtn_nomal" hBg:@"playbar_playbtn_click"];
+        [bigPlayBtn setNBg:@"play-on" hBg:@"play-on"];
         [bigPlayBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:bigPlayBtn];
         self.bigPlayBtn = bigPlayBtn;

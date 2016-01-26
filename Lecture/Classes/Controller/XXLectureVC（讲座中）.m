@@ -10,12 +10,16 @@
 #import "XXNavigationController.h"
 #import "XXPlayerVC.h"
 #import "XXExpertProfileVC.h"
-#import "XXQuestionVC.h"
+#import "XXOnlineVC.h"
+#import "XXOnlineHeaderView.h"
+#import "XXExpertProfileHeaderView.h"
 
-@interface XXLectureVC ()
+@interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) XXPlayerVC *playerVc;
+@property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
-@property (nonatomic, weak) XXQuestionVC *questionVc;
+@property (nonatomic, weak) XXOnlineHeaderView *onlineHeaderView;
+@property (nonatomic, weak) XXOnlineVC *onlineVc;
 @property (nonatomic, weak) XXButton *postQuestionBtn;
 
 @end
@@ -26,62 +30,34 @@
 #pragma mark - 生命周期
 - (void)viewDidLoad{
     
+    self.view.backgroundColor = [UIColor clearColor];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     // 设置导航栏
     [self setupNav];
     
     // 设置讲座图片和音频部分
     [self setupPlayerVc];
     
+    // 设置专家简介头部
+    [self setupExpertHeaderView];
+    
     // 设置专家简介
     [self setupExpertVc];
     
-    // 设置在线交流部分
-    [self setupQuestionVc];
+    // 设置在线交流头部
+    [self setupOnlineHeaderView];
+    
+    // 设置在线交流
+    [self setupOnlineVc];
     
     // 设置我要提问按钮
     [self setupPostQuestionBtn];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
 }
 
 - (void)dealloc{
-    [XXNotificationCenter removeObserver:self];
-}
 
-#pragma mark - 收到通知后的处理
-
-- (void)hidePlayerPicView{
-    
-    // 需要上移的高度
-    CGFloat height = self.playerVc.playerPicView.height;
-    
-    // 先调整questionVc的高度
-    self.questionVc.view.height += height;
-    
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.y -= height;
-        // 在上移控制器的view的时候，同步下移报名按钮，这样就可以保证报名按钮一直在最下方
-        self.postQuestionBtn.y += height;
-    } completion:^(BOOL finished) {
-        
-    }];
-}
-
-- (void)showPlayerPicView{
-    
-    // 需要下移的高度
-    CGFloat height = self.playerVc.playerPicView.height;
-    
-    // 先调整questionVc的高度
-    self.questionVc.view.height -= height;
-    
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.y += height;
-        self.postQuestionBtn.y -= height;
-    } completion:^(BOOL finished) {
-        
-    }];
 }
 
 #pragma mark - 初始化
@@ -91,14 +67,11 @@
  */
 - (void)setupNav
 {
-    /* 设置导航栏上面的内容 */
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(leftItemClick) bgImage:@"navigationbar_friendsearch" bgHighImage:@"navigationbar_friendsearch_highlighted"];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(rightItemClick) bgImage:@"navigationbar_pop" bgHighImage:@"navigationbar_pop_highlighted"];
-    
-    /* 设置导航栏的背景颜色 */
-    // 这里设置无效
-//    self.navigationController.navigationBar.barTintColor = XXColorTint;
+    /* 设置左右item */
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(leftItemClick) bgImage:@"back" bgHighImage:@"back"];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(rightItemClick) bgImage:@"Refresh" bgHighImage:@"Refresh"];
 }
+
 
 - (void)setupPlayerVc{
     
@@ -112,38 +85,66 @@
     self.playerVc = playerVc;
 }
 
+// 专家简介头部
+- (void)setupExpertHeaderView{
+    
+    XXExpertProfileHeaderView *expertHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXExpertProfileHeaderView" owner:nil options:0]lastObject];
+    expertHeaderView.x = 0;
+    expertHeaderView.y = CGRectGetMaxY(self.playerVc.view.frame);
+    expertHeaderView.height = kXXExpertHeaderViewHeight;
+    expertHeaderView.width = self.view.width;
+    
+    expertHeaderView.delegate = self; // 设置代理
+    [self.view addSubview:expertHeaderView];
+    self.expertHeaderView = expertHeaderView;
+}
+
+// 专家简介
 - (void)setupExpertVc{
     
     XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];
     expertVc.view.x = 0;
-    expertVc.view.y = CGRectGetMaxY(self.playerVc.view.frame);
+    expertVc.view.y = CGRectGetMaxY(self.expertHeaderView.frame);
     expertVc.view.width = self.view.width;
-    expertVc.view.height = XXExpertProfileViewHeight;
+    expertVc.view.height = kXXExpertTableViewHeight;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
     self.expertVc = expertVc;
 }
 
-
-- (void)setupQuestionVc{
+// 在线交流头部
+- (void)setupOnlineHeaderView{
+    XXOnlineHeaderView *onlineHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXOnlineHeaderView" owner:nil options:0]lastObject];
+    onlineHeaderView.x = 0;
+    onlineHeaderView.y = CGRectGetMaxY(self.expertVc.view.frame);
+    onlineHeaderView.height = kXXOnlineHeaderViewHeight;
+    onlineHeaderView.width = self.view.width;
     
-    XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
-    questionVc.view.x = 0;
-    questionVc.view.y = CGRectGetMaxY(self.expertVc.view.frame);
-    questionVc.view.width = self.view.width;
-    questionVc.view.height = self.view.height;
-    [self addChildViewController:questionVc];
-    [self.view addSubview:questionVc.view];
-    self.questionVc = questionVc;
+    onlineHeaderView.delegate = self; // 设置代理
+    [self.view addSubview:onlineHeaderView];
+    self.onlineHeaderView = onlineHeaderView;
 }
 
-// 设置报名活动按钮
+// 在线交流
+- (void)setupOnlineVc{
+    
+    XXOnlineVC *onlineVc = [[XXOnlineVC alloc] init];
+    onlineVc.view.x = 0;
+    onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
+    onlineVc.view.width = self.view.width;
+    onlineVc.view.height = self.view.height;
+    [self addChildViewController:onlineVc];
+    [self.view addSubview:onlineVc.view];
+    self.onlineVc = onlineVc;
+}
+
+// 设置提问按钮（最底部）
 - (void)setupPostQuestionBtn{
     
     XXButton *postQuestionBtn = [[XXButton alloc] init];
     [postQuestionBtn setTitle:@"我要提问" forState:UIControlStateNormal];
     postQuestionBtn.backgroundColor = XXColorGreen;
-    [postQuestionBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [postQuestionBtn addTarget:self action:@selector(postQuestion:) forControlEvents:UIControlEventTouchUpInside];
     postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;
     postQuestionBtn.height = XXJoinButtonHeight;
     postQuestionBtn.x = 0;
@@ -152,19 +153,71 @@
     self.postQuestionBtn = postQuestionBtn;
 }
 
-
-- (void)joinBtnClick:(XXButton *)btn{
-    
+// 提问
+- (void)postQuestion:(XXButton *)btn{
+    //TODO:
 }
 
 - (void)leftItemClick
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];//TODO: 
 }
 
 - (void)rightItemClick
 {
-    NSLog(@"rightItemClick");
+    NSLog(@"refresh");//TODO:
 }
+
+
+#pragma mark - 点击关注按钮 XXExpertProfileHeaderViewDelegate
+- (void)expertProfileHeaderView:(XXExpertProfileHeaderView *)headerView didClickFollowBtn:(UIButton *)btn{
+    XXLog(@"follow");//TODO:点击关注按钮
+}
+
+#pragma mark - 收起头部和展开头部 XXOnlineHeaderViewDelegate
+
+- (void)onlineHeaderView:(XXOnlineHeaderView *)headerView didClickContractBtn:(UIButton *)btn
+{
+    if (!btn.selected) {
+        [self hidePicView];
+    }else{
+        [self showPicView];
+    }
+}
+
+- (void)hidePicView{
+
+    // 需要上移的高度
+    CGFloat heightOne = self.playerVc.playerPicView.height;
+    CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+    
+    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.playerVc.view.y -= heightOne;
+        self.expertVc.view.y -= heightOne;
+        self.onlineHeaderView.y -= heightTwo;
+        self.onlineVc.view.y -= heightTwo;
+        self.onlineVc.view.height += heightTwo;
+        
+    } completion:^(BOOL finished) {
+    }];
+}
+
+- (void)showPicView{
+
+    // 需要下移的高度
+    CGFloat heightOne = self.playerVc.playerPicView.height;
+    CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+    
+    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.playerVc.view.y += heightOne;
+        self.expertVc.view.y += heightOne;
+        self.onlineHeaderView.y += heightTwo;
+        self.onlineVc.view.y += heightTwo;
+        self.onlineVc.view.height -= heightTwo;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
 
 @end

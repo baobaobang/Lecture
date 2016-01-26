@@ -1,18 +1,18 @@
 //
-//  MCViewController.m
-//  LZAlbum
+//  XXBaseVC.m
+//  Lecture
 //
-//  Created by lzw on 15/3/12.
-//  Copyright (c) 2015年 lzw. All rights reserved.
+//  Created by 陈旭 on 16/1/24.
+//  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "LZBaseVC.h"
+#import "XXBaseVC.h"
 
-@interface LZBaseVC ()
+@interface XXBaseVC ()
 
 @end
 
-@implementation LZBaseVC
+@implementation XXBaseVC
 
 -(void)alert:(NSString*)msg{
     UIAlertView *alertView=[[UIAlertView alloc]

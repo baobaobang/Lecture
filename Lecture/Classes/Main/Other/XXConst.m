@@ -9,9 +9,13 @@
 #import "XXConst.h"
 
 @implementation XXConst
-const CGFloat PlayerToolBarHeight = 34;
-const CGFloat XXExpertHeaderViewHeight = 44;
-const CGFloat XXQuestionHeaderViewHeight = 44; 
+const CGFloat kXXPlayerToolBarHeight = 34;
+const CGFloat kXXExpertHeaderViewHeight = 44;
+const CGFloat kXXExpertTableViewHeight = 80;
+const CGFloat kXXQuestionHeaderViewHeight = 44;
+const CGFloat kXXOnlineHeaderViewHeight = 44;
+const CGFloat kXXHideAndShowPicViewDuration = 0.4;
+
 NSString * const XXCollectionViewCellIdentifier = @"XXCollectionViewCellIdentifier";
 NSString * const XXQuestionToolbarShareButtonClick = @"XXQuestionToolbarShareButtonClick";
 NSString * const XXQuestionToolbarUnlikeButtonClick = @"XXQuestionToolbarShareButtonClick";

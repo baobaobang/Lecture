@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LZAlbumCreateVC">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XXQuestionCreateVC">
             <connections>
                 <outlet property="photoCollectionView" destination="bOy-0L-s4S" id="SQP-ew-Duk"/>
                 <outlet property="textView" destination="lF8-Rs-mTL" id="jw3-We-WmD"/>

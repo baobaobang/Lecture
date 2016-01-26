@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface XXConst : NSObject
-/** 数字*/
-extern const CGFloat PlayerToolBarHeight;
-extern const CGFloat XXExpertHeaderViewHeight;
-extern const CGFloat XXQuestionHeaderViewHeight;
+/** 数字 k开头*/
+extern const CGFloat kXXPlayerToolBarHeight;
+extern const CGFloat kXXExpertHeaderViewHeight;// 专家简介头部的高度
+extern const CGFloat kXXExpertTableViewHeight;// 专家简介的高度
+extern const CGFloat kXXQuestionHeaderViewHeight;
+extern const CGFloat kXXOnlineHeaderViewHeight;
+extern const CGFloat kXXHideAndShowPicViewDuration;
+
 extern NSString * const XXCollectionViewCellIdentifier;
 
 extern NSString * const XXQuestionToolbarShareButtonClick;
@@ -69,9 +73,6 @@ extern NSString * const XXTextDidDeleteNotification;
 
 // 状态栏和导航栏的总高度
 #define XXStatusAndNavBarHeight 64
-
-// 专家简介部分的高度
-#define XXExpertProfileViewHeight 120
 
 // 报名活动按钮的高度
 #define XXJoinButtonHeight 44

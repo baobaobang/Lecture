@@ -17,7 +17,7 @@
 #import "MBProgressHUD+CZ.h"
 #import "XXQuestionHeaderView.h"
 #import "XXExpertProfileHeaderView.h"
-#import "LZAlbumCreateVC.h"
+#import "XXQuestionCreateVC.h"
 #import "XXNavigationController.h"
 
 @interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
@@ -87,9 +87,9 @@
 - (void)hidePicView{
 
     // 需要上移的高度
-    CGFloat height = self.picView.height + XXExpertHeaderViewHeight + XXExpertProfileViewHeight;
+    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
     
-    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.questionHeaderView.y -= height;
         self.questionVc.view.y -= height;
         self.questionVc.view.height += height;
@@ -101,9 +101,9 @@
 - (void)showPicView{
     
     // 需要下移的高度
-    CGFloat height = self.picView.height + XXExpertHeaderViewHeight + XXExpertProfileViewHeight;
+    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
     
-    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.questionHeaderView.y += height;
         self.questionVc.view.y += height;
         self.questionVc.view.height -= height;
@@ -142,7 +142,7 @@
     XXExpertProfileHeaderView *expertHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXExpertProfileHeaderView" owner:nil options:0]lastObject];
     expertHeaderView.x = 0;
     expertHeaderView.y = CGRectGetMaxY(self.picView.frame);
-    expertHeaderView.height = XXExpertHeaderViewHeight;
+    expertHeaderView.height = kXXExpertHeaderViewHeight;
     expertHeaderView.width = self.view.width;
     
     expertHeaderView.delegate = self; // 设置代理
@@ -157,7 +157,7 @@
     expertVc.view.x = 0;
     expertVc.view.y = CGRectGetMaxY(self.expertHeaderView.frame);
     expertVc.view.width = self.view.width;
-    expertVc.view.height = XXExpertProfileViewHeight;
+    expertVc.view.height = kXXExpertTableViewHeight;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
     self.expertVc = expertVc;
@@ -168,7 +168,7 @@
     XXQuestionHeaderView *questionHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXQuestionHeaderView" owner:nil options:0]lastObject];
     questionHeaderView.x = 0;
     questionHeaderView.y = CGRectGetMaxY(self.expertVc.view.frame);
-    questionHeaderView.height = XXQuestionHeaderViewHeight;
+    questionHeaderView.height = kXXQuestionHeaderViewHeight;
     questionHeaderView.width = self.view.width;
     
     questionHeaderView.delegate = self; // 设置代理
@@ -189,8 +189,6 @@
     [self addChildViewController:questionVc];
     [self.view addSubview:questionVc.view];
     self.questionVc = questionVc;
-    
-
 }
 
 
@@ -257,7 +255,7 @@
 #pragma mark - 点击提问按钮跳到提问界面 XXQuestionHeaderViewDelegate
 - (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn
 {
-    LZAlbumCreateVC *vc = [[LZAlbumCreateVC alloc] initWithNibName:@"LZAlbumCreateVC" bundle:nil];
+    XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
     vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
     vc.view.frame = self.view.frame;
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];

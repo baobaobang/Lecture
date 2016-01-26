@@ -1,15 +1,14 @@
 //
-//  MCViewController.h
-//  LZAlbum
+//  XXBaseVC.h
+//  Lecture
 //
-//  Created by lzw on 15/3/12.
-//  Copyright (c) 2015年 lzw. All rights reserved.
+//  Created by 陈旭 on 16/1/24.
+//  Copyright © 2016年 陈旭. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface LZBaseVC : UIViewController
+@interface XXBaseVC : UIViewController
 
 -(void)showNetworkIndicator;
 

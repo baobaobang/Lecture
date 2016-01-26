@@ -1,14 +1,16 @@
 //
-//  MCAlbumPhotoCollectionViewCell.m
-//  LZAlbum
+//  XXQuestionPhotoCollectionViewCell.m
+//  Lecture
 //
-//  Created by lzw on 15/3/27.
-//  Copyright (c) 2015年 lzw. All rights reserved.
+//  Created by 陈旭 on 16/1/24.
+//  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "LZAlbumPhotoCollectionViewCell.h"
+//  增强：带有占位文字
 
-@implementation LZAlbumPhotoCollectionViewCell
+#import "XXQuestionPhotoCollectionViewCell.h"
+
+@implementation XXQuestionPhotoCollectionViewCell
 
 -(ZLCameraImageView *)photoImageView{
     if(_photoImageView==nil){

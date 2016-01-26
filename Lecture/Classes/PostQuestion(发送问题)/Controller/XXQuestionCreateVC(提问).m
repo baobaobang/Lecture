@@ -1,15 +1,15 @@
 //
-//  MCAlbumCreateVC.m
-//  LZAlbum
+//  XXQuestionCreateVC.m
+//  Lecture
 //
-//  Created by lzw on 15/4/1.
-//  Copyright (c) 2015年 lzw. All rights reserved.
+//  Created by 陈旭 on 16/1/24.
+//  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "LZAlbumCreateVC.h"
+#import "XXQuestionCreateVC.h"
 #import "XHPhotographyHelper.h"
-//#import "LZAlbumManager.h"
-#import "LZAlbumPhotoCollectionViewCell.h"
+//#import "XXQuestionManager.h"
+#import "XXQuestionPhotoCollectionViewCell.h"
 //#import "AppDelegate.h"
 #import "CXTextViewWithPlaceholder.h"
 #import "XXQuestion.h"
@@ -19,10 +19,10 @@
 #import "LGPhoto.h"
 #import "ZLCameraImageView.h"
 
-static CGFloat kLZAlbumCreateVCPhotoSize = 60; // 每张图片的大小
-static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
+static CGFloat kXXQuestionCreateVCPhotoSize = 60; // 每张图片的大小
+static NSUInteger kXXQuestionPhotosLimitCount = 3; // 图片的数量限制
 
-@interface LZAlbumCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,LGPhotoPickerBrowserViewControllerDataSource,LGPhotoPickerBrowserViewControllerDelegate, ZLCameraImageViewDelegate>
+@interface XXQuestionCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,LGPhotoPickerBrowserViewControllerDataSource,LGPhotoPickerBrowserViewControllerDelegate, ZLCameraImageViewDelegate>
 
 /**
  *  文字容器
@@ -49,7 +49,7 @@ static NSUInteger kLZAlbumPhotosLimitCount = 3; // 图片的数量限制
 
 static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
-@implementation LZAlbumCreateVC
+@implementation XXQuestionCreateVC
 
 #pragma mark - 生命周期
 
@@ -90,7 +90,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 - (void)setupPhotoCollectionView{
     
-    [self.photoCollectionView registerClass:[LZAlbumPhotoCollectionViewCell class] forCellWithReuseIdentifier:photoCellIndentifier];
+    [self.photoCollectionView registerClass:[XXQuestionPhotoCollectionViewCell class] forCellWithReuseIdentifier:photoCellIndentifier];
     
     // 有导航控制器的时候，如果控制器里面只有一个ScrollView，ScrollView就会默认往下调整64
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -127,7 +127,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 //        [self showProgress];
 //        [self runInGlobalQueue:^{
 //            NSError* error;
-//            [[LZAlbumManager manager] createAlbumWithText:self.contentTextField.text photos:self.selectPhotos error:&error];
+//            [[XXQuestionManager manager] createAlbumWithText:self.contentTextField.text photos:self.selectPhotos error:&error];
 //            [weakSelf runInMainQueue:^{
 //                [weakSelf hideProgress];
 //                if(error==nil){
@@ -268,7 +268,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    if(self.selectPhotos.count== kLZAlbumPhotosLimitCount){
+    if(self.selectPhotos.count== kXXQuestionPhotosLimitCount){
         // 如果照片已满就不创建添加按钮的cell
         return self.selectPhotos.count;
     }else{
@@ -278,7 +278,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    LZAlbumPhotoCollectionViewCell* cell=(LZAlbumPhotoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:photoCellIndentifier forIndexPath:indexPath];
+    XXQuestionPhotoCollectionViewCell* cell=(XXQuestionPhotoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:photoCellIndentifier forIndexPath:indexPath];
     if(indexPath.row==self.selectPhotos.count){ // 最后一个cell为加号按钮
         cell.photoImageView.image=[UIImage imageNamed:@"AlbumAddBtn"];
         cell.photoImageView.highlightedImage=[UIImage imageNamed:@"AlbumAddBtnHL"];
@@ -316,7 +316,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(kLZAlbumCreateVCPhotoSize, kLZAlbumCreateVCPhotoSize);
+    return CGSizeMake(kXXQuestionCreateVCPhotoSize, kXXQuestionCreateVCPhotoSize);
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -380,7 +380,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 - (void)presentPhotoPickerViewControllerWithStyle:(LGShowImageType)style {
     LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:style];
     pickerVc.status = PickerViewShowStatusCameraRoll; // 默认进入相机胶卷
-    pickerVc.maxCount = kLZAlbumPhotosLimitCount - self.selectPhotos.count;   // 最多能选图片的张数
+    pickerVc.maxCount = kXXQuestionPhotosLimitCount - self.selectPhotos.count;   // 最多能选图片的张数
     pickerVc.delegate = self;
     [pickerVc showPickerVc:self];
 }
@@ -411,7 +411,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 - (void)presentCameraContinuous {
     ZLCameraViewController *cameraVC = [[ZLCameraViewController alloc] init];
     // 拍照最多个数
-    cameraVC.maxCount = kLZAlbumPhotosLimitCount - self.selectPhotos.count;
+    cameraVC.maxCount = kXXQuestionPhotosLimitCount - self.selectPhotos.count;
     // 连拍
     cameraVC.cameraType = ZLCameraContinuous;
     cameraVC.callback = ^(NSArray *cameras){

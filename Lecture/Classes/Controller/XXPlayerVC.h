@@ -17,5 +17,8 @@
 // 播放状态 默认暂停状态
 @property(assign,nonatomic,getter=isPlaying)BOOL playing;
 
+/**
+ *  图片部分
+ */
 @property (nonatomic, weak) XXPlayerPicView *playerPicView;
 @end
