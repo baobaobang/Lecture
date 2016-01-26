@@ -9,11 +9,7 @@
 #import "XXJoinLectureActionSheet.h"
 #import "XXLecture.h"
 
-#define XXJoinLectureActionSheetDuration 0.3
-#define XXJoinLectureActionSheetAlpha 0.4
-#define XXJoinLectureActionSheetHeight 200
-#define XXJoinLectureActionSheetLabelFont 16
-#define XXJoinLectureActionSheetDoneBtnFont 18
+
 
 
 @interface XXJoinLectureActionSheet ()
@@ -48,7 +44,7 @@
         // nameLabel
         UILabel *nameLabel = [[UILabel alloc] init];
         nameLabel.textColor = XXColorText;
-        nameLabel.font = [UIFont systemFontOfSize:XXJoinLectureActionSheetLabelFont];
+        nameLabel.font = [UIFont systemFontOfSize:kXXJoinLectureActionSheetLabelFont];
         nameLabel.textAlignment = NSTextAlignmentCenter;
         [self.actionSheet addSubview:nameLabel];
         self.nameLabel = nameLabel;
@@ -56,7 +52,7 @@
         // timeLabel
         UILabel *timeLabel = [[UILabel alloc] init];
         timeLabel.textColor = XXColorText;
-        timeLabel.font = [UIFont systemFontOfSize:XXJoinLectureActionSheetLabelFont];
+        timeLabel.font = [UIFont systemFontOfSize:kXXJoinLectureActionSheetLabelFont];
         timeLabel.textAlignment = NSTextAlignmentCenter;
         [self.actionSheet addSubview:timeLabel];
         self.timeLabel = timeLabel;
@@ -64,7 +60,7 @@
         // expertLabel
         UILabel *expertLabel = [[UILabel alloc] init];
         expertLabel.textColor = XXColorText;
-        expertLabel.font = [UIFont systemFontOfSize:XXJoinLectureActionSheetLabelFont];
+        expertLabel.font = [UIFont systemFontOfSize:kXXJoinLectureActionSheetLabelFont];
         expertLabel.textAlignment = NSTextAlignmentCenter;
         [self.actionSheet addSubview:expertLabel];
         self.expertLabel = expertLabel;
@@ -72,7 +68,7 @@
         // pointsLabel
         UILabel *pointsLabel = [[UILabel alloc] init];
         pointsLabel.textColor = [UIColor redColor];
-        pointsLabel.font = [UIFont systemFontOfSize:XXJoinLectureActionSheetLabelFont];
+        pointsLabel.font = [UIFont systemFontOfSize:kXXJoinLectureActionSheetLabelFont];
         pointsLabel.textAlignment = NSTextAlignmentCenter;
         [self.actionSheet addSubview:pointsLabel];
         self.pointsLabel = pointsLabel;
@@ -81,7 +77,7 @@
         XXButton *doneBtn = [[XXButton alloc] init];
         [doneBtn setTitle:@"确认报名" forState:UIControlStateNormal];
         [doneBtn setTitleColor:XXColorText forState:UIControlStateNormal];
-        doneBtn.titleLabel.font = [UIFont systemFontOfSize:XXJoinLectureActionSheetDoneBtnFont];
+        doneBtn.titleLabel.font = [UIFont systemFontOfSize:kXXJoinLectureActionSheetDoneBtnFont];
         [doneBtn setBackgroundColor:XXColorTint];
         [doneBtn addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchUpInside];
         [self.actionSheet addSubview:doneBtn];
@@ -89,7 +85,7 @@
         
         // cancelBtn
         UIButton *cancelBtn = [[UIButton alloc] init];
-        [cancelBtn setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];//TODO:需要图片
+        [cancelBtn setBackgroundImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];//TODO:需要图片
         [cancelBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
         [self.actionSheet addSubview:cancelBtn];
         self.cancelBtn = cancelBtn;
@@ -130,7 +126,7 @@
     [super layoutSubviews];
     
     // actionSheet
-    _actionSheet.frame = CGRectMake(0, self.height, self.width, XXJoinLectureActionSheetHeight);
+    _actionSheet.frame = CGRectMake(0, self.height, self.width, kXXJoinLectureActionSheetHeight);
 
     CGFloat width = self.width;
     CGFloat height = 25;
@@ -173,7 +169,7 @@
 }
 
 - (void)cancel{
-    [UIView animateWithDuration:XXJoinLectureActionSheetDuration animations:^{
+    [UIView animateWithDuration:kXXJoinLectureActionSheetDuration animations:^{
   
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
         self.actionSheet.y += self.actionSheet.height;
@@ -186,7 +182,7 @@
     [view addSubview:self];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:XXJoinLectureActionSheetDuration animations:^{
+        [UIView animateWithDuration:kXXJoinLectureActionSheetDuration animations:^{
             
             self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
             self.actionSheet.y -= self.actionSheet.height;

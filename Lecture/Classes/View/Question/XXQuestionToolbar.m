@@ -106,7 +106,7 @@
         case XXQuestionToolbarButtonTypeShare:{ // 分享
             question.shares_count++;
             // 发出通知
-            NSNotification *notiShare = [NSNotification notificationWithName:XXQuestionToolbarShareButtonClick object:nil userInfo:@{@"toolbar":self}];
+            NSNotification *notiShare = [NSNotification notificationWithName:XXQuestionToolbarShareButtonClickNotification object:nil userInfo:@{@"toolbar":self}];
             [XXNotificationCenter postNotification:notiShare];
             break;
         }
@@ -127,7 +127,7 @@
             }
             
             // 发出通知
-            NSNotification *notiUnlike = [NSNotification notificationWithName:XXQuestionToolbarUnlikeButtonClick object:nil userInfo:@{@"toolbar":self}];
+            NSNotification *notiUnlike = [NSNotification notificationWithName:XXQuestionToolbarUnlikeButtonClickNotification object:nil userInfo:@{@"toolbar":self}];
             [XXNotificationCenter postNotification:notiUnlike];
             break;
         }

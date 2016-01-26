@@ -77,7 +77,7 @@
     
     XXPlayerVC *playerVc = [[XXPlayerVC alloc] init];
     playerVc.view.x = 0;
-    playerVc.view.y = XXStatusAndNavBarHeight;
+    playerVc.view.y = kXXStatusAndNavBarHeight;
     playerVc.view.width = self.view.width;
     // playerVc.view的高度在计算完子view的高度后才能得到
     [self addChildViewController:playerVc];
@@ -146,7 +146,7 @@
     postQuestionBtn.backgroundColor = XXColorGreen;
     [postQuestionBtn addTarget:self action:@selector(postQuestion:) forControlEvents:UIControlEventTouchUpInside];
     postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;
-    postQuestionBtn.height = XXJoinButtonHeight;
+    postQuestionBtn.height = kXXJoinButtonHeight;
     postQuestionBtn.x = 0;
     postQuestionBtn.y = self.view.height - postQuestionBtn.height;
     [self.view addSubview:postQuestionBtn];

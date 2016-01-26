@@ -73,8 +73,8 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:questionCellReuseId];
     
     // 添加观察者
-    [XXNotificationCenter addObserver:self selector:@selector(questionToolbarShareBtnClicked:) name:XXQuestionToolbarShareButtonClick object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(questionToolbarUnlikeBtnClicked:) name:XXQuestionToolbarUnlikeButtonClick object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(questionToolbarShareBtnClicked:) name:XXQuestionToolbarShareButtonClickNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(questionToolbarUnlikeBtnClicked:) name:XXQuestionToolbarUnlikeButtonClickNotification object:nil];
     
 }
 

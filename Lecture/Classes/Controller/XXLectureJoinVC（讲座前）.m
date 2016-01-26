@@ -126,9 +126,9 @@
     
     UIImageView *picView = [[UIImageView alloc] init];
     picView.x = 0;
-    picView.y = XXStatusAndNavBarHeight;
+    picView.y = kXXStatusAndNavBarHeight;
     picView.width = self.view.width;
-    picView.height = XXPlayerPicViewHeightWidthRatio * picView.width;
+    picView.height = kXXPlayerPicViewHeightWidthRatio * picView.width;
     XXLecture *lecture = [self.lectures lastObject];
     picView.image = [UIImage imageNamed:lecture.profilePic];
     picView.userInteractionEnabled = YES;
@@ -185,7 +185,7 @@
     questionVc.view.x = 0;
     questionVc.view.y = CGRectGetMaxY(self.questionHeaderView.frame);
     questionVc.view.width = self.view.width;
-    questionVc.view.height = self.view.height - questionVc.view.y - XXJoinButtonHeight;
+    questionVc.view.height = self.view.height - questionVc.view.y - kXXJoinButtonHeight;
     [self addChildViewController:questionVc];
     [self.view addSubview:questionVc.view];
     self.questionVc = questionVc;
@@ -206,7 +206,7 @@
     [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     joinBtn.width = [UIScreen mainScreen].bounds.size.width;
-    joinBtn.height = XXJoinButtonHeight;
+    joinBtn.height = kXXJoinButtonHeight;
     joinBtn.x = 0;
     joinBtn.y = self.view.height - joinBtn.height;
     

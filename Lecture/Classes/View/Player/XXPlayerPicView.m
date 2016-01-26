@@ -37,7 +37,7 @@
     collectionView.dataSource = self;
     collectionView.delegate = self;
     // 注册collectionView的cell
-    [self.collectionView registerClass:[XXCollectionCell class] forCellWithReuseIdentifier:XXCollectionViewCellIdentifier];
+    [self.collectionView registerClass:[XXCollectionCell class] forCellWithReuseIdentifier:XXPlayerPicViewCellIdentifier];
 }
 
 - (void)setupMaskView{
@@ -76,7 +76,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // 创建可重用的cell
-    XXCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:XXCollectionViewCellIdentifier forIndexPath:indexPath];
+    XXCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:XXPlayerPicViewCellIdentifier forIndexPath:indexPath];
     
     // 设置cell的数据
     cell.music = self.musics[indexPath.item];

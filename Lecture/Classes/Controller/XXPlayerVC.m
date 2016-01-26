@@ -69,7 +69,7 @@
     playerPicView.x = 0;
     playerPicView.y = 0;
     playerPicView.width = self.view.width;
-    playerPicView.height = XXPlayerPicViewHeightWidthRatio * playerPicView.width;
+    playerPicView.height = kXXPlayerPicViewHeightWidthRatio * playerPicView.width;
     playerPicView.musics = self.musics;
     playerPicView.delegate = self;
     [self.view addSubview:playerPicView];
