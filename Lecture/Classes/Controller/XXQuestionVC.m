@@ -13,15 +13,15 @@
 #import "XXQuestionFrame.h"
 
 static NSString * const questionCellReuseId = @"QuestionCell";
+const CGFloat kXXQuestionVCTextViewHeight = 44;
 
-@interface XXQuestionVC ()<XXQuestionToolbarDelegate>
-
+@interface XXQuestionVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
+@property (nonatomic, weak) UITextView *textView;// 回复的输入框
 
 @end
 
 @implementation XXQuestionVC
 #pragma mark - 懒加载
-
 
 - (NSMutableArray *)questionFrames
 {
@@ -72,10 +72,17 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:questionCellReuseId];
+    
+    
+    // 键盘的frame发生改变时发出的通知（位置和尺寸）
+    [XXNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+
 }
 
-- (void)dealloc{
 
+- (void)dealloc
+{
+    [XXNotificationCenter removeObserver:self];
 }
 
 #pragma mark - UITableViewDataSource
@@ -121,10 +128,19 @@ static NSString * const questionCellReuseId = @"QuestionCell";
         case XXQuestionToolbarButtonTypeShare:
             //TODO: 分享页面
             break;
-        case XXQuestionToolbarButtonTypeReply:
-            //TODO: 回复
-            break;
+        case XXQuestionToolbarButtonTypeReply:{
+            //TODO: 回复，创建一个输入框，调出键盘，并且随着键盘一起向上移动
+            UITextView *textView = [[UITextView alloc] init];
+            textView.backgroundColor = XXTestColor;
+            textView.frame = CGRectMake(0, self.view.height - kXXQuestionVCTextViewHeight, self.view.width, kXXQuestionVCTextViewHeight); // 初始位置为底部
+            textView.delegate = self;
+            [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
+            [textView becomeFirstResponder]; // 唤起键盘
+            
+            self.textView = textView;
 
+            break;
+        }
         case XXQuestionToolbarButtonTypeUnlike:{
             
             
@@ -148,5 +164,34 @@ static NSString * const questionCellReuseId = @"QuestionCell";
             break;
     }
 }
+
+/**
+ * 键盘的frame发生改变时调用（显示、隐藏等）
+ */
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    
+    NSDictionary *userInfo = notification.userInfo;
+    // 动画的持续时间（和键盘的动画时间要一致）
+    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    // 键盘的frame
+    CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // 执行动画
+    [UIView animateWithDuration:duration animations:^{
+        // textview的Y值 == 键盘的Y值 - textview的高度
+        self.textView.y = keyboardF.origin.y - self.textView.height;
+    }];
+}
+
+#pragma mark - UITextViewDelegate
+// 拖动tableview的时候退出键盘
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.textView removeFromSuperview];
+}
+
+
+
 
 @end
