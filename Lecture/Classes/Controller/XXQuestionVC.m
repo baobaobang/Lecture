@@ -120,8 +120,10 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     switch (type) {
         case XXQuestionToolbarButtonTypeShare:
             //TODO: 分享页面
+            break;
         case XXQuestionToolbarButtonTypeReply:
             //TODO: 回复
+            break;
 
         case XXQuestionToolbarButtonTypeUnlike:{
             
