@@ -27,7 +27,7 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 {
     if (!_questionFrames) {
         
-        _questionFrames = [self loadData];
+        _questionFrames = [self loadDataFromPlist];
     }
     return _questionFrames;
 }
@@ -46,7 +46,8 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 }
 
 #pragma mark - 从本地加载数据
-- (NSMutableArray *)loadData{
+- (NSMutableArray *)loadDataFromPlist{
+    //TODO: 后面改成从数据加载
     
     // 字典转模型
     // 方式一：从document目录下加载plist
@@ -71,37 +72,10 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:questionCellReuseId];
-    
-    // 添加观察者
-    [XXNotificationCenter addObserver:self selector:@selector(questionToolbarShareBtnClicked:) name:XXQuestionToolbarShareButtonClickNotification object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(questionToolbarUnlikeBtnClicked:) name:XXQuestionToolbarUnlikeButtonClickNotification object:nil];
-    
 }
 
 - (void)dealloc{
-    [XXNotificationCenter removeObserver:self];
-}
 
-#pragma mark - 处理Toolbar上的按钮被点击后发来的通知
-- (void)questionToolbarShareBtnClicked:(NSNotification *)noti{
-    XXQuestionToolbar * toolbar = noti.userInfo[@"toolbar"];
-    XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-}
-
-- (void)questionToolbarUnlikeBtnClicked:(NSNotification *)noti{
-    // 将将question数组排序按照点赞数来排序，再刷新表格和cell顺序
-    XXQuestionToolbar * toolbar = noti.userInfo[@"toolbar"];
-    NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
-    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
-    [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];// 先刷新点赞数目
-    
-    self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-    NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
-    
-    [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];// 再移动cell顺序
 }
 
 #pragma mark - UITableViewDataSource
@@ -121,11 +95,11 @@ static NSString * const questionCellReuseId = @"QuestionCell";
     XXQuestionCell *questionCell = [[XXQuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:questionCellReuseId];
     
     // 设置toolBar的代理
-    questionCell.toolBar.delegate = self;
+    questionCell.toolbar.delegate = self;
     
     // 给cell的子控件赋值
     questionCell.questionFrame = self.questionFrames[indexPath.row];
-    
+
     return questionCell;
 }
 
@@ -141,5 +115,36 @@ static NSString * const questionCellReuseId = @"QuestionCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 
+#pragma mark - 点击toolbar上的按钮，XXQuestionToolbarDelegate
+- (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
+    switch (type) {
+        case XXQuestionToolbarButtonTypeShare:
+            //TODO: 分享页面
+        case XXQuestionToolbarButtonTypeReply:
+            //TODO: 回复
+
+        case XXQuestionToolbarButtonTypeUnlike:{
+            
+            
+            NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
+            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
+            // 将question数组按照点赞数来排序，再刷新表格和cell顺序
+            self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+            NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
+            NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
+            
+            // 动画交换两个cell的顺序
+            [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];
+            // 滚动到点赞所在cell的位置
+            [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+
+            
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
 
 @end

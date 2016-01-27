@@ -9,9 +9,6 @@
 #import "XXJoinLectureActionSheet.h"
 #import "XXLecture.h"
 
-
-
-
 @interface XXJoinLectureActionSheet ()
 @property (nonatomic, weak) UIView *actionSheet;
 @property (nonatomic, weak) UILabel *nameLabel;

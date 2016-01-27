@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XXOnlineVC : UIViewController
+@interface XXOnlineVC : UITableViewController
 
 @end

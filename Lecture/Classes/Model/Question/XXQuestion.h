@@ -25,6 +25,8 @@
 
 /**	分享数*/
 @property (nonatomic, assign) NSUInteger shares_count;
+/**	评论数*/
+@property (nonatomic, assign) NSInteger replys_count;
 /**	赞过的人*/
 //@property (nonatomic,assign) NSMutableArray* digUsers;
 /**	点赞数*/

@@ -25,8 +25,6 @@
 @property (nonatomic, weak) UILabel *contentLabel;
 /** 配图 */
 @property (nonatomic, weak) XXQuestionPhotosView *photosView;
-/** 工具条 */
-@property (nonatomic, weak) XXQuestionToolbar *toolbar;
 
 @end
 @implementation XXQuestionCell

@@ -11,7 +11,7 @@
 
 @interface XXQuestionCell : UITableViewCell
 
-@property (nonatomic, weak) XXQuestionToolbar *toolBar;
+@property (nonatomic, weak) XXQuestionToolbar *toolbar;
 
 @property (nonatomic, strong) XXQuestionFrame *questionFrame;
 @end

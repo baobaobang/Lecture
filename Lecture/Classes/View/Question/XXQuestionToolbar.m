@@ -8,6 +8,7 @@
 
 #import "XXQuestionToolbar.h"
 #define XXQuestionToolbarShareTitle @"分享"
+#define XXQuestionToolbarReplyTitle @"回复"
 #define XXQuestionToolbarUnlikeTitle @"棒"
 
 @interface XXQuestionToolbar()
@@ -49,6 +50,7 @@
         
         // 添加按钮
         self.shareBtn = [self setupBtn:XXQuestionToolbarShareTitle icon:@"timeline_icon_share" type:XXQuestionToolbarButtonTypeShare];
+        self.replyBtn = [self setupBtn:XXQuestionToolbarReplyTitle icon:@"timeline_icon_reply" type:XXQuestionToolbarButtonTypeReply];
         self.attitudeBtn = [self setupBtn:XXQuestionToolbarUnlikeTitle icon:@"timeline_icon_unlike" type:XXQuestionToolbarButtonTypeUnlike];
         
         // 添加分割线
@@ -100,23 +102,28 @@
  *  @param btn 点击的按钮
  */
 - (void)btnClick:(UIButton *)btn{
-    XXQuestion *question = self.questionFrame.question;
+    XXQuestionFrame *frame = self.questionFrame;
+    XXQuestion *question = frame.question;
     
     switch (btn.tag) {
         case XXQuestionToolbarButtonTypeShare:{ // 分享
+            // 改变数字后要重新存入模型，同时刷新页面，然后再调用代理，让控制器完成剩余的逻辑
             question.shares_count++;
-            // 发出通知
-            NSNotification *notiShare = [NSNotification notificationWithName:XXQuestionToolbarShareButtonClickNotification object:nil userInfo:@{@"toolbar":self}];
-            [XXNotificationCenter postNotification:notiShare];
+            self.questionFrame = frame;
+            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
+                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeShare];
+            }
+            break;
+        }
+        case XXQuestionToolbarButtonTypeReply:{ // 回复
+            question.replys_count++;
+            self.questionFrame = frame;
+            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
+                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeReply];
+            }
             break;
         }
         case XXQuestionToolbarButtonTypeUnlike:{ // 点赞可以增加和减少数字
-
-//            if ([question isCurrentUserLike]) { // 如果已经点赞过，就取消点赞
-//                [question.digUsers removeObject:[XXUser currentUser]];
-//            }else{
-//                [question.digUsers addObject:[XXUser currentUser]];
-//            }
             
             question.like = !question.like;
             // 点棒可以增加和减少数字
@@ -125,10 +132,11 @@
             }else{
                 question.attitudes_count--;
             }
+            self.questionFrame = frame;
             
-            // 发出通知
-            NSNotification *notiUnlike = [NSNotification notificationWithName:XXQuestionToolbarUnlikeButtonClickNotification object:nil userInfo:@{@"toolbar":self}];
-            [XXNotificationCenter postNotification:notiUnlike];
+            if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
+                [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeUnlike];
+            }
             break;
         }
 
@@ -160,7 +168,7 @@
         UIImageView *divider = self.dividers[i];
         divider.width = 1;
         divider.height = btnH;
-        divider.x = i * btnW;
+        divider.x = (i + 1) * btnW;
         divider.y = 0;
     }
 }
@@ -172,6 +180,8 @@
     
     // 转发
     [self setupBtnCount:question.shares_count btn:self.shareBtn title:XXQuestionToolbarShareTitle];
+    // 评论
+    [self setupBtnCount:question.replys_count btn:self.replyBtn title:XXQuestionToolbarReplyTitle];
     // 赞
     [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:XXQuestionToolbarUnlikeTitle];
     //TODO:
@@ -182,6 +192,8 @@
         [self.attitudeBtn setImage:[UIImage imageNamed:@"timeline_icon_unlike"] forState:UIControlStateNormal];
     }
 }
+
+
 
 - (void)setupBtnCount:(int)count btn:(UIButton *)btn title:(NSString *)title
 {
