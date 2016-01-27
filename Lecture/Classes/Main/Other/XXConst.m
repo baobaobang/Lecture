@@ -12,6 +12,8 @@
 #pragma mark - 全局
 /** frame*/
 const CGFloat kXXStatusAndNavBarHeight = 64;// 状态栏和导航栏的总高度
+/** 字体*/
+const CGFloat kXXTextFont = 18;
 
 #pragma mark - 首页
 /** frame*/

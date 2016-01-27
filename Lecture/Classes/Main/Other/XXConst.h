@@ -29,6 +29,8 @@
 #define XXSelectedColor XXColor(175, 220, 250)// 项目默认选中状态颜色（浅浅蓝色）
 /** frame*/
 extern const CGFloat kXXStatusAndNavBarHeight;// 状态栏和导航栏的总高度
+/** 字体*/
+extern const CGFloat kXXTextFont;
 
 #pragma mark - 首页
 

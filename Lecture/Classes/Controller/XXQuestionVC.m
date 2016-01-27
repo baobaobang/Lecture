@@ -21,7 +21,23 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
 @end
 
 @implementation XXQuestionVC
+
 #pragma mark - 懒加载
+
+- (UITextView *)textView{
+    if (!_textView) {
+        UITextView *textView = [[UITextView alloc] init];
+        textView.font = [UIFont systemFontOfSize:kXXTextFont];
+        textView.backgroundColor = XXTestColor;
+        textView.frame = CGRectMake(0, self.view.height, self.view.width, kXXQuestionVCTextViewHeight); // 初始位置为底部
+        textView.delegate = self;
+        textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
+        textView.enablesReturnKeyAutomatically = YES;//这里设置为无文字就灰色不可点
+        [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
+        _textView = textView;
+    }
+    return _textView;
+}
 
 - (NSMutableArray *)questionFrames
 {
@@ -125,38 +141,16 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
 #pragma mark - 点击toolbar上的按钮，XXQuestionToolbarDelegate
 - (void)questionToolbar:(XXQuestionToolbar *)toolbar didClickBtnType:(XXQuestionToolbarButtonType)type{
     switch (type) {
-        case XXQuestionToolbarButtonTypeShare:
-            //TODO: 分享页面
+        case XXQuestionToolbarButtonTypeShare:{
+            [self clickShareBtnInToolbar:toolbar];
             break;
+        }
         case XXQuestionToolbarButtonTypeReply:{
-            //TODO: 回复，创建一个输入框，调出键盘，并且随着键盘一起向上移动
-            UITextView *textView = [[UITextView alloc] init];
-            textView.backgroundColor = XXTestColor;
-            textView.frame = CGRectMake(0, self.view.height - kXXQuestionVCTextViewHeight, self.view.width, kXXQuestionVCTextViewHeight); // 初始位置为底部
-            textView.delegate = self;
-            [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
-            [textView becomeFirstResponder]; // 唤起键盘
-            
-            self.textView = textView;
-
+            [self clickReplyBtnInToolbar:toolbar];
             break;
         }
         case XXQuestionToolbarButtonTypeUnlike:{
-            
-            
-            NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
-            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
-            // 将question数组按照点赞数来排序，再刷新表格和cell顺序
-            self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-            NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
-            NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
-            
-            // 动画交换两个cell的顺序
-            [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];
-            // 滚动到点赞所在cell的位置
-            [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-
-            
+            [self clickUnlikeBtnInToolbar:toolbar];
             break;
         }
             
@@ -164,10 +158,35 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
             break;
     }
 }
+#pragma mark - 点击分享后
+- (void)clickShareBtnInToolbar:(XXQuestionToolbar *)toolbar
+{
+    //TODO: 弹出分享窗口
+}
+#pragma mark - 点击回复后
+- (void)clickReplyBtnInToolbar:(XXQuestionToolbar *)toolbar
+{
+    [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
+}
 
-/**
- * 键盘的frame发生改变时调用（显示、隐藏等）
- */
+#pragma mark - 点击点赞后
+- (void)clickUnlikeBtnInToolbar:(XXQuestionToolbar *)toolbar
+{
+    NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
+    // 将question数组按照点赞数来排序，再刷新表格和cell顺序
+    self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
+    NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
+    
+    // 动画交换两个cell的顺序
+    [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];
+    // 滚动到点赞所在cell的位置
+    [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    
+}
+
+#pragma mark - 键盘的frame发生改变时调用（显示、隐藏等）
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {
     
@@ -180,7 +199,7 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
     // 执行动画
     [UIView animateWithDuration:duration animations:^{
         // textview的Y值 == 键盘的Y值 - textview的高度
-        self.textView.y = keyboardF.origin.y - self.textView.height;
+        self.textView.y = keyboardF.origin.y  - self.textView.height;
     }];
 }
 
@@ -191,7 +210,22 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
     [self.textView removeFromSuperview];
 }
 
+// 监听文字输入，来完成发送
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    // 这个函数的最后一个参数text代表你每次输入的的那个字
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        //在这里做你响应return键的代码
+        [self send];
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
+    return YES;
+}
 
-
+- (void)send{
+    //TODO: 记录text并显示出来
+    XXLog(@"send");
+    [self.textView removeFromSuperview];
+}
 
 @end
