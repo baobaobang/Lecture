@@ -13,9 +13,7 @@
 #import "XXQuestionFrame.h"
 #import "CXTextView.h"
 
-static NSString * const questionCellReuseId = @"QuestionCell";
-const CGFloat kXXQuestionVCTextViewHeight = 38;
-const NSUInteger kXXQuestionVCTextViewMaxWords = 10;
+
 
 @interface XXQuestionVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
 
@@ -30,13 +28,14 @@ const NSUInteger kXXQuestionVCTextViewMaxWords = 10;
         CXTextView *textView = [[CXTextView alloc] init];
         textView.font = [UIFont systemFontOfSize:kXXTextFont];
         textView.backgroundColor = XXTestColor;
-        textView.frame = CGRectMake(0, self.view.height, self.view.width, kXXQuestionVCTextViewHeight); // 初始位置为底部
+        textView.frame = CGRectMake(0, self.view.height, self.view.width, kXXQuestionVCTextViewOriginalHeight); // 初始位置为底部
         textView.delegate = self;
         textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
         textView.enablesReturnKeyAutomatically = YES;//这里设置为无文字就灰色不可点
         textView.placeholder = @"回复";// 占位文字
         textView.autoAdjust = YES; // 自适应
         textView.adjustTop = YES; // 向上调整
+        textView.maxHeight = kXXQuestionVCTextViewMaxHeight; // 最大高度限制
         [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
         _textView = textView;
     }
@@ -93,7 +92,7 @@ const NSUInteger kXXQuestionVCTextViewMaxWords = 10;
     [super viewDidLoad];
     
     // 注册cell
-    [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:questionCellReuseId];
+    [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:XXQuestionCellReuseId];
     
     
     // 键盘的frame发生改变时发出的通知（位置和尺寸）
@@ -120,7 +119,7 @@ const NSUInteger kXXQuestionVCTextViewMaxWords = 10;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    XXQuestionCell *questionCell = [[XXQuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:questionCellReuseId];
+    XXQuestionCell *questionCell = [[XXQuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:XXQuestionCellReuseId];
     
     // 设置toolBar的代理
     questionCell.toolbar.delegate = self;
@@ -215,12 +214,6 @@ const NSUInteger kXXQuestionVCTextViewMaxWords = 10;
 }
 
 #pragma mark - UITextViewDelegate
-// 拖动tableview的时候退出键盘
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    // 只要点击虚拟键盘和编辑区域外的地方，就可以将键盘收起
-    [self.textView removeFromSuperview];
-}
 
 // 这个函数的最后一个参数text代表你每次输入的的那个字
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{

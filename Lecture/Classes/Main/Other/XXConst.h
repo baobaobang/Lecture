@@ -46,6 +46,8 @@ extern const CGFloat kXXExpertTableViewHeight;// 专家简介的高度
 extern const CGFloat kXXQuestionHeaderViewHeight;//精选提问头部高度
 extern const CGFloat kXXJoinButtonHeight;// 报名活动按钮的高度
 extern const CGFloat kXXJoinLectureActionSheetHeight;
+extern const CGFloat kXXQuestionVCTextViewOriginalHeight; // textview初始高度
+extern const CGFloat kXXQuestionVCTextViewMaxHeight; // textview初始高度
 
 /** 字体*/
 extern const CGFloat kXXJoinLectureActionSheetLabelFont;
@@ -57,8 +59,11 @@ extern const CGFloat kXXJoinLectureActionSheetDoneBtnFont;
 /** 时间*/
 extern const CGFloat kXXHideAndShowPicViewDuration;//收起图片和专家简介的时间
 extern const CGFloat kXXJoinLectureActionSheetDuration;
-
+/** 其他*/
 extern const CGFloat kXXJoinLectureActionSheetAlpha;
+extern const NSUInteger kXXQuestionVCTextViewMaxWords;// 最大字数限制
+/** Identifier*/
+extern NSString * const XXQuestionCellReuseId;
 
 #pragma mark - 讲座中
 /** frame*/

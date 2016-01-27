@@ -39,15 +39,19 @@
  */
 - (void)textDidChange
 {
-    // 重绘（重新调用）
+    /* 重绘占位文字*/
     [self setNeedsDisplay];
     
-    if (!self.autoAdjust) return; // 下面为自适应的情况
+    /* 限制高度的情况*/
+    if (!self.autoAdjust) return;
     
-    // 自适应
-    
-    if (self.height != self.contentSize.height) { // 如果高度改变
-
+    /* 自适应高度的情况*/
+    if (self.contentSize.height != self.height) { // 如果高度改变
+        if (self.maxHeight != 0 && self.contentSize.height > self.maxHeight) {
+            self.height = self.maxHeight;
+            [self setContentOffset:CGPointMake(0.f,self.contentSize.height-self.frame.size.height)];
+            return;
+        }
         if (self.isAjustTop) {
             self.y -= self.contentSize.height - self.height;
         }
@@ -74,13 +78,10 @@
     [self.placeholder drawInRect:placeholderRect withAttributes:attrs];
 }
 
-
 - (void)dealloc
 {
     [XXNotificationCenter removeObserver:self];
 }
-
-
 
 #pragma mark - 改变下列属性都会重绘占位文字
 - (void)setPlaceholder:(NSString *)placeholder
@@ -118,7 +119,5 @@
     
     [self setNeedsDisplay];
 }
-
-
 
 @end

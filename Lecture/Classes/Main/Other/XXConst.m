@@ -35,6 +35,8 @@ const CGFloat kXXExpertTableViewHeight = 80;
 const CGFloat kXXQuestionHeaderViewHeight = 44;
 const CGFloat kXXJoinButtonHeight = 44;// 报名活动按钮的高度
 const CGFloat kXXJoinLectureActionSheetHeight = 200;
+const CGFloat kXXQuestionVCTextViewOriginalHeight = 38; // textview初始高度
+const CGFloat kXXQuestionVCTextViewMaxHeight = 130; // textview初始高度
 
 /** 字体*/
 const CGFloat kXXJoinLectureActionSheetLabelFont = 16;
@@ -43,6 +45,10 @@ const CGFloat kXXJoinLectureActionSheetDoneBtnFont = 18;
 const CGFloat kXXHideAndShowPicViewDuration = 0.4;
 const CGFloat kXXJoinLectureActionSheetDuration = 0.3;
 
+/** Identifier*/
+NSString * const XXQuestionCellReuseId = @"QuestionCell";
+/** 其他*/
+const NSUInteger kXXQuestionVCTextViewMaxWords = 100;// 最大字数限制
 const CGFloat kXXJoinLectureActionSheetAlpha = 0.4;
 
 #pragma mark - 讲座中
@@ -51,8 +57,6 @@ const CGFloat kXXPlayerToolBarHeight = 34;
 const CGFloat kXXOnlineHeaderViewHeight = 44;
 /** 字体*/
 /** 时间*/
-
-
 
 
 /** Identifier*/
