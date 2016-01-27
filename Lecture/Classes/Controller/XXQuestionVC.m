@@ -15,6 +15,7 @@
 
 static NSString * const questionCellReuseId = @"QuestionCell";
 const CGFloat kXXQuestionVCTextViewHeight = 38;
+const NSUInteger kXXQuestionVCTextViewMaxWords = 10;
 
 @interface XXQuestionVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
 
@@ -140,6 +141,7 @@ const CGFloat kXXQuestionVCTextViewHeight = 38;
 
 #pragma mark - 点击cell后的反应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.textView removeFromSuperview];
 }
 
 #pragma mark - 点击toolbar上的按钮，XXQuestionToolbarDelegate
@@ -171,6 +173,11 @@ const CGFloat kXXQuestionVCTextViewHeight = 38;
 - (void)clickReplyBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
     [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
+    
+    //让所点击的cell的底部滚动到输入框的正上方
+    NSUInteger row = [self.questionFrames indexOfObject:toolbar.questionFrame];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 #pragma mark - 点击点赞后
@@ -211,12 +218,27 @@ const CGFloat kXXQuestionVCTextViewHeight = 38;
 // 拖动tableview的时候退出键盘
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
+    // 只要点击虚拟键盘和编辑区域外的地方，就可以将键盘收起
     [self.textView removeFromSuperview];
 }
 
-// 监听文字输入，来完成发送
+// 这个函数的最后一个参数text代表你每次输入的的那个字
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    // 这个函数的最后一个参数text代表你每次输入的的那个字
+    
+    // 限制字数
+    if ([text isEqualToString:@""]) {//这个是汉语联想的时候的他会出现的，第一次暂时让其联想，下次输入就不能联想了，因为第一次联想它不给自己算lenth，下次再联想词汇就会算上上次输入的，这个是苹果自己的BUG 如果是textfiled，一样 检测每个字符的变化。
+        return YES;
+    }
+    if (textView.text.length>=kXXQuestionVCTextViewMaxWords)
+    {
+        // 给个提示
+        NSString *message = [NSString stringWithFormat:@"字符个数不能大于%lu！", kXXQuestionVCTextViewMaxWords];
+        UIAlertView *tipAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [tipAlert show];
+        return NO;
+    }
+    
+    // 监听文字输入，来完成发送
     if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
         //在这里做你响应return键的代码
         [self send];
@@ -231,7 +253,6 @@ const CGFloat kXXQuestionVCTextViewHeight = 38;
     XXLog(@"send");
     [self.textView removeFromSuperview];
 }
-
 
 
 @end

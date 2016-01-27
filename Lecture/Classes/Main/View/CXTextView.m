@@ -42,10 +42,12 @@
     // 重绘（重新调用）
     [self setNeedsDisplay];
     
-    if (!self.autoAdjust) return;
+    if (!self.autoAdjust) return; // 下面为自适应的情况
     
     // 自适应
+    
     if (self.height != self.contentSize.height) { // 如果高度改变
+
         if (self.isAjustTop) {
             self.y -= self.contentSize.height - self.height;
         }
