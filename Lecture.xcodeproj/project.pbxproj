@@ -95,8 +95,8 @@
 		2D6309061C549B2F0092F622 /* XXQuestionPhotosView(相册).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308CC1C549B2F0092F622 /* XXQuestionPhotosView(相册).m */; };
 		2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308CE1C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m */; };
 		2D6309081C549B2F0092F622 /* XXQuestionToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */; };
-		2D63090B1C549E340092F622 /* CXTextViewWithPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63090A1C549E340092F622 /* CXTextViewWithPlaceholder.m */; };
 		2D63090F1C54BBF50092F622 /* CurrentUser.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D63090E1C54BBF50092F622 /* CurrentUser.plist */; };
+		2D6F60121C58B842006D8488 /* CXTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F60111C58B842006D8488 /* CXTextView.m */; };
 		2D75DA4B1C5708720056FA6C /* XXOnlineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D75DA4A1C5708720056FA6C /* XXOnlineHeaderView.m */; };
 		2D75DA4E1C57089D0056FA6C /* XXOnlineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D75DA4D1C57089D0056FA6C /* XXOnlineVC.m */; };
 		2D75DA501C5709C80056FA6C /* XXOnlineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D75DA4F1C5709C80056FA6C /* XXOnlineHeaderView.xib */; };
@@ -309,9 +309,9 @@
 		2D6308CF1C549B2F0092F622 /* XXQuestionPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionPhotoView.h; sourceTree = "<group>"; };
 		2D6308D01C549B2F0092F622 /* XXQuestionToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionToolbar.h; sourceTree = "<group>"; };
 		2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionToolbar.m; sourceTree = "<group>"; };
-		2D6309091C549E340092F622 /* CXTextViewWithPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXTextViewWithPlaceholder.h; sourceTree = "<group>"; };
-		2D63090A1C549E340092F622 /* CXTextViewWithPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXTextViewWithPlaceholder.m; sourceTree = "<group>"; };
 		2D63090E1C54BBF50092F622 /* CurrentUser.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CurrentUser.plist; sourceTree = "<group>"; };
+		2D6F60101C58B842006D8488 /* CXTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXTextView.h; sourceTree = "<group>"; };
+		2D6F60111C58B842006D8488 /* CXTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXTextView.m; sourceTree = "<group>"; };
 		2D75DA491C5708720056FA6C /* XXOnlineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOnlineHeaderView.h; sourceTree = "<group>"; };
 		2D75DA4A1C5708720056FA6C /* XXOnlineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXOnlineHeaderView.m; sourceTree = "<group>"; };
 		2D75DA4C1C57089D0056FA6C /* XXOnlineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOnlineVC.h; sourceTree = "<group>"; };
@@ -754,6 +754,8 @@
 			isa = PBXGroup;
 			children = (
 				2D6308841C549B2F0092F622 /* SDPhotoBrowser */,
+				2D6F60101C58B842006D8488 /* CXTextView.h */,
+				2D6F60111C58B842006D8488 /* CXTextView.m */,
 				2D63088C1C549B2F0092F622 /* XXButton.h */,
 				2D63088D1C549B2F0092F622 /* XXButton.m */,
 			);
@@ -871,8 +873,6 @@
 			children = (
 				2D6308AD1C549B2F0092F622 /* XXQuestionPhotoCollectionViewCell.h */,
 				2D6308AE1C549B2F0092F622 /* XXQuestionPhotoCollectionViewCell.m */,
-				2D6309091C549E340092F622 /* CXTextViewWithPlaceholder.h */,
-				2D63090A1C549E340092F622 /* CXTextViewWithPlaceholder.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1274,7 +1274,6 @@
 				2D6309041C549B2F0092F622 /* XXQuestionHeaderView.m in Sources */,
 				2D6308F81C549B2F0092F622 /* XXExpertProfileCell.m in Sources */,
 				2D6308FF1C549B2F0092F622 /* XXPlayerPicView.m in Sources */,
-				2D63090B1C549E340092F622 /* CXTextViewWithPlaceholder.m in Sources */,
 				2D6308D91C549B2F0092F622 /* NSString+CZ.m in Sources */,
 				2D55BB7E1C5618F900BA1542 /* LGPhotoPickerFooterCollectionReusableView.m in Sources */,
 				2D6308D81C549B2F0092F622 /* NSDate+Extension.m in Sources */,
@@ -1327,6 +1326,7 @@
 				2D6308D31C549B2F0092F622 /* XXHomeVC.m in Sources */,
 				2D6308EA1C549B2F0092F622 /* SDWaitingView.m in Sources */,
 				2D55BB781C5618F900BA1542 /* LGPhotoPickerGroup.m in Sources */,
+				2D6F60121C58B842006D8488 /* CXTextView.m in Sources */,
 				2D6308F71C549B2F0092F622 /* XXQuestionPhotoCollectionViewCell.m in Sources */,
 				2D6308EF1C549B2F0092F622 /* XXQuestionFrame.m in Sources */,
 				2D55BB921C5618F900BA1542 /* ZLCamera.m in Sources */,

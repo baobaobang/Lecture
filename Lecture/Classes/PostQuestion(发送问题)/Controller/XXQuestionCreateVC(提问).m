@@ -11,7 +11,7 @@
 //#import "XXQuestionManager.h"
 #import "XXQuestionPhotoCollectionViewCell.h"
 //#import "AppDelegate.h"
-#import "CXTextViewWithPlaceholder.h"
+#import "CXTextView.h"
 #import "XXQuestion.h"
 #import "XXQuestionFrame.h"
 #import <MJExtension.h>
@@ -27,7 +27,7 @@ static NSUInteger kXXQuestionPhotosLimitCount = 3; // 图片的数量限制
 /**
  *  文字容器
  */
-@property (weak, nonatomic) IBOutlet CXTextViewWithPlaceholder *textView;
+@property (weak, nonatomic) IBOutlet CXTextView *textView;
 
 /**
  *  图片展示容器
@@ -212,7 +212,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 - (void)refreshQuestionVc{
     
     // 因为修改了plist，需要从本地重新加载数据，再刷新精选提问界面
-    self.questionVC.questionFrames = [self.questionVC loadData];
+    self.questionVC.questionFrames = [self.questionVC loadDataFromPlist];
     [self.questionVC.tableView reloadData];
     
     // 模拟网络延时，提示发送成功

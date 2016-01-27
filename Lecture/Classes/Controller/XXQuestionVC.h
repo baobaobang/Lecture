@@ -21,7 +21,7 @@
  *
  *  @return 返回加载的模型数组
  */
-- (NSMutableArray *)loadData;
+- (NSMutableArray *)loadDataFromPlist;
 
 @end
 

@@ -11,12 +11,13 @@
 #import "XXQuestionToolbar.h"
 #import <MJExtension.h>
 #import "XXQuestionFrame.h"
+#import "CXTextView.h"
 
 static NSString * const questionCellReuseId = @"QuestionCell";
 const CGFloat kXXQuestionVCTextViewHeight = 44;
 
 @interface XXQuestionVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
-@property (nonatomic, weak) UITextView *textView;// 回复的输入框
+@property (nonatomic, weak) CXTextView *textView;// 回复的输入框
 
 @end
 
@@ -24,15 +25,18 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
 
 #pragma mark - 懒加载
 
-- (UITextView *)textView{
+- (CXTextView *)textView{
     if (!_textView) {
-        UITextView *textView = [[UITextView alloc] init];
+        CXTextView *textView = [[CXTextView alloc] init];
         textView.font = [UIFont systemFontOfSize:kXXTextFont];
         textView.backgroundColor = XXTestColor;
         textView.frame = CGRectMake(0, self.view.height, self.view.width, kXXQuestionVCTextViewHeight); // 初始位置为底部
         textView.delegate = self;
         textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
         textView.enablesReturnKeyAutomatically = YES;//这里设置为无文字就灰色不可点
+        textView.placeholder = @"回复";// 占位文字
+        textView.autoAdjust = YES; // 自适应
+        textView.adjustTop = YES; // 向上调整
         [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
         _textView = textView;
     }
@@ -81,6 +85,7 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
     
     return questionFrames;
 }
+
 #pragma mark - 生命周期
 
 - (void)viewDidLoad {
@@ -92,7 +97,6 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
     
     // 键盘的frame发生改变时发出的通知（位置和尺寸）
     [XXNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-
 }
 
 

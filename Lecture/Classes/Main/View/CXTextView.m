@@ -1,16 +1,15 @@
 //
-//  CXTextViewWithPlaceholder.m
+//  CXTextView.m
 //  Lecture
 //
-//  Created by 陈旭 on 16/1/24.
+//  Created by 陈旭 on 16/1/27.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-//  增强：带有占位文字
+// 自适应文本的输入框
+#import "CXTextView.h"
 
-#import "CXTextViewWithPlaceholder.h"
-
-@implementation CXTextViewWithPlaceholder
+@implementation CXTextView
 
 // 代码创建的情况
 - (id)initWithFrame:(CGRect)frame
@@ -24,6 +23,7 @@
     return self;
 }
 
+
 // xib或者sb创建的情况
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
@@ -34,6 +34,24 @@
     return self;
 }
 
+/**
+ * 监听文字改变
+ */
+- (void)textDidChange
+{
+    // 重绘（重新调用）
+    [self setNeedsDisplay];
+    
+    if (!self.autoAdjust) return;
+    
+    // 自适应
+    if (self.height != self.contentSize.height) { // 如果高度改变
+        if (self.isAjustTop) {
+            self.y -= self.contentSize.height - self.height;
+        }
+        self.height = self.contentSize.height;
+    }
+}
 
 - (void)drawRect:(CGRect)rect
 {
@@ -60,14 +78,6 @@
     [XXNotificationCenter removeObserver:self];
 }
 
-/**
- * 监听文字改变
- */
-- (void)textDidChange
-{
-    // 重绘（重新调用）
-    [self setNeedsDisplay];
-}
 
 
 #pragma mark - 改变下列属性都会重绘占位文字
@@ -106,6 +116,7 @@
     
     [self setNeedsDisplay];
 }
+
 
 
 @end
