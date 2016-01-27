@@ -14,10 +14,9 @@
 #import "CXTextView.h"
 
 static NSString * const questionCellReuseId = @"QuestionCell";
-const CGFloat kXXQuestionVCTextViewHeight = 44;
+const CGFloat kXXQuestionVCTextViewHeight = 38;
 
 @interface XXQuestionVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
-@property (nonatomic, weak) CXTextView *textView;// 回复的输入框
 
 @end
 
@@ -51,6 +50,7 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
     }
     return _questionFrames;
 }
+
 /**
  *  将XXQuestion模型转为XXQuestionFrame模型
  */
@@ -231,5 +231,7 @@ const CGFloat kXXQuestionVCTextViewHeight = 44;
     XXLog(@"send");
     [self.textView removeFromSuperview];
 }
+
+
 
 @end

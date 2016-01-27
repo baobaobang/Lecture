@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXUser;
+@class XXUser, CXTextView;
 @interface XXQuestionVC : UITableViewController
 
 /**
@@ -15,6 +15,8 @@
  */
 @property (nonatomic, strong) NSMutableArray *questionFrames;
 
+
+@property (nonatomic, weak) CXTextView *textView;// 回复的输入框
 
 /**
  *  从本地加载数据

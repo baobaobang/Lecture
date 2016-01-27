@@ -19,6 +19,7 @@
 #import "XXExpertProfileHeaderView.h"
 #import "XXQuestionCreateVC.h"
 #import "XXNavigationController.h"
+#import "CXTextView.h"
 
 @interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
@@ -72,6 +73,13 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+}
+
+#pragma mark - 只要点击虚拟键盘和编辑区域外的地方，就可以将键盘收起
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (![self.questionVc.textView isExclusiveTouch]) {
+        [self.questionVc.textView removeFromSuperview];
+    }
 }
 
 #pragma mark - 收起头部和展开头部
