@@ -14,6 +14,11 @@
 /**
  *  返回分与秒的字符串 如:01:60
  */
-+(NSString *)getMinuteSecondWithSecond:(NSTimeInterval)time;
++(NSString *)getHourMinuteSecondWithSecond:(NSTimeInterval)time;
 
+
+/**
+ *  将秒转换为00:00:00格式显示
+ */
++(NSString *)getHourMinuteSecondWithSecond:(NSTimeInterval)time;
 @end

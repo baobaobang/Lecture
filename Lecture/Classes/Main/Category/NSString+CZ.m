@@ -10,6 +10,7 @@
 
 @implementation NSString (CZ)
 
+// 将秒转换为0:00格式显示
 +(NSString *)getMinuteSecondWithSecond:(NSTimeInterval)time{
     
     int minute = (int)time / 60;
@@ -21,6 +22,38 @@
     
     //2:09
     return [NSString stringWithFormat:@"%d:0%d",minute,second];
+}
+
+
+// 将秒转换为00:00:00格式显示
++(NSString *)getHourMinuteSecondWithSecond:(NSTimeInterval)time
+{
+    NSInteger sec = round(time);
+    NSString *tmphh = [NSString stringWithFormat:@"%ld",sec/3600];
+    if ([tmphh length] == 1)
+    {
+        tmphh = [NSString stringWithFormat:@"0%@",tmphh];
+    }
+    
+    NSString *tmpmm = [NSString stringWithFormat:@"%ld",(sec/60)%60];
+    if ([tmpmm length] == 1)
+    {
+        tmpmm = [NSString stringWithFormat:@"0%@",tmpmm];
+    }
+    
+    NSString *tmpss = [NSString stringWithFormat:@"%ld",sec%60];
+    if ([tmpss length] == 1)
+    {
+        tmpss = [NSString stringWithFormat:@"0%@",tmpss];
+    }
+    
+    NSString *result;
+    if (sec/3600 == 0) {
+        result = [NSString stringWithFormat:@"%@:%@",tmpmm,tmpss];
+    }else{
+        result = [NSString stringWithFormat:@"%@:%@:%@",tmphh,tmpmm,tmpss];
+    }
+    return result;
 }
 
 @end

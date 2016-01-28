@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXReply;
+@class XXReply, XXQuestionReplyCell;
+
+@protocol XXQuestionReplyCellDelegate <NSObject>
+
+//- (void)questionReplyCell:(XXQuestionReplyCell *)cell didClickPlayBtn:(XXButton *)btn;
+
+@end
 @interface XXQuestionReplyCell : UITableViewCell
 @property (nonatomic, strong) XXReply *reply;
+
+@property (nonatomic, weak) id<XXQuestionReplyCellDelegate> delegate;
 @end

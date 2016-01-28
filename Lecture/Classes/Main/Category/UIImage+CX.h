@@ -55,4 +55,9 @@
  */
 - (UIImage *)imageRenderingModeAlwaysOriginal;
 
+
+/**
+ *  渲染图片颜色
+ */
+- (UIImage *) imageWithTintColor:(UIColor *)tintColor;
 @end

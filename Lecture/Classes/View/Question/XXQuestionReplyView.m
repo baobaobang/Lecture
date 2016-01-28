@@ -61,6 +61,7 @@
     
     XXQuestionReplyCell *cell = (XXQuestionReplyCell *)[tableView dequeueReusableCellWithIdentifier:XXQuestionReplyCellReuseId forIndexPath:indexPath];
     cell.reply = self.replys[indexPath.row];
+    cell.tag = indexPath.row;
     
     return cell;
 }

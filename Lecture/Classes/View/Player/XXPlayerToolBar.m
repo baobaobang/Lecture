@@ -122,11 +122,11 @@
     
     // 设置totalTimeLabel
     double duration = player.duration;
-    NSString *durationStr = [NSString getMinuteSecondWithSecond:duration];
+    NSString *durationStr = [NSString getHourMinuteSecondWithSecond:duration];
     self.totalTimeLabel.text = [NSString stringWithFormat:@"/ %@", durationStr];
     
     // 设置currentTimeLabel
-    self.currentTimeLabel.text = [NSString getMinuteSecondWithSecond:player.currentTime];
+    self.currentTimeLabel.text = [NSString getHourMinuteSecondWithSecond:player.currentTime];
     
     // 设置slider
     self.timeSlider.maximumValue = duration;
@@ -141,7 +141,7 @@
         self.timeSlider.value = self.player.currentTime;
     }
     //2.更新当前时间
-    self.currentTimeLabel.text = [NSString getMinuteSecondWithSecond:self.player.currentTime];
+    self.currentTimeLabel.text = [NSString getHourMinuteSecondWithSecond:self.player.currentTime];
     [self.currentTimeLabel sizeToFit];
 }
 
