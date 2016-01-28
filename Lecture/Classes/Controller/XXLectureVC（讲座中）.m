@@ -10,7 +10,8 @@
 #import "XXNavigationController.h"
 #import "XXPlayerVC.h"
 #import "XXExpertProfileVC.h"
-#import "XXOnlineVC.h"
+//#import "XXOnlineVC.h"
+#import "XXQuestionVC.h"
 #import "XXOnlineHeaderView.h"
 #import "XXExpertProfileHeaderView.h"
 
@@ -19,7 +20,8 @@
 @property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
 @property (nonatomic, weak) XXOnlineHeaderView *onlineHeaderView;
-@property (nonatomic, weak) XXOnlineVC *onlineVc;
+//@property (nonatomic, weak) XXOnlineVC *onlineVc;
+@property (nonatomic, weak) XXQuestionVC *onlineVc;
 @property (nonatomic, weak) XXButton *postQuestionBtn;
 
 @end
@@ -68,8 +70,10 @@
 - (void)setupNav
 {
     /* 设置左右item */
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(leftItemClick) bgImage:@"back" bgHighImage:@"back"];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(rightItemClick) bgImage:@"Refresh" bgHighImage:@"Refresh"];
+    UIImage *leftImage = [[UIImage imageNamed:@"back"] imageScaleToSize:CGSizeMake(20, 30)];
+    UIImage *rightImage = [[UIImage imageNamed:@"Refresh"] imageScaleToSize:CGSizeMake(30, 30)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(leftItemClick) bgImage:leftImage bgHighImage:leftImage];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(rightItemClick) bgImage:rightImage bgHighImage:rightImage];
 }
 
 
@@ -128,11 +132,20 @@
 // 在线交流
 - (void)setupOnlineVc{
     
-    XXOnlineVC *onlineVc = [[XXOnlineVC alloc] init];
+//    XXOnlineVC *onlineVc = [[XXOnlineVC alloc] init];
+//    onlineVc.view.x = 0;
+//    onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
+//    onlineVc.view.width = self.view.width;
+//    onlineVc.view.height = self.view.height;
+//    [self addChildViewController:onlineVc];
+//    [self.view addSubview:onlineVc.view];
+//    self.onlineVc = onlineVc;
+    
+    XXQuestionVC *onlineVc = [[XXQuestionVC alloc] init];
     onlineVc.view.x = 0;
     onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
     onlineVc.view.width = self.view.width;
-    onlineVc.view.height = self.view.height;
+    onlineVc.view.height = self.view.height - onlineVc.view.y - kXXJoinButtonHeight;
     [self addChildViewController:onlineVc];
     [self.view addSubview:onlineVc.view];
     self.onlineVc = onlineVc;

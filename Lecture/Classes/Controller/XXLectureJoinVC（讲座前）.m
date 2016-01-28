@@ -127,7 +127,7 @@
     self.title = @"公益讲堂";
     
     // 创建分享按钮//TODO: 分享按钮换图片
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(clickShareLectureBtn) bgImage:@"share" bgHighImage:@"share"];;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(clickShareLectureBtn) bgImageStr:@"share" bgHighImageStr:@"share"];;
 }
 
 - (void)setupPicView{
