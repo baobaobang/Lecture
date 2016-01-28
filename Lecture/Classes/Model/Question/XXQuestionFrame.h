@@ -43,6 +43,8 @@
 @property (nonatomic, assign) CGRect photosViewF;
 /** 底部工具条 */
 @property (nonatomic, assign) CGRect toolbarF;
+/** 回复 */
+@property (nonatomic, assign) CGRect replyF;
 
 /** cell的高度 */
 @property (nonatomic, assign) CGFloat cellHeight;

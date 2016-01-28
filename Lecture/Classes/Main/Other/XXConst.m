@@ -37,7 +37,7 @@ const CGFloat kXXJoinButtonHeight = 44;// 报名活动按钮的高度
 const CGFloat kXXJoinLectureActionSheetHeight = 200;
 const CGFloat kXXQuestionVCTextViewOriginalHeight = 38; // textview初始高度
 const CGFloat kXXQuestionVCTextViewMaxHeight = 130; // textview初始高度
-
+const CGFloat kXXQuestionReplyCellHeight = 30;
 /** 字体*/
 const CGFloat kXXJoinLectureActionSheetLabelFont = 16;
 const CGFloat kXXJoinLectureActionSheetDoneBtnFont = 18;
@@ -47,6 +47,7 @@ const CGFloat kXXJoinLectureActionSheetDuration = 0.3;
 
 /** Identifier*/
 NSString * const XXQuestionCellReuseId = @"QuestionCell";
+NSString * const XXQuestionReplyCellReuseId = @"QuestionReplyCellReuseId";
 /** 其他*/
 const NSUInteger kXXQuestionVCTextViewMaxWords = 100;// 最大字数限制
 const CGFloat kXXJoinLectureActionSheetAlpha = 0.4;

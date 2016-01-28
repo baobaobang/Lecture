@@ -24,8 +24,8 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     window.backgroundColor = [UIColor whiteColor];
     
-    XXHomeVC *rootVc = [[XXHomeVC alloc] init]; // 首页
-//    XXLectureJoinVC *rootVc = [[XXLectureJoinVC alloc] init]; // 讲座前
+//    XXHomeVC *rootVc = [[XXHomeVC alloc] init]; // 首页
+    XXLectureJoinVC *rootVc = [[XXLectureJoinVC alloc] init]; // 讲座前
 //    XXLectureVC *rootVc =[[XXLectureVC alloc] init]; // 讲座中
 
     rootVc.view.frame = window.frame;

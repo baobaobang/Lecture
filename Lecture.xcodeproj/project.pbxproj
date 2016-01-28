@@ -13,6 +13,10 @@
 		2D1D01F71C3EA3910056B10C /* LectureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D01F61C3EA3910056B10C /* LectureTests.m */; };
 		2D1D02021C3EA3910056B10C /* LectureUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D02011C3EA3910056B10C /* LectureUITests.m */; };
 		2D253DF81C44F8EE006AD55E /* Questions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D253DF71C44F8EE006AD55E /* Questions.plist */; };
+		2D50CCEB1C5A166A00FAF3AA /* XXQuestionReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50CCE91C5A166A00FAF3AA /* XXQuestionReplyCell.m */; };
+		2D50CCEC1C5A166A00FAF3AA /* XXQuestionReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D50CCEA1C5A166A00FAF3AA /* XXQuestionReplyCell.xib */; };
+		2D50CCEF1C5A1D6C00FAF3AA /* XXReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50CCEE1C5A1D6C00FAF3AA /* XXReply.m */; };
+		2D50CCF21C5A506100FAF3AA /* XXQuestionReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50CCF11C5A506100FAF3AA /* XXQuestionReplyView.m */; };
 		2D55BB6E1C5618F900BA1542 /* LGPhotoPickerBrowserPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D55BB111C5618F800BA1542 /* LGPhotoPickerBrowserPhoto.m */; };
 		2D55BB6F1C5618F900BA1542 /* LGPhotoRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D55BB131C5618F800BA1542 /* LGPhotoRect.m */; };
 		2D55BB701C5618F900BA1542 /* LGPhotoPickerBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D55BB161C5618F800BA1542 /* LGPhotoPickerBrowserViewController.m */; };
@@ -149,6 +153,13 @@
 		2D1D02031C3EA3910056B10C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1D20141C3F733F0093C310 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2D253DF71C44F8EE006AD55E /* Questions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Questions.plist; sourceTree = "<group>"; };
+		2D50CCE81C5A166A00FAF3AA /* XXQuestionReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionReplyCell.h; sourceTree = "<group>"; };
+		2D50CCE91C5A166A00FAF3AA /* XXQuestionReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionReplyCell.m; sourceTree = "<group>"; };
+		2D50CCEA1C5A166A00FAF3AA /* XXQuestionReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionReplyCell.xib; sourceTree = "<group>"; };
+		2D50CCED1C5A1D6C00FAF3AA /* XXReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXReply.h; sourceTree = "<group>"; };
+		2D50CCEE1C5A1D6C00FAF3AA /* XXReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXReply.m; sourceTree = "<group>"; };
+		2D50CCF01C5A506100FAF3AA /* XXQuestionReplyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionReplyView.h; sourceTree = "<group>"; };
+		2D50CCF11C5A506100FAF3AA /* XXQuestionReplyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionReplyView.m; sourceTree = "<group>"; };
 		2D55BB0D1C5618F800BA1542 /* LGPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGPhoto.h; sourceTree = "<group>"; };
 		2D55BB101C5618F800BA1542 /* LGPhotoPickerBrowserPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGPhotoPickerBrowserPhoto.h; sourceTree = "<group>"; };
 		2D55BB111C5618F800BA1542 /* LGPhotoPickerBrowserPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGPhotoPickerBrowserPhoto.m; sourceTree = "<group>"; };
@@ -817,6 +828,8 @@
 				2D6308991C549B2F0092F622 /* XXQuestionFrame.m */,
 				2D63089A1C549B2F0092F622 /* XXQuestionPhoto.h */,
 				2D63089B1C549B2F0092F622 /* XXQuestionPhoto.m */,
+				2D50CCED1C5A1D6C00FAF3AA /* XXReply.h */,
+				2D50CCEE1C5A1D6C00FAF3AA /* XXReply.m */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -930,8 +943,6 @@
 			children = (
 				2D6308C41C549B2F0092F622 /* XXJoinLectureActionSheet.h */,
 				2D6308C51C549B2F0092F622 /* XXJoinLectureActionSheet（报名弹窗）.m */,
-				2D6308C61C549B2F0092F622 /* XXQuestionCell.h */,
-				2D6308C71C549B2F0092F622 /* XXQuestionCell.m */,
 				2D6308C91C549B2F0092F622 /* XXQuestionHeaderView.h */,
 				2D6308CA1C549B2F0092F622 /* XXQuestionHeaderView.m */,
 				2D6308CB1C549B2F0092F622 /* XXQuestionHeaderView.xib */,
@@ -941,6 +952,13 @@
 				2D6308CF1C549B2F0092F622 /* XXQuestionPhotoView.h */,
 				2D6308D01C549B2F0092F622 /* XXQuestionToolbar.h */,
 				2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */,
+				2D6308C61C549B2F0092F622 /* XXQuestionCell.h */,
+				2D6308C71C549B2F0092F622 /* XXQuestionCell.m */,
+				2D50CCE81C5A166A00FAF3AA /* XXQuestionReplyCell.h */,
+				2D50CCE91C5A166A00FAF3AA /* XXQuestionReplyCell.m */,
+				2D50CCEA1C5A166A00FAF3AA /* XXQuestionReplyCell.xib */,
+				2D50CCF01C5A506100FAF3AA /* XXQuestionReplyView.h */,
+				2D50CCF11C5A506100FAF3AA /* XXQuestionReplyView.m */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -1169,6 +1187,7 @@
 				2DA99D761C44B75500CD02D7 /* 为什么容易感冒.png in Resources */,
 				2DA99D7B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 in Resources */,
 				2DA99D7C1C44B75500CD02D7 /* 感冒的原因.mp3 in Resources */,
+				2D50CCEC1C5A166A00FAF3AA /* XXQuestionReplyCell.xib in Resources */,
 				2DA99D7D1C44B75500CD02D7 /* 为什么容易感冒.mp3 in Resources */,
 				2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */,
 				2DA99D7A1C44B75500CD02D7 /* 什么是感冒.mp3 in Resources */,
@@ -1286,6 +1305,7 @@
 				2D6308E81C549B2F0092F622 /* SDBrowserImageView.m in Sources */,
 				2D55BB7D1C5618F900BA1542 /* LGPhotoPickerCollectionViewCell.m in Sources */,
 				2D6308D61C549B2F0092F622 /* XXPlayerVC.m in Sources */,
+				2D50CCEF1C5A1D6C00FAF3AA /* XXReply.m in Sources */,
 				2D75DA4E1C57089D0056FA6C /* XXOnlineVC.m in Sources */,
 				2D6308E71C549B2F0092F622 /* XXConst.m in Sources */,
 				2D6308EE1C549B2F0092F622 /* XXQuestion.m in Sources */,
@@ -1304,6 +1324,7 @@
 				2D6308E61C549B2F0092F622 /* main.m in Sources */,
 				2D6308DC1C549B2F0092F622 /* UIBarButtonItem+Extension.m in Sources */,
 				2D6308D71C549B2F0092F622 /* XXQuestionVC.m in Sources */,
+				2D50CCEB1C5A166A00FAF3AA /* XXQuestionReplyCell.m in Sources */,
 				2D55BB711C5618F900BA1542 /* LGImagePickerSelectView.m in Sources */,
 				2D6308D51C549B2F0092F622 /* XXLectureVC（讲座中）.m in Sources */,
 				2D55BB7A1C5618F900BA1542 /* LGPhotoPickerGroupViewController.m in Sources */,
@@ -1324,6 +1345,7 @@
 				2D6308E91C549B2F0092F622 /* SDPhotoBrowser.m in Sources */,
 				2D6309081C549B2F0092F622 /* XXQuestionToolbar.m in Sources */,
 				2D6308D31C549B2F0092F622 /* XXHomeVC.m in Sources */,
+				2D50CCF21C5A506100FAF3AA /* XXQuestionReplyView.m in Sources */,
 				2D6308EA1C549B2F0092F622 /* SDWaitingView.m in Sources */,
 				2D55BB781C5618F900BA1542 /* LGPhotoPickerGroup.m in Sources */,
 				2D6F60121C58B842006D8488 /* CXTextView.m in Sources */,

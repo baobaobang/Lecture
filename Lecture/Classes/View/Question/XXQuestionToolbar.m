@@ -193,8 +193,6 @@
     }
 }
 
-
-
 - (void)setupBtnCount:(int)count btn:(UIButton *)btn title:(NSString *)title
 {
     if (count > 0) { // 数字不为0
@@ -209,4 +207,6 @@
     }
     [btn setTitle:title forState:UIControlStateNormal];
 }
+
+
 @end

@@ -93,7 +93,6 @@
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:XXQuestionCellReuseId];
 }
 
-
 - (void)dealloc
 {
     NSLog(@"%@",self.textView);
@@ -216,7 +215,7 @@
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     // {{0, 344}, {320, 224}}
-    NSLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
+//    NSLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
     [UIView animateWithDuration:duration animations:^{
         // textview的Y值 == 键盘的Y值 - textview的高度
@@ -232,7 +231,7 @@
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     // {{0, 568}, {320, 224}}
-    NSLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
+//    NSLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
     [UIView animateWithDuration:duration animations:^{
         // textview的Y值 == 键盘的Y值

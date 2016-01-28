@@ -48,6 +48,7 @@ extern const CGFloat kXXJoinButtonHeight;// 报名活动按钮的高度
 extern const CGFloat kXXJoinLectureActionSheetHeight;
 extern const CGFloat kXXQuestionVCTextViewOriginalHeight; // textview初始高度
 extern const CGFloat kXXQuestionVCTextViewMaxHeight; // textview初始高度
+extern const CGFloat kXXQuestionReplyCellHeight;
 
 /** 字体*/
 extern const CGFloat kXXJoinLectureActionSheetLabelFont;
@@ -64,6 +65,7 @@ extern const CGFloat kXXJoinLectureActionSheetAlpha;
 extern const NSUInteger kXXQuestionVCTextViewMaxWords;// 最大字数限制
 /** Identifier*/
 extern NSString * const XXQuestionCellReuseId;
+extern NSString * const XXQuestionReplyCellReuseId;
 
 #pragma mark - 讲座中
 /** frame*/

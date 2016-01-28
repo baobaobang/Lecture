@@ -67,8 +67,20 @@
     CGFloat toolbarH = 35;
     self.toolbarF = CGRectMake(toolbarX, toolbarY, toolbarW, toolbarH);
     
+    /** 回复 */
+    CGFloat replyX = nameX;
+    CGFloat replyY = CGRectGetMaxY(self.toolbarF);
+    CGFloat replyW = maxW;
+    CGFloat replyH = question.replys.count * kXXQuestionReplyCellHeight;
+    self.replyF = CGRectMake(replyX, replyY, replyW, replyH);
+    
     /* cell的高度 */
-    self.cellHeight = CGRectGetMaxY(self.toolbarF);
+    if (question.replys.count) { // 有回复
+        self.cellHeight = CGRectGetMaxY(self.replyF);
+    }else{
+        self.cellHeight = CGRectGetMaxY(self.toolbarF);
+    }
+    
 }
 
 - (NSComparisonResult)compareAttitudesCount:(XXQuestionFrame *)other{

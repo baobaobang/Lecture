@@ -9,12 +9,13 @@
 #import "XXQuestion.h"
 #import <MJExtension.h>
 #import "XXQuestionPhoto.h"
+#import "XXReply.h"
 
 @implementation XXQuestion
 
 + (NSDictionary *)mj_objectClassInArray
 {
-    return @{@"pic_urls" : [XXQuestionPhoto class], @"digUsers" : [XXUser class]};
+    return @{@"pic_urls" : [XXQuestionPhoto class], @"digUsers" : [XXUser class], @"replys" : [XXReply class]};
 }
 
 

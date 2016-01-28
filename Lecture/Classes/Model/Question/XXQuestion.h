@@ -34,6 +34,8 @@
 /**	自己是否点赞*/
 @property (nonatomic, assign, getter=isLike) BOOL like;
 
+/**	回复*/
+@property (nonatomic, strong) NSArray *replys;
 
 // 当前用户是否点赞过
 //- (BOOL)isCurrentUserLike;

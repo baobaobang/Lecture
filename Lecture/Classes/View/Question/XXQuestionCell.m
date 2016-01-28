@@ -12,6 +12,7 @@
 #import "XXQuestionPhotosView.h"
 #import "XXQuestionFrame.h"
 #import <UIButton+WebCache.h>
+#import "XXQuestionReplyView.h"
 
 @interface XXQuestionCell ()
 
@@ -25,6 +26,8 @@
 @property (nonatomic, weak) UILabel *contentLabel;
 /** 配图 */
 @property (nonatomic, weak) XXQuestionPhotosView *photosView;
+/** 回复 */
+@property (nonatomic, weak) XXQuestionReplyView *replyView;
 
 @end
 @implementation XXQuestionCell
@@ -82,6 +85,11 @@
     XXQuestionToolbar *toolbar = [XXQuestionToolbar toolbar];
     [self.contentView addSubview:toolbar];
     self.toolbar = toolbar;
+    
+    /** 回复 */
+    XXQuestionReplyView *replyView = [[XXQuestionReplyView alloc] init];
+    [self.contentView addSubview:replyView];
+    self.replyView = replyView;
 }
 
 - (void)setQuestionFrame:(XXQuestionFrame *)questionFrame
@@ -128,6 +136,10 @@
     /** 工具条 */
     self.toolbar.frame = questionFrame.toolbarF;
     self.toolbar.questionFrame = questionFrame;
+    
+    /** 回复 */
+    self.replyView.frame = questionFrame.replyF;
+    self.replyView.replys = question.replys;
 }
 
 @end
