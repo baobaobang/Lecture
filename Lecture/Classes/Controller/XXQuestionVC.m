@@ -13,8 +13,6 @@
 #import "XXQuestionFrame.h"
 #import "CXTextView.h"
 
-
-
 @interface XXQuestionVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
 
 @end
@@ -28,7 +26,7 @@
         CXTextView *textView = [[CXTextView alloc] init];
         textView.font = [UIFont systemFontOfSize:kXXTextFont];
         textView.backgroundColor = XXTestColor;
-        textView.frame = CGRectMake(0, self.view.height, self.view.width, kXXQuestionVCTextViewOriginalHeight); // 初始位置为底部
+        textView.frame = CGRectMake(0, XXScreenHeight, XXScreenWidth, kXXQuestionVCTextViewOriginalHeight); // 初始位置为底部
         textView.delegate = self;
         textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
         textView.enablesReturnKeyAutomatically = YES;//这里设置为无文字就灰色不可点
@@ -93,15 +91,27 @@
     
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:XXQuestionCellReuseId];
-    
-    
-    // 键盘的frame发生改变时发出的通知（位置和尺寸）
-    [XXNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 
 - (void)dealloc
 {
+    NSLog(@"%@",self.textView);
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    // 键盘的frame发生改变时发出的通知（位置和尺寸）
+    [XXNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self.textView resignFirstResponder];
+    
     [XXNotificationCenter removeObserver:self];
 }
 
@@ -197,21 +207,39 @@
 }
 
 #pragma mark - 键盘的frame发生改变时调用（显示、隐藏等）
-- (void)keyboardWillChangeFrame:(NSNotification *)notification
-{
-    
+
+- (void)keyboardWillShow:(NSNotification *)notification{
     NSDictionary *userInfo = notification.userInfo;
     // 动画的持续时间（和键盘的动画时间要一致）
     double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     // 键盘的frame
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
+    // {{0, 344}, {320, 224}}
+    NSLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
     [UIView animateWithDuration:duration animations:^{
         // textview的Y值 == 键盘的Y值 - textview的高度
         self.textView.y = keyboardF.origin.y  - self.textView.height;
     }];
 }
+
+- (void)keyboardWillHide:(NSNotification *)notification{
+    NSDictionary *userInfo = notification.userInfo;
+    // 动画的持续时间（和键盘的动画时间要一致）
+    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    // 键盘的frame
+    CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // {{0, 568}, {320, 224}}
+    NSLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
+    // 执行动画
+    [UIView animateWithDuration:duration animations:^{
+        // textview的Y值 == 键盘的Y值
+        self.textView.y = keyboardF.origin.y;
+    }];
+}
+
 
 #pragma mark - UITextViewDelegate
 
@@ -246,6 +274,5 @@
     XXLog(@"send");
     [self.textView removeFromSuperview];
 }
-
 
 @end

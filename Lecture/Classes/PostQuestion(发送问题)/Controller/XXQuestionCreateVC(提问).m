@@ -66,6 +66,18 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     [self setupPhotoCollectionView];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.textView becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self.textView resignFirstResponder];
+}
+
 #pragma mark - 初始化
 
 - (void)setupNav{
@@ -228,6 +240,9 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 #pragma mark - 取消提问
 
 - (void)cancel{
+    
+//    [self.textView endEditing:YES];
+    
     UIAlertView *alertView=[[UIAlertView alloc]
                             initWithTitle:@"退出此次编辑？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
     [alertView show];
@@ -235,6 +250,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) { // 点击退出
+
         [self dismiss];
     }
 }
