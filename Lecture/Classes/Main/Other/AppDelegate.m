@@ -10,7 +10,7 @@
 #import "XXHomeVC.h"
 #import "XXNavigationController.h"
 #import "XXLectureJoinVC.h"
-#import "XXLectureVC.h"
+#import "XXLectureHomeVC.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +26,7 @@
     
     XXHomeVC *rootVc = [[XXHomeVC alloc] init]; // 首页
 //    XXLectureJoinVC *rootVc = [[XXLectureJoinVC alloc] init]; // 讲座前
-//    XXLectureVC *rootVc =[[XXLectureVC alloc] init]; // 讲座中
+//    XXLectureHomeVC *rootVc =[[XXLectureHomeVC alloc] init]; // 讲座中
 
     rootVc.view.frame = window.frame;
 

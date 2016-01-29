@@ -7,7 +7,7 @@
 //
 
 #import "XXHomeVC.h"
-#import "XXLectureVC.h"
+#import "XXLectureHomeVC.h"
 #import "XXLectureJoinVC.h"
 
 @interface XXHomeVC ()
@@ -46,7 +46,7 @@
 }
 
 - (void)toLecture{
-    XXLectureVC *vc = [[XXLectureVC alloc] init];
+    XXLectureHomeVC *vc = [[XXLectureHomeVC alloc] init];
     vc.view.frame = self.view.bounds;
     [self.navigationController pushViewController:vc animated:YES];
     
