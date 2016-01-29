@@ -14,6 +14,7 @@
 #import "XXQuestionVC.h"
 #import "XXOnlineHeaderView.h"
 #import "XXExpertProfileHeaderView.h"
+#import "XXQuestionCreateVC.h"
 
 @interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) XXPlayerVC *playerVc;
@@ -168,7 +169,12 @@
 
 // 提问
 - (void)postQuestion:(XXButton *)btn{
-    //TODO:
+
+    XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
+//    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
+    vc.view.frame = self.view.frame;
+    XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)leftItemClick
