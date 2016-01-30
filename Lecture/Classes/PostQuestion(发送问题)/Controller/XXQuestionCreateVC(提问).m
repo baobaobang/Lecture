@@ -222,19 +222,20 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 // 发送成功后
 - (void)refreshQuestionVc{
+    //TODO:
     
-    // 因为修改了plist，需要从本地重新加载数据，再刷新精选提问界面
-    self.questionVC.questionFrames = [self.questionVC loadDataFromPlist];
-    [self.questionVC.tableView reloadData];
-    
-    // 模拟网络延时，提示发送成功
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hideProgress];
-        [self showHUDText:@"发送成功！"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self dismiss];
-        });
-    });
+//    // 因为修改了plist，需要从本地重新加载数据，再刷新精选提问界面
+//    self.questionVC.questionFrames = [self.questionVC loadDataFromPlist];
+//    [self.questionVC.tableView reloadData];
+//    
+//    // 模拟网络延时，提示发送成功
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self hideProgress];
+//        [self showHUDText:@"发送成功！"];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self dismiss];
+//        });
+//    });
 }
 
 #pragma mark - 取消提问

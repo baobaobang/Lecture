@@ -1,14 +1,16 @@
 //
-//  XXLectureExpertOnlyVC.h
+//  XXQuestionVC.h
 //  Lecture
 //
-//  Created by 陈旭 on 16/1/29.
+//  Created by 陈旭 on 16/1/20.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "XXQuestionBaseVC.h"
 
-@interface XXLectureExpertOnlyVC : XXQuestionBaseVC
+@interface XXQuestionVC : XXQuestionBaseVC
 
 @end
+
+

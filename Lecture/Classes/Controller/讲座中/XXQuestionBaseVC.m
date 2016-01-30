@@ -1,50 +1,27 @@
 //
-//  XXQuestionVC.m
+//  XXQuestionBaseVC.m
 //  Lecture
 //
-//  Created by 陈旭 on 16/1/20.
+//  Created by 陈旭 on 16/1/29.
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import "XXQuestionVC.h"
+#import "XXQuestionBaseVC.h"
 #import "XXQuestionCell.h"
 #import "XXQuestionToolbar.h"
-#import <MJExtension.h>
-#import "XXQuestionFrame.h"
 #import "CXTextView.h"
 
-@interface XXQuestionVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
+@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
 
 @end
 
-@implementation XXQuestionVC
+@implementation XXQuestionBaseVC
 
-#pragma mark - 懒加载
-
-- (CXTextView *)textView{
-    if (!_textView) {
-        CXTextView *textView = [[CXTextView alloc] init];
-        textView.font = [UIFont systemFontOfSize:kXXTextFont];
-        textView.backgroundColor = XXTestColor;
-        textView.frame = CGRectMake(0, XXScreenHeight, XXScreenWidth, kXXQuestionVCTextViewOriginalHeight); // 初始位置为底部
-        textView.delegate = self;
-        textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
-        textView.enablesReturnKeyAutomatically = YES;//这里设置为无文字就灰色不可点
-        textView.placeholder = @"回复";// 占位文字
-        textView.autoAdjust = YES; // 自适应
-        textView.adjustTop = YES; // 向上调整
-        textView.maxHeight = kXXQuestionVCTextViewMaxHeight; // 最大高度限制
-        [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
-        _textView = textView;
-    }
-    return _textView;
-}
-
-- (NSMutableArray *)questionFrames
+- (NSArray *)questionFrames
 {
     if (!_questionFrames) {
         
-        _questionFrames = [self loadDataFromPlist];
+        _questionFrames = [[NSArray alloc] init];
     }
     return _questionFrames;
 }
@@ -63,27 +40,6 @@
     return frames;
 }
 
-#pragma mark - 从本地加载数据
-- (NSMutableArray *)loadDataFromPlist{
-    //TODO: 后面改成从数据加载
-    
-    // 字典转模型
-    // 方式一：从document目录下加载plist
-//    NSString *docmentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    //    NSString *plistPath = [docmentPath stringByAppendingPathComponent:@"Questions.plist"];
-    
-    // 方式二：从mainBundle目录下加载plist
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Questions.plist" ofType:nil];
-    
-    NSArray *questions = [XXQuestion mj_objectArrayWithFile:plistPath];
-    // question模型转为questionFrames模型
-    NSMutableArray *questionFrames = [self questionFramesWithQuestions:questions];
-    // 按照点赞数排序
-    questionFrames = [questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-    
-    return questionFrames;
-}
-
 #pragma mark - 生命周期
 
 - (void)viewDidLoad {
@@ -91,6 +47,9 @@
     
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:XXQuestionCellReuseId];
+    
+    //
+    [self setupTextView];
 }
 
 - (void)dealloc
@@ -114,6 +73,23 @@
     [XXNotificationCenter removeObserver:self];
 }
 
+#pragma mark - 初始化方法
+- (void)setupTextView{
+    CXTextView *textView = [[CXTextView alloc] init];
+    textView.font = [UIFont systemFontOfSize:kXXTextFont];
+    textView.backgroundColor = XXTestColor;
+    textView.frame = CGRectMake(0, XXScreenHeight, XXScreenWidth, kXXQuestionVCTextViewOriginalHeight); // 初始位置为底部
+    textView.delegate = self;
+    textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
+    textView.enablesReturnKeyAutomatically = YES;//这里设置为无文字就灰色不可点
+    textView.placeholder = @"回复";// 占位文字
+    textView.autoAdjust = YES; // 自适应
+    textView.adjustTop = YES; // 向上调整
+    textView.maxHeight = kXXQuestionVCTextViewMaxHeight; // 最大高度限制
+    [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
+    self.textView = textView;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -135,7 +111,7 @@
     
     // 给cell的子控件赋值
     questionCell.questionFrame = self.questionFrames[indexPath.row];
-
+    
     return questionCell;
 }
 
@@ -149,7 +125,7 @@
 
 #pragma mark - 点击cell后的反应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.textView removeFromSuperview];
+    [self.textView resignFirstResponder];
 }
 
 #pragma mark - 点击toolbar上的按钮，XXQuestionToolbarDelegate
@@ -215,7 +191,7 @@
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     // {{0, 344}, {320, 224}}
-//    NSLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
+    //    NSLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
     [UIView animateWithDuration:duration animations:^{
         // textview的Y值 == 键盘的Y值 - textview的高度
@@ -231,7 +207,7 @@
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     // {{0, 568}, {320, 224}}
-//    NSLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
+    //    NSLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
     [UIView animateWithDuration:duration animations:^{
         // textview的Y值 == 键盘的Y值
@@ -271,7 +247,7 @@
 - (void)send{
     //TODO: 记录text并显示出来
     XXLog(@"send");
-    [self.textView removeFromSuperview];
+    [self.textView resignFirstResponder];
 }
 
 @end

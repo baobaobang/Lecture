@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XXQuestionBaseVC.h"
 
-@interface XXLectureSelectedQuestions : UITableViewController
+@interface XXLectureSelectedQuestions : XXQuestionBaseVC
 
 @end
