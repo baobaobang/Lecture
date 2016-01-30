@@ -13,6 +13,8 @@
 #define XXPlayerTimeLabelFont [UIFont systemFontOfSize:15]
 
 @interface XXPlayerToolBar ()
+/** 横屏按钮 */
+@property (nonatomic, weak) UIButton *landscapeBtn;
 
 /** 定时器 */
 @property(strong,nonatomic)CADisplayLink *link;
@@ -56,6 +58,7 @@
         currentTimeLabel.font = XXPlayerTimeLabelFont;
         currentTimeLabel.textColor = [UIColor whiteColor];
         currentTimeLabel.textAlignment = NSTextAlignmentCenter;// 右对齐
+        currentTimeLabel.backgroundColor = XXTestColor;
         [self addSubview:currentTimeLabel];
         self.currentTimeLabel = currentTimeLabel;
         
@@ -66,6 +69,13 @@
         totalTimeLabel.textAlignment = NSTextAlignmentCenter;// 右对齐
         [self addSubview:totalTimeLabel];
         self.totalTimeLabel = totalTimeLabel;
+        
+        // landscapeBtn
+        UIButton *landscapeBtn = [[UIButton alloc] init];
+        [landscapeBtn addTarget:self action:@selector(clickLandscapeBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [landscapeBtn setNBg:@"AlbumFlagMark" hBg:@"AlbumFlagMark"];
+        [self addSubview:landscapeBtn];
+        self.landscapeBtn = landscapeBtn;
         
         // 开启定时器
         [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
@@ -84,17 +94,24 @@
     CGFloat playW = playH;
     self.playBtn.frame = CGRectMake(playX, playY, playW, playH);
     
+    // landscapeBtn
+    CGFloat landscapeH = self.height;
+    CGFloat landscapeW = landscapeH;
+    CGFloat landscapeX = self.width - landscapeW;
+    CGFloat landscapeY = 0;
+    self.landscapeBtn.frame = CGRectMake(landscapeX, landscapeY, landscapeW, landscapeH);
+    
     // totalTimeLabel
     CGSize totalSize = [self.totalTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
-    CGFloat totalW = totalSize.width > 45 ? 60 : 45;
+    CGFloat totalW = 55;
     CGFloat totalH = self.height;
-    CGFloat totalX = self.width - totalW;
+    CGFloat totalX = landscapeX - totalW;
     CGFloat totalY = 0;
     self.totalTimeLabel.frame = CGRectMake(totalX, totalY, totalW, totalH);
     
     // currentTimeLabel
     CGSize currentSize = [self.currentTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
-    CGFloat currentW = totalSize.width > 42 ? 55 : 42;
+    CGFloat currentW = 45;
     CGFloat currentH = self.height;
     CGFloat currentX = self.totalTimeLabel.x - currentW;
     CGFloat currentY = 0;
@@ -169,6 +186,11 @@
     if ([self.delegate respondsToSelector:@selector(playerToolBar:sliderValueChanged:)]) {
         [self.delegate playerToolBar:self sliderValueChanged:slider];
     }
+}
+
+- (void)clickLandscapeBtn:(UIButton *)btn{
+    //TODO:
+    XXTestLog;
 }
 
 @end
