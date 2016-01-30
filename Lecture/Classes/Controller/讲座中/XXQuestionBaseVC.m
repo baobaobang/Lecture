@@ -159,11 +159,6 @@
 - (void)clickReplyBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
     [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
-    
-    //让所点击的cell的底部滚动到输入框的正上方
-    NSUInteger row = [self.questionFrames indexOfObject:toolbar.questionFrame];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 #pragma mark - 点击点赞后

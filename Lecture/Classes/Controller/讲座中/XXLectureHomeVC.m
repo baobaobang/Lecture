@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 
     // 添加子控制器
     XXLectureVC *lectureVc = [[XXLectureVC alloc] init];
