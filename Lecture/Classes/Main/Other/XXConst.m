@@ -66,7 +66,7 @@ NSString * const XXPlayerPicViewCellIdentifier = @"XXPlayerPicViewCellIdentifier
 /** 通知*/
 NSString * const XXQuestionToolbarShareButtonClickNotification = @"XXQuestionToolbarShareButtonClickNotification";
 NSString * const XXQuestionToolbarUnlikeButtonClickNotification = @"XXQuestionToolbarShareButtonClickNotification";
-
+NSString * const XXLandscapeBtnDidClickNotification = @"XXLandscapeBtnDidClickNotification";
 
 
 @end

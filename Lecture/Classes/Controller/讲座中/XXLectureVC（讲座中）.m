@@ -25,6 +25,7 @@
 @property (nonatomic, weak) XXQuestionVC *onlineVc;
 @property (nonatomic, weak) XXButton *postQuestionBtn;
 
+
 @end
 
 @implementation XXLectureVC
@@ -57,10 +58,12 @@
     
     // 设置我要提问按钮
     [self setupPostQuestionBtn];
+    
+    [XXNotificationCenter addObserver:self selector:@selector(landscapeBtnClick) name:XXLandscapeBtnDidClickNotification object:nil];
 }
 
 - (void)dealloc{
-
+    [XXNotificationCenter removeObserver:self];
 }
 
 #pragma mark - 初始化
@@ -238,5 +241,9 @@
     }];
 }
 
+- (void)landscapeBtnClick{
+    //TODO: 横竖屏切换
+    XXTestLog;
+}
 
 @end

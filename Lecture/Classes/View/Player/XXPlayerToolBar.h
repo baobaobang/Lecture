@@ -16,7 +16,6 @@
 - (void)playerToolBar:(XXPlayerToolBar *)toolBar didBeginDraggingSlider:(UISlider *)slider;
 - (void)playerToolBar:(XXPlayerToolBar *)toolBar didStopDraggingSlider:(UISlider *)slider;
 - (void)playerToolBar:(XXPlayerToolBar *)toolBar sliderValueChanged:(UISlider *)slider;
-
 @end
 
 @interface XXPlayerToolBar : UIView

@@ -76,5 +76,6 @@ extern NSString * const XXPlayerPicViewCellIdentifier;//播放图片的cell
 /** 通知*/
 extern NSString * const XXQuestionToolbarShareButtonClickNotification;
 extern NSString * const XXQuestionToolbarUnlikeButtonClickNotification;
+extern NSString * const XXLandscapeBtnDidClickNotification;
 
 @end

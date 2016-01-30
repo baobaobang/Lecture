@@ -189,8 +189,7 @@
 }
 
 - (void)clickLandscapeBtn:(UIButton *)btn{
-    //TODO:
-    XXTestLog;
+    [XXNotificationCenter postNotificationName:XXLandscapeBtnDidClickNotification object:nil];
 }
 
 @end
