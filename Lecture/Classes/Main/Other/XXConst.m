@@ -49,7 +49,7 @@ const CGFloat kXXJoinLectureActionSheetDuration = 0.3;
 NSString * const XXQuestionCellReuseId = @"QuestionCell";
 NSString * const XXQuestionReplyCellReuseId = @"QuestionReplyCellReuseId";
 /** 其他*/
-const NSUInteger kXXQuestionVCTextViewMaxWords = 100;// 最大字数限制
+const NSUInteger kXXQuestionVCTextViewMaxWords = 300;// 最大字数限制
 const CGFloat kXXJoinLectureActionSheetAlpha = 0.4;
 
 #pragma mark - 讲座中

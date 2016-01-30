@@ -50,6 +50,8 @@
     
     //
     [self setupTextView];
+    
+//    self.tableView.tag = 1;
 }
 
 - (void)dealloc
@@ -248,6 +250,14 @@
     //TODO: 记录text并显示出来
     XXLog(@"send");
     [self.textView resignFirstResponder];
+}
+
+#pragma mark - scrollView Delegate
+// 拖动tableview就退出键盘
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if ([scrollView isKindOfClass:[UITableView class]]) {
+        [self.textView resignFirstResponder];
+    }
 }
 
 @end
