@@ -58,7 +58,7 @@ const CGFloat kXXPlayerToolBarHeight = 40;
 const CGFloat kXXOnlineHeaderViewHeight = 44;
 /** 字体*/
 /** 时间*/
-const CGFloat kXXPlayerVCChageToLandscapeDuration = 0.5;
+const CGFloat kXXPlayerVCChageToLandscapeDuration = 0.3; // 横屏切换时间
 
 /** Identifier*/
 NSString * const XXPlayerPicViewCellIdentifier = @"XXPlayerPicViewCellIdentifier";

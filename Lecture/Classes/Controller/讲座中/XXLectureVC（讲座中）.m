@@ -38,8 +38,6 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
     // 设置导航栏
     [self setupNav];
     
@@ -236,6 +234,7 @@
     }];
 }
 
+#pragma mark - 点击按钮切换横竖屏
 // 点击按钮切换横竖屏
 - (void)landscapeBtnClick{
     
@@ -250,9 +249,9 @@
 - (void)showLandscapeViewWithDuration:(NSTimeInterval)duration
 {
     [self.view bringSubviewToFront:self.playerVc.view];
-    // 旋转和缩放动画
-    CGFloat sx = self.view.height / self.playerVc.view.width;
-    CGFloat sy = self.view.width / self.playerVc.view.height;
+    
+    CGFloat sx = self.view.width / self.playerVc.view.height;
+    CGFloat sy = self.view.height / self.playerVc.view.width;
     CGFloat tx = 0;
     CGFloat ty = self.view.centerY - self.playerVc.view.centerY;
     
@@ -264,12 +263,10 @@
         self.playerVc.view.transform = transform;
     }];
     
-    XXLog(@"%@", NSStringFromCGRect(self.playerVc.view.frame)) ;
-    
 //    XXLog(@"_landscapeVc.view.width-%f, _landscapeVc.view.height-%f", _landscapeVc.view.width, _landscapeVc.view.height);
 
     // 隐藏导航栏
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     // 隐藏状态栏
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     //    [self hideStatusBar];
@@ -283,7 +280,7 @@
     }];
 
     // 显示导航栏
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     // 显示状态栏
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }

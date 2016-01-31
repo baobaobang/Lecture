@@ -26,12 +26,15 @@
     // 添加子控制器
     XXLectureVC *lectureVc = [[XXLectureVC alloc] init];
     [self addChildViewController:lectureVc];
+    lectureVc.view.frame = self.view.bounds;
     
     XXLectureExpertOnlyVC *expertOnlyVc = [[XXLectureExpertOnlyVC alloc] init];
     [self addChildViewController:expertOnlyVc];
+    expertOnlyVc.view.frame = CGRectMake(0, kXXStatusAndNavBarHeight, self.view.width, self.view.height - kXXStatusAndNavBarHeight);
     
     XXLectureSelectedQuestions *selectedQuestionVc = [[XXLectureSelectedQuestions alloc] init];
     [self addChildViewController:selectedQuestionVc];
+    selectedQuestionVc.view.frame = CGRectMake(0, kXXStatusAndNavBarHeight, self.view.width, self.view.height - kXXStatusAndNavBarHeight);
     
     // 默认显示XXLectureVC
     [self.view addSubview:lectureVc.view];

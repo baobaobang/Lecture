@@ -28,7 +28,6 @@
     [super viewDidLoad];
     
     self.questionFrames = self.frames;
-    self.view.y = 64;
 }
 
 #pragma mark - 从本地加载数据
