@@ -19,8 +19,8 @@
     [super awakeFromNib];
     
     // 收起按钮用文字表示
-    [self.contractBtn setTitle:@"收起讲座介绍" forState:UIControlStateNormal];
-    [self.contractBtn setTitle:@"展开讲座介绍" forState:UIControlStateSelected];
+    [self.contractBtn setTitle:@"展开提问" forState:UIControlStateNormal];
+    [self.contractBtn setTitle:@"收起提问" forState:UIControlStateSelected];
     //TODO: 改收起按钮的文字颜色和背景色
 
 }

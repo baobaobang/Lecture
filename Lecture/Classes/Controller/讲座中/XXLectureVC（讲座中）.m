@@ -268,7 +268,7 @@
     // 隐藏导航栏
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     // 隐藏状态栏
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     //    [self hideStatusBar];
 }
 
@@ -282,7 +282,7 @@
     // 显示导航栏
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     // 显示状态栏
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 }
 
 #pragma mark - 隐藏导航栏和状态栏 适配iOS7

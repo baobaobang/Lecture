@@ -94,7 +94,12 @@
 - (void)hidePicView{
 
     // 需要上移的高度
-    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight + kXXStatusAndNavBarHeight;
+    
+    // 隐藏导航栏
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    // 隐藏状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.questionHeaderView.y -= height;
@@ -106,9 +111,13 @@
 }
 
 - (void)showPicView{
-    
     // 需要下移的高度
-    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight + kXXStatusAndNavBarHeight;
+    
+    // 显示导航栏
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    // 显示状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.questionHeaderView.y += height;

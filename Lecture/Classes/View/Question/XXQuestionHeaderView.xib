@@ -26,7 +26,7 @@
                                 <action selector="btnClick:" destination="HdW-RH-oUn" eventType="touchUpInside" id="g08-LQ-OMs"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精选提问" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubc-84-nLB">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提问" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubc-84-nLB">
                             <rect key="frame" x="15" y="5" width="77" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="77" id="xTw-nP-xgm"/>
