@@ -7,8 +7,6 @@
 //
 
 #import "XXNavigationController.h"
-#import "XXLectureHomeVC.h"
-//#import "XXLectureVC.h"
 
 @interface XXNavigationController ()
 
@@ -38,23 +36,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-
-//支持旋转
--(BOOL)shouldAutorotate{
-    // self.topViewController是当前导航显示的UIViewController，这样就可以控制每个UIViewController所支持的方向啦！
-    if ([self.topViewController isKindOfClass:[XXLectureHomeVC class]]) {
-        return YES;
-    }
-    return NO;
-}
-//支持的方向
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    if ([self.topViewController isKindOfClass:[XXLectureHomeVC class]]) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    }
-    return UIInterfaceOrientationMaskPortrait;
 }
 
 

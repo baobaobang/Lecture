@@ -8,7 +8,7 @@
 
 #import "XXPlayerPicView.h"
 #import "XXCollectionCell.h"
-#import "XXCollectionView.h"
+#import "XXCollectionViewFlowLayout.h"
 
 @interface XXPlayerPicView ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @end
@@ -29,13 +29,20 @@
 
 - (void)setupCollectionView{
     
-    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-    XXCollectionView *collectionView = [[XXCollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
+    XXCollectionViewFlowLayout *layout=[[XXCollectionViewFlowLayout alloc] init];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
     [self addSubview:collectionView];
     self.collectionView = collectionView;
+    // 其他属性
+    collectionView.collectionViewLayout = layout;
+    collectionView.pagingEnabled = YES; // 自动分页
+    collectionView.showsHorizontalScrollIndicator = NO;
+    collectionView.showsVerticalScrollIndicator = NO;
+    collectionView.bounces = NO;
     // 设置数据源和代理
     collectionView.dataSource = self;
     collectionView.delegate = self;
+    
     // 注册collectionView的cell
     [self.collectionView registerClass:[XXCollectionCell class] forCellWithReuseIdentifier:XXPlayerPicViewCellIdentifier];
 }
@@ -81,16 +88,17 @@
     // 设置cell的数据
     cell.music = self.musics[indexPath.item];
     
+    
     return cell;
 }
 
 #pragma mark - UICollectionView delegate
 
 //设置每个 UICollectionView 的大小
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake(self.collectionView.width, self.collectionView.height);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return CGSizeMake(self.collectionView.width, self.collectionView.height);
+//}
 
 //点击元素触发事件
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -105,6 +113,7 @@
         [self.delegate playerPicView:self collectionViewDidEndDecelerating:self.collectionView];
     }
 }
+
 
 #pragma mark - XXPlayerPicView delegate
 

@@ -92,7 +92,6 @@
 		2D6308FA1C549B2F0092F622 /* XXExpertProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308B61C549B2F0092F622 /* XXExpertProfileHeaderView.m */; };
 		2D6308FB1C549B2F0092F622 /* XXExpertProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6308B71C549B2F0092F622 /* XXExpertProfileHeaderView.xib */; };
 		2D6308FC1C549B2F0092F622 /* XXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308BA1C549B2F0092F622 /* XXCollectionCell.m */; };
-		2D6308FD1C549B2F0092F622 /* XXCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308BC1C549B2F0092F622 /* XXCollectionView.m */; };
 		2D6308FE1C549B2F0092F622 /* XXPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308BE1C549B2F0092F622 /* XXPlayerMaskView.m */; };
 		2D6308FF1C549B2F0092F622 /* XXPlayerPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308C01C549B2F0092F622 /* XXPlayerPicView.m */; };
 		2D6309001C549B2F0092F622 /* XXPlayerToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308C21C549B2F0092F622 /* XXPlayerToolBar.m */; };
@@ -104,6 +103,7 @@
 		2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308CE1C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m */; };
 		2D6309081C549B2F0092F622 /* XXQuestionToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */; };
 		2D63090F1C54BBF50092F622 /* CurrentUser.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D63090E1C54BBF50092F622 /* CurrentUser.plist */; };
+		2D64BE311C5DE10F00B23D2D /* XXCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D64BE301C5DE10F00B23D2D /* XXCollectionViewFlowLayout.m */; };
 		2D6F60121C58B842006D8488 /* CXTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F60111C58B842006D8488 /* CXTextView.m */; };
 		2D75DA4B1C5708720056FA6C /* XXOnlineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D75DA4A1C5708720056FA6C /* XXOnlineHeaderView.m */; };
 		2D75DA501C5709C80056FA6C /* XXOnlineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D75DA4F1C5709C80056FA6C /* XXOnlineHeaderView.xib */; };
@@ -310,8 +310,6 @@
 		2D6308B71C549B2F0092F622 /* XXExpertProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXExpertProfileHeaderView.xib; sourceTree = "<group>"; };
 		2D6308B91C549B2F0092F622 /* XXCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCollectionCell.h; sourceTree = "<group>"; };
 		2D6308BA1C549B2F0092F622 /* XXCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCollectionCell.m; sourceTree = "<group>"; };
-		2D6308BB1C549B2F0092F622 /* XXCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCollectionView.h; sourceTree = "<group>"; };
-		2D6308BC1C549B2F0092F622 /* XXCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCollectionView.m; sourceTree = "<group>"; };
 		2D6308BD1C549B2F0092F622 /* XXPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXPlayerMaskView.h; sourceTree = "<group>"; };
 		2D6308BE1C549B2F0092F622 /* XXPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXPlayerMaskView.m; sourceTree = "<group>"; };
 		2D6308BF1C549B2F0092F622 /* XXPlayerPicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXPlayerPicView.h; sourceTree = "<group>"; };
@@ -332,6 +330,8 @@
 		2D6308D01C549B2F0092F622 /* XXQuestionToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionToolbar.h; sourceTree = "<group>"; };
 		2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionToolbar.m; sourceTree = "<group>"; };
 		2D63090E1C54BBF50092F622 /* CurrentUser.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CurrentUser.plist; sourceTree = "<group>"; };
+		2D64BE2F1C5DE10F00B23D2D /* XXCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		2D64BE301C5DE10F00B23D2D /* XXCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		2D6F60101C58B842006D8488 /* CXTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXTextView.h; sourceTree = "<group>"; };
 		2D6F60111C58B842006D8488 /* CXTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXTextView.m; sourceTree = "<group>"; };
 		2D75DA491C5708720056FA6C /* XXOnlineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOnlineHeaderView.h; sourceTree = "<group>"; };
@@ -971,14 +971,14 @@
 		2D6308B81C549B2F0092F622 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				2D6308B91C549B2F0092F622 /* XXCollectionCell.h */,
-				2D6308BA1C549B2F0092F622 /* XXCollectionCell.m */,
-				2D6308BB1C549B2F0092F622 /* XXCollectionView.h */,
-				2D6308BC1C549B2F0092F622 /* XXCollectionView.m */,
-				2D6308BD1C549B2F0092F622 /* XXPlayerMaskView.h */,
-				2D6308BE1C549B2F0092F622 /* XXPlayerMaskView.m */,
 				2D6308BF1C549B2F0092F622 /* XXPlayerPicView.h */,
 				2D6308C01C549B2F0092F622 /* XXPlayerPicView.m */,
+				2D64BE2F1C5DE10F00B23D2D /* XXCollectionViewFlowLayout.h */,
+				2D64BE301C5DE10F00B23D2D /* XXCollectionViewFlowLayout.m */,
+				2D6308B91C549B2F0092F622 /* XXCollectionCell.h */,
+				2D6308BA1C549B2F0092F622 /* XXCollectionCell.m */,
+				2D6308BD1C549B2F0092F622 /* XXPlayerMaskView.h */,
+				2D6308BE1C549B2F0092F622 /* XXPlayerMaskView.m */,
 				2D6308C11C549B2F0092F622 /* XXPlayerToolBar.h */,
 				2D6308C21C549B2F0092F622 /* XXPlayerToolBar.m */,
 			);
@@ -1327,7 +1327,6 @@
 				2D6308FA1C549B2F0092F622 /* XXExpertProfileHeaderView.m in Sources */,
 				2D55BB901C5618F900BA1542 /* UIView+Layout.m in Sources */,
 				2D55BB811C5618F900BA1542 /* DACircularProgressView.m in Sources */,
-				2D6308FD1C549B2F0092F622 /* XXCollectionView.m in Sources */,
 				2D6308E01C549B2F0092F622 /* UIView+Extension.m in Sources */,
 				2D6309001C549B2F0092F622 /* XXPlayerToolBar.m in Sources */,
 				2D6308DA1C549B2F0092F622 /* NSString+Emoji.m in Sources */,
@@ -1375,6 +1374,7 @@
 				2D6308DC1C549B2F0092F622 /* UIBarButtonItem+Extension.m in Sources */,
 				2D50CCEB1C5A166A00FAF3AA /* XXQuestionReplyCell.m in Sources */,
 				2D55BB711C5618F900BA1542 /* LGImagePickerSelectView.m in Sources */,
+				2D64BE311C5DE10F00B23D2D /* XXCollectionViewFlowLayout.m in Sources */,
 				2D55BB7A1C5618F900BA1542 /* LGPhotoPickerGroupViewController.m in Sources */,
 				2D6308DE1C549B2F0092F622 /* UIImage+CX.m in Sources */,
 				2D55BB701C5618F900BA1542 /* LGPhotoPickerBrowserViewController.m in Sources */,

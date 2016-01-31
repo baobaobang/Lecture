@@ -54,7 +54,7 @@ const CGFloat kXXJoinLectureActionSheetAlpha = 0.4;
 
 #pragma mark - 讲座中
 /** frame*/
-const CGFloat kXXPlayerToolBarHeight = 34;
+const CGFloat kXXPlayerToolBarHeight = 40;
 const CGFloat kXXOnlineHeaderViewHeight = 44;
 /** 字体*/
 /** 时间*/

@@ -50,6 +50,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     [self setupPlayerPicView];
     
     [self setupPlayerToolBar];
@@ -66,10 +68,6 @@
 {
     // 创建playerPicView
     XXPlayerPicView *playerPicView = [[XXPlayerPicView alloc] init];
-    playerPicView.x = 0;
-    playerPicView.y = 0;
-    playerPicView.width = self.view.width;
-    playerPicView.height = kXXPlayerPicViewHeightWidthRatio * playerPicView.width;
     playerPicView.musics = self.musics;
     playerPicView.delegate = self;
     [self.view addSubview:playerPicView];
@@ -86,22 +84,39 @@
 {
     // 创建playerToolBar
     XXPlayerToolBar *playerToolBar = [[XXPlayerToolBar alloc] init];
-    playerToolBar.x = 0;
-    playerToolBar.y = CGRectGetMaxY(self.playerPicView.frame);
-    playerToolBar.width = self.view.width;
-    playerToolBar.height = 30;
     playerToolBar.backgroundColor = XXColor(38, 38, 38);
     playerToolBar.delegate = self;
     [self.view addSubview:playerToolBar];
     self.playerToolBar = playerToolBar;
     
-    // 设置self.view的高度，它是由子view的高度来决定的
-    self.view.height = self.playerPicView.height + self.playerToolBar.height;
-    
     // 设置slider 按钮的图片
     UIImage *originSliderImage = [UIImage imageNamed:@"playbar_slider_thumb"];
     UIImage *scaledSliderImage = [originSliderImage imageScaleToSize:CGSizeMake(kXXPlayerToolBarHeight, kXXPlayerToolBarHeight)];
     [playerToolBar.timeSlider setThumbImage:scaledSliderImage forState:UIControlStateNormal];
+}
+
+#pragma mark - 重新布局
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+    [self setupPlayerToolBarFrame];
+    [self setupPlayerPicViewFrame];
+}
+
+- (void)setupPlayerToolBarFrame{
+    
+    _playerToolBar.x = 0;
+    _playerToolBar.height = kXXPlayerToolBarHeight;
+    _playerToolBar.width = self.view.width;
+    _playerToolBar.y = self.view.height - _playerToolBar.height;
+}
+
+- (void)setupPlayerPicViewFrame{
+    
+    _playerPicView.x = 0;
+    _playerPicView.y = 0;
+    _playerPicView.width = self.view.width;
+    _playerPicView.height = self.view.height - _playerToolBar.height;
 }
 
 

@@ -58,7 +58,6 @@
         currentTimeLabel.font = XXPlayerTimeLabelFont;
         currentTimeLabel.textColor = [UIColor whiteColor];
         currentTimeLabel.textAlignment = NSTextAlignmentCenter;// 右对齐
-        currentTimeLabel.backgroundColor = XXTestColor;
         [self addSubview:currentTimeLabel];
         self.currentTimeLabel = currentTimeLabel;
         

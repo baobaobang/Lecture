@@ -32,7 +32,6 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
     self.imageView.frame = self.bounds;
 }
 

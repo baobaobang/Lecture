@@ -8,7 +8,6 @@
 
 #import "XXLectureJoinVC.h"
 #import "XXCollectionCell.h"
-#import "XXCollectionView.h"
 #import "XXLecture.h"
 #import "XXExpertProfileVC.h"
 #import "XXQuestionVC.h"

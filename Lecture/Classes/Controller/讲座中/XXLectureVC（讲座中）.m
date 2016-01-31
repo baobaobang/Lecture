@@ -10,11 +10,11 @@
 #import "XXNavigationController.h"
 #import "XXPlayerVC.h"
 #import "XXExpertProfileVC.h"
-//#import "XXOnlineVC.h"
 #import "XXQuestionVC.h"
 #import "XXOnlineHeaderView.h"
 #import "XXExpertProfileHeaderView.h"
 #import "XXQuestionCreateVC.h"
+
 
 @interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) XXPlayerVC *playerVc;
@@ -25,6 +25,8 @@
 @property (nonatomic, weak) XXQuestionVC *onlineVc;
 @property (nonatomic, weak) XXButton *postQuestionBtn;
 
+@property (nonatomic, assign, getter=isLandscape) BOOL landscape;
+@property (nonatomic, assign, getter=isHiddenStatusBar) BOOL hiddenStatusBar;
 
 @end
 
@@ -34,7 +36,7 @@
 #pragma mark - 生命周期
 - (void)viewDidLoad{
     
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -84,13 +86,14 @@
 - (void)setupPlayerVc{
     
     XXPlayerVC *playerVc = [[XXPlayerVC alloc] init];
-    playerVc.view.x = 0;
-    playerVc.view.y = kXXStatusAndNavBarHeight;
-    playerVc.view.width = self.view.width;
-    // playerVc.view的高度在计算完子view的高度后才能得到
     [self addChildViewController:playerVc];
     [self.view addSubview:playerVc.view];
     self.playerVc = playerVc;
+
+    _playerVc.view.x = 0;
+    _playerVc.view.y = kXXStatusAndNavBarHeight;
+    _playerVc.view.width = self.view.width;
+    _playerVc.view.height = self.view.width * 0.6;
 }
 
 // 专家简介头部
@@ -136,15 +139,6 @@
 // 在线交流
 - (void)setupOnlineVc{
     
-//    XXOnlineVC *onlineVc = [[XXOnlineVC alloc] init];
-//    onlineVc.view.x = 0;
-//    onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
-//    onlineVc.view.width = self.view.width;
-//    onlineVc.view.height = self.view.height;
-//    [self addChildViewController:onlineVc];
-//    [self.view addSubview:onlineVc.view];
-//    self.onlineVc = onlineVc;
-    
     XXQuestionVC *onlineVc = [[XXQuestionVC alloc] init];
     onlineVc.view.x = 0;
     onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
@@ -179,6 +173,7 @@
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
+
 
 - (void)leftItemClick
 {
@@ -241,9 +236,85 @@
     }];
 }
 
+// 点击按钮切换横竖屏
 - (void)landscapeBtnClick{
-    //TODO: 横竖屏切换
-    XXTestLog;
+    
+    if (!_landscape) { // 如果现在是竖屏就转为横屏播放
+        [self showLandscapeViewWithDuration:1];
+    }else{
+       [self hideLandscapeViewWithDuration:1];
+    }
+    _landscape = !_landscape;
 }
+
+- (void)showLandscapeViewWithDuration:(NSTimeInterval)duration
+{
+    [self.view bringSubviewToFront:self.playerVc.view];
+    // 旋转和缩放动画
+    CGFloat sx = self.view.height / self.playerVc.view.width;
+    CGFloat sy = self.view.width / self.playerVc.view.height;
+    CGFloat tx = 0;
+    CGFloat ty = self.view.centerY - self.playerVc.view.centerY;
+    
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    transform = CGAffineTransformTranslate(transform, tx, ty);
+    transform = CGAffineTransformScale(transform, sx, sy);
+    transform = CGAffineTransformRotate(transform, M_PI_2);
+    [UIView animateWithDuration:duration animations:^{
+        self.playerVc.view.transform = transform;
+    }];
+    
+    XXLog(@"%@", NSStringFromCGRect(self.playerVc.view.frame)) ;
+    
+//    XXLog(@"_landscapeVc.view.width-%f, _landscapeVc.view.height-%f", _landscapeVc.view.width, _landscapeVc.view.height);
+
+    // 隐藏导航栏
+    [self.navigationController setNavigationBarHidden:YES];
+    // 隐藏状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    //    [self hideStatusBar];
+}
+
+- (void)hideLandscapeViewWithDuration:(NSTimeInterval)duration
+{
+    
+    [UIView animateWithDuration:duration animations:^{
+        self.playerVc.view.transform = CGAffineTransformIdentity;
+    }];
+
+    // 显示导航栏
+    [self.navigationController setNavigationBarHidden:NO];
+    // 显示状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+
+
+#pragma mark - 隐藏导航栏和状态栏 适配iOS7
+
+- (BOOL)prefersStatusBarHidden{
+    // iOS7后,[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    // 已经不起作用了
+    return _hiddenStatusBar;
+}
+
+- (void)showStatusBar
+{
+    _hiddenStatusBar = NO;
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
+}
+
+- (void)hideStatusBar
+{
+    _hiddenStatusBar = YES;
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
+}
+
 
 @end
