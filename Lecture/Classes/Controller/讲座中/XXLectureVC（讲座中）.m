@@ -36,7 +36,7 @@
 #pragma mark - 生命周期
 - (void)viewDidLoad{
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -240,9 +240,9 @@
 - (void)landscapeBtnClick{
     
     if (!_landscape) { // 如果现在是竖屏就转为横屏播放
-        [self showLandscapeViewWithDuration:1];
+        [self showLandscapeViewWithDuration:kXXPlayerVCChageToLandscapeDuration];
     }else{
-       [self hideLandscapeViewWithDuration:1];
+       [self hideLandscapeViewWithDuration:kXXPlayerVCChageToLandscapeDuration];
     }
     _landscape = !_landscape;
 }
@@ -287,8 +287,6 @@
     // 显示状态栏
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
-
-
 
 #pragma mark - 隐藏导航栏和状态栏 适配iOS7
 

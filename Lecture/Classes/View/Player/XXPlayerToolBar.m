@@ -93,6 +93,14 @@
     CGFloat playW = playH;
     self.playBtn.frame = CGRectMake(playX, playY, playW, playH);
     
+    // totalTimeLabel
+//    CGSize totalSize = [self.totalTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
+    CGFloat totalW = 45;
+    CGFloat totalH = self.height;
+    CGFloat totalX = playW;
+    CGFloat totalY = 0;
+    self.totalTimeLabel.frame = CGRectMake(totalX, totalY, totalW, totalH);
+    
     // landscapeBtn
     CGFloat landscapeH = self.height;
     CGFloat landscapeW = landscapeH;
@@ -100,26 +108,18 @@
     CGFloat landscapeY = 0;
     self.landscapeBtn.frame = CGRectMake(landscapeX, landscapeY, landscapeW, landscapeH);
     
-    // totalTimeLabel
-    CGSize totalSize = [self.totalTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
-    CGFloat totalW = 55;
-    CGFloat totalH = self.height;
-    CGFloat totalX = landscapeX - totalW;
-    CGFloat totalY = 0;
-    self.totalTimeLabel.frame = CGRectMake(totalX, totalY, totalW, totalH);
-    
     // currentTimeLabel
-    CGSize currentSize = [self.currentTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
+//    CGSize currentSize = [self.currentTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
     CGFloat currentW = 45;
     CGFloat currentH = self.height;
-    CGFloat currentX = self.totalTimeLabel.x - currentW;
+    CGFloat currentX = landscapeX - currentW;
     CGFloat currentY = 0;
     self.currentTimeLabel.frame = CGRectMake(currentX, currentY, currentW, currentH);
     
     // timeSlider
-    CGFloat sliderX = CGRectGetMaxX(self.playBtn.frame);
+    CGFloat sliderX = CGRectGetMaxX(self.totalTimeLabel.frame);
     CGFloat sliderY = 0;
-    CGFloat sliderW = self.currentTimeLabel.x - sliderX;
+    CGFloat sliderW = self.currentTimeLabel.x - CGRectGetMaxX(self.totalTimeLabel.frame);
     CGFloat sliderH = self.height;
     self.timeSlider.frame = CGRectMake(sliderX, sliderY, sliderW, sliderH);
 }
@@ -139,7 +139,7 @@
     // 设置totalTimeLabel
     double duration = player.duration;
     NSString *durationStr = [NSString getHourMinuteSecondWithSecond:duration];
-    self.totalTimeLabel.text = [NSString stringWithFormat:@"/ %@", durationStr];
+    self.totalTimeLabel.text = [NSString stringWithFormat:@"%@", durationStr];
     
     // 设置currentTimeLabel
     self.currentTimeLabel.text = [NSString getHourMinuteSecondWithSecond:player.currentTime];

@@ -84,7 +84,7 @@
 {
     // 创建playerToolBar
     XXPlayerToolBar *playerToolBar = [[XXPlayerToolBar alloc] init];
-    playerToolBar.backgroundColor = XXColor(38, 38, 38);
+    playerToolBar.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5];
     playerToolBar.delegate = self;
     [self.view addSubview:playerToolBar];
     self.playerToolBar = playerToolBar;
@@ -116,9 +116,8 @@
     _playerPicView.x = 0;
     _playerPicView.y = 0;
     _playerPicView.width = self.view.width;
-    _playerPicView.height = self.view.height - _playerToolBar.height;
+    _playerPicView.height = self.view.height;
 }
-
 
 #pragma mark - 更改播放音乐的索引
 
@@ -176,6 +175,7 @@
         
         [self addFadeAnimation];
         self.playerPicView.maskView.hidden = YES;
+        self.playerToolBar.hidden = YES;
         
     }else{//暂停音乐
         //2.如果当前是暂停的状态，按钮的图片更改为播放的状态
@@ -185,6 +185,7 @@
         
         [self addFadeAnimation];
         self.playerPicView.maskView.hidden = NO;
+        self.playerToolBar.hidden = NO;
     }
 }
 
@@ -285,6 +286,7 @@
     animation.type = kCATransitionFade;
     animation.duration = 0.4;
     [self.playerPicView.maskView.layer addAnimation:animation forKey:nil];
+    [self.playerToolBar.layer addAnimation:animation forKey:nil];
 }
 
 // 点击slider的时候，暂停播放
