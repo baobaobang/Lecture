@@ -24,6 +24,9 @@
 #import "NSString+Emoji.h"
 #import "UITextView+Extension.h"
 
+// 潘思凡
+#import "NetworkManager.h"
+#import "GlobalDef.h"
 
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 

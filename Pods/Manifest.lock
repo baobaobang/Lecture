@@ -20,10 +20,13 @@ PODS:
   - Masonry (0.6.4)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
+  - mp3lame-for-ios (0.1.1)
+  - RRUMessage (0.0.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
   - UITableView+FDTemplateLayoutCell (1.4)
+  - UMengSocial (4.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -31,8 +34,11 @@ DEPENDENCIES:
   - Masonry
   - MJExtension
   - MJRefresh
+  - mp3lame-for-ios (~> 0.1.1)
+  - RRUMessage
   - SDWebImage (~> 3.7)
   - UITableView+FDTemplateLayoutCell (~> 1.4)
+  - UMengSocial
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
@@ -40,7 +46,10 @@ SPEC CHECKSUMS:
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  mp3lame-for-ios: 4daeb5686885be66438154050e3fe975d4ee1f07
+  RRUMessage: a3cc75a5d81d1d90b41bdb697302977b52d3cd4a
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
+  UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
 
 COCOAPODS: 0.39.0

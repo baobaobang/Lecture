@@ -9,6 +9,7 @@
 #import "XXHomeVC.h"
 #import "XXLectureHomeVC.h"
 #import "XXLectureJoinVC.h"
+#import "XXXMainPageVC.h"
 
 @interface XXHomeVC ()
 
@@ -34,6 +35,13 @@
     lectureBtn.frame = CGRectMake(40, 160, 60, 40);
     [lectureBtn addTarget:self action:@selector(toLecture) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:lectureBtn];
+    
+    UIButton *uploadBtn = [[UIButton alloc] init];
+    uploadBtn.backgroundColor = XXColorTint;
+    [uploadBtn setTitle:@"上传" forState:UIControlStateNormal];
+    uploadBtn.frame = CGRectMake(40, 240, 60, 40);
+    [uploadBtn addTarget:self action:@selector(tomainVc) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:uploadBtn];
 
     
 }
@@ -51,6 +59,14 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+
+- (void)tomainVc{
+    XXXMainPageVC * vc = [[XXXMainPageVC alloc]init];
+    vc.view.frame = self.view.bounds;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 
 
 /*
