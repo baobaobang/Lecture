@@ -29,6 +29,9 @@
     
     [self.followBtn setTitle:@"已关注" forState:UIControlStateSelected];
     [self.followBtn setBackgroundImage:[UIImage createImageWithColor:XXSelectedColor] forState:UIControlStateSelected];
+    
+    // 1.0版本先不显示关注按钮
+    self.followBtn.hidden =YES;
 }
 
 - (IBAction)followBtnClick:(UIButton *)btn {

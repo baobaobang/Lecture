@@ -40,7 +40,10 @@
 //    self.contractBtn.tintColor = [UIColor whiteColor];// 取消选中状态下的小蓝点
     // 收起按钮用文字表示
     [self.contractBtn setTitle:@"展开提问" forState:UIControlStateNormal];
+    [self.contractBtn setBackgroundImage:[UIImage createImageWithColor:XXColorTint] forState:UIControlStateNormal];
+    
     [self.contractBtn setTitle:@"收起提问" forState:UIControlStateSelected];
+    [self.contractBtn setBackgroundImage:[UIImage createImageWithColor:XXColorTint] forState:UIControlStateSelected];
 
     //TODO: 改收起按钮的文字颜色和背景色
     

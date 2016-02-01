@@ -11,26 +11,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat" translatesAutoresizingMaskIntoConstraints="NO" id="zaK-gk-lBR">
-                    <rect key="frame" x="8" y="7" width="30" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="30" id="x6h-vS-XsB"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在线交流" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdB-Jy-r8p">
-                    <rect key="frame" x="48" y="8" width="70" height="28"/>
+                    <rect key="frame" x="8" y="8" width="70" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="70" id="GfJ-Uu-bLS"/>
+                        <constraint firstAttribute="width" constant="70" id="5dD-la-aok"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufl-YL-KcA">
-                    <rect key="frame" x="204" y="7" width="108" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufl-YL-KcA" customClass="XXButton">
+                    <rect key="frame" x="106" y="7" width="108" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="108" id="jSd-ww-Shs"/>
+                        <constraint firstAttribute="height" constant="30" id="95I-xX-Hvr"/>
+                        <constraint firstAttribute="width" constant="108" id="dVC-ao-5zw"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="showAndHidePicView:" destination="iN0-l3-epB" eventType="touchUpInside" id="nVh-6U-0HP"/>
                     </connections>
@@ -38,15 +35,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="PdB-Jy-r8p" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="NLZ-N9-QQ2"/>
-                <constraint firstItem="zaK-gk-lBR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="PYc-Rs-9s4"/>
-                <constraint firstAttribute="trailing" secondItem="ufl-YL-KcA" secondAttribute="trailing" constant="8" id="Si2-Au-m48"/>
-                <constraint firstAttribute="bottom" secondItem="zaK-gk-lBR" secondAttribute="bottom" constant="7" id="UPH-6e-3YN"/>
-                <constraint firstAttribute="bottom" secondItem="PdB-Jy-r8p" secondAttribute="bottom" constant="8" id="ZBs-lJ-QAt"/>
-                <constraint firstAttribute="bottom" secondItem="ufl-YL-KcA" secondAttribute="bottom" constant="7" id="aGv-i9-5mv"/>
-                <constraint firstItem="zaK-gk-lBR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="rl1-ws-TsJ"/>
-                <constraint firstItem="ufl-YL-KcA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="sPO-5A-lkC"/>
-                <constraint firstItem="PdB-Jy-r8p" firstAttribute="leading" secondItem="zaK-gk-lBR" secondAttribute="trailing" constant="10" id="wbu-cH-b4Z"/>
+                <constraint firstItem="ufl-YL-KcA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1Wq-hy-7WK"/>
+                <constraint firstItem="ufl-YL-KcA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="D01-Mx-tdz"/>
+                <constraint firstItem="PdB-Jy-r8p" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="IBl-hO-H4g"/>
+                <constraint firstItem="PdB-Jy-r8p" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Z1S-mu-3UX"/>
+                <constraint firstAttribute="bottom" secondItem="PdB-Jy-r8p" secondAttribute="bottom" constant="8" id="aJT-gt-dRT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -56,7 +49,4 @@
             <point key="canvasLocation" x="187" y="231"/>
         </view>
     </objects>
-    <resources>
-        <image name="chat" width="64" height="64"/>
-    </resources>
 </document>
