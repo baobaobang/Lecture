@@ -176,6 +176,8 @@
         [self addFadeAnimation];
         self.playerPicView.maskView.hidden = YES;
         self.playerToolBar.hidden = YES;
+        // 隐藏导航栏
+        [XXNotificationCenter postNotificationName:XXStartPlayingNotification object:nil];
         
     }else{//暂停音乐
         //2.如果当前是暂停的状态，按钮的图片更改为播放的状态
@@ -186,6 +188,8 @@
         [self addFadeAnimation];
         self.playerPicView.maskView.hidden = NO;
         self.playerToolBar.hidden = NO;
+        // 显示导航栏
+        [XXNotificationCenter postNotificationName:XXStopPlayingNotification object:nil];
     }
 }
 

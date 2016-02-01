@@ -60,6 +60,10 @@
     [self setupPostQuestionBtn];
     
     [XXNotificationCenter addObserver:self selector:@selector(landscapeBtnClick) name:XXLandscapeBtnDidClickNotification object:nil];
+    
+    [XXNotificationCenter addObserver:self selector:@selector(startPlaying) name:XXStartPlayingNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(stopPlaying) name:XXStopPlayingNotification object:nil];
+    
 }
 
 - (void)dealloc{
@@ -310,6 +314,50 @@
         [self setNeedsStatusBarAppearanceUpdate];
     }
 }
+
+#pragma mark - 播放时隐藏导航栏和状态栏
+- (void)startPlaying{
+    // 隐藏导航栏
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    // 隐藏状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    
+    // 需要上移的高度
+    CGFloat height = kXXStatusAndNavBarHeight;
+    
+    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.playerVc.view.y -= height;
+        self.expertHeaderView.y -= height;
+        self.expertVc.view.y -= height;
+        self.onlineHeaderView.y -= height;
+        self.onlineVc.view.y -= height;
+        self.onlineVc.view.height += height;
+        
+    } completion:^(BOOL finished) {
+    }];
+}
+
+- (void)stopPlaying{
+    // 显示导航栏
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    // 显示状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    
+    // 需要下移的高度
+    CGFloat height = kXXStatusAndNavBarHeight;
+    
+    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.playerVc.view.y += height;
+        self.expertHeaderView.y += height;
+        self.expertVc.view.y += height;
+        self.onlineHeaderView.y += height;
+        self.onlineVc.view.y += height;
+        self.onlineVc.view.height -= height;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
 
 
 @end

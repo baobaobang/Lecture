@@ -68,5 +68,7 @@ NSString * const XXQuestionToolbarShareButtonClickNotification = @"XXQuestionToo
 NSString * const XXQuestionToolbarUnlikeButtonClickNotification = @"XXQuestionToolbarShareButtonClickNotification";
 NSString * const XXLandscapeBtnDidClickNotification = @"XXLandscapeBtnDidClickNotification";
 
+NSString * const XXStartPlayingNotification = @"XXStartPlayingNotification";
+NSString * const XXStopPlayingNotification = @"XXStopPlayingNotification";
 
 @end

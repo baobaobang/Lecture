@@ -77,6 +77,8 @@ extern NSString * const XXPlayerPicViewCellIdentifier;//播放图片的cell
 extern NSString * const XXQuestionToolbarShareButtonClickNotification;
 extern NSString * const XXQuestionToolbarUnlikeButtonClickNotification;
 extern NSString * const XXLandscapeBtnDidClickNotification;
+extern NSString * const XXStartPlayingNotification;
+extern NSString * const XXStopPlayingNotification;
 /** 时间*/
 extern const CGFloat kXXPlayerVCChageToLandscapeDuration;
 
