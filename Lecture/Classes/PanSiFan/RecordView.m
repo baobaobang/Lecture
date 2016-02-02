@@ -7,7 +7,7 @@
 //
 
 #import "RecordView.h"
-#import <AVFoundation/AVFoundation.h>
+#import "AudioTool.h"
 @interface RecordView()<UIAlertViewDelegate,AVAudioPlayerDelegate>
 
 @property (nonatomic, copy) NSString *path;
@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIButton *deleteBtn;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) BOOL isCurPlayView;
 @end
 @implementation RecordView
 
@@ -25,6 +26,9 @@
     
     RecordView *rv = [[RecordView alloc]initWithFrame:CGRectMake(0,(index-1)*40, 200, 40)];
     rv.path = url;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:rv selector:@selector(changePlayer) name:@"recordViewNote" object:nil];
+    
     
     UIButton *play = [[UIButton alloc]initWithFrame:CGRectMake(0, 5, 120, 30)];
     UIButton *delete = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(play.frame)+10, 5, 34, 30)];
@@ -63,35 +67,37 @@
         [self.delegate deleteAtIndex:self.tag];
     }
 }
-- (void)playVoice{
-    NSError *error;
-    if (!_player) {
-                UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
-                AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
-                UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-                AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
 
-        _player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:self.path] error:&error];
-        _player.delegate = self;
+//播放音频
+- (void)playVoice{
+    
+    
+    _player = [[AudioTool shareAudioTool] playerWithURL:[NSURL URLWithString:self.path]];
+    _player.delegate = self;
+        
+    
+    
+    if (_player.isPlaying) {
+        [_player stop];
+        [_playBtn setTitle:_name forState:0];
+        [_timer invalidate];
+        [_displayLink invalidate];
+        [_playBtn setImage:[UIImage imageNamed:@"形状-3.3"] forState:0];
+    }else{
+        NSNotification *note = [[NSNotification alloc]initWithName:@"recordViewNote" object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+       
+        NSLog(@"%@",_player.url);
         if ([_player prepareToPlay]){
             [_player play];
             _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateTime)];
             [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
             _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(animatePic) userInfo:nil repeats:YES];
-            
         };
-    }else{
-        [_player stop];
-        [_playBtn setTitle:_name forState:0];
-        _player = nil;
-        [_timer invalidate];
-        [_displayLink invalidate];
-        [_playBtn setImage:[UIImage imageNamed:@"形状-3.3"] forState:0];
     }
-    
-    
 }
 
+//播放时的时间更新
 - (void)updateTime{
     NSInteger intTime = (NSInteger)_player.currentTime;
     NSInteger min = intTime/60;
@@ -107,6 +113,7 @@
     [self.playBtn setTitle:[NSString stringWithFormat:@"%@:%@",minStr,secStr] forState:0];
 }
 
+//播放时的喇叭动画
 - (void)animatePic{
     NSInteger num = _index%3;
     NSString *name = [NSString stringWithFormat:@"形状-3.%ld",num+1];
@@ -114,6 +121,7 @@
     [_playBtn setImage:[UIImage imageNamed:name]forState:0];
 }
 
+//完成播放回调
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [_player stop];
     [_playBtn setTitle:_name forState:0];
@@ -121,5 +129,20 @@
     [_timer invalidate];
     [_displayLink invalidate];
     [_playBtn setImage:[UIImage imageNamed:@"形状-3.3"] forState:0];
+}
+
+- (void)changePlayer{
+    
+    [_player stop];
+    [_timer invalidate];
+    [_displayLink invalidate];
+    
+    [_playBtn setTitle:_name forState:0];
+    [_playBtn setImage:[UIImage imageNamed:@"形状-3.3"] forState:0];
+    
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

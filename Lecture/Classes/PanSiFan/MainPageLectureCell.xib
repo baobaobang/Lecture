@@ -25,7 +25,7 @@
                             <constraint firstAttribute="height" constant="70" id="Q1H-1g-CsV"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图片2.png" translatesAutoresizingMaskIntoConstraints="NO" id="EzT-Qy-ayp">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expert_1" translatesAutoresizingMaskIntoConstraints="NO" id="EzT-Qy-ayp">
                         <rect key="frame" x="18" y="220.5" width="50" height="50"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -89,6 +89,6 @@
     </objects>
     <resources>
         <image name="demo.jpg" width="768" height="1024"/>
-        <image name="图片2.png" width="150" height="150"/>
+        <image name="expert_1" width="140" height="140"/>
     </resources>
 </document>

@@ -7,24 +7,19 @@
 //
 
 #import "XXXOnlineCoursewareVC.h"
-#import <AVFoundation/AVFoundation.h>
+#import "AudioTool.h"
 #import "RecordView.h"
 #import "Masonry.h"
 #import "RecordButton.h"
 #import "Transcoder.h"
 #import "XXXCoursewareBaseVC.h"
 #import "LGPhoto.h"
+#import "RecordButton.h"
 
-
-typedef NS_ENUM(NSInteger,RecorderState){
-    RecorderStateStop = 0,
-    RecorderStatePause = 1,
-    RecorderStateRecording = 2
-};
 @interface XXXOnlineCoursewareVC ()<UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,RecordViewDelegate,RecordStopDelegate,AVAudioPlayerDelegate,UITextFieldDelegate>
 @property (nonatomic, weak) XXXCoursewareBaseVC *supperVC;
 @property (weak, nonatomic) IBOutlet UILabel *pageLabel;//页码
-@property (weak, nonatomic) IBOutlet UIButton *recordBtn;//录音按钮
+@property (weak, nonatomic) IBOutlet RecordButton *recordBtn;//录音按钮
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;//保存
 @property (weak, nonatomic) IBOutlet UIButton *uploadBtn;//上传
 @property (weak, nonatomic) IBOutlet UIButton *addPage;//添加页面
@@ -104,9 +99,6 @@ typedef NS_ENUM(NSInteger,RecorderState){
     [label sizeToFit];
     self.navigationItem.titleView = label;
     
-    //self.navigationController.navigationBar.barTintColor = navColor;
-    
-    
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(preView)];
     [self.preViewImageView addGestureRecognizer:tap2];
     
@@ -122,6 +114,11 @@ typedef NS_ENUM(NSInteger,RecorderState){
     _seperatorWidth.constant = SWIDTH;
     
     _titleLabel.delegate = self;
+    
+    self.recordBtn.voiceUrls = self.voiceUrls;
+    self.recordBtn.courseTitle = self.courseTitle;
+    self.recordBtn.page = self.page;
+    self.recordBtn.delegate = self;
     
     [self updateVoiceList];
     
@@ -143,14 +140,15 @@ typedef NS_ENUM(NSInteger,RecorderState){
     }
     _voiceListViewHeight.constant = 40*(_voiceViews.count);
 //    [self.voiceListContaner.superview layoutIfNeeded];
-    [UIView animateWithDuration:2 animations:^{
-        [self.voiceListContaner mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@(40*(_voiceViews.count)));
-        }];
-    }];
+//    [UIView animateWithDuration:2 animations:^{
+//        [self.voiceListContaner mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.equalTo(@(40*(_voiceViews.count)));
+//        }];
+//    }];
     
     _scrollView.contentSize = CGSizeMake(SWIDTH, 540+(40*self.voiceViews.count));
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -163,99 +161,86 @@ typedef NS_ENUM(NSInteger,RecorderState){
  *
  *  @param sender 按钮
  */
-- (IBAction)recordVoice:(UIButton *)sender {
-   
-    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-   
-    if (!_recorder) {
-        NSInteger num = self.voiceUrls.count+1;
-        NSString *voiceName = [NSString stringWithFormat:@"title%@page%ldnumber%ld%@",_courseTitle,_page,num,@"voice.wav"];
-        NSString *path = [document stringByAppendingPathComponent:voiceName];
-        _filePath = [NSURL URLWithString:path];
-        
-        [self.voiceUrls addObject:path];
-        
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-        
-        
-        NSDictionary *recordSettings=[NSDictionary dictionaryWithObjectsAndKeys:
-                                      [NSNumber numberWithInt:AVAudioQualityMin],
-                                      AVEncoderAudioQualityKey,
-                                      [NSNumber numberWithInt:16],
-                                      AVEncoderBitRateKey,
-                                      [NSNumber numberWithInt:2],
-                                      AVNumberOfChannelsKey,
-                                      [NSNumber numberWithFloat:44100.0],
-                                      AVSampleRateKey,
-                                      [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,nil];
-        _recorder = [[AVAudioRecorder alloc]initWithURL:_filePath settings:recordSettings error:nil];
-        _state = RecorderStateStop;//停止状态
-    }
-    switch (_state) {
-        case RecorderStateRecording:
-        {
-            
-            [_recordBtn setBackgroundImage:nil forState:0];
-            [_recordBtn setTitle:@"开始录音" forState:0];
-            [_displayLink invalidate];
-            [self saveRecord];//保存
-            _state = RecorderStateStop;
-            
-        }
-            break;
-            case RecorderStateStop:
-        {
-            //[self btnAnimateChange];
-            [_scrollView addSubview:self.recordingBtn];
+//- (IBAction)recordVoice:(UIButton *)sender {
+//   
+//    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//   
+//    if (!_recorder) {
+//        NSInteger num = self.voiceUrls.count+1;
+//        NSString *voiceName = [NSString stringWithFormat:@"title%@page%ldnumber%ld%@",_courseTitle,_page,num,@"voice.wav"];
+//        NSString *path = [document stringByAppendingPathComponent:voiceName];
+//        _filePath = [NSURL URLWithString:path];
+//        
+//        [self.voiceUrls addObject:path];
+//        
+//        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//        
+//        
+//        NSDictionary *recordSettings=[NSDictionary dictionaryWithObjectsAndKeys:
+//                                      [NSNumber numberWithInt:AVAudioQualityMin],
+//                                      AVEncoderAudioQualityKey,
+//                                      [NSNumber numberWithInt:16],
+//                                      AVEncoderBitRateKey,
+//                                      [NSNumber numberWithInt:2],
+//                                      AVNumberOfChannelsKey,
+//                                      [NSNumber numberWithFloat:44100.0],
+//                                      AVSampleRateKey,
+//                                      [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,nil];
+//        _recorder = [[AVAudioRecorder alloc]initWithURL:_filePath settings:recordSettings error:nil];
+//        
+//        _state = RecorderStateStop;//停止状态
+//    }
+//    switch (_state) {
+//        case RecorderStateRecording:
+//        {
+//            
+//            [_recordBtn setBackgroundImage:nil forState:0];
+//            [_recordBtn setTitle:@"开始录音" forState:0];
+//            [_displayLink invalidate];
+//            [self saveRecord];//保存
+//            _state = RecorderStateStop;
+//            
+//        }
+//            break;
+//            case RecorderStateStop:
+//        {
+//            //[self btnAnimateChange];
+//            [_scrollView addSubview:self.recordingBtn];
+//
+//            if ([_recorder prepareToRecord]) {
+//                
+//                _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateTime)];
+//                [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+//                [_recorder record];
+//                _state = RecorderStateRecording;//录音状态
+//            };
+//        }
+//            break;
+//        default:
+//            
+//            [_recorder pause];//暂停
+//            _state = RecorderStatePause;
+//            [_displayLink invalidate];
+//         break;
+//    }
+//    
+//}
 
-            if ([_recorder prepareToRecord]) {
-                
-                _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateTime)];
-                [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-                [_recorder record];
-                _state = RecorderStateRecording;//录音状态
-            };
-        }
-            break;
-        default:
-            
-            [_recorder pause];//暂停
-            _state = RecorderStatePause;
-            [_displayLink invalidate];
-         break;
-    }
-    
-}
 
-- (void)updateTime{
-    NSInteger intTime = (NSInteger)_recorder.currentTime;
-    NSInteger min = intTime/60;
-    NSInteger sec = intTime%60;
-    NSString *minStr = [NSString stringWithFormat:@"%ld",min];
-    NSString *secStr = [NSString stringWithFormat:@"%ld",sec];
-    if (min<10) {
-        minStr = [NSString stringWithFormat:@"0%ld",min];
-    }
-    if (sec<10) {
-        secStr = [NSString stringWithFormat:@"0%ld",sec];
-    }
-    self.recordingBtn.timeLabel.text = [NSString stringWithFormat:@"%@:%@",minStr,secStr];
-}
 /**
  *  保存录音
  *
  *  @param sender
  */
 - (void)saveRecord {
-    [_recorder stop];
-    _recorder = nil; //删除录音机
-    RecordView *rv = [RecordView viewWithUrl:[_voiceUrls lastObject] index:_voiceUrls.count name:self.recordingBtn.timeLabel.text];
+    //[_recorder stop];
+    //_recorder = nil; //删除录音机
+    RecordView *rv = [RecordView viewWithUrl:[_voiceUrls lastObject] index:_voiceUrls.count name:self.recordBtn.timeLabel.text];
     rv.delegate = self;
-    
     [self.voiceListContaner addSubview:rv];
     [self.voiceViews addObject:rv];
     [self updateVoiceList];
-    _state = RecorderStateStop;
+    //_state = RecorderStateStop;
     //[self btnAnimateChange];
     
 }
@@ -308,28 +293,6 @@ typedef NS_ENUM(NSInteger,RecorderState){
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    NSLog(@"%ld",buttonIndex);
-//    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
-//    LGPhotoPickerBrowserViewController *imagePicker = [[LGPhotoPickerBrowserViewController alloc]init];
-    //imagePicker.delegate = self;
-//    switch (buttonIndex) {
-//        case 0:
-//        {
-//             //从资源库选取
-//            [self.supperVC presentViewController:imagePicker animated:YES completion:nil];
-//        }
-//            break;
-//        case 1:
-//        {
-//            //拍照
-//            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//            
-//            [self.supperVC presentViewController:imagePicker animated:YES completion:nil];
-//        }
-//            break;
-//        default:
-//            break;
-//    }
     [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImagePicker];
 }
 
@@ -348,16 +311,6 @@ typedef NS_ENUM(NSInteger,RecorderState){
         self.preViewImageView.image = simage;
     
 }
-#pragma 照片选择delegate
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-//    UIImage *image = info[UIImagePickerControllerOriginalImage];
-//    
-//    UIImage *simage = UIImageJPEGRepresentation(image, 0.1);
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//    
-//    self.imageView.image = simage;
-//    self.preViewImageView.image = simage;
-//}
 
 #pragma 删除录音delegate
 - (void)deleteAtIndex:(NSInteger)tag{
@@ -376,16 +329,10 @@ typedef NS_ENUM(NSInteger,RecorderState){
 }
 
 - (void)stopRecord:(RecordButton *)button{
-    [button removeFromSuperview];
     [self saveRecord];
 }
 - (IBAction)addPage:(UIButton *)sender {
-//    XXXOnlineCoursewareVC *onv = [XXXOnlineCoursewareVC onlineCoursewareWithSupperVC:self.supperVC];
-//    onv.page = _page + 1;
-//    [onv setPageNum];
-//    NSLog(@"%@",self.supperVC);
-//    [self.supperVC.childs addObject:onv];
-//    [self.supperVC.view addSubview:onv.view];
+
     [self.supperVC addpage];
 }
 - (IBAction)savePage:(UIButton *)sender {
@@ -397,43 +344,16 @@ typedef NS_ENUM(NSInteger,RecorderState){
     NSString *toPath = [document stringByAppendingPathComponent:copyName];
     
     [Transcoder transcodeToMP3From:path toPath:toPath];
-//    [[[UIAlertView alloc]initWithTitle:nil message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
 }
 
 -(void)setPageNum{
-//    switch (_page) {
-//        case 1:
-//            _pageLabel.text = @"第一页";
-//            break;
-//        case 2:
-//            _pageLabel.text = @"第二页";
-//            break;
-//        case 3:
-//            _pageLabel.text = @"第三页";
-//            break;
-//        case 4:
-//            _pageLabel.text = @"第四页";
-//            break;
-//        case 5:
-//            _pageLabel.text = @"第五页";
-//            break;
-//        default:
-//            break;
-//            
-//    }
-//    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(53*(_page-1),0, 50, 21)];
-//    [button setBackgroundImage:[UIImage imageNamed:@"title_normal"] forState:0];
-//    [button setTitle:_pageLabel.text forState:0];
-//    [button addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:button];
-//    [self.supperVC.titleTips addSubview:button];
+
     
 }
 
 - (void)remove{
     [self.view removeFromSuperview];
     [self.supperVC.childs removeObject:self];
-    
 }
 
 
@@ -446,11 +366,8 @@ typedef NS_ENUM(NSInteger,RecorderState){
         _playerState = 0;
         return;
     }
-    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:_voiceUrls[0]] error:nil];
-    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
-    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
-    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+    _player = [[AudioTool shareAudioTool] playerWithURL:[NSURL URLWithString:_voiceUrls[0]]];
+    
     _player.delegate = self;
     _curPlayIndex = 0;
     if ([_player prepareToPlay]){
@@ -469,11 +386,8 @@ typedef NS_ENUM(NSInteger,RecorderState){
         _voiceListContaner.userInteractionEnabled = YES;
         return;
     }
-    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:_voiceUrls[_curPlayIndex+1]] error:nil];
-    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
-    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
-    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+    _player = [[AudioTool shareAudioTool] playerWithURL:[NSURL URLWithString:_voiceUrls[_curPlayIndex+1]]];
+    
     _player.delegate = self;
     _curPlayIndex ++ ;
     if ([_player prepareToPlay]){

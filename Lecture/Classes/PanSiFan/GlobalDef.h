@@ -17,6 +17,7 @@
 
 #define darkTextColor RGB(51,51,51)
 #define navColor RGB(66, 179, 227)
+#define RandomColor RGB(arc4random()%256,arc4random()%256,arc4random()%256)
 //
 #define UMKey @"569eec33e0f55a6ad500118c"//友盟Key
 #define QQAppKey @"vdjbJ05YoYv4VQrq"

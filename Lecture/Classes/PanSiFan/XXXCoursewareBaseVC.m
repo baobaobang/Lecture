@@ -57,7 +57,7 @@
     nav.backgroundColor = navColor;
     [self.view addSubview:nav];
     
-    UIImageView *leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"back"]];
+    UIImageView *leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"back-1"]];
     leftView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(back)];
     

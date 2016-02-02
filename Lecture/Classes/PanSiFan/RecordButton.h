@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSInteger,RecorderState){
+    RecorderStateStop = 0,
+    RecorderStatePause = 1,
+    RecorderStateRecording = 2
+};
+
 @class RecordButton;
 @protocol RecordStopDelegate <NSObject>
 
@@ -14,10 +21,13 @@
 
 @end
 
-@interface RecordButton : UIView
+@interface RecordButton : UIButton
 
 @property (nonatomic, strong) UIButton *deleteBtn;
 @property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) NSMutableArray *voiceUrls;
+@property (nonatomic, copy) NSString *courseTitle;
+@property (nonatomic, assign) NSInteger page;
 @property (nonatomic, weak) id<RecordStopDelegate> delegate;
 @end
 

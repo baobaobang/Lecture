@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16C139031C5F2D67003B1CB9 /* XXXMakeLectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */; };
+		16C139061C5F4EA8003B1CB9 /* AudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139051C5F4EA8003B1CB9 /* AudioTool.m */; };
 		2D065B4E1C53BFA500282CFD /* Lectures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D065B4D1C53BFA500282CFD /* Lectures.plist */; };
 		2D1BDEEB1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEDD1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m */; };
 		2D1BDEEC1C5B493B00056E87 /* XXExpertProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEE01C5B493B00056E87 /* XXExpertProfileVC.m */; };
@@ -166,6 +168,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXMakeLectureView.h; sourceTree = "<group>"; };
+		16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXMakeLectureView.m; sourceTree = "<group>"; };
+		16C139041C5F4EA8003B1CB9 /* AudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTool.h; sourceTree = "<group>"; };
+		16C139051C5F4EA8003B1CB9 /* AudioTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTool.m; sourceTree = "<group>"; };
 		2487C46B0BA874F4A9AD1EC0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D065B4D1C53BFA500282CFD /* Lectures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lectures.plist; sourceTree = "<group>"; };
 		2D1BDEDC1C5B493B00056E87 /* XXLectureJoinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLectureJoinVC.h; sourceTree = "<group>"; };
@@ -456,6 +462,100 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		16C139001C5F2D2A003B1CB9 /* makeLecture */ = {
+			isa = PBXGroup;
+			children = (
+				2D23725A1C5F0DE800A422EF /* XXXCoursewareBaseVC.h */,
+				2D23725B1C5F0DE800A422EF /* XXXCoursewareBaseVC.m */,
+				2D2372641C5F0DE800A422EF /* XXXOnlineCoursewareVC.h */,
+				2D2372651C5F0DE800A422EF /* XXXOnlineCoursewareVC.m */,
+				2D2372661C5F0DE800A422EF /* XXXOnlineCoursewareVC.xib */,
+				2D23724C1C5F0DE800A422EF /* RecordButton.h */,
+				2D23724D1C5F0DE800A422EF /* RecordButton.m */,
+				2D23724E1C5F0DE800A422EF /* RecordView.h */,
+				2D23724F1C5F0DE800A422EF /* RecordView.m */,
+				2D2372501C5F0DE800A422EF /* TipView.h */,
+				2D2372511C5F0DE800A422EF /* TipView.m */,
+				16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */,
+				16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */,
+			);
+			name = makeLecture;
+			sourceTree = "<group>";
+		};
+		16C139071C60813F003B1CB9 /* mainpage */ = {
+			isa = PBXGroup;
+			children = (
+				2D2372471C5F0DE800A422EF /* MainPageLectureCell.h */,
+				2D2372481C5F0DE800A422EF /* MainPageLectureCell.m */,
+				2D2372491C5F0DE800A422EF /* MainPageLectureCell.xib */,
+				2D2372611C5F0DE800A422EF /* XXXMainPageVC.h */,
+				2D2372621C5F0DE800A422EF /* XXXMainPageVC.m */,
+				2D2372631C5F0DE800A422EF /* XXXMainPageVC.xib */,
+			);
+			name = mainpage;
+			sourceTree = "<group>";
+		};
+		16C139081C608194003B1CB9 /* LoginRegister */ = {
+			isa = PBXGroup;
+			children = (
+				2D23725E1C5F0DE800A422EF /* XXXLoginVC.h */,
+				2D23725F1C5F0DE800A422EF /* XXXLoginVC.m */,
+				2D2372601C5F0DE800A422EF /* XXXLoginVC.xib */,
+				2D2372671C5F0DE800A422EF /* XXXRegisterVC.h */,
+				2D2372681C5F0DE800A422EF /* XXXRegisterVC.m */,
+				2D2372691C5F0DE800A422EF /* XXXRegisterVC.xib */,
+				2D23726A1C5F0DE800A422EF /* XXXTextField.h */,
+				2D23726B1C5F0DE800A422EF /* XXXTextField.m */,
+			);
+			name = LoginRegister;
+			sourceTree = "<group>";
+		};
+		16C139091C608269003B1CB9 /* category */ = {
+			isa = PBXGroup;
+			children = (
+				2D2372401C5F0DE800A422EF /* AppDelegate+UM.h */,
+				2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */,
+				2D2372541C5F0DE800A422EF /* UIView+RoundAndShadow.h */,
+				2D2372551C5F0DE800A422EF /* UIView+RoundAndShadow.m */,
+			);
+			name = category;
+			sourceTree = "<group>";
+		};
+		16C1390A1C60829E003B1CB9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2D2372421C5F0DE800A422EF /* DBManager.h */,
+				2D2372431C5F0DE800A422EF /* DBManager.m */,
+				2D23724A1C5F0DE800A422EF /* NetworkManager.h */,
+				2D23724B1C5F0DE800A422EF /* NetworkManager.m */,
+				2D2372521C5F0DE800A422EF /* Transcoder.h */,
+				2D2372531C5F0DE800A422EF /* Transcoder.m */,
+				16C139041C5F4EA8003B1CB9 /* AudioTool.h */,
+				16C139051C5F4EA8003B1CB9 /* AudioTool.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		16C1390B1C6082DF003B1CB9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D2372561C5F0DE800A422EF /* XXXBaseModel.h */,
+				2D2372571C5F0DE800A422EF /* XXXBaseModel.m */,
+				2D23725C1C5F0DE800A422EF /* XXXLectureModel.h */,
+				2D23725D1C5F0DE800A422EF /* XXXLectureModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		16C1390C1C6082F4003B1CB9 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2D2372581C5F0DE800A422EF /* XXXBaseVC.h */,
+				2D2372591C5F0DE800A422EF /* XXXBaseVC.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		2D1BDEDB1C5B493B00056E87 /* 讲座前 */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,48 +676,14 @@
 		2D23723F1C5F0DE800A422EF /* PanSiFan */ = {
 			isa = PBXGroup;
 			children = (
-				2D2372401C5F0DE800A422EF /* AppDelegate+UM.h */,
-				2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */,
-				2D2372421C5F0DE800A422EF /* DBManager.h */,
-				2D2372431C5F0DE800A422EF /* DBManager.m */,
+				16C1390C1C6082F4003B1CB9 /* Base */,
+				16C1390B1C6082DF003B1CB9 /* Model */,
+				16C1390A1C60829E003B1CB9 /* Utils */,
+				16C139091C608269003B1CB9 /* category */,
+				16C139081C608194003B1CB9 /* LoginRegister */,
+				16C139071C60813F003B1CB9 /* mainpage */,
+				16C139001C5F2D2A003B1CB9 /* makeLecture */,
 				2D2372441C5F0DE800A422EF /* GlobalDef.h */,
-				2D2372471C5F0DE800A422EF /* MainPageLectureCell.h */,
-				2D2372481C5F0DE800A422EF /* MainPageLectureCell.m */,
-				2D2372491C5F0DE800A422EF /* MainPageLectureCell.xib */,
-				2D23724A1C5F0DE800A422EF /* NetworkManager.h */,
-				2D23724B1C5F0DE800A422EF /* NetworkManager.m */,
-				2D23724C1C5F0DE800A422EF /* RecordButton.h */,
-				2D23724D1C5F0DE800A422EF /* RecordButton.m */,
-				2D23724E1C5F0DE800A422EF /* RecordView.h */,
-				2D23724F1C5F0DE800A422EF /* RecordView.m */,
-				2D2372501C5F0DE800A422EF /* TipView.h */,
-				2D2372511C5F0DE800A422EF /* TipView.m */,
-				2D2372521C5F0DE800A422EF /* Transcoder.h */,
-				2D2372531C5F0DE800A422EF /* Transcoder.m */,
-				2D2372541C5F0DE800A422EF /* UIView+RoundAndShadow.h */,
-				2D2372551C5F0DE800A422EF /* UIView+RoundAndShadow.m */,
-				2D2372561C5F0DE800A422EF /* XXXBaseModel.h */,
-				2D2372571C5F0DE800A422EF /* XXXBaseModel.m */,
-				2D2372581C5F0DE800A422EF /* XXXBaseVC.h */,
-				2D2372591C5F0DE800A422EF /* XXXBaseVC.m */,
-				2D23725A1C5F0DE800A422EF /* XXXCoursewareBaseVC.h */,
-				2D23725B1C5F0DE800A422EF /* XXXCoursewareBaseVC.m */,
-				2D23725C1C5F0DE800A422EF /* XXXLectureModel.h */,
-				2D23725D1C5F0DE800A422EF /* XXXLectureModel.m */,
-				2D23725E1C5F0DE800A422EF /* XXXLoginVC.h */,
-				2D23725F1C5F0DE800A422EF /* XXXLoginVC.m */,
-				2D2372601C5F0DE800A422EF /* XXXLoginVC.xib */,
-				2D2372611C5F0DE800A422EF /* XXXMainPageVC.h */,
-				2D2372621C5F0DE800A422EF /* XXXMainPageVC.m */,
-				2D2372631C5F0DE800A422EF /* XXXMainPageVC.xib */,
-				2D2372641C5F0DE800A422EF /* XXXOnlineCoursewareVC.h */,
-				2D2372651C5F0DE800A422EF /* XXXOnlineCoursewareVC.m */,
-				2D2372661C5F0DE800A422EF /* XXXOnlineCoursewareVC.xib */,
-				2D2372671C5F0DE800A422EF /* XXXRegisterVC.h */,
-				2D2372681C5F0DE800A422EF /* XXXRegisterVC.m */,
-				2D2372691C5F0DE800A422EF /* XXXRegisterVC.xib */,
-				2D23726A1C5F0DE800A422EF /* XXXTextField.h */,
-				2D23726B1C5F0DE800A422EF /* XXXTextField.m */,
 			);
 			path = PanSiFan;
 			sourceTree = "<group>";
@@ -1297,7 +1363,7 @@
 				TargetAttributes = {
 					2D1D01D81C3EA3910056B10C = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 8TM9F2U9GU;
+						DevelopmentTeam = C9W95T72UV;
 					};
 					2D1D01F11C3EA3910056B10C = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -1470,6 +1536,7 @@
 				2D6308F51C549B2F0092F622 /* XXBaseVC.m in Sources */,
 				2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */,
 				2D55BB6F1C5618F900BA1542 /* LGPhotoRect.m in Sources */,
+				16C139061C5F4EA8003B1CB9 /* AudioTool.m in Sources */,
 				2D2372721C5F0DE800A422EF /* RecordButton.m in Sources */,
 				2D6308ED1C549B2F0092F622 /* XXMusic.m in Sources */,
 				2D55BB771C5618F900BA1542 /* LGPhotoPickerDatas.m in Sources */,
@@ -1534,6 +1601,7 @@
 				2D2372711C5F0DE800A422EF /* NetworkManager.m in Sources */,
 				2D50CCF21C5A506100FAF3AA /* XXQuestionReplyView.m in Sources */,
 				2D2372731C5F0DE800A422EF /* RecordView.m in Sources */,
+				16C139031C5F2D67003B1CB9 /* XXXMakeLectureView.m in Sources */,
 				2D6308EA1C549B2F0092F622 /* SDWaitingView.m in Sources */,
 				2D55BB781C5618F900BA1542 /* LGPhotoPickerGroup.m in Sources */,
 				2D6F60121C58B842006D8488 /* CXTextView.m in Sources */,
@@ -1683,12 +1751,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Lecture/Classes/PanSiFan/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ChenXu.Lecture;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1700,12 +1769,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Lecture/Classes/PanSiFan/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ChenXu.Lecture;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

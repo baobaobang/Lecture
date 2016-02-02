@@ -9,7 +9,8 @@
 #import "XXXMainPageVC.h"
 #import "XXXCoursewareBaseVC.h"
 #import "MainPageLectureCell.h"
-@interface XXXMainPageVC ()
+#import "XXXMakeLectureView.h"
+@interface XXXMainPageVC ()<XXXMakeLectureViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -18,6 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    XXXMakeLectureView *mlv = [[XXXMakeLectureView alloc]initWithFrame:CGRectMake(0, SHEIGHT-200, SWIDTH, 200)];
+    mlv.delegate = self;
+    [self.view addSubview:mlv];
+    
     [self getLectures];
 }
 
@@ -47,8 +53,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    XXXCoursewareBaseVC *cbVC = [[XXXCoursewareBaseVC alloc]init];
-    [self presentViewController:cbVC animated:YES completion:nil];
-    
+}
+
+- (void)XXXMakeLectureView:(XXXMakeLectureView *)mlview clickedIndex:(NSInteger)index{
+    switch (index) {
+        case 0:
+        {
+            XXXCoursewareBaseVC *cb = [[XXXCoursewareBaseVC alloc]init];
+            [self presentViewController:cb animated:YES completion:nil];
+        }
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        default:
+            break;
+    }
 }
 @end
