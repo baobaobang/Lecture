@@ -78,6 +78,11 @@
     // 给maskView传递数据
     playerPicView.maskView.currentItem = self.currentItem;
     playerPicView.maskView.musics = self.musics;
+    
+    // 设置音频会话类型
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
 }
 
 - (void)setupPlayerToolBar
