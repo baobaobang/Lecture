@@ -192,8 +192,6 @@
     self.questionHeaderView = questionHeaderView;
 }
 
-
-
 // 精选提问
 - (void)setupQuestionVc{
     
@@ -276,6 +274,10 @@
     vc.view.frame = self.view.frame;
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)dealloc{
+    XXTestLog;
 }
 
 @end

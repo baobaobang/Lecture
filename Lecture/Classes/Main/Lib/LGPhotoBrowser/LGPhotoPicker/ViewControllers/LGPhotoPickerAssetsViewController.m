@@ -52,6 +52,8 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    
     // 赋值给上一个控制器,以便记录上次选择的照片
     if (self.selectedAssetsBlock) {
         self.selectedAssetsBlock(self.selectAssets);
@@ -263,6 +265,8 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     [self.collectionView reloadData];
 }
 

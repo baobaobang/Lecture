@@ -224,9 +224,9 @@
 		<array>
 			<dict>
 				<key>thumbnail_pic</key>
-				<string>http://ww3.sinaimg.cn/bmiddle/aade765egw1f08fhhvjx8g209x05khdx.gif</string>
+				<string></string>
 				<key>highQuality_pic</key>
-				<string>http://ww3.sinaimg.cn/bmiddle/aade765egw1f08fhhvjx8g209x05khdx.gif</string>
+				<string></string>
 			</dict>
 		</array>
 		<key>shares_count</key>

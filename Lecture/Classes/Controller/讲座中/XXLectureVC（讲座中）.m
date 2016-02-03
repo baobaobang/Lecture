@@ -35,6 +35,7 @@
 
 #pragma mark - 生命周期
 - (void)viewDidLoad{
+    [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
     

@@ -51,4 +51,8 @@
     return questionFrames;
 }
 
+- (void)dealloc{
+    XXTestLog;
+}
+
 @end

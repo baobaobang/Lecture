@@ -146,6 +146,7 @@
 		2DA99D7D1C44B75500CD02D7 /* 为什么容易感冒.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D6F1C44B75500CD02D7 /* 为什么容易感冒.mp3 */; };
 		2DA99D7E1C44B75500CD02D7 /* 感冒的症状.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D711C44B75500CD02D7 /* 感冒的症状.mp3 */; };
 		2DA99D7F1C44B75500CD02D7 /* 两种特殊情况.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D731C44B75500CD02D7 /* 两种特殊情况.mp3 */; };
+		2DBAF6C61C619DFD00D4BC49 /* CXHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBAF6C51C619DFD00D4BC49 /* CXHttpTool.m */; };
 		2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DE542971C423C3D00D4D4D9 /* Musics.plist */; };
 		F0107A306C1C733565E157D9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2487C46B0BA874F4A9AD1EC0 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -422,6 +423,8 @@
 		2DA99D6F1C44B75500CD02D7 /* 为什么容易感冒.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "为什么容易感冒.mp3"; sourceTree = "<group>"; };
 		2DA99D711C44B75500CD02D7 /* 感冒的症状.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "感冒的症状.mp3"; sourceTree = "<group>"; };
 		2DA99D731C44B75500CD02D7 /* 两种特殊情况.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "两种特殊情况.mp3"; sourceTree = "<group>"; };
+		2DBAF6C41C619DFD00D4BC49 /* CXHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXHttpTool.h; sourceTree = "<group>"; };
+		2DBAF6C51C619DFD00D4BC49 /* CXHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXHttpTool.m; sourceTree = "<group>"; };
 		2DE542971C423C3D00D4D4D9 /* Musics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Musics.plist; sourceTree = "<group>"; };
 		CE4C166FEFE70DF565C3AA35 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E17BD05A64B3256DBE3F2972 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -939,7 +942,6 @@
 			children = (
 				2D55BB0C1C5618F800BA1542 /* LGPhotoBrowser */,
 				2D6308731C549B2F0092F622 /* MBProgressHUD */,
-				2D6308791C549B2F0092F622 /* MJExtension */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -954,13 +956,6 @@
 				2D6308781C549B2F0092F622 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
-			sourceTree = "<group>";
-		};
-		2D6308791C549B2F0092F622 /* MJExtension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MJExtension;
 			sourceTree = "<group>";
 		};
 		2D63087A1C549B2F0092F622 /* Model */ = {
@@ -986,6 +981,8 @@
 			isa = PBXGroup;
 			children = (
 				2D6308821C549B2F0092F622 /* Singleton.h */,
+				2DBAF6C41C619DFD00D4BC49 /* CXHttpTool.h */,
+				2DBAF6C51C619DFD00D4BC49 /* CXHttpTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1516,6 +1513,7 @@
 				2D55BB901C5618F900BA1542 /* UIView+Layout.m in Sources */,
 				2D55BB811C5618F900BA1542 /* DACircularProgressView.m in Sources */,
 				2D6308E01C549B2F0092F622 /* UIView+Extension.m in Sources */,
+				2DBAF6C61C619DFD00D4BC49 /* CXHttpTool.m in Sources */,
 				2D6309001C549B2F0092F622 /* XXPlayerToolBar.m in Sources */,
 				2D6308DA1C549B2F0092F622 /* NSString+Emoji.m in Sources */,
 				2D55BB911C5618F900BA1542 /* LGCameraImageView.m in Sources */,
