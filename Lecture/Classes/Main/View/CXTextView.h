@@ -24,4 +24,6 @@
 /** 自适应情况下，限制最大高度 */
 @property (nonatomic, assign) CGFloat maxHeight;
 
+#pragma mark - 设置边框
+- (void)setupBorderolor:(UIColor *)color borderWidth:(CGFloat)borderWidth cornerRadius:(CGFloat)cornerRadius masksToBounds:(BOOL)masksToBounds;
 @end

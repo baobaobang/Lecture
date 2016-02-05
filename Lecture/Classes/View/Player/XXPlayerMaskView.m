@@ -9,10 +9,10 @@
 #import "XXPlayerMaskView.h"
 
 // 页码字体
-#define XXPlayerPageNumberFont [UIFont systemFontOfSize:15]
+#define XXPlayerPageNumberFont [UIFont systemFontOfSize:18]
 
 #define XXPlayerCornerMaigin 10
-#define XXPlayerShareBtnWH 30
+#define XXPlayerShareBtnWH 22
 
 @interface XXPlayerMaskView ()
 
@@ -44,27 +44,27 @@
         UIButton *shareLectureBtn = [[UIButton alloc] init];
         shareLectureBtn.tag = XXPlayerMaskViewButtonTypeShare;
         [shareLectureBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [shareLectureBtn setNBg:@"share_btn"];
+        [shareLectureBtn setNBg:@"before_nav_share"];
         [self addSubview:shareLectureBtn];
         self.shareLectureBtn = shareLectureBtn;
         
         UIButton *bigPlayBtn = [[UIButton alloc] init];
         bigPlayBtn.tag = XXPlayerMaskViewButtonTypePlay;
-        [bigPlayBtn setNBg:@"play-on" hBg:@"play-on"];
+        [bigPlayBtn setNBg:@"middle_play_off" hBg:@"middle_play_off"];
         [bigPlayBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:bigPlayBtn];
         self.bigPlayBtn = bigPlayBtn;
         
         UIButton *previousBtn = [[UIButton alloc] init];
         previousBtn.tag = XXPlayerMaskViewButtonTypePrevious;
-        [previousBtn setNBg:@"playbar_prebtn_nomal" hBg:@"playbar_prebtn_click"];
+        [previousBtn setNBg:@"middle_play_left" hBg:@"middle_play_left"];
         [previousBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:previousBtn];
         self.previousBtn = previousBtn;
         
         UIButton *nextBtn = [[UIButton alloc] init];
         nextBtn.tag = XXPlayerMaskViewButtonTypeNext;
-        [nextBtn setNBg:@"playbar_nextbtn_nomal" hBg:@"playbar_nextbtn_click"];
+        [nextBtn setNBg:@"middle_play_right" hBg:@"middle_play_right"];
         [nextBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:nextBtn];
         self.nextBtn = nextBtn;

@@ -7,11 +7,12 @@
 //
 
 #import "XXQuestionHeaderView.h"
+#import "XXContractButton.h"
 
 @interface XXQuestionHeaderView ()
 @property (weak, nonatomic) IBOutlet XXButton *postQuestionBtn;
 
-@property (weak, nonatomic) IBOutlet UIButton *contractBtn;
+@property (weak, nonatomic) IBOutlet XXContractButton *contractBtn;
 @end
 
 @implementation XXQuestionHeaderView
@@ -22,7 +23,7 @@
     // 设置我要提问按钮文字和颜色
     [self.postQuestionBtn setTitle:@"我要提问" forState:UIControlStateSelected];
     
-    UIImage *postQuestionBtnImage = [[[UIImage imageNamed:@"question"] imageScaleToSize:CGSizeMake(5, 20)] imageRenderingModeAlwaysOriginal];
+    UIImage *postQuestionBtnImage = [[UIImage imageNamed:@"before_question"] imageRenderingModeAlwaysOriginal];
     [self.postQuestionBtn setImage:postQuestionBtnImage forState:UIControlStateNormal];
 
     // 用纯色image作为背景可以实现按钮在disable状态下颜色变浅的效果
@@ -33,19 +34,6 @@
     
     [self.postQuestionBtn setTitle:@"已提问" forState:UIControlStateDisabled];
 //    [self.postQuestionBtn setBackgroundColor:XXColorGreen];
-    
-    // 收起按钮用图片表示
-//    [self.contractBtn setBackgroundImage:[UIImage imageNamed:@"icon-up"] forState:UIControlStateNormal];
-//    [self.contractBtn setBackgroundImage:[UIImage imageNamed:@"icon-down"] forState:UIControlStateSelected];
-//    self.contractBtn.tintColor = [UIColor whiteColor];// 取消选中状态下的小蓝点
-    // 收起按钮用文字表示
-    [self.contractBtn setTitle:@"展开提问" forState:UIControlStateNormal];
-    [self.contractBtn setBackgroundImage:[UIImage createImageWithColor:XXColorTint] forState:UIControlStateNormal];
-    
-    [self.contractBtn setTitle:@"收起提问" forState:UIControlStateSelected];
-    [self.contractBtn setBackgroundImage:[UIImage createImageWithColor:XXColorTint] forState:UIControlStateSelected];
-
-    //TODO: 改收起按钮的文字颜色和背景色
     
 }
 

@@ -40,12 +40,17 @@
         // playBtn
         UIButton *playBtn = [[UIButton alloc] init];
         [playBtn addTarget:self action:@selector(clickPlayBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [playBtn setNBg:@"playbar_playbtn_nomal" hBg:@"playbar_playbtn_click"];
+        [playBtn setBackgroundImage:[UIImage imageNamed:@"middle_progressbar_off"] forState:UIControlStateNormal];
+        [playBtn setBackgroundImage:[UIImage imageNamed:@"middle_progressbar_on"] forState:UIControlStateSelected];
+        
         [self addSubview:playBtn];
         self.playBtn = playBtn;
         
         // timeSlider
         UISlider *timeSlider = [[UISlider alloc] init];
+        UIImage *thumbImage = [UIImage imageNamed:@"middle_progressbar_ball"];
+        [timeSlider setMinimumTrackTintColor:XXColorTint];
+        [timeSlider setThumbImage:thumbImage forState:UIControlStateNormal];
         [timeSlider addTarget:self action:@selector(beginDraggingSlider:) forControlEvents:UIControlEventTouchDown];
         [timeSlider addTarget:self action:@selector(didStopDraggingSlider:) forControlEvents:UIControlEventTouchUpInside];
         [timeSlider addTarget:self action:@selector(didStopDraggingSlider:) forControlEvents:UIControlEventTouchUpOutside];
@@ -72,7 +77,7 @@
         // landscapeBtn
         UIButton *landscapeBtn = [[UIButton alloc] init];
         [landscapeBtn addTarget:self action:@selector(clickLandscapeBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [landscapeBtn setNBg:@"AlbumFlagMark" hBg:@"AlbumFlagMark"];
+        [landscapeBtn setNBg:@"middle_progressbar_landscape" hBg:@"middle_progressbar_landscape"];
         [self addSubview:landscapeBtn];
         self.landscapeBtn = landscapeBtn;
         

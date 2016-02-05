@@ -21,7 +21,7 @@
 /** 昵称 */
 @property (nonatomic, weak) UILabel *nameLabel;
 /** 会员图标 */
-@property (nonatomic, weak) UIImageView *vipView;
+//@property (nonatomic, weak) UIImageView *vipView;
 /** 正文 */
 @property (nonatomic, weak) UILabel *contentLabel;
 /** 配图 */
@@ -64,10 +64,10 @@
     self.nameLabel = nameLabel;
     
     /** 会员图标 */
-    UIImageView *vipView = [[UIImageView alloc] init];
-    vipView.contentMode = UIViewContentModeScaleAspectFill;
-    [self.contentView addSubview:vipView];
-    self.vipView = vipView;
+//    UIImageView *vipView = [[UIImageView alloc] init];
+//    vipView.contentMode = UIViewContentModeScaleAspectFill;
+//    [self.contentView addSubview:vipView];
+//    self.vipView = vipView;
     
     /** 正文 */
     UILabel *contentLabel = [[UILabel alloc] init];
@@ -110,15 +110,15 @@
     self.nameLabel.frame = questionFrame.nameLabelF;
     
     /** 会员图标 */
-    if (user.isVip) {
-        self.vipView.hidden = NO;
-        
-        self.vipView.frame = questionFrame.vipViewF;
-        NSString *vipName = [NSString stringWithFormat:@"user_vip_%@", user.vipLevel];
-        self.vipView.image = [UIImage imageNamed:vipName];
-    } else {
-        self.vipView.hidden = YES;
-    }
+//    if (user.isVip) {
+//        self.vipView.hidden = NO;
+//        
+//        self.vipView.frame = questionFrame.vipViewF;
+//        NSString *vipName = [NSString stringWithFormat:@"user_vip_%@", user.vipLevel];
+//        self.vipView.image = [UIImage imageNamed:vipName];
+//    } else {
+//        self.vipView.hidden = YES;
+//    }
     
     /** 正文 */
     self.contentLabel.text = question.text;

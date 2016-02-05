@@ -35,11 +35,11 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hD-by-Ce3" customClass="XXButton">
-                            <rect key="frame" x="110" y="3" width="100" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hD-by-Ce3" customClass="XXContractButton">
+                            <rect key="frame" x="115" y="3" width="90" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Phz-7w-otI"/>
-                                <constraint firstAttribute="width" constant="100" id="hAW-w4-zAa"/>
+                                <constraint firstAttribute="width" constant="90" id="hAW-w4-zAa"/>
                             </constraints>
                             <state key="normal">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

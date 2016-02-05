@@ -93,11 +93,6 @@
     playerToolBar.delegate = self;
     [self.view addSubview:playerToolBar];
     self.playerToolBar = playerToolBar;
-    
-    // 设置slider 按钮的图片
-    UIImage *originSliderImage = [UIImage imageNamed:@"playbar_slider_thumb"];
-    UIImage *scaledSliderImage = [originSliderImage imageScaleToSize:CGSizeMake(kXXPlayerToolBarHeight, kXXPlayerToolBarHeight)];
-    [playerToolBar.timeSlider setThumbImage:scaledSliderImage forState:UIControlStateNormal];
 }
 
 #pragma mark - 重新布局
@@ -175,7 +170,7 @@
     
     if (self.playing) {//播放音乐
         //1.如果是播放的状态，按钮的图片更改为暂停的状态
-        [self.playerToolBar.playBtn setNBg:@"playbar_pausebtn_nomal" hBg:@"playbar_pausebtn_click"];
+        self.playerToolBar.playBtn.selected = YES;
         [self.player play];
         
         [self addFadeAnimation];
@@ -186,8 +181,7 @@
         
     }else{//暂停音乐
         //2.如果当前是暂停的状态，按钮的图片更改为播放的状态
-        [self.playerToolBar
-         .playBtn  setNBg:@"playbar_playbtn_nomal" hBg:@"playbar_playbtn_click"];
+        self.playerToolBar.playBtn.selected = NO;
         [self.player pause];
         
         [self addFadeAnimation];

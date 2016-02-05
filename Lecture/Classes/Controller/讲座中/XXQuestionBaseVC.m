@@ -79,7 +79,6 @@
 - (void)setupTextView{
     CXTextView *textView = [[CXTextView alloc] init];
     textView.font = [UIFont systemFontOfSize:kXXTextFont];
-    textView.backgroundColor = XXTestColor;
     textView.frame = CGRectMake(0, XXScreenHeight, XXScreenWidth, kXXQuestionVCTextViewOriginalHeight); // 初始位置为底部
     textView.delegate = self;
     textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
@@ -88,6 +87,8 @@
     textView.autoAdjust = YES; // 自适应
     textView.adjustTop = YES; // 向上调整
     textView.maxHeight = kXXQuestionVCTextViewMaxHeight; // 最大高度限制
+    [textView setupBorderolor:XXColor(200, 200, 200) borderWidth:1 cornerRadius:5 masksToBounds:YES];// 设置边框
+    
     [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
     self.textView = textView;
 }
