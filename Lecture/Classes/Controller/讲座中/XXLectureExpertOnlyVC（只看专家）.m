@@ -45,8 +45,6 @@
     NSArray *questions = [XXQuestion mj_objectArrayWithFile:plistPath];
     // question模型转为questionFrames模型
     NSMutableArray *questionFrames = [self questionFramesWithQuestions:questions];
-    // 按照点赞数排序
-    questionFrames = [questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
     
     return questionFrames;
 }

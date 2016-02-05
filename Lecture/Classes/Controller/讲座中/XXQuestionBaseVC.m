@@ -165,17 +165,6 @@
 #pragma mark - 点击点赞后
 - (void)clickUnlikeBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
-    NSUInteger oldRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
-    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldRow inSection:0];
-    // 将question数组按照点赞数来排序，再刷新表格和cell顺序
-    self.questionFrames = [self.questionFrames sortedArrayUsingSelector:@selector(compareAttitudesCount:)];
-    NSUInteger newRow = [self.questionFrames indexOfObject:toolbar.questionFrame];
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
-    
-    // 动画交换两个cell的顺序
-    [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];
-    // 滚动到点赞所在cell的位置
-    [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     
 }
 
