@@ -135,7 +135,7 @@
     self.title = @"公益讲堂";
     
     // 创建分享按钮//TODO: 分享按钮换图片
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(clickShareLectureBtn) bgImageStr:@"share" bgHighImageStr:@"share"];;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(clickShareLectureBtn) bgImageStr:@"before_nav_shar" bgHighImageStr:@"before_nav_shar"];;
 }
 
 - (void)setupPicView{
@@ -192,8 +192,6 @@
     self.questionHeaderView = questionHeaderView;
 }
 
-
-
 // 精选提问
 - (void)setupQuestionVc{
     
@@ -226,7 +224,7 @@
     joinBtn.x = 0;
     joinBtn.y = self.view.height - joinBtn.height;
     
-    UIImage *joinBtnImage = [[[UIImage imageNamed:@"enroll"] imageScaleToSize:CGSizeMake(20, 20)] imageRenderingModeAlwaysOriginal];
+    UIImage *joinBtnImage = [[UIImage imageNamed:@"before_enroll"] imageRenderingModeAlwaysOriginal];
     [joinBtn setImage:joinBtnImage forState:UIControlStateNormal];
     [joinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
 
@@ -276,6 +274,10 @@
     vc.view.frame = self.view.frame;
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)dealloc{
+    XXTestLog;
 }
 
 @end

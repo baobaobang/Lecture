@@ -81,11 +81,18 @@
         self.doneBtn = doneBtn;
         
         // cancelBtn
-        UIButton *cancelBtn = [[UIButton alloc] init];
-        [cancelBtn setBackgroundImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];//TODO:需要图片
-        [cancelBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-        [self.actionSheet addSubview:cancelBtn];
-        self.cancelBtn = cancelBtn;
+//        UIButton *cancelBtn = [[UIButton alloc] init];
+//        [cancelBtn setBackgroundImage:[UIImage imageNamed:@"before_enroll_close"] forState:UIControlStateNormal];//TODO:需要图片
+//        [cancelBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+//        [self.actionSheet addSubview:cancelBtn];
+//        self.cancelBtn = cancelBtn;
+        
+        //
+        UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cancel)];
+        swipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+        
+        
+        [self.actionSheet addGestureRecognizer:swipeRecognizer];
         
     }
     return self;

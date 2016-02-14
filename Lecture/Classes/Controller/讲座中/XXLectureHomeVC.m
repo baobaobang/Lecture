@@ -22,6 +22,10 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    /* 设置导航栏刷新item */
+    UIImage *rightImage = [UIImage imageNamed:@"middle_nav_refresh"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStyleDone target:self action:@selector(rightItemClick)];
 
     // 添加子控制器
     XXLectureVC *lectureVc = [[XXLectureVC alloc] init];
@@ -46,6 +50,11 @@
     [segment addTarget:self action:@selector(selected:) forControlEvents:UIControlEventValueChanged];
     segment.selectedSegmentIndex = 0;//选中第几个segment 一般用于初始化时选中
     self.navigationItem.titleView = segment;
+}
+
+- (void)rightItemClick
+{
+    NSLog(@"refresh");//TODO:
 }
 
 #pragma mark - 切换navSegmentedControl

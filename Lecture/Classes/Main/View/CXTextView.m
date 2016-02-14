@@ -120,4 +120,13 @@
     [self setNeedsDisplay];
 }
 
+#pragma mark - 设置边框
+- (void)setupBorderolor:(UIColor *)color borderWidth:(CGFloat)borderWidth cornerRadius:(CGFloat)cornerRadius masksToBounds:(BOOL)masksToBounds{
+    self.layer.borderColor = color.CGColor;
+    self.layer.borderWidth = borderWidth;
+    self.layer.cornerRadius = cornerRadius;
+    self.layer.masksToBounds = masksToBounds;
+}
+
+
 @end

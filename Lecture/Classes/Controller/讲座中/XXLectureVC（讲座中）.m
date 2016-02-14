@@ -35,6 +35,7 @@
 
 #pragma mark - 生命周期
 - (void)viewDidLoad{
+    [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -77,11 +78,6 @@
  */
 - (void)setupNav
 {
-    /* 设置左右item */
-    UIImage *leftImage = [[UIImage imageNamed:@"back"] imageScaleToSize:CGSizeMake(20, 30)];
-    UIImage *rightImage = [[UIImage imageNamed:@"Refresh"] imageScaleToSize:CGSizeMake(30, 30)];
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(leftItemClick) bgImage:leftImage bgHighImage:leftImage];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(rightItemClick) bgImage:rightImage bgHighImage:rightImage];
 }
 
 
@@ -156,7 +152,10 @@
     
     XXButton *postQuestionBtn = [[XXButton alloc] init];
     [postQuestionBtn setTitle:@"我要提问" forState:UIControlStateNormal];
+    UIImage *image =[UIImage imageNamed:@"before_question"];
+    [postQuestionBtn setImage:image forState:UIControlStateNormal];
     postQuestionBtn.backgroundColor = XXColorGreen;
+    postQuestionBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     [postQuestionBtn addTarget:self action:@selector(postQuestion:) forControlEvents:UIControlEventTouchUpInside];
     postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;
     postQuestionBtn.height = kXXJoinButtonHeight;
@@ -177,21 +176,10 @@
 }
 
 
-- (void)leftItemClick
-{
-    [self.navigationController popViewControllerAnimated:YES];//TODO: 
-}
-
-- (void)rightItemClick
-{
-    NSLog(@"refresh");//TODO:
-}
-
-
-#pragma mark - 点击关注按钮 XXExpertProfileHeaderViewDelegate
-- (void)expertProfileHeaderView:(XXExpertProfileHeaderView *)headerView didClickFollowBtn:(UIButton *)btn{
-    XXLog(@"follow");//TODO:点击关注按钮
-}
+//#pragma mark - 点击关注按钮 XXExpertProfileHeaderViewDelegate
+//- (void)expertProfileHeaderView:(XXExpertProfileHeaderView *)headerView didClickFollowBtn:(UIButton *)btn{
+//    XXLog(@"follow");
+//}
 
 #pragma mark - 收起头部和展开头部 XXOnlineHeaderViewDelegate
 
