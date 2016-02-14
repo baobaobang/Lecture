@@ -20,7 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    XXXMakeLectureView *mlv = [[XXXMakeLectureView alloc]initWithFrame:CGRectMake(0, SHEIGHT-200, SWIDTH, 200)];
+//    XXXMakeLectureView *mlv = [[XXXMakeLectureView alloc]initWithFrame:CGRectMake(0, SHEIGHT-100, SWIDTH, 100)];
+    XXXMakeLectureView *mlv = [[XXXMakeLectureView alloc]initWithFrame:CGRectMake(SWIDTH/2-25, SHEIGHT-100, 50, 100)];
     mlv.delegate = self;
     [self.view addSubview:mlv];
     
@@ -33,7 +34,28 @@
 }
 
 - (void)getLectures{
-//    [NetworkManager requestWithApi:<#(NSString *)#> params:<#(NSDictionary *)#> success:<#^(id result)successBlock#> fail:<#^(NSError *error)failBlock#>]
+//    [NetworkManager getWithApi:@"lectures" params:nil success:^(id result) {
+//        
+//    } fail:^(NSError *error) {
+//        
+//    }];
+//    [NetworkManager getWithApi:@"lectures/1/questions?content=sdasfs&images=d" params:nil success:^(id result) {
+//        
+//    } fail:^(NSError *error) {
+//        
+//    }];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://121.42.171.213:3000/lectures/1/questions"]];
+    request.HTTPMethod = @"POST";
+    NSString *params = @"content=打一顿就好了&images=";
+    
+    request.HTTPBody = [params dataUsingEncoding:NSUTF8StringEncoding];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+    }];
+    
+    [task resume];
+    
 }
 #pragma -tableView代理,数据源
 

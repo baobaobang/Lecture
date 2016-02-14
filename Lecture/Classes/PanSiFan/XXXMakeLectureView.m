@@ -22,7 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.isOpen = NO;
-        self.rect = CGRectMake(frame.size.width/2-PlusBtnW/2, frame.size.height-PlusBtnW-20, PlusBtnW, PlusBtnW);
+        
         for (NSInteger i = 0; i<5; i++) {
             NSArray *titles = @[@"发布讲座",@"我的讲座",@"回复",@"草稿箱",@""];
             UIButton *btn = [[UIButton alloc]initWithFrame:self.rect];
@@ -41,6 +41,7 @@
         }
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
+        self.clipsToBounds = NO;
     }
     return self;
 }
@@ -64,6 +65,11 @@
 - (void)animateBtns:(UIButton *)plus{
 
     if (!self.isOpen) {
+        self.frame =CGRectMake(0, SHEIGHT-150, SWIDTH, 150);
+        
+        for (UIButton *sender in self.subviews) {
+            sender.frame = self.rect;
+        }
         
         CGVector vector;
         
@@ -103,7 +109,11 @@
             
         }
     }else{
+        
+        
+        
         for (UIButton *sender in self.subviews) {
+            
             CGFloat delay = 0.2+ (sender.tag-1000)*0.05;
             if (sender.tag == 1004) {
                 delay = 0.2;
@@ -113,20 +123,27 @@
                     sender.frame = self.rect;
                 }else{
                     sender.layer.transform = CATransform3DMakeRotation(0, 0, 0, 1);
-                    //[sender setTintColor:[UIColor whiteColor]];
                 }
-                
             } completion:^(BOOL finished) {
-                
-            }];
-            
+            }];    
         }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.frame = CGRectMake(SWIDTH/2-25, SHEIGHT-100, 50, 100);
+            for (UIButton *sender in self.subviews) {
+                sender.frame = self.rect;
+            }
+        });
     }
     self.isOpen = !self.isOpen;
 }
 
 - (void)tap:(UITapGestureRecognizer *)tap {
     [self animateBtns:nil];
+}
+
+-(CGRect)rect{
+    return CGRectMake(self.frame.size.width/2-PlusBtnW/2, self.frame.size.height-PlusBtnW-20, PlusBtnW, PlusBtnW);
 }
 
 @end

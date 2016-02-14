@@ -14,7 +14,7 @@
 #import "CXTextView.h"
 #import "XXQuestion.h"
 #import "XXQuestionFrame.h"
-#import <MJExtension.h>
+#import "MJExtension.h"
 #import "XXQuestionPhoto.h"
 #import "LGPhoto.h"
 #import "ZLCameraImageView.h"

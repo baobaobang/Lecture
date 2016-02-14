@@ -6,8 +6,8 @@
 //  Copyright © 2016年 禾医健康科技. All rights reserved.
 //
 
-#import "XXXBaseVC.h"
+#import "XXXBaseScrollVC.h"
 
-@interface XXXLoginVC : XXXBaseVC
+@interface XXXLoginVC : XXXBaseScrollVC
 
 @end

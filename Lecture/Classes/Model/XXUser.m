@@ -7,7 +7,7 @@
 //
 
 #import "XXUser.h"
-#import <MJExtension.h>
+#import "MJExtension.h"
 
 @implementation XXUser
 //+ (instancetype)currentUser{

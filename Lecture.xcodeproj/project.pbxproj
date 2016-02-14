@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		162E889B1C619F32004F4C00 /* XXXBaseScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */; };
+		162E88A11C61EE9D004F4C00 /* XXXProtocolTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */; };
+		162E88A51C61F1FB004F4C00 /* protocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 162E88A41C61F1FB004F4C00 /* protocol.html */; };
 		16C139031C5F2D67003B1CB9 /* XXXMakeLectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */; };
 		16C139061C5F4EA8003B1CB9 /* AudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139051C5F4EA8003B1CB9 /* AudioTool.m */; };
+		16C64A041C62EB5200C6CB58 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C64A021C62EB5200C6CB58 /* SlideMenuController.swift */; };
+		16F979E61C7010EB00C636A6 /* XXXLeftMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F979E41C7010EB00C636A6 /* XXXLeftMenuVC.m */; };
+		16F979E71C7010EB00C636A6 /* XXXLeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16F979E51C7010EB00C636A6 /* XXXLeftMenuVC.xib */; };
 		2D065B4E1C53BFA500282CFD /* Lectures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D065B4D1C53BFA500282CFD /* Lectures.plist */; };
 		2D1BDEEB1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEDD1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m */; };
 		2D1BDEEC1C5B493B00056E87 /* XXExpertProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEE01C5B493B00056E87 /* XXExpertProfileVC.m */; };
@@ -22,8 +28,6 @@
 		2D1BDF111C5B62BE00056E87 /* XXQuestionVC(所有提问).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDF0A1C5B62BE00056E87 /* XXQuestionVC(所有提问).m */; };
 		2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01E51C3EA3910056B10C /* Main.storyboard */; };
 		2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01EA1C3EA3910056B10C /* LaunchScreen.storyboard */; };
-		2D1D01F71C3EA3910056B10C /* LectureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D01F61C3EA3910056B10C /* LectureTests.m */; };
-		2D1D02021C3EA3910056B10C /* LectureUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D02011C3EA3910056B10C /* LectureUITests.m */; };
 		2D23726C1C5F0DE800A422EF /* AppDelegate+UM.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */; };
 		2D23726D1C5F0DE800A422EF /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372431C5F0DE800A422EF /* DBManager.m */; };
 		2D23726F1C5F0DE800A422EF /* MainPageLectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372481C5F0DE800A422EF /* MainPageLectureCell.m */; };
@@ -147,7 +151,7 @@
 		2DA99D7E1C44B75500CD02D7 /* 感冒的症状.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D711C44B75500CD02D7 /* 感冒的症状.mp3 */; };
 		2DA99D7F1C44B75500CD02D7 /* 两种特殊情况.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA99D731C44B75500CD02D7 /* 两种特殊情况.mp3 */; };
 		2DE5429D1C423C3D00D4D4D9 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DE542971C423C3D00D4D4D9 /* Musics.plist */; };
-		F0107A306C1C733565E157D9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2487C46B0BA874F4A9AD1EC0 /* libPods.a */; };
+		2E8FDDBF5C95A4FC357DE33F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3957F72D8710FD3B5FFABD /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,11 +172,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		162E88991C619F32004F4C00 /* XXXBaseScrollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXBaseScrollVC.h; sourceTree = "<group>"; };
+		162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXBaseScrollVC.m; sourceTree = "<group>"; };
+		162E889F1C61EE9D004F4C00 /* XXXProtocolTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXProtocolTipView.h; sourceTree = "<group>"; };
+		162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXProtocolTipView.m; sourceTree = "<group>"; };
+		162E88A41C61F1FB004F4C00 /* protocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = protocol.html; path = Source.bundle/protocol.html; sourceTree = "<group>"; };
 		16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXMakeLectureView.h; sourceTree = "<group>"; };
 		16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXMakeLectureView.m; sourceTree = "<group>"; };
 		16C139041C5F4EA8003B1CB9 /* AudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTool.h; sourceTree = "<group>"; };
 		16C139051C5F4EA8003B1CB9 /* AudioTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTool.m; sourceTree = "<group>"; };
-		2487C46B0BA874F4A9AD1EC0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		16C64A011C62EB5100C6CB58 /* Lecture-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lecture-Bridging-Header.h"; sourceTree = "<group>"; };
+		16C64A021C62EB5200C6CB58 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		16C64A031C62EB5200C6CB58 /* SlideMenuControllerSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuControllerSwift.h; sourceTree = "<group>"; };
+		16F979E31C7010EB00C636A6 /* XXXLeftMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXLeftMenuVC.h; sourceTree = "<group>"; };
+		16F979E41C7010EB00C636A6 /* XXXLeftMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXLeftMenuVC.m; sourceTree = "<group>"; };
+		16F979E51C7010EB00C636A6 /* XXXLeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXXLeftMenuVC.xib; sourceTree = "<group>"; };
 		2D065B4D1C53BFA500282CFD /* Lectures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lectures.plist; sourceTree = "<group>"; };
 		2D1BDEDC1C5B493B00056E87 /* XXLectureJoinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLectureJoinVC.h; sourceTree = "<group>"; };
 		2D1BDEDD1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XXLectureJoinVC（讲座前）.m"; sourceTree = "<group>"; };
@@ -198,11 +212,7 @@
 		2D1D01E61C3EA3910056B10C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D1D01EB1C3EA3910056B10C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D1D01F21C3EA3910056B10C /* LectureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LectureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D1D01F61C3EA3910056B10C /* LectureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LectureTests.m; sourceTree = "<group>"; };
-		2D1D01F81C3EA3910056B10C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1D01FD1C3EA3910056B10C /* LectureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LectureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D1D02011C3EA3910056B10C /* LectureUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LectureUITests.m; sourceTree = "<group>"; };
-		2D1D02031C3EA3910056B10C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1D20141C3F733F0093C310 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2D2372401C5F0DE800A422EF /* AppDelegate+UM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UM.h"; sourceTree = "<group>"; };
 		2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UM.m"; sourceTree = "<group>"; };
@@ -423,6 +433,7 @@
 		2DA99D711C44B75500CD02D7 /* 感冒的症状.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "感冒的症状.mp3"; sourceTree = "<group>"; };
 		2DA99D731C44B75500CD02D7 /* 两种特殊情况.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "两种特殊情况.mp3"; sourceTree = "<group>"; };
 		2DE542971C423C3D00D4D4D9 /* Musics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Musics.plist; sourceTree = "<group>"; };
+		7C3957F72D8710FD3B5FFABD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4C166FEFE70DF565C3AA35 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E17BD05A64B3256DBE3F2972 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -432,7 +443,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0107A306C1C733565E157D9 /* libPods.a in Frameworks */,
+				2E8FDDBF5C95A4FC357DE33F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +502,9 @@
 				2D2372611C5F0DE800A422EF /* XXXMainPageVC.h */,
 				2D2372621C5F0DE800A422EF /* XXXMainPageVC.m */,
 				2D2372631C5F0DE800A422EF /* XXXMainPageVC.xib */,
+				16F979E31C7010EB00C636A6 /* XXXLeftMenuVC.h */,
+				16F979E41C7010EB00C636A6 /* XXXLeftMenuVC.m */,
+				16F979E51C7010EB00C636A6 /* XXXLeftMenuVC.xib */,
 			);
 			name = mainpage;
 			sourceTree = "<group>";
@@ -506,6 +520,8 @@
 				2D2372691C5F0DE800A422EF /* XXXRegisterVC.xib */,
 				2D23726A1C5F0DE800A422EF /* XXXTextField.h */,
 				2D23726B1C5F0DE800A422EF /* XXXTextField.m */,
+				162E889F1C61EE9D004F4C00 /* XXXProtocolTipView.h */,
+				162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */,
 			);
 			name = LoginRegister;
 			sourceTree = "<group>";
@@ -552,8 +568,28 @@
 			children = (
 				2D2372581C5F0DE800A422EF /* XXXBaseVC.h */,
 				2D2372591C5F0DE800A422EF /* XXXBaseVC.m */,
+				162E88991C619F32004F4C00 /* XXXBaseScrollVC.h */,
+				162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		16C649FF1C62EB0900C6CB58 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16C64A001C62EB3100C6CB58 /* sliderMenu */,
+			);
+			name = frameworks;
+			sourceTree = "<group>";
+		};
+		16C64A001C62EB3100C6CB58 /* sliderMenu */ = {
+			isa = PBXGroup;
+			children = (
+				16C64A021C62EB5200C6CB58 /* SlideMenuController.swift */,
+				16C64A031C62EB5200C6CB58 /* SlideMenuControllerSwift.h */,
+				16C64A011C62EB5100C6CB58 /* Lecture-Bridging-Header.h */,
+			);
+			name = sliderMenu;
 			sourceTree = "<group>";
 		};
 		2D1BDEDB1C5B493B00056E87 /* 讲座前 */ = {
@@ -607,9 +643,8 @@
 		2D1D01D01C3EA3910056B10C = {
 			isa = PBXGroup;
 			children = (
+				162E88A41C61F1FB004F4C00 /* protocol.html */,
 				2D1D01DB1C3EA3910056B10C /* Lecture */,
-				2D1D01F51C3EA3910056B10C /* LectureTests */,
-				2D1D02001C3EA3910056B10C /* LectureUITests */,
 				2D1D01DA1C3EA3910056B10C /* Products */,
 				06C61D4F4F50164C87B238D7 /* Pods */,
 				7A08886809619330DF16348B /* Frameworks */,
@@ -655,27 +690,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2D1D01F51C3EA3910056B10C /* LectureTests */ = {
-			isa = PBXGroup;
-			children = (
-				2D1D01F61C3EA3910056B10C /* LectureTests.m */,
-				2D1D01F81C3EA3910056B10C /* Info.plist */,
-			);
-			path = LectureTests;
-			sourceTree = "<group>";
-		};
-		2D1D02001C3EA3910056B10C /* LectureUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2D1D02011C3EA3910056B10C /* LectureUITests.m */,
-				2D1D02031C3EA3910056B10C /* Info.plist */,
-			);
-			path = LectureUITests;
-			sourceTree = "<group>";
-		};
 		2D23723F1C5F0DE800A422EF /* PanSiFan */ = {
 			isa = PBXGroup;
 			children = (
+				16C649FF1C62EB0900C6CB58 /* frameworks */,
 				16C1390C1C6082F4003B1CB9 /* Base */,
 				16C1390B1C6082DF003B1CB9 /* Model */,
 				16C1390A1C60829E003B1CB9 /* Utils */,
@@ -1287,7 +1305,7 @@
 		7A08886809619330DF16348B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2487C46B0BA874F4A9AD1EC0 /* libPods.a */,
+				7C3957F72D8710FD3B5FFABD /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1358,6 +1376,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = XX;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "陈旭";
 				TargetAttributes = {
@@ -1402,6 +1421,7 @@
 			files = (
 				2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */,
 				2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */,
+				162E88A51C61F1FB004F4C00 /* protocol.html in Resources */,
 				2DA99D751C44B75500CD02D7 /* 两种特殊情况.png in Resources */,
 				2D6309051C549B2F0092F622 /* XXQuestionHeaderView.xib in Resources */,
 				2D63090F1C54BBF50092F622 /* CurrentUser.plist in Resources */,
@@ -1420,6 +1440,7 @@
 				2DA99D341C44B0CB00CD02D7 /* 回答问题.mp3 in Resources */,
 				2DA99D761C44B75500CD02D7 /* 为什么容易感冒.png in Resources */,
 				2DA99D7B1C44B75500CD02D7 /* 上呼吸道的概念.mp3 in Resources */,
+				16F979E71C7010EB00C636A6 /* XXXLeftMenuVC.xib in Resources */,
 				2DA99D7C1C44B75500CD02D7 /* 感冒的原因.mp3 in Resources */,
 				2D50CCEC1C5A166A00FAF3AA /* XXQuestionReplyCell.xib in Resources */,
 				2DA99D7D1C44B75500CD02D7 /* 为什么容易感冒.mp3 in Resources */,
@@ -1533,6 +1554,7 @@
 				2D6308D91C549B2F0092F622 /* NSString+CZ.m in Sources */,
 				2D55BB7E1C5618F900BA1542 /* LGPhotoPickerFooterCollectionReusableView.m in Sources */,
 				2D6308D81C549B2F0092F622 /* NSDate+Extension.m in Sources */,
+				16F979E61C7010EB00C636A6 /* XXXLeftMenuVC.m in Sources */,
 				2D6308F51C549B2F0092F622 /* XXBaseVC.m in Sources */,
 				2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */,
 				2D55BB6F1C5618F900BA1542 /* LGPhotoRect.m in Sources */,
@@ -1582,9 +1604,11 @@
 				2D75DA4B1C5708720056FA6C /* XXOnlineHeaderView.m in Sources */,
 				2D6308E41C549B2F0092F622 /* MBProgressHUD.m in Sources */,
 				2D55BB7C1C5618F900BA1542 /* LGPhotoPickerCollectionView.m in Sources */,
+				162E889B1C619F32004F4C00 /* XXXBaseScrollVC.m in Sources */,
 				2D6308E21C549B2F0092F622 /* MBProgressHUD+CZ.m in Sources */,
 				2D55BB7B1C5618F900BA1542 /* LGPhotoPickerViewController.m in Sources */,
 				2D6308DD1C549B2F0092F622 /* UIButton+CZ.m in Sources */,
+				16C64A041C62EB5200C6CB58 /* SlideMenuController.swift in Sources */,
 				2D55BB741C5618F900BA1542 /* LGPhotoPickerBrowserPhotoView.m in Sources */,
 				2D6308F61C549B2F0092F622 /* XHPhotographyHelper.m in Sources */,
 				2D55BB761C5618F900BA1542 /* LGPhotoAssets.m in Sources */,
@@ -1594,6 +1618,7 @@
 				2D6308E91C549B2F0092F622 /* SDPhotoBrowser.m in Sources */,
 				2D2372771C5F0DE800A422EF /* XXXBaseModel.m in Sources */,
 				2D2372751C5F0DE800A422EF /* Transcoder.m in Sources */,
+				162E88A11C61EE9D004F4C00 /* XXXProtocolTipView.m in Sources */,
 				2D23727D1C5F0DE800A422EF /* XXXMainPageVC.m in Sources */,
 				2D6309081C549B2F0092F622 /* XXQuestionToolbar.m in Sources */,
 				2D1BDEF01C5B493B00056E87 /* XXHomeVC.m in Sources */,
@@ -1617,7 +1642,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D1D01F71C3EA3910056B10C /* LectureTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1625,7 +1649,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D1D02021C3EA3910056B10C /* LectureUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1750,6 +1773,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1759,6 +1783,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lecture/Classes/PanSiFan/Lecture-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1768,6 +1794,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1777,6 +1804,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lecture/Classes/PanSiFan/Lecture-Bridging-Header.h";
 			};
 			name = Release;
 		};

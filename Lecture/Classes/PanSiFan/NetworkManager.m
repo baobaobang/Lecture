@@ -9,10 +9,27 @@
 #import "NetworkManager.h"
 #import "AFNetworking.h"
 
+
+#define HOST @"http://121.42.171.213:3000"
+
+
+
+
 @implementation NetworkManager
 
-+ (void)requestWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
-    NSString *url = api;
++ (void)getWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
+    NSString *url = [NSString stringWithFormat:@"%@/api/%@",HOST,api];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failBlock(error);
+    }];
+}
+
+
++ (void)postWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
+    NSString *url = [NSString stringWithFormat:@"%@/api/%@",HOST,api];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         successBlock(responseObject);
@@ -72,4 +89,7 @@
     }];
     [uploadTask resume];
 }
+
+
+
 @end

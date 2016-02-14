@@ -13,7 +13,7 @@
 #import "XXCollectionCell.h"
 #import "XXMusic.h"
 #import "MBProgressHUD.h"
-#import <MJExtension.h>
+#import "MJExtension.h"
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define XXMaxSections 3

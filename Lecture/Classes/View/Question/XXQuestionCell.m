@@ -11,7 +11,7 @@
 #import "XXQuestion.h"
 #import "XXQuestionPhotosView.h"
 #import "XXQuestionFrame.h"
-#import <UIButton+WebCache.h>
+#import "UIButton+WebCache.h"
 #import "XXQuestionReplyView.h"
 
 @interface XXQuestionCell ()

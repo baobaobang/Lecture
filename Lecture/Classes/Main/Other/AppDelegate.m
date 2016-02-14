@@ -11,10 +11,10 @@
 #import "XXNavigationController.h"
 #import "XXLectureJoinVC.h"
 #import "XXLectureHomeVC.h"
-
 #import "XXXLoginVC.h"
 #import "XXXMainPageVC.h"
 #import "AppDelegate+UM.h"
+#import "XXXLeftMenuVC.h"
 
 @interface AppDelegate ()
 
@@ -26,23 +26,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //友盟相关
     [self UMApplication:application didFinishLaunchingWithOptions:launchOptions];
-    
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    window.backgroundColor = [UIColor whiteColor];
-    
-    XXHomeVC *rootVc = [[XXHomeVC alloc] init]; // 首页
-//    XXLectureJoinVC *rootVc = [[XXLectureJoinVC alloc] init]; // 讲座前
-//    XXLectureHomeVC *rootVc =[[XXLectureHomeVC alloc] init]; // 讲座中
-    
 
-    rootVc.view.frame = window.frame;
-
-    XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:rootVc];
     
-    window.rootViewController = nav;
+    SlideMenuController *sliderMenuVC = [[SlideMenuController alloc] initWithMainViewController:[[XXXMainPageVC alloc]init] leftMenuViewController:[[XXXLeftMenuVC alloc]init] rightMenuViewController:nil];
     
-    [window makeKeyAndVisible];
-    self.window = window;
+    
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = sliderMenuVC;
+    self.sliderMenu = sliderMenuVC;
+    [sliderMenuVC addLeftGestures];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
