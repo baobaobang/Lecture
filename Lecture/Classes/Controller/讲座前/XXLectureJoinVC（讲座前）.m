@@ -12,7 +12,7 @@
 #import "XXExpertProfileVC.h"
 #import "XXQuestionVC.h"
 #import "XXJoinLectureActionSheet.h"
-#import <MJExtension.h>
+#import "MJExtension.h"
 #import "MBProgressHUD+CZ.h"
 #import "XXQuestionHeaderView.h"
 #import "XXExpertProfileHeaderView.h"

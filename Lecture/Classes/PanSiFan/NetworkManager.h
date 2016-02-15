@@ -11,6 +11,9 @@ typedef void (^SuccessBlock)(id result);
 typedef void (^FailBlock)(NSError *error);
 @interface NetworkManager : NSObject
 
+
+
++ (void)getWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
 /**
  *  POST请求
  *
@@ -19,7 +22,7 @@ typedef void (^FailBlock)(NSError *error);
  *  @param successBlock response结果处理
  *  @param failBlock   错误处理
  */
-+ (void)requestWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
++ (void)postWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
 
 /**
  *  通过文件路径上传文件

@@ -13,8 +13,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.navigationController.navigationBar.barTintColor = navColor;
-    self.navigationItem.title = @"公益讲堂";
-    self.navigationController.navigationBar.titleTextAttributes = @{};
+//    self.navigationItem.title = @"公益讲堂";
+    //self.navigationController.navigationBar.titleTextAttributes = @{};
 }
 
 @end

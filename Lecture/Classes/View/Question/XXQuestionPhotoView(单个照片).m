@@ -8,7 +8,7 @@
 
 #import "XXQuestionPhotoView.h"
 #import "XXQuestionPhoto.h"
-#import <UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
 
 @interface XXQuestionPhotoView ()
 @property (nonatomic, weak) UIImageView *gifView;

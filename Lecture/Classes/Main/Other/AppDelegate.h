@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Lecture-Swift.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic, strong) SlideMenuController *sliderMenu;
 
 @end
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MJExtension.h>
+#import "MJExtension.h"
 #import "XXQuestionFrame.h"
 
 @class XXUser, CXTextView;

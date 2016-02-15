@@ -7,7 +7,7 @@
 //
 
 #import "XXLecture.h"
-#import <MJExtension.h>
+#import "MJExtension.h"
 
 @implementation XXLecture
 /**

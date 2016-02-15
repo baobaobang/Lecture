@@ -7,7 +7,7 @@
 //
 
 #import "XXQuestion.h"
-#import <MJExtension.h>
+#import "MJExtension.h"
 #import "XXQuestionPhoto.h"
 #import "XXReply.h"
 

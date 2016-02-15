@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XXXBaseVC.h"
-@interface XXXRegisterVC :XXXBaseVC
+#import "XXXBaseScrollVC.h"
+@interface XXXRegisterVC :XXXBaseScrollVC
 
 @end
