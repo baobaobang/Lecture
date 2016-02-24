@@ -59,7 +59,7 @@
               } option:(!isImageType ? [[QNUploadOption alloc] initWithMime:@"audio/mpeg" progressHandler:progressHandler params:nil checkCrc:nil cancellationSignal:nil]:[[QNUploadOption alloc] initWithMime:nil progressHandler:progressHandler params:nil checkCrc:nil cancellationSignal:nil])];
 }
 
-+ (void)qiniuUpload:(NSArray *)imageArray progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock allcompleteBlock:(AllCompleteBlock) allcompleteBlock{
++ (void)qiniuUpload:(NSArray<UIImage *> *)imageArray progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock allcompleteBlock:(AllCompleteBlock) allcompleteBlock{
     
     NSString *token = UserDefaultsGet(@"qiniutoken");
     __weak NetworkManager *weakManager = [NetworkManager shareNetworkManager];

@@ -39,7 +39,7 @@ typedef void (^AllCompleteBlock)(id result);
 + (void)qiniuUpload:(NSData *)data progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock isImageType:(BOOL)isImageType;
 
 
-+ (void)qiniuUpload:(NSArray *)imageArray progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock allcompleteBlock:(AllCompleteBlock) allcompleteBlock;
++ (void)qiniuUpload:(NSArray<UIImage *> *)imageArray progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock allcompleteBlock:(AllCompleteBlock) allcompleteBlock;
 
 /**
  *  通过文件路径上传文件
