@@ -10,9 +10,11 @@
 #import "QiniuSDK.h"
 typedef void (^SuccessBlock)(id result);
 typedef void (^FailBlock)(NSError *error);
+typedef void (^AllCompleteBlock)(id result);
+
 @interface NetworkManager : NSObject
 
-
+@property (nonatomic, strong) NSMutableArray *resultArray;
 
 + (void)getWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
 /**
@@ -35,6 +37,9 @@ typedef void (^FailBlock)(NSError *error);
  *  @param isImageType     是否图片
  */
 + (void)qiniuUpload:(NSData *)data progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock isImageType:(BOOL)isImageType;
+
+
++ (void)qiniuUpload:(NSArray *)imageArray progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock allcompleteBlock:(AllCompleteBlock) allcompleteBlock;
 
 /**
  *  通过文件路径上传文件
@@ -65,4 +70,6 @@ typedef void (^FailBlock)(NSError *error);
  */
 +(void)uploadWithApi:(NSString *)api files:(NSDictionary *)files success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
 
+
++ (instancetype)shareNetworkManager;
 @end

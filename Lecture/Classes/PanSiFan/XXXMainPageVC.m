@@ -18,6 +18,7 @@
 #import "AudioTool.h"
 @interface XXXMainPageVC ()<XXXMakeLectureViewDelegate>
 
+
 @end
 
 @implementation XXXMainPageVC
@@ -26,6 +27,28 @@
     [super viewDidLoad];
     self.title = @"医讲堂";
     
+    
+    //NetworkManager *manager = [[NetworkManager s];
+    UIImage *a = [UIImage imageNamed:@"1"];
+    UIImage *b = [UIImage imageNamed:@"2"];
+    UIImage *c = [UIImage imageNamed:@"3"];
+    NSArray *arr = @[a,b,c];
+    [NetworkManager qiniuUpload:arr progress:^(NSString *key, float percent) {
+        
+    } success:^(id result) {
+        
+    } fail:^(NSError *error) {
+        
+    } allcompleteBlock:^(id result) {
+        
+    }];
+//    [manager qiniuUpload: progress:^(NSString *key, float percent) {
+//        
+//    } success:^(id result) {
+//        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>%@",result);
+//    } fail:^(NSError *error) {
+//        
+//    }];
 }
 
 

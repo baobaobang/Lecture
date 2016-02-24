@@ -36,7 +36,7 @@
                   moduleName = "Lecture"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mortal/Desktop/iDoctor_Lecture/Lecture/Classes/PanSiFan/XXXRegisterVC.m"
-                  timestampString = "477989699.012295"
+                  timestampString = "478002932.203472"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "157"
@@ -51,7 +51,7 @@
                   moduleName = "Lecture"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mortal/Desktop/iDoctor_Lecture/Lecture/Classes/PanSiFan/XXXRegisterVC.m"
-                  timestampString = "477989699.012573"
+                  timestampString = "478002932.203805"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "157"
@@ -180,7 +180,7 @@
                   moduleName = "Lecture"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mortal/Desktop/iDoctor_Lecture/Lecture/Classes/PanSiFan/XXXOnlineCoursewareVC.m"
-                  timestampString = "477989699.019163"
+                  timestampString = "478002932.327554"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "231"
@@ -195,7 +195,7 @@
                   moduleName = "Lecture"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mortal/Desktop/iDoctor_Lecture/Lecture/Classes/PanSiFan/XXXOnlineCoursewareVC.m"
-                  timestampString = "477989699.019336"
+                  timestampString = "478002932.328205"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "231"
@@ -234,6 +234,36 @@
             startingLineNumber = "252"
             endingLineNumber = "252"
             landmarkName = "-save"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/QiniuUpload/Classes/QiniuUploader.h"
+            timestampString = "477997624.072306"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lecture/Classes/PanSiFan/XXXMainPageVC.m"
+            timestampString = "478002850.93314"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
