@@ -11,7 +11,6 @@
 @interface XXXBaseRefreshVC : XXXBaseVC
 
 @property (weak,nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, assign) NSInteger curPage;//当前页码
 @property (nonatomic, strong) NSMutableArray *dataArray;//数据源
 
 

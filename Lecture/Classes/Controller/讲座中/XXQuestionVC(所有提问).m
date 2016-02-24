@@ -7,6 +7,7 @@
 //
 
 #import "XXQuestionVC.h"
+#import "MJRefresh.h"
 
 @interface XXQuestionVC ()
 @property (nonatomic, strong) NSArray *frames;
@@ -15,39 +16,39 @@
 
 @implementation XXQuestionVC
 
-- (NSArray *)frames
-{
-    if (!_frames) {
-        _frames = [self loadDataFromPlist]; //TODO: 网络
-    }
-    return _frames;
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.questionFrames = self.frames;
+    [self loadNewQuestions];
 }
 
 #pragma mark - 从本地加载数据
-- (NSMutableArray *)loadDataFromPlist{
-    //TODO: 后面改成从数据加载
+- (void)loadNewQuestions
+{
+    NSUInteger size = 10;
+    NSUInteger questionId = 0;
+    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%ld", self.lecture.lectureId, questionId , size];
     
-    // 字典转模型
-    // 方式一：从document目录下加载plist
-    //    NSString *docmentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    //    NSString *plistPath = [docmentPath stringByAppendingPathComponent:@"Questions.plist"];
-    
-    // 方式二：从mainBundle目录下加载plist
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Questions.plist" ofType:nil];
-    
-    NSArray *questions = [XXQuestion mj_objectArrayWithFile:plistPath];
-    // question模型转为questionFrames模型
-    NSMutableArray *questionFrames = [self questionFramesWithQuestions:questions];
-    
-    
-    return questionFrames;
+    [NetworkManager getWithApi:url params:nil success:^(id result) {
+        NSArray *arr = result[@"data"];
+        NSMutableArray *questions = [XXQuestion mj_objectArrayWithKeyValuesArray:arr];
+        // question模型转为questionFrames模型
+        NSMutableArray *questionFrames = [self questionFramesWithQuestions:questions];
+        
+        // 将最新的微博数据，添加到总数组的最前面
+        NSRange range = NSMakeRange(0, size);
+        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.questionFrames insertObjects:questionFrames atIndexes:set];
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 结束刷新
+        [self endHeaderRefresh];
+    } fail:^(NSError *error) {
+        // 结束刷新
+        [self endHeaderRefresh];
+    }];
 }
 
 - (void)dealloc{

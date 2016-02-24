@@ -12,16 +12,16 @@
 #import "CXTextView.h"
 
 @interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
-
+@property (nonatomic, strong) UIImageView *noDataImage;
 @end
 
 @implementation XXQuestionBaseVC
 
-- (NSArray *)questionFrames
+- (NSMutableArray *)questionFrames
 {
     if (!_questionFrames) {
         
-        _questionFrames = [[NSArray alloc] init];
+        _questionFrames = [[NSMutableArray alloc] init];
     }
     return _questionFrames;
 }
@@ -29,7 +29,7 @@
 /**
  *  将XXQuestion模型转为XXQuestionFrame模型
  */
-- (NSArray *)questionFramesWithQuestions:(NSArray *)questions
+- (NSMutableArray *)questionFramesWithQuestions:(NSMutableArray *)questions
 {
     NSMutableArray *frames = [NSMutableArray array];
     for (XXQuestion *question in questions) {
@@ -48,8 +48,9 @@
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:XXQuestionCellReuseId];
     
-    //
     [self setupTextView];
+    
+    [self setupRefresh];
     
 //    self.tableView.tag = 1;
 }
@@ -93,9 +94,26 @@
     self.textView = textView;
 }
 
+- (void)setupRefresh{
+    WS(weakSelf);
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf headerRefreshAction];
+    }];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf footerRefreshAction];
+    }];
+    //    self.tableView.mj_header.hidden = YES;
+    //    self.tableView.mj_footer.hidden = YES;
+    [self.tableView.mj_header beginRefreshing];
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.questionFrames.count == 0) {
+        self.noDataImage.layer.opacity = 1;
+    }else{
+        self.noDataImage.layer.opacity = 0;
+    }
     return 1;
 }
 
@@ -243,6 +261,37 @@
     if ([scrollView isKindOfClass:[UITableView class]]) {
         [self.textView resignFirstResponder];
     }
+}
+
+#pragma mark - 刷新
+
+- (void)headerRefreshAction{
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //        [self endHeaderRefresh];
+    //    });
+}
+- (void)footerRefreshAction{
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //        [self endFooterRefresh];
+    //    });
+}
+
+- (void)endHeaderRefresh{
+    [self.tableView.mj_header endRefreshing];
+}
+
+- (void)endFooterRefresh{
+    [self.tableView.mj_footer endRefreshing];
+}
+
+#pragma mark - 无数据时候显示的图片
+- (UIImageView *)noDataImage{
+    if (!_noDataImage) {
+        _noDataImage = [[UIImageView alloc]initWithFrame:CGRectMake(SWIDTH/2-50, SHEIGHT/2-150, 100, 150)];
+        _noDataImage.image = [UIImage imageNamed:@"nodata"];
+        [self.tableView addSubview:_noDataImage];
+    }
+    return _noDataImage;
 }
 
 @end

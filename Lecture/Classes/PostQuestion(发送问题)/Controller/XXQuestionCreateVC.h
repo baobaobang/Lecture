@@ -7,9 +7,9 @@
 //
 #import "XXBaseVC.h"
 #import "XXQuestionVC.h"
-
+#import "XXXLectureModel.h"
 @interface XXQuestionCreateVC : XXBaseVC
 
 @property (nonatomic,strong) XXQuestionVC* questionVC;
-
+@property (nonatomic, strong) XXXLectureModel *lecture;
 @end

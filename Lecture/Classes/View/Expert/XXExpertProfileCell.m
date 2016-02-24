@@ -8,6 +8,7 @@
 
 #import "XXExpertProfileCell.h"
 #import "XXExpert.h"
+#import "UIButton+WebCache.h"
 
 @interface XXExpertProfileCell ()
 
@@ -30,30 +31,29 @@
     self.grayContentView.layer.cornerRadius = 5;
     [self.grayContentView.layer masksToBounds];
 }
-
-// 给cell的子控件赋值
-- (void)setExpert:(XXExpert *)expert{
-    _expert = expert;
+//给cell的子控件赋值
+- (void)setLecture:(XXXLectureModel *)lecture{
+    _lecture = lecture;
     
     // 专家头像(圆形)
-    UIImage *expertIcon = [UIImage circleImageWithName:expert.icon borderWidth:0 borderColor:[UIColor clearColor]];
-    [self.iconBtn setBackgroundImage:expertIcon forState:UIControlStateNormal];
+//    UIImage *expertIcon = [UIImage circleImageWithName: borderWidth:0 borderColor:[UIColor clearColor]];
+    [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:lecture.headPic] forState:0 placeholderImage:[UIImage imageNamed:@""]];
+    self.iconBtn.layer.cornerRadius = self.iconBtn.frame.size.width / 2;
+    self.iconBtn.layer.masksToBounds = YES;
     
     // 名字
-    self.nameLabel.text = expert.name;
-    
-    // 等级
-    self.levelView.image = [UIImage imageNamed:expert.level];
+    self.nameLabel.text = lecture.name;
     
     // 科室
-    self.departmentLabel.text = expert.department;
+    self.departmentLabel.text = lecture.department;
     
     // 医院
-    self.hospitalLabel.text = expert.hospital;
+    self.hospitalLabel.text = lecture.hospital;
     
     // 简介
-    self.profileLabel.text = expert.profile;
-
+    self.profileLabel.text = lecture.introduction;
 }
+
+
 
 @end

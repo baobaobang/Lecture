@@ -16,6 +16,8 @@
 #import "XXXApplyLectureVC.h"
 #import "XXXMyLecturesVC.h"
 #import "AudioTool.h"
+#import "XXLectureJoinVC.h"
+
 @interface XXXMainPageVC ()<XXXMakeLectureViewDelegate>
 
 
@@ -112,6 +114,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     XXXLectureModel *lectureModel = self.dataArray[indexPath.row];
+    XXLectureJoinVC *joinVc = [[XXLectureJoinVC alloc] init];
+    joinVc.lecture = lectureModel;
+    [self.navigationController pushViewController:joinVc animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

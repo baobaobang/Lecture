@@ -48,14 +48,15 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.experts.count;
+    return 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     XXExpertProfileCell *expertCell = [tableView dequeueReusableCellWithIdentifier:expertProfileCellReuseId forIndexPath:indexPath];
-    expertCell.expert = self.experts[indexPath.row];
+//    expertCell.expert = self.experts[indexPath.row];
+    expertCell.lecture = self.lecture;
     
     return expertCell;
 }

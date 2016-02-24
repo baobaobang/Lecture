@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXExpert;
+#import "XXXLectureModel.h"
 
 @interface XXExpertProfileCell : UITableViewCell
 
 /** 专家数据模型 */
-@property (nonatomic, strong) XXExpert *expert;
+@property (nonatomic, strong) XXXLectureModel *lecture;
 
 @end

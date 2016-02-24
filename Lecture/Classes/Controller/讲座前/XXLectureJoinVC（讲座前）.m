@@ -64,7 +64,7 @@
     // 设置精选提问头部
     [self setupQuestionHeaderView];
     
-    // 设置精选提问部
+    // 设置精选提问部分
     [self setupQuestionVc];
     
     // 设置报名活动按钮
@@ -145,8 +145,7 @@
     picView.y = kXXStatusAndNavBarHeight;
     picView.width = self.view.width;
     picView.height = kXXPlayerPicViewHeightWidthRatio * picView.width;
-    XXLecture *lecture = [self.lectures lastObject];
-    picView.image = [UIImage imageNamed:lecture.profilePic];
+    [picView sd_setImageWithURL:[NSURL URLWithString:self.lecture.cover]  placeholderImage:[UIImage imageNamed:@""]];
     picView.userInteractionEnabled = YES;
     [self.view addSubview:picView];
     self.picView = picView;
@@ -170,6 +169,7 @@
 - (void)setupExpertVc{
     
     XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];
+    expertVc.lecture = self.lecture;
     expertVc.view.x = 0;
     expertVc.view.y = CGRectGetMaxY(self.expertHeaderView.frame);
     expertVc.view.width = self.view.width;
@@ -196,6 +196,7 @@
 - (void)setupQuestionVc{
     
     XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
+    questionVc.lecture = self.lecture;
     questionVc.view.x = 0;
     questionVc.view.y = CGRectGetMaxY(self.questionHeaderView.frame);
     questionVc.view.width = self.view.width;
@@ -250,15 +251,22 @@
 
 #pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
 - (void)joinLectureActionSheet:(XXJoinLectureActionSheet *)sheet didClickDoneButton:(UIButton *)btn{
-    
-    //TODO: 点击确认报名后，网络请求，扣除积分等，报名失败的情况
-    // 如果报名成功
     [MBProgressHUD showHUDAddedTo:XXKeyWindow animated:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUDForView:XXKeyWindow animated:NO];
-        [MBProgressHUD showSuccess:@"报名成功！" toView:XXKeyWindow];
-        self.joinBtn.enabled = NO;
-    });
+    
+    NSString *url = [NSString stringWithFormat:@"lectures/%@/enroll", self.lecture.lectureId];
+    [NetworkManager postWithApi:url params:nil success:^(id result) {
+        if ([result[@"ret"] intValue] == 0) {
+            [MBProgressHUD hideHUDForView:XXKeyWindow animated:NO];
+            [MBProgressHUD showSuccess:@"报名成功！" toView:XXKeyWindow];
+            self.joinBtn.enabled = NO;
+        }else{
+            [MBProgressHUD hideHUDForView:XXKeyWindow animated:NO];
+            [MBProgressHUD showSuccess:@"人数已满，报名失败！" toView:XXKeyWindow];
+        }
+    } fail:^(NSError *error) {
+        
+    }];
+
 }
 
 #pragma mark - 点击关注按钮 XXExpertProfileHeaderViewDelegate
@@ -270,6 +278,7 @@
 - (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn
 {
     XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
+    vc.lecture = self.lecture;
     vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
     vc.view.frame = self.view.frame;
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
