@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F585EA7EB379ABCAAE31776DB58746DB"
-               BuildableName = "UITableView_FDTemplateLayoutCell.framework"
-               BlueprintName = "UITableView+FDTemplateLayoutCell"
+               BlueprintIdentifier = "ECB4D5AF2697577A89E64E2549BE370A"
+               BuildableName = "Qiniu.framework"
+               BlueprintName = "Qiniu"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F585EA7EB379ABCAAE31776DB58746DB"
-            BuildableName = "UITableView_FDTemplateLayoutCell.framework"
-            BlueprintName = "UITableView+FDTemplateLayoutCell"
+            BlueprintIdentifier = "ECB4D5AF2697577A89E64E2549BE370A"
+            BuildableName = "Qiniu.framework"
+            BlueprintName = "Qiniu"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ECB4D5AF2697577A89E64E2549BE370A"
+            BuildableName = "Qiniu.framework"
+            BlueprintName = "Qiniu"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
