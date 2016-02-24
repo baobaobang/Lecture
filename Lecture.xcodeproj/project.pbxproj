@@ -7,12 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161F40E21C7587EA00033FA6 /* XXXMyLecturesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161F40E01C7587EA00033FA6 /* XXXMyLecturesVC.m */; };
+		161F40E31C7587EA00033FA6 /* XXXMyLecturesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161F40E11C7587EA00033FA6 /* XXXMyLecturesVC.xib */; };
+		162709451C7199940015DF65 /* XXXDraftBoxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162709431C7199940015DF65 /* XXXDraftBoxVC.m */; };
+		162709461C7199940015DF65 /* XXXDraftBoxVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 162709441C7199940015DF65 /* XXXDraftBoxVC.xib */; };
+		1627094A1C719D780015DF65 /* XXXDraftBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162709481C719D780015DF65 /* XXXDraftBoxCell.m */; };
+		1627094B1C719D780015DF65 /* XXXDraftBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 162709491C719D780015DF65 /* XXXDraftBoxCell.xib */; };
 		162E889B1C619F32004F4C00 /* XXXBaseScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */; };
 		162E88A11C61EE9D004F4C00 /* XXXProtocolTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */; };
 		162E88A51C61F1FB004F4C00 /* protocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 162E88A41C61F1FB004F4C00 /* protocol.html */; };
+		16665EAE1C7C004D00A0B4B5 /* XXXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 16665EAD1C7C004D00A0B4B5 /* XXXUser.m */; };
 		16C139031C5F2D67003B1CB9 /* XXXMakeLectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */; };
 		16C139061C5F4EA8003B1CB9 /* AudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139051C5F4EA8003B1CB9 /* AudioTool.m */; };
 		16C64A041C62EB5200C6CB58 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C64A021C62EB5200C6CB58 /* SlideMenuController.swift */; };
+		16C802ED1C7A9F4F009C242D /* XXXCourseWareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C802EC1C7A9F4F009C242D /* XXXCourseWareCell.m */; };
+		16CBD2591C741A500054BC10 /* XXXApplyLectureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CBD2571C741A500054BC10 /* XXXApplyLectureVC.m */; };
+		16CBD25A1C741A500054BC10 /* XXXApplyLectureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16CBD2581C741A500054BC10 /* XXXApplyLectureVC.xib */; };
+		16CBD2611C7433A50054BC10 /* XXXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CBD2601C7433A50054BC10 /* XXXAlertView.m */; };
+		16CBD2641C7435C70054BC10 /* XXXDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CBD2631C7435C70054BC10 /* XXXDatePicker.m */; };
+		16CBD2671C7462D40054BC10 /* XXXTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CBD2661C7462D40054BC10 /* XXXTimePicker.m */; };
+		16CFE35F1C7060770033C3BE /* TempData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CFE35E1C7060770033C3BE /* TempData.m */; };
+		16CFE3621C7065600033C3BE /* XXXBaseRefreshVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CFE3611C7065600033C3BE /* XXXBaseRefreshVC.m */; };
+		16CFE3651C70721A0033C3BE /* XXXLecturePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CFE3641C70721A0033C3BE /* XXXLecturePageModel.m */; };
+		16CFE3681C707F4D0033C3BE /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CFE3671C707F4D0033C3BE /* DateFormatter.m */; };
 		16F979E61C7010EB00C636A6 /* XXXLeftMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F979E41C7010EB00C636A6 /* XXXLeftMenuVC.m */; };
 		16F979E71C7010EB00C636A6 /* XXXLeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16F979E51C7010EB00C636A6 /* XXXLeftMenuVC.xib */; };
 		2D065B4E1C53BFA500282CFD /* Lectures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D065B4D1C53BFA500282CFD /* Lectures.plist */; };
@@ -174,11 +191,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		161F40DF1C7587EA00033FA6 /* XXXMyLecturesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXMyLecturesVC.h; sourceTree = "<group>"; };
+		161F40E01C7587EA00033FA6 /* XXXMyLecturesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXMyLecturesVC.m; sourceTree = "<group>"; };
+		161F40E11C7587EA00033FA6 /* XXXMyLecturesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXXMyLecturesVC.xib; sourceTree = "<group>"; };
+		162709421C7199940015DF65 /* XXXDraftBoxVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXDraftBoxVC.h; sourceTree = "<group>"; };
+		162709431C7199940015DF65 /* XXXDraftBoxVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXDraftBoxVC.m; sourceTree = "<group>"; };
+		162709441C7199940015DF65 /* XXXDraftBoxVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXXDraftBoxVC.xib; sourceTree = "<group>"; };
+		162709471C719D780015DF65 /* XXXDraftBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXDraftBoxCell.h; sourceTree = "<group>"; };
+		162709481C719D780015DF65 /* XXXDraftBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXDraftBoxCell.m; sourceTree = "<group>"; };
+		162709491C719D780015DF65 /* XXXDraftBoxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXXDraftBoxCell.xib; sourceTree = "<group>"; };
 		162E88991C619F32004F4C00 /* XXXBaseScrollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXBaseScrollVC.h; sourceTree = "<group>"; };
 		162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXBaseScrollVC.m; sourceTree = "<group>"; };
 		162E889F1C61EE9D004F4C00 /* XXXProtocolTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXProtocolTipView.h; sourceTree = "<group>"; };
 		162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXProtocolTipView.m; sourceTree = "<group>"; };
 		162E88A41C61F1FB004F4C00 /* protocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = protocol.html; path = Source.bundle/protocol.html; sourceTree = "<group>"; };
+		16665EAC1C7C004D00A0B4B5 /* XXXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXUser.h; sourceTree = "<group>"; };
+		16665EAD1C7C004D00A0B4B5 /* XXXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXUser.m; sourceTree = "<group>"; };
 		16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXMakeLectureView.h; sourceTree = "<group>"; };
 		16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXMakeLectureView.m; sourceTree = "<group>"; };
 		16C139041C5F4EA8003B1CB9 /* AudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTool.h; sourceTree = "<group>"; };
@@ -186,6 +214,25 @@
 		16C64A011C62EB5100C6CB58 /* Lecture-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lecture-Bridging-Header.h"; sourceTree = "<group>"; };
 		16C64A021C62EB5200C6CB58 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		16C64A031C62EB5200C6CB58 /* SlideMenuControllerSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuControllerSwift.h; sourceTree = "<group>"; };
+		16C802EB1C7A9F4F009C242D /* XXXCourseWareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXCourseWareCell.h; sourceTree = "<group>"; };
+		16C802EC1C7A9F4F009C242D /* XXXCourseWareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXCourseWareCell.m; sourceTree = "<group>"; };
+		16CBD2561C741A500054BC10 /* XXXApplyLectureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXApplyLectureVC.h; sourceTree = "<group>"; };
+		16CBD2571C741A500054BC10 /* XXXApplyLectureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXApplyLectureVC.m; sourceTree = "<group>"; };
+		16CBD2581C741A500054BC10 /* XXXApplyLectureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXXApplyLectureVC.xib; sourceTree = "<group>"; };
+		16CBD25F1C7433A50054BC10 /* XXXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXAlertView.h; sourceTree = "<group>"; };
+		16CBD2601C7433A50054BC10 /* XXXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXAlertView.m; sourceTree = "<group>"; };
+		16CBD2621C7435C70054BC10 /* XXXDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXDatePicker.h; sourceTree = "<group>"; };
+		16CBD2631C7435C70054BC10 /* XXXDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXDatePicker.m; sourceTree = "<group>"; };
+		16CBD2651C7462D40054BC10 /* XXXTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXTimePicker.h; sourceTree = "<group>"; };
+		16CBD2661C7462D40054BC10 /* XXXTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXTimePicker.m; sourceTree = "<group>"; };
+		16CFE35D1C7060770033C3BE /* TempData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempData.h; sourceTree = "<group>"; };
+		16CFE35E1C7060770033C3BE /* TempData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempData.m; sourceTree = "<group>"; };
+		16CFE3601C7065600033C3BE /* XXXBaseRefreshVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXBaseRefreshVC.h; sourceTree = "<group>"; };
+		16CFE3611C7065600033C3BE /* XXXBaseRefreshVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXBaseRefreshVC.m; sourceTree = "<group>"; };
+		16CFE3631C70721A0033C3BE /* XXXLecturePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXLecturePageModel.h; sourceTree = "<group>"; };
+		16CFE3641C70721A0033C3BE /* XXXLecturePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXLecturePageModel.m; sourceTree = "<group>"; };
+		16CFE3661C707F4D0033C3BE /* DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter.h; sourceTree = "<group>"; };
+		16CFE3671C707F4D0033C3BE /* DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter.m; sourceTree = "<group>"; };
 		16F979E31C7010EB00C636A6 /* XXXLeftMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXLeftMenuVC.h; sourceTree = "<group>"; };
 		16F979E41C7010EB00C636A6 /* XXXLeftMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXLeftMenuVC.m; sourceTree = "<group>"; };
 		16F979E51C7010EB00C636A6 /* XXXLeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXXLeftMenuVC.xib; sourceTree = "<group>"; };
@@ -482,19 +529,10 @@
 		16C139001C5F2D2A003B1CB9 /* makeLecture */ = {
 			isa = PBXGroup;
 			children = (
-				2D23725A1C5F0DE800A422EF /* XXXCoursewareBaseVC.h */,
-				2D23725B1C5F0DE800A422EF /* XXXCoursewareBaseVC.m */,
-				2D2372641C5F0DE800A422EF /* XXXOnlineCoursewareVC.h */,
-				2D2372651C5F0DE800A422EF /* XXXOnlineCoursewareVC.m */,
-				2D2372661C5F0DE800A422EF /* XXXOnlineCoursewareVC.xib */,
-				2D23724C1C5F0DE800A422EF /* RecordButton.h */,
-				2D23724D1C5F0DE800A422EF /* RecordButton.m */,
-				2D23724E1C5F0DE800A422EF /* RecordView.h */,
-				2D23724F1C5F0DE800A422EF /* RecordView.m */,
-				2D2372501C5F0DE800A422EF /* TipView.h */,
-				2D2372511C5F0DE800A422EF /* TipView.m */,
-				16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */,
-				16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */,
+				16CBD25E1C741DCC0054BC10 /* draftbox */,
+				16CBD25D1C741DA40054BC10 /* myLectures */,
+				16CBD25C1C741D7F0054BC10 /* applyLecture */,
+				16CBD25B1C741D5A0054BC10 /* editLecture */,
 			);
 			name = makeLecture;
 			sourceTree = "<group>";
@@ -502,6 +540,8 @@
 		16C139071C60813F003B1CB9 /* mainpage */ = {
 			isa = PBXGroup;
 			children = (
+				16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */,
+				16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */,
 				2D2372471C5F0DE800A422EF /* MainPageLectureCell.h */,
 				2D2372481C5F0DE800A422EF /* MainPageLectureCell.m */,
 				2D2372491C5F0DE800A422EF /* MainPageLectureCell.xib */,
@@ -554,6 +594,10 @@
 				2D2372531C5F0DE800A422EF /* Transcoder.m */,
 				16C139041C5F4EA8003B1CB9 /* AudioTool.h */,
 				16C139051C5F4EA8003B1CB9 /* AudioTool.m */,
+				16CFE35D1C7060770033C3BE /* TempData.h */,
+				16CFE35E1C7060770033C3BE /* TempData.m */,
+				16CFE3661C707F4D0033C3BE /* DateFormatter.h */,
+				16CFE3671C707F4D0033C3BE /* DateFormatter.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -565,6 +609,10 @@
 				2D2372571C5F0DE800A422EF /* XXXBaseModel.m */,
 				2D23725C1C5F0DE800A422EF /* XXXLectureModel.h */,
 				2D23725D1C5F0DE800A422EF /* XXXLectureModel.m */,
+				16CFE3631C70721A0033C3BE /* XXXLecturePageModel.h */,
+				16CFE3641C70721A0033C3BE /* XXXLecturePageModel.m */,
+				16665EAC1C7C004D00A0B4B5 /* XXXUser.h */,
+				16665EAD1C7C004D00A0B4B5 /* XXXUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -576,6 +624,10 @@
 				2D2372591C5F0DE800A422EF /* XXXBaseVC.m */,
 				162E88991C619F32004F4C00 /* XXXBaseScrollVC.h */,
 				162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */,
+				16CFE3601C7065600033C3BE /* XXXBaseRefreshVC.h */,
+				16CFE3611C7065600033C3BE /* XXXBaseRefreshVC.m */,
+				16CBD25F1C7433A50054BC10 /* XXXAlertView.h */,
+				16CBD2601C7433A50054BC10 /* XXXAlertView.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -596,6 +648,63 @@
 				16C64A011C62EB5100C6CB58 /* Lecture-Bridging-Header.h */,
 			);
 			name = sliderMenu;
+			sourceTree = "<group>";
+		};
+		16CBD25B1C741D5A0054BC10 /* editLecture */ = {
+			isa = PBXGroup;
+			children = (
+				2D23725A1C5F0DE800A422EF /* XXXCoursewareBaseVC.h */,
+				2D23725B1C5F0DE800A422EF /* XXXCoursewareBaseVC.m */,
+				2D2372641C5F0DE800A422EF /* XXXOnlineCoursewareVC.h */,
+				2D2372651C5F0DE800A422EF /* XXXOnlineCoursewareVC.m */,
+				2D2372661C5F0DE800A422EF /* XXXOnlineCoursewareVC.xib */,
+				2D23724C1C5F0DE800A422EF /* RecordButton.h */,
+				2D23724D1C5F0DE800A422EF /* RecordButton.m */,
+				2D23724E1C5F0DE800A422EF /* RecordView.h */,
+				2D23724F1C5F0DE800A422EF /* RecordView.m */,
+				2D2372501C5F0DE800A422EF /* TipView.h */,
+				2D2372511C5F0DE800A422EF /* TipView.m */,
+				16C802EB1C7A9F4F009C242D /* XXXCourseWareCell.h */,
+				16C802EC1C7A9F4F009C242D /* XXXCourseWareCell.m */,
+			);
+			name = editLecture;
+			sourceTree = "<group>";
+		};
+		16CBD25C1C741D7F0054BC10 /* applyLecture */ = {
+			isa = PBXGroup;
+			children = (
+				16CBD2561C741A500054BC10 /* XXXApplyLectureVC.h */,
+				16CBD2571C741A500054BC10 /* XXXApplyLectureVC.m */,
+				16CBD2581C741A500054BC10 /* XXXApplyLectureVC.xib */,
+				16CBD2621C7435C70054BC10 /* XXXDatePicker.h */,
+				16CBD2631C7435C70054BC10 /* XXXDatePicker.m */,
+				16CBD2651C7462D40054BC10 /* XXXTimePicker.h */,
+				16CBD2661C7462D40054BC10 /* XXXTimePicker.m */,
+			);
+			name = applyLecture;
+			sourceTree = "<group>";
+		};
+		16CBD25D1C741DA40054BC10 /* myLectures */ = {
+			isa = PBXGroup;
+			children = (
+				161F40DF1C7587EA00033FA6 /* XXXMyLecturesVC.h */,
+				161F40E01C7587EA00033FA6 /* XXXMyLecturesVC.m */,
+				161F40E11C7587EA00033FA6 /* XXXMyLecturesVC.xib */,
+			);
+			name = myLectures;
+			sourceTree = "<group>";
+		};
+		16CBD25E1C741DCC0054BC10 /* draftbox */ = {
+			isa = PBXGroup;
+			children = (
+				162709421C7199940015DF65 /* XXXDraftBoxVC.h */,
+				162709431C7199940015DF65 /* XXXDraftBoxVC.m */,
+				162709441C7199940015DF65 /* XXXDraftBoxVC.xib */,
+				162709471C719D780015DF65 /* XXXDraftBoxCell.h */,
+				162709481C719D780015DF65 /* XXXDraftBoxCell.m */,
+				162709491C719D780015DF65 /* XXXDraftBoxCell.xib */,
+			);
+			name = draftbox;
 			sourceTree = "<group>";
 		};
 		2D1BDEDB1C5B493B00056E87 /* 讲座前 */ = {
@@ -670,6 +779,7 @@
 		2D1D01DB1C3EA3910056B10C /* Lecture */ = {
 			isa = PBXGroup;
 			children = (
+				2D23723F1C5F0DE800A422EF /* PanSiFan */,
 				2D63084C1C549B2F0092F622 /* Classes */,
 				2D1D01DC1C3EA3910056B10C /* Supporting Files */,
 			);
@@ -709,7 +819,8 @@
 				16C139001C5F2D2A003B1CB9 /* makeLecture */,
 				2D2372441C5F0DE800A422EF /* GlobalDef.h */,
 			);
-			path = PanSiFan;
+			name = PanSiFan;
+			path = Classes/PanSiFan;
 			sourceTree = "<group>";
 		};
 		2D55BB0C1C5618F800BA1542 /* LGPhotoBrowser */ = {
@@ -885,7 +996,6 @@
 				2D63088E1C549B2F0092F622 /* Model */,
 				2D6308B01C549B2F0092F622 /* View */,
 				2D63084D1C549B2F0092F622 /* Controller */,
-				2D23723F1C5F0DE800A422EF /* PanSiFan */,
 				2D6308AF1C549B2F0092F622 /* Temp */,
 			);
 			path = Classes;
@@ -1423,12 +1533,15 @@
 			files = (
 				2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */,
 				2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */,
+				161F40E31C7587EA00033FA6 /* XXXMyLecturesVC.xib in Resources */,
 				162E88A51C61F1FB004F4C00 /* protocol.html in Resources */,
 				2DA99D751C44B75500CD02D7 /* 两种特殊情况.png in Resources */,
 				2D6309051C549B2F0092F622 /* XXQuestionHeaderView.xib in Resources */,
 				2D63090F1C54BBF50092F622 /* CurrentUser.plist in Resources */,
+				1627094B1C719D780015DF65 /* XXXDraftBoxCell.xib in Resources */,
 				2D23727E1C5F0DE800A422EF /* XXXMainPageVC.xib in Resources */,
 				2DA99D781C44B75500CD02D7 /* 感冒的原因.png in Resources */,
+				16CBD25A1C741A500054BC10 /* XXXApplyLectureVC.xib in Resources */,
 				2D065B4E1C53BFA500282CFD /* Lectures.plist in Resources */,
 				2D2372821C5F0DE800A422EF /* XXXRegisterVC.xib in Resources */,
 				2DA99D771C44B75500CD02D7 /* 什么是感冒.png in Resources */,
@@ -1457,6 +1570,7 @@
 				2D2372801C5F0DE800A422EF /* XXXOnlineCoursewareVC.xib in Resources */,
 				2D55BB971C56256E00BA1542 /* Assets.xcassets in Resources */,
 				2D6308E31C549B2F0092F622 /* MBProgressHUD.bundle in Resources */,
+				162709461C7199940015DF65 /* XXXDraftBoxVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1530,6 +1644,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D6308E51C549B2F0092F622 /* AppDelegate.m in Sources */,
+				16665EAE1C7C004D00A0B4B5 /* XXXUser.m in Sources */,
+				16CFE3651C70721A0033C3BE /* XXXLecturePageModel.m in Sources */,
 				2D55BB941C5618F900BA1542 /* ZLCameraView.m in Sources */,
 				2D1BDF0C1C5B62BE00056E87 /* XXLectureHomeVC.m in Sources */,
 				2D6308F11C549B2F0092F622 /* XXLecture.m in Sources */,
@@ -1562,6 +1678,7 @@
 				16F979E61C7010EB00C636A6 /* XXXLeftMenuVC.m in Sources */,
 				2D6308F51C549B2F0092F622 /* XXBaseVC.m in Sources */,
 				2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */,
+				16CBD2641C7435C70054BC10 /* XXXDatePicker.m in Sources */,
 				2D55BB6F1C5618F900BA1542 /* LGPhotoRect.m in Sources */,
 				16C139061C5F4EA8003B1CB9 /* AudioTool.m in Sources */,
 				2D2372721C5F0DE800A422EF /* RecordButton.m in Sources */,
@@ -1569,6 +1686,8 @@
 				2D55BB771C5618F900BA1542 /* LGPhotoPickerDatas.m in Sources */,
 				2D1BDF0E1C5B62BE00056E87 /* XXLectureVC（讲座中）.m in Sources */,
 				2D6308F31C549B2F0092F622 /* XXQuestionCreateVC(提问).m in Sources */,
+				16CFE3621C7065600033C3BE /* XXXBaseRefreshVC.m in Sources */,
+				1627094A1C719D780015DF65 /* XXXDraftBoxCell.m in Sources */,
 				2D55BB7D1C5618F900BA1542 /* LGPhotoPickerCollectionViewCell.m in Sources */,
 				2D50CCEF1C5A1D6C00FAF3AA /* XXReply.m in Sources */,
 				2D6308E71C549B2F0092F622 /* XXConst.m in Sources */,
@@ -1576,6 +1695,7 @@
 				2D2372831C5F0DE800A422EF /* XXXTextField.m in Sources */,
 				2D2372741C5F0DE800A422EF /* TipView.m in Sources */,
 				2D1BDEEC1C5B493B00056E87 /* XXExpertProfileVC.m in Sources */,
+				16CBD2611C7433A50054BC10 /* XXXAlertView.m in Sources */,
 				2D55BB931C5618F900BA1542 /* ZLCameraImageView.m in Sources */,
 				2D6CD02F1C643F6C0076FFCD /* XXContractButton.m in Sources */,
 				2D6308FC1C549B2F0092F622 /* XXCollectionCell.m in Sources */,
@@ -1585,6 +1705,7 @@
 				2D55BB791C5618F900BA1542 /* LGPhotoPickerAssetsViewController.m in Sources */,
 				2D6308DB1C549B2F0092F622 /* NSString+Extension.m in Sources */,
 				2D2372761C5F0DE800A422EF /* UIView+RoundAndShadow.m in Sources */,
+				16CFE3681C707F4D0033C3BE /* DateFormatter.m in Sources */,
 				2D55BB801C5618F900BA1542 /* LGPhotoPickerImageView.m in Sources */,
 				2D6309011C549B2F0092F622 /* XXJoinLectureActionSheet（报名弹窗）.m in Sources */,
 				2D6308F21C549B2F0092F622 /* XXUser.m in Sources */,
@@ -1606,13 +1727,16 @@
 				2D6309061C549B2F0092F622 /* XXQuestionPhotosView(相册).m in Sources */,
 				2D2372811C5F0DE800A422EF /* XXXRegisterVC.m in Sources */,
 				2D23726F1C5F0DE800A422EF /* MainPageLectureCell.m in Sources */,
+				16CBD2591C741A500054BC10 /* XXXApplyLectureVC.m in Sources */,
 				2D75DA4B1C5708720056FA6C /* XXOnlineHeaderView.m in Sources */,
 				2D6308E41C549B2F0092F622 /* MBProgressHUD.m in Sources */,
+				16CFE35F1C7060770033C3BE /* TempData.m in Sources */,
 				2D55BB7C1C5618F900BA1542 /* LGPhotoPickerCollectionView.m in Sources */,
 				162E889B1C619F32004F4C00 /* XXXBaseScrollVC.m in Sources */,
 				2D6308E21C549B2F0092F622 /* MBProgressHUD+CZ.m in Sources */,
 				2D55BB7B1C5618F900BA1542 /* LGPhotoPickerViewController.m in Sources */,
 				2D6308DD1C549B2F0092F622 /* UIButton+CZ.m in Sources */,
+				16C802ED1C7A9F4F009C242D /* XXXCourseWareCell.m in Sources */,
 				16C64A041C62EB5200C6CB58 /* SlideMenuController.swift in Sources */,
 				2D55BB741C5618F900BA1542 /* LGPhotoPickerBrowserPhotoView.m in Sources */,
 				2D6308F61C549B2F0092F622 /* XHPhotographyHelper.m in Sources */,
@@ -1620,6 +1744,7 @@
 				2D1BDF101C5B62BE00056E87 /* XXQuestionBaseVC.m in Sources */,
 				2D1BDF111C5B62BE00056E87 /* XXQuestionVC(所有提问).m in Sources */,
 				2D55BB6E1C5618F900BA1542 /* LGPhotoPickerBrowserPhoto.m in Sources */,
+				162709451C7199940015DF65 /* XXXDraftBoxVC.m in Sources */,
 				2D2372771C5F0DE800A422EF /* XXXBaseModel.m in Sources */,
 				2D2372751C5F0DE800A422EF /* Transcoder.m in Sources */,
 				162E88A11C61EE9D004F4C00 /* XXXProtocolTipView.m in Sources */,
@@ -1634,11 +1759,13 @@
 				16C139031C5F2D67003B1CB9 /* XXXMakeLectureView.m in Sources */,
 				2D55BB781C5618F900BA1542 /* LGPhotoPickerGroup.m in Sources */,
 				2D6F60121C58B842006D8488 /* CXTextView.m in Sources */,
+				161F40E21C7587EA00033FA6 /* XXXMyLecturesVC.m in Sources */,
 				2D23727B1C5F0DE800A422EF /* XXXLoginVC.m in Sources */,
 				2D6308F71C549B2F0092F622 /* XXQuestionPhotoCollectionViewCell.m in Sources */,
 				2D6308EF1C549B2F0092F622 /* XXQuestionFrame.m in Sources */,
 				2D2372781C5F0DE800A422EF /* XXXBaseVC.m in Sources */,
 				2D55BB921C5618F900BA1542 /* ZLCamera.m in Sources */,
+				16CBD2671C7462D40054BC10 /* XXXTimePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1788,12 +1915,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-				SWIFT_OBJC_BRIDGING_HEADER = "Lecture/Classes/PanSiFan/Lecture-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-=======
 				PROVISIONING_PROFILE = "";
->>>>>>> origin/master
 			};
 			name = Debug;
 		};
@@ -1814,11 +1936,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-				SWIFT_OBJC_BRIDGING_HEADER = "Lecture/Classes/PanSiFan/Lecture-Bridging-Header.h";
-=======
 				PROVISIONING_PROFILE = "";
->>>>>>> origin/master
 			};
 			name = Release;
 		};

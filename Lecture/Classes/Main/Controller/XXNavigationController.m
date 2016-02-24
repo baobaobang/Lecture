@@ -19,7 +19,7 @@
     // 设置导航栏的统一样式
     UINavigationBar *navBar = [UINavigationBar appearance];
     // 导航栏背景色
-    navBar.barTintColor = XXColorTint;
+    navBar.barTintColor = navColor;
     // 设置返回，左，右 item的字体颜色
     [navBar setTintColor:XXColorText];
     
@@ -37,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationBar.shadowImage = [[UIImage alloc]init];
 }
 
 /**
@@ -50,9 +51,20 @@
         /* 设置导航栏上面的内容 */
         // 设置左边的返回按钮
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(back) bgImageStr:@"before_nav_back" bgHighImageStr:@"before_nav_back"];
+    }else{
+        
+        UIButton *menu = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [menu addTarget:self action:@selector(leftMenu) forControlEvents:UIControlEventTouchUpInside];
+        [menu setBackgroundImage:[UIImage imageNamed:@"menu"] forState:0];
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menu];
     }
     
     [super pushViewController:viewController animated:animated];
+}
+
+- (void)leftMenu{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate.sliderMenu openLeft];
 }
 
 - (void)back

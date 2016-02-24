@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "XXXBaseVC.h"
+#import "XXXLectureModel.h"
 #define SSIZE [UIScreen mainScreen].bounds.size
-#define SWIDTH SSIZE.width
-#define SHEIGHT SSIZE.height
+//#define SWIDTH SSIZE.width
+//#define SHEIGHT SSIZE.height
 @interface XXXCoursewareBaseVC : XXXBaseVC
 
-@property (nonatomic, strong) NSMutableArray<UIViewController *> *childs;
+@property (nonatomic, strong) XXXLectureModel *lectureModel;//模型
 @property (nonatomic, strong) UIScrollView *titleTips;
+@property (assign,nonatomic)NSInteger curPage;//当前编辑页
 
-- (void)addpage;
+- (void)addpage:(XXXLecturePageModel *)pageModel;
+- (void)clickAddPage;
 @end
 

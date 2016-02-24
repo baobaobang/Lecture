@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XXXBaseScrollVC.h"
+#import "XXXUser.h"
 @interface XXXRegisterVC :XXXBaseScrollVC
-
+@property (nonatomic, strong) XXXUser *user;
 @end

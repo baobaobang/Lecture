@@ -11,7 +11,7 @@
 @interface RecordView()<UIAlertViewDelegate,AVAudioPlayerDelegate>
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) AVAudioPlayer *player;
+@property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) UIButton *playBtn;
 @property (nonatomic, assign) NSInteger index;//
 @property (nonatomic, strong) NSTimer *timer;
@@ -21,7 +21,18 @@
 @property (nonatomic, assign) BOOL isCurPlayView;
 @end
 @implementation RecordView
+{
+    BOOL playing;
+}
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        playing = NO;
+    }
+    return self;
+}
 + (RecordView *)viewWithUrl:(NSString *)url index:(NSInteger)index name:(NSString *)name{
     
     RecordView *rv = [[RecordView alloc]initWithFrame:CGRectMake(0,(index-1)*40, 200, 40)];
@@ -36,7 +47,7 @@
     [rv addSubview:play];
     [rv addSubview:delete];
     rv.playBtn = play;
-    rv.name = name;
+    rv.name = name.length == 0 ? @"00:00":name;
     
     play.layer.cornerRadius = 3;
     play.backgroundColor = [UIColor colorWithRed:153/255 green:255/255 blue:52/255 alpha:1];
@@ -45,13 +56,18 @@
     play.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [play setImageEdgeInsets:UIEdgeInsetsMake(7.5, -45, 7.5, 5)];
     play.titleLabel.font = [UIFont systemFontOfSize:14];
-    [play setTitle:name forState:0];
+    [play setTitle:rv.name forState:0];
     [play setTitleEdgeInsets:UIEdgeInsetsMake(7.5,-50, 7.5, 0)];
     
     [play addTarget:rv action:@selector(playVoice) forControlEvents:UIControlEventTouchUpInside];
     [delete addTarget:rv action:@selector(deleteVoice:) forControlEvents:UIControlEventTouchUpInside];
     
     [delete setBackgroundImage:[UIImage imageNamed:@"Delete"] forState:0];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:rv selector:@selector(endPlay) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    
+    
     return rv;
 }
 
@@ -71,35 +87,31 @@
 //播放音频
 - (void)playVoice{
     
-    
-    _player = [[AudioTool shareAudioTool] playerWithURL:[NSURL URLWithString:self.path]];
-    _player.delegate = self;
-        
-    
-    
-    if (_player.isPlaying) {
-        [_player stop];
+    if (playing) {
+        [_player pause];
+        playing = NO;
         [_playBtn setTitle:_name forState:0];
         [_timer invalidate];
         [_displayLink invalidate];
         [_playBtn setImage:[UIImage imageNamed:@"形状-3.3"] forState:0];
     }else{
+       
+        _player = [[AudioTool shareAudioTool] streamPlayerWithURL:self.path];
         NSNotification *note = [[NSNotification alloc]initWithName:@"recordViewNote" object:nil userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:note];
        
-        NSLog(@"%@",_player.url);
-        if ([_player prepareToPlay]){
-            [_player play];
-            _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateTime)];
-            [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-            _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(animatePic) userInfo:nil repeats:YES];
-        };
+        [_player play];
+        playing = YES;
+        _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateTime)];
+        [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(animatePic) userInfo:nil repeats:YES];
+        
     }
 }
 
 //播放时的时间更新
 - (void)updateTime{
-    NSInteger intTime = (NSInteger)_player.currentTime;
+    NSInteger intTime = (NSInteger)CMTimeGetSeconds(_player.currentTime);
     NSInteger min = intTime/60;
     NSInteger sec = intTime%60;
     NSString *minStr = [NSString stringWithFormat:@"%ld",min];
@@ -122,18 +134,22 @@
 }
 
 //完成播放回调
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    [_player stop];
+- (void)endPlay{
+    [_player pause];
     [_playBtn setTitle:_name forState:0];
-    _player = nil;
+//    _player = nil;
     [_timer invalidate];
     [_displayLink invalidate];
     [_playBtn setImage:[UIImage imageNamed:@"形状-3.3"] forState:0];
 }
 
+//- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+//    
+//}
+
 - (void)changePlayer{
     
-    [_player stop];
+    [_player pause];
     [_timer invalidate];
     [_displayLink invalidate];
     

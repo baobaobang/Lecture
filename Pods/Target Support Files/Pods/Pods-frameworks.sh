@@ -86,18 +86,24 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/FMDB.framework"
+  install_framework "Pods/HappyDNS.framework"
   install_framework "Pods/MJExtension.framework"
   install_framework "Pods/MJRefresh.framework"
   install_framework "Pods/Masonry.framework"
+  install_framework "Pods/Qiniu.framework"
   install_framework "Pods/SDWebImage.framework"
+  install_framework "Pods/SVProgressHUD.framework"
   install_framework "Pods/UITableView_FDTemplateLayoutCell.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/FMDB.framework"
+  install_framework "Pods/HappyDNS.framework"
   install_framework "Pods/MJExtension.framework"
   install_framework "Pods/MJRefresh.framework"
   install_framework "Pods/Masonry.framework"
+  install_framework "Pods/Qiniu.framework"
   install_framework "Pods/SDWebImage.framework"
+  install_framework "Pods/SVProgressHUD.framework"
   install_framework "Pods/UITableView_FDTemplateLayoutCell.framework"
 fi

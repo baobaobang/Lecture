@@ -16,8 +16,8 @@
 #import "LGPhoto.h"
 #import "RecordButton.h"
 
-@interface XXXOnlineCoursewareVC ()<UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,RecordViewDelegate,RecordStopDelegate,AVAudioPlayerDelegate,UITextFieldDelegate>
-@property (nonatomic, weak) XXXCoursewareBaseVC *supperVC;
+@interface XXXOnlineCoursewareVC ()<UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,RecordViewDelegate,RecordStopDelegate,AVAudioPlayerDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *pageLabel;//页码
 @property (weak, nonatomic) IBOutlet RecordButton *recordBtn;//录音按钮
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;//保存
@@ -45,9 +45,11 @@
 
 @property (nonatomic, strong) NSMutableArray *voiceViews;//
 @property (nonatomic, strong) RecordButton *recordingBtn;//正在录音的按钮
-@property (nonatomic, strong) AVAudioPlayer *player;
+@property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, assign) NSInteger curPlayIndex;
 @property (nonatomic, assign) NSInteger playerState;//1-播放 0-暂停
+@property (nonatomic, strong) UIImage *chosenImage;
+
 @end
 
 
@@ -76,37 +78,19 @@
     return _voiceUrls;
 }
 
-+(instancetype)onlineCoursewareWithSupperVC:(UIViewController *)vc{
+
++ (instancetype)onlineCoursewareViewController{
     XXXOnlineCoursewareVC *ocwVC = [[XXXOnlineCoursewareVC alloc]init];
-    ocwVC.supperVC = (XXXCoursewareBaseVC *)vc;
-    ocwVC.view.frame =CGRectMake(SWIDTH,93, SWIDTH, SHEIGHT);
-    [ocwVC.view shadow];
     return ocwVC;
 }
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _courseTitle = @"courseTitle";
-
-    if (_page == 0) {
-        _page = 1;
-    }
-    [self setPageNum];
-    UILabel *label = [[UILabel alloc]init];
-    label.textColor = [UIColor whiteColor];
-    label.text = @"在线课件";
-    [label sizeToFit];
-    self.navigationItem.titleView = label;
     
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(preView)];
     [self.preViewImageView addGestureRecognizer:tap2];
     
     UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addImage)];
     [_imageView addGestureRecognizer:imageTap];
-    _addPage.layer.shadowOpacity = 1;
-    _addPage.layer.shadowOffset = CGSizeMake(1, 1);
-    _addPage.layer.shadowColor = [UIColor grayColor].CGColor;
     
     
     _saveBtn.imageEdgeInsets = UIEdgeInsetsMake(10,0,10,10);
@@ -115,23 +99,21 @@
     
     _titleLabel.delegate = self;
     
-    self.recordBtn.voiceUrls = self.voiceUrls;
-    self.recordBtn.courseTitle = self.courseTitle;
-    self.recordBtn.page = self.page;
+    
+    self.recordBtn.pageModel = self.pageModel;
     self.recordBtn.delegate = self;
     
+    [self.view bringSubviewToFront:self.saveBtn];
     [self updateVoiceList];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endPreView) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+ 
     
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        
-        self.view.frame = CGRectMake(0,84, SWIDTH, SHEIGHT);
-    } completion:nil];
+    self.view.frame = CGRectMake(0,94, SWIDTH, SHEIGHT-94);
 }
 - (void)updateVoiceList{
     
@@ -139,13 +121,6 @@
         ((RecordView *)self.voiceViews[i]).frame = CGRectMake(0,i*40, 200, 40);
     }
     _voiceListViewHeight.constant = 40*(_voiceViews.count);
-//    [self.voiceListContaner.superview layoutIfNeeded];
-//    [UIView animateWithDuration:2 animations:^{
-//        [self.voiceListContaner mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.height.equalTo(@(40*(_voiceViews.count)));
-//        }];
-//    }];
-    
     _scrollView.contentSize = CGSizeMake(SWIDTH, 540+(40*self.voiceViews.count));
 }
 
@@ -156,75 +131,7 @@
     [_titleLabel resignFirstResponder];
     return YES;
 }
-/**
- *  开始录音/暂停录音
- *
- *  @param sender 按钮
- */
-//- (IBAction)recordVoice:(UIButton *)sender {
-//   
-//    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-//   
-//    if (!_recorder) {
-//        NSInteger num = self.voiceUrls.count+1;
-//        NSString *voiceName = [NSString stringWithFormat:@"title%@page%ldnumber%ld%@",_courseTitle,_page,num,@"voice.wav"];
-//        NSString *path = [document stringByAppendingPathComponent:voiceName];
-//        _filePath = [NSURL URLWithString:path];
-//        
-//        [self.voiceUrls addObject:path];
-//        
-//        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-//        
-//        
-//        NSDictionary *recordSettings=[NSDictionary dictionaryWithObjectsAndKeys:
-//                                      [NSNumber numberWithInt:AVAudioQualityMin],
-//                                      AVEncoderAudioQualityKey,
-//                                      [NSNumber numberWithInt:16],
-//                                      AVEncoderBitRateKey,
-//                                      [NSNumber numberWithInt:2],
-//                                      AVNumberOfChannelsKey,
-//                                      [NSNumber numberWithFloat:44100.0],
-//                                      AVSampleRateKey,
-//                                      [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,nil];
-//        _recorder = [[AVAudioRecorder alloc]initWithURL:_filePath settings:recordSettings error:nil];
-//        
-//        _state = RecorderStateStop;//停止状态
-//    }
-//    switch (_state) {
-//        case RecorderStateRecording:
-//        {
-//            
-//            [_recordBtn setBackgroundImage:nil forState:0];
-//            [_recordBtn setTitle:@"开始录音" forState:0];
-//            [_displayLink invalidate];
-//            [self saveRecord];//保存
-//            _state = RecorderStateStop;
-//            
-//        }
-//            break;
-//            case RecorderStateStop:
-//        {
-//            //[self btnAnimateChange];
-//            [_scrollView addSubview:self.recordingBtn];
-//
-//            if ([_recorder prepareToRecord]) {
-//                
-//                _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateTime)];
-//                [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-//                [_recorder record];
-//                _state = RecorderStateRecording;//录音状态
-//            };
-//        }
-//            break;
-//        default:
-//            
-//            [_recorder pause];//暂停
-//            _state = RecorderStatePause;
-//            [_displayLink invalidate];
-//         break;
-//    }
-//    
-//}
+
 
 
 /**
@@ -232,16 +139,12 @@
  *
  *  @param sender
  */
-- (void)saveRecord {
-    //[_recorder stop];
-    //_recorder = nil; //删除录音机
-    RecordView *rv = [RecordView viewWithUrl:[_voiceUrls lastObject] index:_voiceUrls.count name:self.recordBtn.timeLabel.text];
+- (void)saveRecord:(NSString *)url {
+    RecordView *rv = [RecordView viewWithUrl:url index:self.pageModel.localUrls.count name:self.recordBtn.timeLabel.text];
     rv.delegate = self;
     [self.voiceListContaner addSubview:rv];
     [self.voiceViews addObject:rv];
     [self updateVoiceList];
-    //_state = RecorderStateStop;
-    //[self btnAnimateChange];
     
 }
 /**
@@ -258,21 +161,82 @@
 }
 
 - (void)addImage{
-    
+    [self.titleLabel resignFirstResponder];
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择照片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"照片",@"拍照", nil];
     [actionSheet showInView:self.view];
     
 }
 
-
-//上传
-- (IBAction)upload:(id)sender {
-    _indicator.hidden = NO;
-    [_indicator startAnimating];
-    [self performSelector:@selector(uploadSuccess) withObject:nil afterDelay:1.2
-     ];
+- (void)executeVoices:(NSString *)toPath{
+    
+    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *path = [document stringByAppendingPathComponent:@"lectureTemp.wav"];
+    if (self.pageModel.localUrls.count>0) {
+        NSString *first = self.pageModel.localUrls.firstObject;
+        if ([first hasPrefix:@"http"]) {
+            [self.pageModel.localUrls removeObject:first];
+        }
+        [Transcoder concatFiles:self.pageModel.localUrls to:path];
+        [Transcoder transcodeToMP3From:path toPath:toPath];
+    }
 }
 
+#pragma 上传
+- (IBAction)upload:(id)sender {
+    
+    if (!self.chosenImage || self.titleLabel.text.length == 0 || (self.pageModel.localUrls.count == 0 && self.pageModel.audio.length == 0)) {
+        AlertMessage(@"请将信息填写完整");
+        return;
+    }
+    
+    _indicator.hidden = NO;
+    [_indicator startAnimating];
+    
+    
+    //TODO: 上传
+    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,self.pageModel.pageNo]];
+    [self executeVoices:path];
+
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
+    
+    [NetworkManager qiniuUpload:data progress:^(NSString *key, float percent) {
+        [SVProgressHUD showProgress:percent];
+    } success:^(id result) {
+        //音频上传成功 开始上传图片
+        self.pageModel.audio = result;
+        NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 1);
+        [NetworkManager qiniuUpload:imageData progress:^(NSString *key, float percent) {
+            [SVProgressHUD showProgress:percent];
+        } success:^(id result) {
+            self.pageModel.picture = result;
+            
+            //图片上传成功后添加条目到服务器
+            [self addPageTolecture];
+        } fail:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"图片上传失败"];
+        } isImageType:YES];
+    } fail:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"音频上传失败"];
+    } isImageType:NO];
+    
+
+}
+- (void)addPageTolecture{
+    NSDictionary *params = @{@"pageNo":@(self.pageModel.pageNo),
+                             @"title":self.titleLabel.text,
+                             @"picture":self.pageModel.picture,
+                             @"audio":self.pageModel.audio};
+    NSString *url = [NSString stringWithFormat:@"lectures/%@/pages",self.pageModel.lectureId];
+    [NetworkManager postWithApi:url params:params success:^(id result) {
+        if ([result[@"ret"] integerValue] == 0) {
+            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+            [self uploadSuccess];
+        }
+    } fail:^(NSError *error) {
+        
+    }];
+}
 - (void)uploadSuccess{
     [_indicator stopAnimating];
     _indicator.hidden = YES;
@@ -287,14 +251,41 @@
         view.layer.opacity = 0;
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
+        [self.supperVC clickAddPage];//添加一个空页
     }];
 }
 #pragma actionSheet 代理
 
 
+
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImagePicker];
+    switch (buttonIndex) {
+        case 1:
+        {
+            UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            picker.delegate = self;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+            break;
+        case 0:
+            [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImagePicker];
+            break;
+        default:
+            break;
+    }
 }
+
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    self.imageView.image = info[UIImagePickerControllerOriginalImage];
+    self.preViewImageView.image = info[UIImagePickerControllerOriginalImage];
+    self.chosenImage = info[UIImagePickerControllerOriginalImage];
+    self.pageModel.localImage = UIImageJPEGRepresentation(info[UIImagePickerControllerOriginalImage], 1);
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)presentPhotoPickerViewControllerWithStyle:(LGShowImageType)style {
     LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:style];
@@ -307,9 +298,10 @@
 - (void)pickerViewControllerDoneAsstes:(NSArray *)assets isOriginal:(BOOL)original{
     LGPhotoAssets *as = [assets lastObject];
     UIImage *simage = as.thumbImage;
-        self.imageView.image = simage;
-        self.preViewImageView.image = simage;
-    
+    self.imageView.image = simage;
+    self.preViewImageView.image = simage;
+    self.chosenImage = simage;
+    self.pageModel.localImage = UIImageJPEGRepresentation(simage, 1);
 }
 
 #pragma 删除录音delegate
@@ -323,80 +315,81 @@
     if (index == -1) {
         return;
     }
-    [self.voiceUrls removeObjectAtIndex:index];
+    if (self.pageModel.localUrls.count>index+1) {
+        [self.pageModel.localUrls removeObjectAtIndex:index];
+    }
+    
     [self.voiceViews removeObjectAtIndex:index];
     [self updateVoiceList];
+    [[AudioTool shareAudioTool].streamPlayer pause];
+    [[AudioTool shareAudioTool].player stop];
 }
 
 - (void)stopRecord:(RecordButton *)button{
-    [self saveRecord];
+    [self saveRecord:[self.pageModel.localUrls lastObject]];
 }
-- (IBAction)addPage:(UIButton *)sender {
 
-    [self.supperVC addpage];
-}
 - (IBAction)savePage:(UIButton *)sender {
-    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSInteger num = self.voiceUrls.count;
-    NSString *voiceName = [NSString stringWithFormat:@"title%@page%ldnumber%ld%@",_courseTitle,_page,num,@"voice.wav"];
-    NSString *path = [document stringByAppendingPathComponent:voiceName];
-    NSString *copyName = [NSString stringWithFormat:@"title%@page%ldnumber%ld%@",_courseTitle,_page,num,@"voicecopy.mp3"];
-    NSString *toPath = [document stringByAppendingPathComponent:copyName];
-    
-    [Transcoder transcodeToMP3From:path toPath:toPath];
-}
-
--(void)setPageNum{
 
     
 }
 
-- (void)remove{
-    [self.view removeFromSuperview];
-    [self.supperVC.childs removeObject:self];
-}
 
 
 - (IBAction)preView:(UIButton *)sender {
+    
+    if (self.pageModel.localUrls.count == 0) {
+        [SVProgressHUD showInfoWithStatus:@"没有新录音"];
+        return;
+    }
     if (_playerState == 1) {
-        [_player stop];
-        _player = nil;
+        [_player pause];
         [_preView setBackgroundImage:[UIImage imageNamed:@"play"] forState:0];
         _voiceListContaner.userInteractionEnabled = YES;
         _playerState = 0;
         return;
     }
-    _player = [[AudioTool shareAudioTool] playerWithURL:[NSURL URLWithString:_voiceUrls[0]]];
-    
-    _player.delegate = self;
+
+    _player = [[AudioTool shareAudioTool] streamPlayerWithURL:self.pageModel.localUrls[0]];
+
+    //_player.delegate = self;
     _curPlayIndex = 0;
-    if ([_player prepareToPlay]){
+    
         [_player play];
         [_preView setBackgroundImage:[UIImage imageNamed:@"pause"] forState:0];
         _voiceListContaner.userInteractionEnabled = NO;
         _playerState = 1;
-    }
-    
+   
 }
 
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    if (_curPlayIndex+1 == _voiceUrls.count) {
+
+- (void)endPreView{
+    
+    //只处理当前页的通知
+    if (self.supperVC.curPage == self.pageModel.pageNo) {
+        return;
+    }
+        //全部播放完
+    if (_curPlayIndex+1 == self.pageModel.localUrls.count) {
         _player = nil;
+        _playerState = 0;
         [_preView setBackgroundImage:[UIImage imageNamed:@"play"] forState:0];
         _voiceListContaner.userInteractionEnabled = YES;
         return;
     }
-    _player = [[AudioTool shareAudioTool] playerWithURL:[NSURL URLWithString:_voiceUrls[_curPlayIndex+1]]];
+        //播放下一条音频
+    _player = [[AudioTool shareAudioTool] streamPlayerWithURL:self.pageModel.localUrls[_curPlayIndex+1]];
     
-    _player.delegate = self;
     _curPlayIndex ++ ;
-    if ([_player prepareToPlay]){
-        [_player play];
-    }
+    
+    [_player play];
+    
+    
 }
 
+
+
 - (void)btnAnimateChange {
-    //_recordBtn _recordingBtn
     if (_state == RecorderStateStop) {
         [UIView animateWithDuration:0.2 animations:^{
             _recordBtn.layer.transform = CATransform3DRotate(CATransform3DIdentity, M_PI_2, 1, 0, 0);
@@ -428,7 +421,43 @@
             _state = RecorderStateStop;
         }
     }
+}
+
+
+- (void)setPageModel:(XXXLecturePageModel *)pageModel{
+    _pageModel = pageModel;
+    if (pageModel.localUrls.count == 0 && pageModel.audio) {
+        [pageModel.localUrls addObject:[pageModel.audio copy]];
+    }
+    self.titleLabel.text = pageModel.title;
+    self.recordBtn.voiceUrls = pageModel.localUrls;
+    if (pageModel.localImage) {
+
+    }
+    [self.voiceViews removeAllObjects];
+    [self.voiceListContaner removeSubviews];
+    [self updateVoiceList];
+    if (!pageModel.localImage) {
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:pageModel.picture] placeholderImage:[UIImage imageNamed:@"backimg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            self.preViewImageView.image = image;
+            self.chosenImage = image;
+        }];
+    }else{
+        UIImage *image = [UIImage imageWithData:pageModel.localImage];
+        self.preViewImageView.image = image;
+        self.chosenImage = image;
+        self.imageView.image = image;
+    }
     
     
+    
+    for (NSString *url in self.pageModel.localUrls) {
+        [self saveRecord:url];
+    }
+}
+
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 @end

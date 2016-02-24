@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MJExtension.h"
+#import "DBManager.h"
 @interface XXXBaseModel : NSObject
 
++ (NSMutableArray *)objectArrayWithArray:(NSArray *)dictArray;
+
+- (BOOL)save;
+
++ (BOOL)deleteElements:(NSArray *)elementsArray;
 @end

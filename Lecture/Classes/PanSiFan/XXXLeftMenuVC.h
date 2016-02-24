@@ -8,6 +8,6 @@
 
 #import "XXXBaseVC.h"
 
-@interface XXXLeftMenuVC : XXXBaseVC
+@interface XXXLeftMenuVC : UIViewController
 
 @end

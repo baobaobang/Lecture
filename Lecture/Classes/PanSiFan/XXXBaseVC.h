@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XXNavigationController.h"
 @interface XXXBaseVC : UIViewController
+@property (nonatomic, strong) UIView *nav;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIImageView *navRightView;
+@property (nonatomic, strong) UIImageView *navLeftView;
 
+//导航栏左按钮事件
+- (void)navLeftAction;
+//导航栏右按钮事件
+- (void)navRightAcion;
 @end

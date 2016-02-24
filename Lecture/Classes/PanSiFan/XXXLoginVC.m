@@ -10,16 +10,21 @@
 #import "UMSocial.h"
 #import "UIView+RoundAndShadow.h"
 #import "XXXRegisterVC.h"
+#import "XXXUser.h"
+#import "XXXMainPageVC.h"
 
 @interface XXXLoginVC()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageLead;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageTrail;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageTop;
-//@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UITextField *phone;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (nonatomic, strong) dispatch_source_t timer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distance;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoTop;
+@property (weak, nonatomic) IBOutlet UIButton *checkBox;
 
 @end
 
@@ -28,9 +33,25 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self setSubViews];
-    self.navigationItem.title = @"公益讲堂";
     
+    //self.titleLabel.text = @"用户登录";
+    self.title = @"用户登录";
     self.imageLead.constant = self.imageTrail.constant = SWIDTH/2-self.avatar.frame.size.width/2;
+    CGFloat des = 0.0;
+    if (iPhone4s) {
+        des = 60;
+    }
+    if (iPhone5s) {
+        des = 85;
+    }
+    if (iPhone6) {
+        des = 85;
+        self.logoTop.constant = 60;
+    }
+    if (iPhone6Plus) {
+        des = 85;
+    }
+    self.distance.constant = des;
 }
 
 
@@ -53,30 +74,67 @@
     
 }
 
-/**
- *  忘记密码
- *
- *  @param sender
- */
-- (IBAction)forgetPassword:(UIButton *)sender {
+- (IBAction)getCertCode:(UIButton *)sender {
+    if (self.phone.text.length <= 6) {
+        [SVProgressHUD showErrorWithStatus:@"手机号不正确"];
+        return;
+    }
+    sender.backgroundColor = RGB(218, 218, 218);
+    sender.enabled = NO;
+    __block int timeCount = 60;
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(_timer, ^{
+        if (timeCount <= 0) {
+            //倒计时结束
+            dispatch_source_cancel(_timer);
+            [sender setTitle:@"获取验证码" forState:0];
+            sender.backgroundColor = [UIColor colorWithRed:66/255.0 green:179/255.0 blue:227/255.0 alpha:1];
+            sender.enabled = YES;
+            return;
+        }
+        [sender setTitle:[NSString stringWithFormat:@"%ds",timeCount] forState:0];
+        
+        timeCount --;
+    });
+    dispatch_resume(_timer);
     
+    NSString *api = [NSString stringWithFormat:@"sms/%@",self.phone.text];
+    [NetworkManager getWithApi:api params:nil success:^(id result) {
+        
+    } fail:^(NSError *error) {
+        
+    }];
 }
-
-/**
- *  新用户注册
- *
- *  @param sender
- */
-- (IBAction)regist:(UIButton *)sender {
-    XXXRegisterVC *registVC = [[XXXRegisterVC alloc]init];
-    [self.navigationController pushViewController:registVC animated:YES];
+- (IBAction)isDoctor:(UIButton *)sender {
+    sender.selected = !sender.selected;
 }
-
 
 - (IBAction)login:(id)sender {
-    NSDictionary *params = @{@"":self.phone.text,
-                             @"":self.password.text};
     
+    if (self.phone.text.length <= 6 || self.password.text.length < 4) {
+        [SVProgressHUD showErrorWithStatus:@"信息不正确"];
+        return;
+    }
+    [self.curTextField resignFirstResponder];
+    NSDictionary *params = @{@"mobile":self.phone.text,
+                             @"certCode":self.password.text,
+                             @"type":@(!self.checkBox.selected)};
+    [NetworkManager postWithApi:@"register" params:params success:^(id result) {
+        if ([result[@"ret"] integerValue] == 0) {
+            UserDefaultsSave(result[@"data"][@"token"], @"access_token");
+            if ([result[@"data"][@"type"] integerValue] == 1) {
+                UserDefaultsSave(@"expert", @"isExpert");
+            }
+            
+            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:[[XXXMainPageVC alloc]init]];
+            [delegate.sliderMenu changeMainViewController:nav close:YES];
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+        }
+    } fail:^(NSError *error) {
+        
+    }];
 }
 
 - (IBAction)thirdLogin:(UIButton *)sender
@@ -91,7 +149,7 @@
                 if (response.responseCode == UMSResponseCodeSuccess) {
                     
                     UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary]valueForKey:UMShareToWechatSession];
-                    
+                    [self dealWithUserInfo:snsAccount type:THIRDPARTYTYPE_WX];
                 }
                 
             });
@@ -106,9 +164,9 @@
                 //          获取微博用户名、uid、token等
                 
                 if (response.responseCode == UMSResponseCodeSuccess) {
-                    
+//                    NSDictionary *dic =  [UMSocialAccountManager socialAccountDictionary];
                     UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
-                    
+                    [self dealWithUserInfo:snsAccount type:THIRDPARTYTYPE_WB];
                     //拿到用户平台数据
                     
                 }});
@@ -125,7 +183,7 @@
                 if (response.responseCode == UMSResponseCodeSuccess) {
                     
                     UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
-                    
+                    [self dealWithUserInfo:snsAccount type:THIRDPARTYTYPE_QQ];
                 }});
         }
             break;
@@ -134,5 +192,38 @@
     }
 }
 
+//type 1-QQ   2-微信  3-微博
+- (void)dealWithUserInfo:(UMSocialAccountEntity *)snsAccount type:(THIRDPARTYTYPE)type{
+    NSLog(@"--------------------------username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+    XXXUser *user = [[XXXUser alloc]init];
+    user.thirdPartyType = type;
+    user.token = snsAccount.accessToken;
+    
+    switch (type) {
+        case THIRDPARTYTYPE_WX:
+            user.weChatNickName = snsAccount.userName;
+            user.weChatOpenID = snsAccount.openId;
+            user.weChatHeadPic = snsAccount.iconURL;
+            break;
+        case THIRDPARTYTYPE_WB:
+            user.weboNickName = snsAccount.userName;
+            user.weboUid = snsAccount.usid;
+            user.weboHeadPic = snsAccount.iconURL;
+            break;
+        case THIRDPARTYTYPE_QQ:
+            user.qqNickName = snsAccount.userName;
+            user.qqOpenID = snsAccount.openId;
+            user.qqHeadPic = snsAccount.iconURL;
+            break;
+        default:
+            break;
+    }
+    [self bind:user];
+}
+- (void)bind:(XXXUser *)user{
+    XXXRegisterVC *regist = [[XXXRegisterVC alloc]init];
+    regist.user = user;
+    [self.navigationController pushViewController:regist animated:YES];
+}
 
 @end

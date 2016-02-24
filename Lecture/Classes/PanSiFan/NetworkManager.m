@@ -20,6 +20,10 @@
 + (void)getWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
     NSString *url = [NSString stringWithFormat:@"%@/api/%@",HOST,api];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSLog(@"%@",ACCESS_TOKEN);
+    [manager.requestSerializer setValue:ACCESS_TOKEN forHTTPHeaderField:@"token"];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager GET:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         successBlock(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -31,12 +35,32 @@
 + (void)postWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
     NSString *url = [NSString stringWithFormat:@"%@/api/%@",HOST,api];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer =  [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:ACCESS_TOKEN forHTTPHeaderField:@"token"];
     [manager POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         successBlock(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failBlock(error);
     }];
 }
+
+
+
++ (void)qiniuUpload:(NSData *)data progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock isImageType:(BOOL)isImageType{
+    NSString *token = UserDefaultsGet(@"qiniutoken");
+    QNUploadManager *upManager = [[QNUploadManager alloc] init];
+    
+    [upManager putData:data key:nil token:token
+              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                  if (resp) {
+                      successBlock([NSString stringWithFormat:@"%@/%@",QINIU_HOST,resp[@"key"]]);
+                  }else{
+                      failBlock([NSError errorWithDomain:@"上传失败" code:-1 userInfo:nil]);
+                  }
+              } option:(!isImageType ? [[QNUploadOption alloc] initWithMime:@"audio/mpeg" progressHandler:progressHandler params:nil checkCrc:nil cancellationSignal:nil]:[[QNUploadOption alloc] initWithMime:nil progressHandler:progressHandler params:nil checkCrc:nil cancellationSignal:nil])];
+}
+
+
 
 
 + (void)uploadWithApi:(NSString *)api filePath:(NSString *)path success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{

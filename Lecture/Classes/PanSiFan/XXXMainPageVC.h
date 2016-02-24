@@ -6,8 +6,8 @@
 //  Copyright © 2016年 禾医健康科技. All rights reserved.
 //
 
-#import "XXXBaseVC.h"
+#import "XXXBaseRefreshVC.h"
 
-@interface XXXMainPageVC : XXXBaseVC
+@interface XXXMainPageVC :XXXBaseRefreshVC
 
 @end

@@ -17,4 +17,6 @@
 @interface XXXMakeLectureView : UIView
 
 @property (nonatomic, weak) id<XXXMakeLectureViewDelegate> delegate;
+
+- (void)animateBtns:(UIButton *)plus;
 @end

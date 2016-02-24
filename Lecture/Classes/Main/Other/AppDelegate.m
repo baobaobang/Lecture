@@ -15,6 +15,7 @@
 #import "XXXMainPageVC.h"
 #import "AppDelegate+UM.h"
 #import "XXXLeftMenuVC.h"
+#import "DBManager.h"
 
 @interface AppDelegate ()
 
@@ -24,24 +25,42 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    if (!UserDefaultsGet(@"FIRST_LAUNCH")) {
+        UserDefaultsSave(@"LAUNCHED_FLAG", @"FIRST_LAUNCH");
+        //初始化数据库
+        [self readyFMDB];
+    }
+    
     //友盟相关
+    
     [self UMApplication:application didFinishLaunchingWithOptions:launchOptions];
 
     
-    SlideMenuController *sliderMenuVC = [[SlideMenuController alloc] initWithMainViewController:[[XXXMainPageVC alloc]init] leftMenuViewController:[[XXXLeftMenuVC alloc]init] rightMenuViewController:nil];
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     
     
+    XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:[[XXXMainPageVC alloc]init]];
+//    SlideMenuController *sliderMenuVC = [[SlideMenuController alloc] initWithMainViewController:nav leftMenuViewController:[[XXXLeftMenuVC alloc]init] rightMenuViewController:nil];
+    SlideMenuController *sliderMenuVC = [[SlideMenuController alloc] initWithMainViewController:nav leftMenuViewController:[[XXXLeftMenuVC alloc]init]];
+    [sliderMenuVC changeLeftViewWidth:150];
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = sliderMenuVC;
     self.sliderMenu = sliderMenuVC;
     [sliderMenuVC addLeftGestures];
     [self.window makeKeyAndVisible];
+    
+    [NetworkManager getWithApi:@"qiniu/token" params:nil success:^(id result) {
+        UserDefaultsSave(result[@"token"], @"qiniutoken");  
+    } fail:^(NSError *error) {
+        
+    }];
+    
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -52,15 +71,32 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
 }
 
+
+/**
+ *
+ */
+- (void)readyFMDB{
+    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *path = [document stringByAppendingPathComponent:@"LectureRoom.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    [DBManager shareDBManager].db = db;
+    
+    if ([db open]) {
+        [db executeStatements:@"create table t_Lecture (id integer primary key autoincrement, LectureId text, expertId text, StartDate text, Duration integer, OnlineDuration integer, Title text, Desc text, Cover text,Hospital text, Department text, Introduction text, JobTitle text, Speciality text, Name text, HeadPic text)"];
+        [db  executeStatements:@"create table t_LecturePage (id integer primary key autoincrement,LectureId text, PageNo integer, Title text, Picture text, Audio text, LocalImage blob)"];
+    }
+    [db close];
+    
+    
+    
+}
 @end

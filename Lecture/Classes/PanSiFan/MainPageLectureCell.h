@@ -10,6 +10,6 @@
 @class XXXLectureModel;
 @interface MainPageLectureCell : UITableViewCell
 
-+(instancetype)cellForTableView:(UITableView *)tableView with:(id) lecutreModel;
++(instancetype)cellForTableView:(UITableView *)tableView with:(XXXLectureModel *) lecutreModel;
 
 @end

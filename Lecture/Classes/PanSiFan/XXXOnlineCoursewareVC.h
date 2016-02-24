@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "XXXBaseVC.h"
 #import "UIView+RoundAndShadow.h"
-@interface XXXOnlineCoursewareVC : XXXBaseVC
+#import "XXXLecturePageModel.h"
+@class XXXCoursewareBaseVC;
+@interface XXXOnlineCoursewareVC : UIViewController
 
 @property (nonatomic, assign) NSInteger page;//页码
+@property (nonatomic, strong) XXXLecturePageModel *pageModel;
+@property (nonatomic, weak) XXXCoursewareBaseVC *supperVC;
 
-+(instancetype)onlineCoursewareWithSupperVC:(UIViewController *)vc;
-
++ (instancetype)onlineCoursewareViewController;
 @end

@@ -10,8 +10,10 @@
 @class TipView;
 @protocol TipViewDelegate <NSObject>
 
-- (void)tipView:(TipView *)tipView closeIndex:(NSInteger)index;
+
 - (void)tipView:(TipView *)tipView clickAtIndex:(NSInteger)index;
+@optional
+- (void)tipView:(TipView *)tipView closeIndex:(NSInteger)index;
 @end
 @interface TipView : UIButton
 

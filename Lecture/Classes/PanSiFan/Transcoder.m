@@ -10,66 +10,13 @@
 #import <lame/lame.h>
 @implementation Transcoder
 
-//+ (void)transcodeToMP3From:(NSString *)filePath toPath:(NSString *)mp3savePath{
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSError *error;
-//    NSDictionary *dic = [fileManager attributesOfItemAtPath:filePath error:&error];
-//    
-//    long long size = [dic[NSFileSize] longLongValue];
-//    [fileManager createFileAtPath:mp3savePath contents:nil attributes:nil];
-//    NSFileHandle *outFile = [NSFileHandle fileHandleForReadingAtPath:filePath];
-//    NSFileHandle *inFile = [NSFileHandle fileHandleForWritingAtPath:mp3savePath];
-//    
-//    
-//    
-//    lame_t lame;
-//    // mp3压缩参数
-//    lame = lame_init();
-//    lame_set_num_channels(lame, 1);
-//    lame_set_in_samplerate(lame, 44100);
-//    lame_set_brate(lame, 16);
-//    lame_set_mode(lame, 1);
-//    lame_set_quality(lame, 2);
-//    lame_init_params(lame);
-//    
-//    NSMutableData *mp3Datas = [[NSMutableData alloc] init];
-//    
-//    UInt64 point = 0;
-//    int64_t times = size/5000;
-//    NSData *tempData;
-//    for (int64_t i = 1; i<=times;i++) {
-//        if (i == times) {
-//            tempData = [outFile readDataOfLength:size - (times-1)*5000];
-//        }else{
-//            tempData = [outFile readDataOfLength:5000];
-//            point += 5000;
-//            [outFile seekToFileOffset:point];
-//        }
-//        short *recordingData = (short *)tempData.bytes;
-//        int pcmLen = (int)tempData.length;
-//        int nsamples = pcmLen / 2;
-//        
-//        unsigned char buffer[pcmLen];
-//        // mp3 encode
-//        int recvLen = lame_encode_buffer(lame, recordingData, recordingData, nsamples, buffer, pcmLen);
-//        // add NSMutable
-//        [mp3Datas appendBytes:buffer length:recvLen];
-//        //[inFile writeData:[Transcoder transcodeData:tempData]];
-//    }
-//    [inFile writeData:mp3Datas];
-////    tempData = [outFile readDataToEndOfFile];
-////    [inFile writeData:[Transcoder transcodeData:tempData]];
-////    FILE *fp;
-////    fp = fopen([filePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
-//    [inFile closeFile];
-//    [outFile closeFile];
-//    lame_close(lame);
-//    
-//}
 
-
-
-
+/**
+ *  转MP3
+ *
+ *  @param filePath    原文件路径
+ *  @param mp3savePath 目标文件路径
+ */
 + (void)transcodeToMP3From:(NSString *)filePath toPath:(NSString *)mp3savePath
 {
     @try {
@@ -111,39 +58,38 @@
     @finally {  
 //        self.audioFileSavePath = mp3FilePath;  
         NSLog(@"MP3生成成功: %@",mp3savePath);
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager removeItemAtPath:filePath error:nil];
         
     }
     
 }
 
-
-//+ (NSData *)transcodeData:(NSData *)data{
-//    
-//    lame_t lame;
-//    // mp3压缩参数
-//    lame = lame_init();
-//    lame_set_num_channels(lame, 1);
-//    lame_set_in_samplerate(lame, 44100);
-//    lame_set_brate(lame, 16);
-//    lame_set_mode(lame, 1);
-//    lame_set_quality(lame, 2);
-//    lame_init_params(lame);
-//    
-//    NSMutableData *mp3Datas = [[NSMutableData alloc] init];
-//    
-//    
-//    
-//    short *recordingData = (short *)data.bytes;
-//    int pcmLen = (int)data.length;
-//    int nsamples = pcmLen / 2;
-//    
-//    unsigned char buffer[pcmLen];
-//    // mp3 encode
-//    int recvLen = lame_encode_buffer(lame, recordingData, recordingData, nsamples, buffer, pcmLen);
-//    // add NSMutable
-//    [mp3Datas appendBytes:buffer length:recvLen];
-//    
-//    lame_close(lame);
-//    return mp3Datas;
-//}
++ (void)concatFiles:(NSArray<NSString *> *)files to :(NSString *)toPath{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager createFileAtPath:toPath contents:nil attributes:nil];
+    NSFileHandle *inFile = [NSFileHandle fileHandleForWritingAtPath:toPath];
+    for (NSString *filePath in files) {
+        NSFileHandle *outFile = [NSFileHandle fileHandleForReadingAtPath:filePath];
+        
+        NSDictionary *dic = [fileManager attributesOfItemAtPath:filePath error:nil];
+        long long size = [dic[NSFileSize] longLongValue];
+        long long point = 0;
+        NSData *tempData;
+        int times = (int)size/100000;
+        for (int i = 1; i<=times; i++) {
+            if (i == times) {
+                tempData = [outFile readDataOfLength:[dic[NSFileSize] longLongValue]-(times-1)*100000];
+            }else{
+                tempData = [outFile readDataOfLength:100000];
+                point+=100000;
+                [outFile seekToFileOffset:point];
+            }
+            [inFile writeData:tempData];
+            
+            //移除分段的文件
+            [fileManager removeItemAtPath:filePath error:nil];
+        }
+    }
+}
 @end

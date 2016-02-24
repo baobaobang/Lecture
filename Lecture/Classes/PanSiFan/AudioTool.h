@@ -12,9 +12,10 @@
 
 @property (nonatomic, strong)  AVAudioPlayer*player;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
+@property (nonatomic, strong) AVPlayer *streamPlayer;
 
 + (instancetype)shareAudioTool;
 - (AVAudioRecorder *)recorderWithURL:(NSURL *)url;
 - (AVAudioPlayer *)playerWithURL:(NSURL *)url;
-
+- (AVPlayer *)streamPlayerWithURL:(NSString *)url;
 @end

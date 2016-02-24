@@ -9,7 +9,7 @@
 #import "XXXRegisterVC.h"
 #import "XXXProtocolTipView.h"
 #import "XXXTextField.h"
-
+#import "XXXMainPageVC.h"
 @interface XXXRegisterVC()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarlead;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatartrail;
@@ -22,7 +22,8 @@
 @property (nonatomic, strong) CAShapeLayer *layer;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (weak, nonatomic) IBOutlet UIButton *checkBox;
-
+@property (weak, nonatomic) IBOutlet UILabel *nickName;
+@property (weak, nonatomic) IBOutlet UILabel *desc;
 @property (weak, nonatomic) IBOutlet XXXTextField *phone;
 @property (weak, nonatomic) IBOutlet XXXTextField *code;
 
@@ -33,6 +34,10 @@
 - (void)viewDidLoad{
     
     [super viewDidLoad];
+    [self setuserData];
+    //self.titleLabel.text = @"绑定手机";
+    self.title = @"绑定账号";
+    
     self.avatarlead.constant = self.avatartrail.constant = SWIDTH/2 - self.avatar.frame.size.width/2;
     self.backgroundTop.constant = 284- 1597/980*SWIDTH;
     self.backgroundH.constant = 1597/980*SWIDTH;
@@ -49,10 +54,41 @@
     
 }
 
-
+- (void)setuserData{
+    NSString *headPic;
+    NSString *nickName;
+    NSString *desc;
+    switch (self.user.thirdPartyType) {
+        case THIRDPARTYTYPE_WX:
+            headPic = self.user.weChatHeadPic;
+            nickName = self.user.weChatNickName;
+            desc = @"微信";
+            break;
+        case THIRDPARTYTYPE_WB:
+            headPic = self.user.weboHeadPic;
+            nickName = self.user.weboNickName;
+            desc = @"微博";
+            break;
+        case THIRDPARTYTYPE_QQ:
+            headPic = self.user.qqHeadPic;
+            nickName = self.user.qqNickName;
+            desc = @"QQ";
+            break;
+        default:
+            break;
+    }
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:headPic] placeholderImage:[UIImage imageNamed:@"defaultHeadPic"]];
+    self.nickName.text = nickName;
+    self.desc.text = [NSString stringWithFormat:@"您的%@账号可直接登录宝宝棒账号",desc];
+}
 
 //获取验证码
 - (IBAction)getCode:(UIButton *)sender {
+    
+    if (self.phone.text.length<=6) {
+        [SVProgressHUD showErrorWithStatus:@"手机号不正确"];
+        return;
+    }
     sender.backgroundColor = RGB(218, 218, 218);
     sender.enabled = NO;
     __block int timeCount = 60;
@@ -85,14 +121,50 @@
 
 //完成
 - (IBAction)finish:(UIButton *)sender {
-    if (self.checkBox.selected) {
-        AlertMessage(@"同意注册协议才可以进行注册");
+    if (self.phone.text.length <= 6 || self.code.text.length < 4) {
+        [SVProgressHUD showErrorWithStatus:@"信息不正确"];
         return;
     }
-    NSDictionary *params = @{@"mobile":self.phone.text,
-                             @"certCode":self.code.text};
-    [NetworkManager postWithApi:@"register" params:params success:^(id result) {
-        AlertMessage(@"注册成功");
+    
+    //type == 1 医生 == 0 普通用户
+    NSDictionary *temp = @{@"mobile":self.phone.text,
+                             @"certCode":self.code.text,
+                             @"type":@(!self.checkBox.selected)};
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:temp];
+    [params setObject:@(self.user.thirdPartyType) forKey:@"thirdPartyType"];
+    switch (self.user.thirdPartyType) {
+        case THIRDPARTYTYPE_WX:
+            [params setObject:self.user.weChatHeadPic forKey:@"weChatHeadPic"];
+            [params setObject:self.user.weChatNickName forKey:@"weChatNickName"];
+            [params setObject:self.user.weChatOpenID forKey:@"weChatOpenID"];
+            break;
+        case THIRDPARTYTYPE_WB:
+            [params setObject:self.user.weboHeadPic forKey:@"weboHeadPic"];
+            [params setObject:self.user.weboNickName forKey:@"weboNickName"];
+            [params setObject:self.user.weboUid forKey:@"weboUid"];
+            
+            break;
+        case THIRDPARTYTYPE_QQ:
+            [params setObject:self.user.qqHeadPic forKey:@"qqHeadPic"];
+            [params setObject:self.user.qqNickName forKey:@"qqNickName"];
+            [params setObject:self.user.qqOpenID forKey:@"qqOpenID"];
+            break;
+        default:
+            break;
+    }
+    
+    
+    [NetworkManager postWithApi:@"register" params:params success:^(id result){
+        [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+        UserDefaultsSave(result[@"data"][@"token"], @"access_token");
+        if ([result[@"data"][@"type"] integerValue] == 1) {
+            UserDefaultsSave(@"expert", @"isExpert");
+        }
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:[[XXXMainPageVC alloc]init]];
+        [delegate.sliderMenu changeMainViewController:nav close:YES];
+        
+        
     } fail:^(NSError *error) {
         
     }];
@@ -139,6 +211,7 @@
     }
 }
 
+
 - (UIBezierPath *)curPath:(CGFloat)offSetY{
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGPoint center = CGPointMake(SWIDTH/2, 550);
@@ -150,6 +223,7 @@
     [path addArcWithCenter:center radius:radius startAngle:0 endAngle:M_PI clockwise:NO];
     return path;
 }
+
 
 - (void)dealloc{
     [self.displayLink invalidate];

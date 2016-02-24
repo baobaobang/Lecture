@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "QiniuSDK.h"
 typedef void (^SuccessBlock)(id result);
 typedef void (^FailBlock)(NSError *error);
 @interface NetworkManager : NSObject
@@ -23,6 +24,17 @@ typedef void (^FailBlock)(NSError *error);
  *  @param failBlock   错误处理
  */
 + (void)postWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
+
+/**
+ *  七牛上传
+ *
+ *  @param data            data
+ *  @param progressHandler 进度
+ *  @param successBlock    成功
+ *  @param failBlock       失败
+ *  @param isImageType     是否图片
+ */
++ (void)qiniuUpload:(NSData *)data progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock isImageType:(BOOL)isImageType;
 
 /**
  *  通过文件路径上传文件

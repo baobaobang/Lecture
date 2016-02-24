@@ -10,4 +10,11 @@
 
 @implementation XXXBaseModel
 
+- (BOOL)save{
+    return NO;
+}
+
++ (NSMutableArray *)objectArrayWithArray:(NSArray *)dictArray{
+    return nil;
+}
 @end

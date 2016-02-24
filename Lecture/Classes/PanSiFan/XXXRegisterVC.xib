@@ -16,7 +16,9 @@
                 <outlet property="backgroundTop" destination="0Vb-7T-1NS" id="a3A-gC-nev"/>
                 <outlet property="checkBox" destination="QPK-es-0RG" id="cEm-Tq-kw5"/>
                 <outlet property="code" destination="Rxq-hi-bCq" id="WR1-s3-Dgc"/>
+                <outlet property="desc" destination="5ob-Sv-qFK" id="fX2-5u-SVt"/>
                 <outlet property="getCodeBtn" destination="stU-lV-fR7" id="iEs-U2-Uw2"/>
+                <outlet property="nickName" destination="DNX-qN-Eja" id="kw1-SA-tMU"/>
                 <outlet property="phone" destination="Ya6-HR-9nn" id="RYJ-De-NYT"/>
                 <outlet property="scrollView" destination="rka-bg-bZY" id="12B-9a-aMe"/>
                 <outlet property="view" destination="iN0-l3-epB" id="10O-iB-KJW"/>
@@ -54,7 +56,7 @@
                                 <constraint firstAttribute="height" constant="45" id="aXC-6x-lUo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="3"/>
@@ -71,7 +73,7 @@
                                 <constraint firstAttribute="height" constant="45" id="bYL-c2-dHK"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="3"/>
@@ -99,28 +101,14 @@
                                 <action selector="getCode:" destination="-1" eventType="touchUpInside" id="D5B-uZ-CZw"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoW-mK-1EC">
-                            <rect key="frame" x="73" y="482" width="121" height="15"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="121" id="9oH-Rk-wYD"/>
-                                <constraint firstAttribute="height" constant="15" id="E9c-r9-kSF"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <state key="normal" title="《禾医用户注册协议》">
-                                <color key="titleColor" red="0.2358839472" green="0.52244820849999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="showProtocol:" destination="-1" eventType="touchUpInside" id="yEy-E3-war"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJo-jg-HK7">
-                            <rect key="frame" x="43" y="482" width="28" height="15"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是医生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJo-jg-HK7">
+                            <rect key="frame" x="48" y="482" width="80" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="28" id="6ae-gM-uPz"/>
-                                <constraint firstAttribute="height" constant="15" id="l2c-at-Dye"/>
+                                <constraint firstAttribute="width" constant="80" id="6ae-gM-uPz"/>
+                                <constraint firstAttribute="height" constant="20" id="l2c-at-Dye"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -149,7 +137,7 @@
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成宝宝棒账号创建" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kl-fs-3Fu">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成宝宝棒账号绑定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kl-fs-3Fu">
                             <rect key="frame" x="0.0" y="298" width="318" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="QOf-Jm-Yfd"/>
@@ -168,11 +156,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPK-es-0RG">
-                            <rect key="frame" x="20" y="482" width="15" height="15"/>
+                            <rect key="frame" x="20" y="482" width="20" height="20"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="15" id="3np-2C-xgu"/>
-                                <constraint firstAttribute="width" constant="15" id="Xqi-OF-ymy"/>
+                                <constraint firstAttribute="height" constant="20" id="3np-2C-xgu"/>
+                                <constraint firstAttribute="width" constant="20" id="Xqi-OF-ymy"/>
                             </constraints>
                             <state key="normal" image="1" backgroundImage="user_register_consent_before"/>
                             <state key="selected" backgroundImage="user_register_consent_after"/>
@@ -195,14 +183,12 @@
                         <constraint firstAttribute="trailing" secondItem="5kl-fs-3Fu" secondAttribute="trailing" id="Jhn-C5-7Nh"/>
                         <constraint firstAttribute="trailing" secondItem="Ya6-HR-9nn" secondAttribute="trailing" constant="12" id="Njp-x9-Gwq"/>
                         <constraint firstAttribute="bottom" secondItem="QPK-es-0RG" secondAttribute="bottom" constant="66" id="Swg-Oe-UT0"/>
-                        <constraint firstItem="zoW-mK-1EC" firstAttribute="centerY" secondItem="uJo-jg-HK7" secondAttribute="centerY" id="XQ1-PE-Gig"/>
                         <constraint firstItem="BoV-y7-Eei" firstAttribute="leading" secondItem="rka-bg-bZY" secondAttribute="leading" id="ZOD-Hk-Ni3"/>
                         <constraint firstItem="uJo-jg-HK7" firstAttribute="centerY" secondItem="QPK-es-0RG" secondAttribute="centerY" id="aGQ-JG-Tmv"/>
                         <constraint firstItem="Rxq-hi-bCq" firstAttribute="leading" secondItem="rka-bg-bZY" secondAttribute="leading" constant="12" id="clT-Ox-4Rk"/>
                         <constraint firstItem="QPK-es-0RG" firstAttribute="top" secondItem="Rxq-hi-bCq" secondAttribute="bottom" constant="17" id="d02-kO-RCu"/>
                         <constraint firstItem="Ya6-HR-9nn" firstAttribute="top" secondItem="5ob-Sv-qFK" secondAttribute="bottom" constant="20" id="dek-bm-a2j"/>
                         <constraint firstItem="DNX-qN-Eja" firstAttribute="centerX" secondItem="0tA-eB-XLh" secondAttribute="centerX" id="fee-0l-CBD"/>
-                        <constraint firstItem="zoW-mK-1EC" firstAttribute="leading" secondItem="uJo-jg-HK7" secondAttribute="trailing" constant="2" id="fuQ-oo-kXh"/>
                         <constraint firstItem="Rxq-hi-bCq" firstAttribute="top" secondItem="Ya6-HR-9nn" secondAttribute="bottom" constant="12" id="gDv-Ky-0V4"/>
                         <constraint firstItem="uJo-jg-HK7" firstAttribute="leading" secondItem="QPK-es-0RG" secondAttribute="trailing" constant="8" id="gz5-p9-hy7"/>
                         <constraint firstAttribute="trailing" secondItem="0tA-eB-XLh" secondAttribute="trailing" constant="99" id="hrg-ym-01y"/>

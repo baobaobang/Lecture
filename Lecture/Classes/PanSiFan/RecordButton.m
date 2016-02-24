@@ -66,7 +66,7 @@
     
         if (!_recorder) {
             NSInteger num = self.voiceUrls.count+1;
-            NSString *voiceName = [NSString stringWithFormat:@"title%@page%ldnumber%ld%@",_courseTitle,_page,num,@"voice.wav"];
+            NSString *voiceName = [NSString stringWithFormat:@"lectureId%@title%@page%ldnumber%ld%@",self.pageModel.lectureId,self.pageModel.title,self.pageModel.pageNo,num,@"voice.wav"];
             NSString *path = [document stringByAppendingPathComponent:voiceName];
             //_filePath = [NSURL URLWithString:path];
     

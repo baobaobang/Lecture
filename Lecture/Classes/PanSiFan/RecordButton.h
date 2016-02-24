@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XXXLecturePageModel.h"
 typedef NS_ENUM(NSInteger,RecorderState){
     RecorderStateStop = 0,
     RecorderStatePause = 1,
@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger,RecorderState){
 @property (nonatomic, strong) NSMutableArray *voiceUrls;
 @property (nonatomic, copy) NSString *courseTitle;
 @property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) XXXLecturePageModel *pageModel;
 @property (nonatomic, weak) id<RecordStopDelegate> delegate;
 @end
 

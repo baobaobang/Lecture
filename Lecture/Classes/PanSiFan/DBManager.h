@@ -7,9 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-@class FMDB;
+#import "FMDB.h"
+
+@class FMDatabase;
+@class XXXLectureModel;
+@class XXXLecturePageModel;
 @interface DBManager : NSObject
 
+//
+//+ (BOOL)saveLecture:(XXXLecturePageModel *)model;
 
+@property (nonatomic, strong) FMDatabase *db;
+
++ (instancetype)shareDBManager;
 
 @end

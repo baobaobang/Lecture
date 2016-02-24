@@ -11,6 +11,8 @@
 
 #import "AppDelegate.h"
 #import "Lecture-Swift.h"
+#import "SVProgressHUD.h"
+#import "UIImageView+WebCache.h"
 
 //判断iphone6
 #define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -39,14 +41,33 @@
 #define RandomColor RGB(arc4random()%256,arc4random()%256,arc4random()%256)
 
 #define AlertMessage(msg) [[[UIAlertView alloc]initWithTitle:msg message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show]
-//sdf;lldkdkdkk
+
+//
+#define UserDefaultsSave(value,key) [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];[[NSUserDefaults standardUserDefaults] synchronize]
+
+#define UserDefaultsGet(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]
+
+#define ACCESS_TOKEN UserDefaultsGet(@"access_token")
+#define isExpert UserDefaultsGet(@"isExpert")
+
+#define WS(weakSelf) __weak typeof(self) weakSelf = self
+
+
+#define QINIU_HOST @"http://7xoadl.com2.z0.glb.qiniucdn.com"
+
+
 #define UMKey @"569eec33e0f55a6ad500118c"//友盟Key
-#define QQAppKey @"vdjbJ05YoYv4VQrq"
-#define QQAppId @"1104953896"
+#define QQAppKey @"QNusQiGZCItieACl"
+#define QQAppId @"1105197190"
 
-#define WXAppKey @"wxe742b302525bd7fb"
-#define WXAppId @"wxf6bc0f0a9ff6e170"
-#define WXAppSecret @"72403db9b4dd66857a5ef1f848626ef5"
 
+
+
+//#define WXAppKey @"wxe742b302525bd7fb"
+#define WXAppId @"wx6174614702fee735"
+#define WXAppSecret @"b32e3398bc94a864121ab094a7d41051"
+
+#define WBAppKey @"3076527061"
+#define WBAppSecret @"a7aa6e671728fcc0be616dbbedbe1335"
 
 #endif /* GlobalDef_h */

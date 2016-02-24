@@ -7,17 +7,26 @@
 //
 
 #import "DBManager.h"
-
 @implementation DBManager
 
-//+ (BOOL)saveCourseware{
-//    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-//    NSString *path = [document stringByAppendingPathComponent:@"Courseware.db"];
-//    FMDatabase *db = [FMDatabase databaseWithPath:path];
-//    if ([db open]) {
-//        [db executeStatements:@"create table Courseware if not exists (id integer primary key autoincrement, Time date, Title text, url)"];
-//    }
-//    return YES;
-//}
++ (instancetype)shareDBManager{
+    static dispatch_once_t onceToken;
+    static DBManager *sharedInstance = nil;
+    dispatch_once(&onceToken, ^{
+        if (!sharedInstance) {
+            sharedInstance = [[self alloc]init];
+        }
+    });
+    return sharedInstance;
+}
 
+- (FMDatabase *)db{
+    if (!_db) {
+        NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        NSString *path = [document stringByAppendingPathComponent:@"LectureRoom.db"];
+        _db = [FMDatabase databaseWithPath:path];
+        NSLog(@"%@",path);
+    }
+    return _db;
+}
 @end

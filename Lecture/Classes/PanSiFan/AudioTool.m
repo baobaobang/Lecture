@@ -47,4 +47,27 @@
     self.player = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:nil];
     return self.player;
 }
+
+- (AVPlayer *)streamPlayerWithURL:(NSString *)url{
+//    _streamPlayer = [[AVPlayer alloc]initWithPlayerItem:[[AVPlayerItem alloc] initWithURL:url]];
+//    AVAudioSession *session = [AVAudioSession sharedInstance];
+//    
+//    [session setCategory:AVAudioSessionCategoryPlayAndRecord
+//             withOptions:AVAudioSessionCategoryOptionMixWithOthers
+//                   error:nil];
+//    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
+//    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
+    
+    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+    [_streamPlayer pause];
+    NSURL *URL;
+    if ( [url hasPrefix:@"http"]) {
+        URL = [NSURL URLWithString:url];
+    }else{
+        URL = [NSURL fileURLWithPath:url];
+    }
+    _streamPlayer = [[AVPlayer alloc]initWithURL:URL];
+    return _streamPlayer;
+}
 @end

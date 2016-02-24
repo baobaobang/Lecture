@@ -17,14 +17,19 @@ PODS:
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
+  - HappyDNS (0.2.3)
   - Masonry (0.6.4)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
   - mp3lame-for-ios (0.1.1)
+  - Qiniu (7.0.16):
+    - AFNetworking (~> 3.0.0-beta.2)
+    - HappyDNS (~> 0.2)
   - RRUMessage (0.0.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - SVProgressHUD (2.0-beta8)
   - UITableView+FDTemplateLayoutCell (1.4)
   - UMengSocial (4.4)
 
@@ -35,20 +40,40 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - mp3lame-for-ios (~> 0.1.1)
+  - Qiniu (from `https://github.com/qiniu/objc-sdk.git`, branch `AFNetworking-3.x`)
   - RRUMessage
   - SDWebImage (~> 3.7)
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
   - UITableView+FDTemplateLayoutCell (~> 1.4)
   - UMengSocial
+
+EXTERNAL SOURCES:
+  Qiniu:
+    :branch: AFNetworking-3.x
+    :git: https://github.com/qiniu/objc-sdk.git
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  Qiniu:
+    :commit: a4c3b57f94089df72976404aa1a767b83e969632
+    :git: https://github.com/qiniu/objc-sdk.git
+  SVProgressHUD:
+    :commit: 8d25b659df56ef86ce8b03e532c2278cfc3cb294
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   mp3lame-for-ios: 4daeb5686885be66438154050e3fe975d4ee1f07
+  Qiniu: fe4608e64edd9ed8f06c93e6cf4dedf1cc5ba50b
   RRUMessage: a3cc75a5d81d1d90b41bdb697302977b52d3cd4a
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
 

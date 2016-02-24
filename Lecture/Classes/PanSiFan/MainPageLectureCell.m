@@ -55,6 +55,10 @@
 }
 
 -(void)setLectureData:(XXXLectureModel *) lectureModel{
-    
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:lectureModel.cover] placeholderImage:[UIImage imageNamed:@""]];
+    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:lectureModel.headPic] placeholderImage:[UIImage imageNamed:@""]];
+    self.nameLabel.text = [NSString stringWithFormat:@"讲师:%@",lectureModel.name];
+    self.descLabel.text = lectureModel.jobTitle;
+    self.timeLabel.text = lectureModel.startDate;
 }
 @end
