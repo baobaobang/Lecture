@@ -27,38 +27,6 @@
             endingLineNumber = "157"
             landmarkName = "-finish:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[XXXRegisterVC finish:]"
-                  moduleName = "Lecture"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mortal/Desktop/iDoctor_Lecture/Lecture/Classes/PanSiFan/XXXRegisterVC.m"
-                  timestampString = "478002932.203472"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "157"
-                  endingLineNumber = "157"
-                  offsetFromSymbolStart = "2532">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__24-[XXXRegisterVC finish:]_block_invoke"
-                  moduleName = "Lecture"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mortal/Desktop/iDoctor_Lecture/Lecture/Classes/PanSiFan/XXXRegisterVC.m"
-                  timestampString = "478002932.203805"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "157"
-                  endingLineNumber = "157"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -132,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lecture/Classes/PanSiFan/XXXApplyLectureVC.m"
-            timestampString = "477985797.515766"
+            timestampString = "478145581.45451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-apply:"
             landmarkType = "5">
          </BreakpointContent>
@@ -180,12 +148,12 @@
                   moduleName = "Lecture"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mortal/Desktop/iDoctor_Lecture/Lecture/Classes/PanSiFan/XXXOnlineCoursewareVC.m"
-                  timestampString = "478002932.327554"
+                  timestampString = "478177091.424204"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "231"
                   endingLineNumber = "231"
-                  offsetFromSymbolStart = "792">
+                  offsetFromSymbolStart = "782">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -195,12 +163,12 @@
                   moduleName = "Lecture"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mortal/Desktop/iDoctor_Lecture/Lecture/Classes/PanSiFan/XXXOnlineCoursewareVC.m"
-                  timestampString = "478002932.328205"
+                  timestampString = "478177091.424862"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "231"
                   endingLineNumber = "231"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "43">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -212,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lecture/Classes/PanSiFan/XXXApplyLectureVC.m"
-            timestampString = "477985570.178751"
+            timestampString = "478145581.45451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "-finish:"
             landmarkType = "5">
          </BreakpointContent>
@@ -249,6 +217,54 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
             endingLineNumber = "15">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lecture/Classes/PanSiFan/DateFormatter.m"
+            timestampString = "478143832.382974"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "+dateStringFromString:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lecture/Classes/PanSiFan/XXXApplyLectureVC.m"
+            timestampString = "478145581.45451"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-finish:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lecture/Classes/PanSiFan/MainPageLectureCell.m"
+            timestampString = "478177117.927009"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-setLectureData:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

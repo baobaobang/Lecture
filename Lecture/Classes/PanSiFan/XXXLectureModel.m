@@ -46,21 +46,6 @@
     return result;
 }
 
-//@property (nonatomic, copy) NSString *lectureId;
-//@property (nonatomic, copy) NSString *expertId;//专家ID
-//@property (nonatomic, copy) NSString *startDate;//开始日期
-//@property (nonatomic, assign) NSInteger duration;//持续时间
-//@property (nonatomic, assign) NSInteger onlineDuration;//在线交流持续时间
-//@property (nonatomic, copy) NSString *title;//讲座标题
-//@property (nonatomic, copy) NSString *desc;//讲座简介
-//@property (nonatomic, copy) NSString *cover;//讲座封面
-//@property (nonatomic, copy) NSString *hospital;//专家医院
-//@property (nonatomic, copy) NSString *department;//专家部门
-//@property (nonatomic, copy) NSString *introduction;//专家介绍
-//@property (nonatomic, copy) NSString *jobTitle;//专家职称
-//@property (nonatomic, copy) NSString *speciality;//专家擅长
-//@property (nonatomic, copy) NSString *name;//专家姓名
-//@property (nonatomic, copy) NSString *headPic;//头像
 + (NSMutableArray *)AllLocalLectureModels{
     FMDatabase *db = [DBManager shareDBManager].db;
     NSMutableArray *arr = [NSMutableArray array];
@@ -118,6 +103,15 @@
     }
     [db close];
     return result;
+}
+
+- (NSString *)startDate{
+    //NSLog(@"%@",_startDate);
+    NSString *d = [_startDate substringToIndex:10];
+    NSString *h = [_startDate substringWithRange:NSMakeRange(11, 5)];
+    NSDate *date = [DateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@",d,h]];
+    NSDate *newDate = [NSDate dateWithTimeInterval:28800 sinceDate:date];
+    return [DateFormatter formatDate:newDate pattern:@"yyyy-MM-dd HH:mm"];
 }
 
 

@@ -125,7 +125,7 @@
     button.tag = pageModel.pageNo+1000;
     button.delegate = self;
     button.selected = YES;
-    [button setTitle:[NSString stringWithFormat:@"%ld",pageModel.pageNo] forState:0];
+    [button setTitle:[NSString stringWithFormat:@"%ld",(long)pageModel.pageNo] forState:0];
     for (UIView *v in _titleTips.subviews) {
         if ([v isKindOfClass:[TipView class]]) {
             ((TipView *)v).selected = NO;
@@ -149,7 +149,7 @@
  */
 - (void)selectPage:(UIButton *)sender{
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag-1001 inSection:0];
-    NSLog(@"%ld----------------",sender.tag);
+    //NSLog(@"%ld----------------",(long)sender.tag);
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
 }
 
@@ -199,7 +199,7 @@
 - (void)navRightAcion{
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     for (XXXLecturePageModel *pageModel in self.lectureModel.pages) {
-        NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],pageModel.lectureId,pageModel.pageNo]];
+        NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],pageModel.lectureId,(long)pageModel.pageNo]];
         [self executeVoices:pageModel toPath:path];
         pageModel.audio = path;
     }

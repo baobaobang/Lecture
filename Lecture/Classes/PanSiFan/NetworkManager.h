@@ -41,34 +41,34 @@ typedef void (^AllCompleteBlock)(id result);
 
 + (void)qiniuUpload:(NSArray<UIImage *> *)imageArray progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock allcompleteBlock:(AllCompleteBlock) allcompleteBlock;
 
-/**
- *  通过文件路径上传文件
- *
- *  @param api         api 非全url
- *  @param path        文件路径
- *  @param successBlock response结果处理
- *  @param failBlock   错误处理
- */
-+ (void)uploadWithApi:(NSString *)api filePath:(NSString *)path success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
-
-/**
- *  上传文件data
- *
- *  @param api         api 非全url
- *  @param data        文件主体
- *  @param successBlock response结果处理
- *  @param failBlock   错误处理
- */
-+ (void)uploadWithApi:(NSString *)api fileData:(NSData *)data success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
-/**
- *  多文件上传
- *
- *  @param api         api 非全url
- *  @param files       文件dic
- *  @param successBlock response结果处理
- *  @param failBlock   错误处理
- */
-+(void)uploadWithApi:(NSString *)api files:(NSDictionary *)files success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
+///**
+// *  通过文件路径上传文件
+// *
+// *  @param api         api 非全url
+// *  @param path        文件路径
+// *  @param successBlock response结果处理
+// *  @param failBlock   错误处理
+// */
+//+ (void)uploadWithApi:(NSString *)api filePath:(NSString *)path success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
+//
+///**
+// *  上传文件data
+// *
+// *  @param api         api 非全url
+// *  @param data        文件主体
+// *  @param successBlock response结果处理
+// *  @param failBlock   错误处理
+// */
+//+ (void)uploadWithApi:(NSString *)api fileData:(NSData *)data success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
+///**
+// *  多文件上传
+// *
+// *  @param api         api 非全url
+// *  @param files       文件dic
+// *  @param successBlock response结果处理
+// *  @param failBlock   错误处理
+// */
+//+(void)uploadWithApi:(NSString *)api files:(NSDictionary *)files success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
 
 
 + (instancetype)shareNetworkManager;

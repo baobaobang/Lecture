@@ -81,6 +81,9 @@
  *  @param model 讲座模型
  */
 - (void)editLecture:(XXXLectureModel *)model{
+    
+    [SVProgressHUD showInfoWithStatus:@"暂未开放"];
+    return;
     XXXCoursewareBaseVC *cb = [[XXXCoursewareBaseVC alloc]init];
     cb.lectureModel = model;
     [self presentViewController:cb animated:YES completion:nil];

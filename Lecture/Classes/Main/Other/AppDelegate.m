@@ -16,7 +16,7 @@
 #import "AppDelegate+UM.h"
 #import "XXXLeftMenuVC.h"
 #import "DBManager.h"
-
+#import "AFNetworkReachabilityManager.h"
 @interface AppDelegate ()
 
 @end
@@ -51,12 +51,9 @@
     [sliderMenuVC addLeftGestures];
     [self.window makeKeyAndVisible];
     
-    [NetworkManager getWithApi:@"qiniu/token" params:nil success:^(id result) {
-        UserDefaultsSave(result[@"token"], @"qiniutoken");  
-    } fail:^(NSError *error) {
-        
-    }];
+    [self getQNToken];
     
+    [self DetectionNetwork];
     return YES;
 }
 
@@ -78,6 +75,47 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     
+}
+
+-(void) getQNToken{
+    [NetworkManager getWithApi:@"qiniu/token" params:nil success:^(id result) {
+        UserDefaultsSave(result[@"token"], @"qiniutoken");
+    } fail:^(NSError *error) {
+        
+    }];
+}
+// 检测网络
+- (void)DetectionNetwork
+{
+    // 1.获得网络监控的管理者
+    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+    // 2.设置网络状态改变后的处理
+    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        // 当网络状态改变了, 就会调用这个block
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:{ // 未知网络
+                //NSLog(@"未知网络");
+            }
+                break;
+                
+            case AFNetworkReachabilityStatusNotReachable:{ // 没有网络(断网)
+                [SVProgressHUD showInfoWithStatus:@"没有网络啦"];
+            }
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN:{ // 手机自带网络
+                //[SVProgressHUD showInfoWithStatus:@"切换到手机网络"];
+            }
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi:{ // WIFI
+                //[SVProgressHUD showInfoWithStatus:@"切换到WIFI"];
+            }
+                break;
+        }
+    }];
+    // 3.开始监控
+    [mgr startMonitoring];
 }
 
 

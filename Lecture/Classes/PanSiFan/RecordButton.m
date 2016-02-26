@@ -66,7 +66,7 @@
     
         if (!_recorder) {
             NSInteger num = self.voiceUrls.count+1;
-            NSString *voiceName = [NSString stringWithFormat:@"lectureId%@title%@page%ldnumber%ld%@",self.pageModel.lectureId,self.pageModel.title,self.pageModel.pageNo,num,@"voice.wav"];
+            NSString *voiceName = [NSString stringWithFormat:@"lectureId%@title%@page%ldnumber%ld%@",self.pageModel.lectureId,self.pageModel.title,(long)self.pageModel.pageNo,num,@"voice.wav"];
             NSString *path = [document stringByAppendingPathComponent:voiceName];
             //_filePath = [NSURL URLWithString:path];
     
@@ -112,13 +112,13 @@
     NSInteger intTime = (NSInteger)_recorder.currentTime;
     NSInteger min = intTime/60;
     NSInteger sec = intTime%60;
-    NSString *minStr = [NSString stringWithFormat:@"%ld",min];
-    NSString *secStr = [NSString stringWithFormat:@"%ld",sec];
+    NSString *minStr = [NSString stringWithFormat:@"%ld",(long)min];
+    NSString *secStr = [NSString stringWithFormat:@"%ld",(long)sec];
     if (min<10) {
-        minStr = [NSString stringWithFormat:@"0%ld",min];
+        minStr = [NSString stringWithFormat:@"0%ld",(long)min];
     }
     if (sec<10) {
-        secStr = [NSString stringWithFormat:@"0%ld",sec];
+        secStr = [NSString stringWithFormat:@"0%ld",(long)sec];
     }
     self.timeLabel.text = [NSString stringWithFormat:@"%@:%@",minStr,secStr];
 }

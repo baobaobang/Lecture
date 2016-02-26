@@ -44,7 +44,7 @@
     _lectureModel = lectureModel;
     [self.headPicView sd_setImageWithURL:[NSURL URLWithString:lectureModel.headPic] placeholderImage:[UIImage imageNamed:@""]];
     self.lecTitle.text = [NSString stringWithFormat:@"主题:%@",lectureModel.title];
-    self.timeAndPage.text = [NSString stringWithFormat:@"时长:%@ 页数:%ld",@"",lectureModel.pages.count];
+    self.timeAndPage.text = [NSString stringWithFormat:@"时长:%@ 页数:%ld",@"",(long)lectureModel.pages.count];
     self.startDate.text = lectureModel.startDate;
     
 }

@@ -12,14 +12,19 @@
 
 #define HOST @"http://121.42.171.213:3000"
 
+@interface NetworkManager()
 
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
+
+@end
 
 
 @implementation NetworkManager
 
 + (void)getWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
     NSString *url = [NSString stringWithFormat:@"%@/api/%@",HOST,api];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [NetworkManager shareNetworkManager].manager;
+    manager.requestSerializer.timeoutInterval = 10;
     NSLog(@"%@",ACCESS_TOKEN);
     
     [manager.requestSerializer setValue:ACCESS_TOKEN forHTTPHeaderField:@"token"];
@@ -33,7 +38,8 @@
 
 + (void)postWithApi:(NSString *)api params:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
     NSString *url = [NSString stringWithFormat:@"%@/api/%@",HOST,api];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [NetworkManager shareNetworkManager].manager;
+    manager.requestSerializer.timeoutInterval = 10;
     manager.requestSerializer =  [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:ACCESS_TOKEN forHTTPHeaderField:@"token"];
     [manager POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -47,8 +53,8 @@
 
 + (void)qiniuUpload:(NSData *)data progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock isImageType:(BOOL)isImageType{
     NSString *token = UserDefaultsGet(@"qiniutoken");
-    QNUploadManager *upManager = [[QNUploadManager alloc] init];
-    
+    //QNUploadManager *upManager = [[QNUploadManager alloc] init];
+    QNUploadManager *upManager = [QNUploadManager sharedInstanceWithConfiguration:nil];
     [upManager putData:data key:nil token:token
               complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                   if (resp) {
@@ -86,58 +92,6 @@
 }
 
 
-+ (void)uploadWithApi:(NSString *)api filePath:(NSString *)path success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
-    NSURL *url;
-    NSURL *filePath = [NSURL URLWithString:path];
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:configuration];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromFile:filePath progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error) {
-            successBlock(responseObject);
-        }else{
-            failBlock(error);
-        }
-    }];
-    [uploadTask resume];
-}
-
-+ (void)uploadWithApi:(NSString *)api fileData:(NSData *)data success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
-    NSURL *url;
-    
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:configuration];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromData:data progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error) {
-            successBlock(responseObject);
-        }else{
-            failBlock(error);
-        }
-    }];
-    [uploadTask resume];
-}
-
-+(void)uploadWithApi:(NSString *)api files:(NSDictionary *)files success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
-    NSString *url;
-    NSDictionary *params;
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-    } error:nil];
-    
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error) {
-            successBlock(responseObject);
-        }else{
-            failBlock(error);
-        }
-    }];
-    [uploadTask resume];
-}
-
-
 + (instancetype)shareNetworkManager{
     static dispatch_once_t onceToken;
     static NetworkManager *sharedInstance = nil;
@@ -149,10 +103,71 @@
     return sharedInstance;
 }
 
+- (AFHTTPSessionManager *)manager{
+    if (!_manager) {
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return _manager;
+}
+
 - (NSMutableArray *)resultArray{
     if (!_resultArray) {
         _resultArray = [NSMutableArray array];
     }
     return _resultArray;
 }
+
+//+ (void)uploadWithApi:(NSString *)api filePath:(NSString *)path success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
+//    NSURL *url;
+//    NSURL *filePath = [NSURL URLWithString:path];
+//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:configuration];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromFile:filePath progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+//        if (error) {
+//            successBlock(responseObject);
+//        }else{
+//            failBlock(error);
+//        }
+//    }];
+//    [uploadTask resume];
+//}
+//
+//+ (void)uploadWithApi:(NSString *)api fileData:(NSData *)data success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
+//    NSURL *url;
+//    
+//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:configuration];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromData:data progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+//        if (error) {
+//            successBlock(responseObject);
+//        }else{
+//            failBlock(error);
+//        }
+//    }];
+//    [uploadTask resume];
+//}
+//
+//+(void)uploadWithApi:(NSString *)api files:(NSDictionary *)files success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
+//    NSString *url;
+//    NSDictionary *params;
+//    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//    } error:nil];
+//    
+//    AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+//        if (error) {
+//            successBlock(responseObject);
+//        }else{
+//            failBlock(error);
+//        }
+//    }];
+//    [uploadTask resume];
+//}
+//
+
+
 @end

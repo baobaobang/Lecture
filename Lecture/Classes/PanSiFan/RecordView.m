@@ -114,13 +114,13 @@
     NSInteger intTime = (NSInteger)CMTimeGetSeconds(_player.currentTime);
     NSInteger min = intTime/60;
     NSInteger sec = intTime%60;
-    NSString *minStr = [NSString stringWithFormat:@"%ld",min];
-    NSString *secStr = [NSString stringWithFormat:@"%ld",sec];
+    NSString *minStr = [NSString stringWithFormat:@"%ld",(long)min];
+    NSString *secStr = [NSString stringWithFormat:@"%ld",(long)sec];
     if (min<10) {
-        minStr = [NSString stringWithFormat:@"0%ld",min];
+        minStr = [NSString stringWithFormat:@"0%ld",(long)min];
     }
     if (sec<10) {
-        secStr = [NSString stringWithFormat:@"0%ld",sec];
+        secStr = [NSString stringWithFormat:@"0%ld",(long)sec];
     }
     [self.playBtn setTitle:[NSString stringWithFormat:@"%@:%@",minStr,secStr] forState:0];
 }

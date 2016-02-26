@@ -12,6 +12,7 @@
 #import "XXXTextField.h"
 #import "LGPhoto.h"
 #import "XXXCoursewareBaseVC.h"
+#import "DateFormatter.h"
 
 @interface XXXApplyLectureVC ()<UITextFieldDelegate,XXXDatePickerDelegate,XXXTimePickerDelegate,UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleFieldWidth;

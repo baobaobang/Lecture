@@ -13,6 +13,7 @@
 @property (nonatomic, copy) NSString *lectureId;
 @property (nonatomic, copy) NSString *expertId;//专家ID
 @property (nonatomic, copy) NSString *startDate;//开始日期
+//@property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, assign) NSInteger duration;//持续时间
 @property (nonatomic, assign) NSInteger onlineDuration;//在线交流持续时间
 @property (nonatomic, copy) NSString *title;//讲座标题

@@ -14,4 +14,5 @@
 
 + (NSString *)formatDate:(NSDate *)date pattern:(NSString *)pattern;
 
++ (NSDate *)dateFromString:(NSString *)str;
 @end
