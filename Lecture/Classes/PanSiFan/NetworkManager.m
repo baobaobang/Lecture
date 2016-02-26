@@ -79,7 +79,8 @@
                           successBlock([NSString stringWithFormat:@"%@/%@",QINIU_HOST,resp[@"key"]]);
                           [weakManager.resultArray addObject:[NSString stringWithFormat:@"%@/%@",QINIU_HOST,resp[@"key"]]];
                           if (weakManager.resultArray.count == num) {
-                              allcompleteBlock(weakManager.resultArray);
+                              allcompleteBlock([weakManager.resultArray copy]);
+                              [weakManager.resultArray removeAllObjects];
                           }
                       }else{
                           failBlock([NSError errorWithDomain:@"上传失败" code:-1 userInfo:nil]);

@@ -105,20 +105,35 @@
     CGFloat nextX = CGRectGetMaxX(self.bigPlayBtn.frame);
     CGFloat nextY = self.bigPlayBtn.y;
     self.nextBtn.frame = CGRectMake(nextX, nextY, nextW, nextH);
-}
-
-- (void)setCurrentItem:(NSInteger)currentItem{
-    _currentItem = currentItem;
     
-    // 设置页码标签
-    self.pageNumberLabel.text =[NSString stringWithFormat:@"第%ld/%ld页", currentItem + 1, self.musics.count];
-    [self.pageNumberLabel sizeToFit];
+    // 无网络数据的默认数据设置
+    [self setPageNumber:0 totalNumber:0];
 }
 
 - (void)btnClick:(UIButton *)btn{
     if ([self.delegate respondsToSelector:@selector(playerMaskView:didClickBtnType:)]) {
         [self.delegate playerMaskView:self didClickBtnType:btn.tag];
     }
+}
+
+#pragma mark - 设置和刷新页码标签(加载网络数据)
+-  (void)setPageNumber:(NSInteger)currentNumber totalNumber:(NSInteger)totalNumber{
+
+    // 设置页码标签
+    self.pageNumberLabel.text =[NSString stringWithFormat:@"第%ld/%ld页", currentNumber, totalNumber];
+    [self.pageNumberLabel sizeToFit];
+    
+}
+- (void)setCurrentItem:(NSInteger)currentItem{
+    _currentItem = currentItem;
+    
+    [self setPageNumber:_currentItem+1 totalNumber:self.pages.count];
+}
+
+- (void)setPages:(NSArray *)pages{
+    _pages = pages;
+    
+    [self setPageNumber:_currentItem+1 totalNumber:self.pages.count];
 }
 
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXJoinLectureActionSheet, XXLecture;
+@class XXJoinLectureActionSheet, XXXLectureModel;
 
 @protocol XXJoinLectureActionSheetDelegate <NSObject>
 
@@ -18,7 +18,7 @@
 @interface XXJoinLectureActionSheet : UIView
 @property (nonatomic, weak) id<XXJoinLectureActionSheetDelegate> delegate;
 
-@property (nonatomic, strong) XXLecture *lecture;
+@property (nonatomic, strong) XXXLectureModel *lecture;
 
 -(void)showInView:(UIView *)view;
 @end

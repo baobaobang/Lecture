@@ -8,6 +8,8 @@
 
 #import "XXQuestionReplyView.h"
 #import "XXQuestionReplyCell.h"
+#import "XXQuestionReplyUserCell.h"
+
 
 @interface XXQuestionReplyView ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *commentTableView;
@@ -35,7 +37,10 @@
         _commentTableView= [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _commentTableView.separatorColor=[UIColor clearColor];
         _commentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+        
         [_commentTableView registerNib:[UINib nibWithNibName:@"XXQuestionReplyCell" bundle:nil] forCellReuseIdentifier:XXQuestionReplyCellReuseId];
+        [_commentTableView registerNib:[UINib nibWithNibName:@"XXQuestionReplyUserCell" bundle:nil] forCellReuseIdentifier:XXQuestionReplyUserCellReuseId];
+        
         _commentTableView.dataSource=self;
         _commentTableView.delegate=self;
         _commentTableView.scrollEnabled=NO;
@@ -58,12 +63,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    XXQuestionReplyCell *cell = (XXQuestionReplyCell *)[tableView dequeueReusableCellWithIdentifier:XXQuestionReplyCellReuseId forIndexPath:indexPath];
-    cell.reply = self.replys[indexPath.row];
-    cell.tag = indexPath.row;
-    
-    return cell;
+
+    XXReply *reply = self.replys[indexPath.row];
+    if (reply.type == 0) {
+        // 用户回复
+        XXQuestionReplyUserCell *cell = (XXQuestionReplyUserCell *)[tableView dequeueReusableCellWithIdentifier:XXQuestionReplyUserCellReuseId forIndexPath:indexPath];
+        cell.reply = reply;
+        cell.tag = indexPath.row;
+        return cell;
+    }else{
+        // 专家回复
+        XXQuestionReplyCell *cell = (XXQuestionReplyCell *)[tableView dequeueReusableCellWithIdentifier:XXQuestionReplyCellReuseId forIndexPath:indexPath];
+        cell.reply = reply;
+        cell.tag = indexPath.row;
+        return cell;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -49,7 +49,7 @@
 
 #define ACCESS_TOKEN UserDefaultsGet(@"access_token")
 #define isExpert UserDefaultsGet(@"isExpert")
-
+#define Mobile UserDefaultsGet(@"mobile")
 #define WS(weakSelf) __weak typeof(self) weakSelf = self
 
 

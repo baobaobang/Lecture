@@ -7,7 +7,6 @@
 //
 
 #import "XXCollectionCell.h"
-#import "XXMusic.h"
 
 @interface XXCollectionCell()
 @property (weak, nonatomic) UIImageView *imageView;
@@ -23,11 +22,11 @@
     }
     return self;
 }
-- (void)setMusic:(XXMusic *)music
+- (void)setPage:(XXXLecturePageModel *)page
 {
-    _music = music;
-    
-    self.imageView.image = [UIImage imageNamed:music.icon];
+    _page = page;
+
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:page.picture] placeholderImage:[UIImage imageNamed:@"placeholder_lecture_cover"]];
 }
 
 - (void)layoutSubviews{

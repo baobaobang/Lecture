@@ -97,16 +97,18 @@
     _questionFrame = questionFrame;
     
     XXQuestion *question = questionFrame.question;
-    XXUser *user = question.user;
     
     /** 头像 */
     self.iconView.frame = questionFrame.iconViewF;
-    [self.iconView sd_setBackgroundImageWithURL:[NSURL URLWithString:user.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:question.headPic] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholder_expert_Head"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    }];
+    
     self.iconView.layer.cornerRadius = self.iconView.width / 2;
     self.iconView.layer.masksToBounds = YES;
     
     /** 昵称 */
-    self.nameLabel.text = user.name;
+    question.nickName = question.nickName ? question.nickName : @"匿名用户";
+    self.nameLabel.text = question.nickName;
     self.nameLabel.frame = questionFrame.nameLabelF;
     
     /** 会员图标 */
@@ -121,13 +123,13 @@
 //    }
     
     /** 正文 */
-    self.contentLabel.text = question.text;
+    self.contentLabel.text = question.content;
     self.contentLabel.frame = questionFrame.contentLabelF;
     
     /** 配图 */
-    if (question.pic_urls.count) {
+    if (question.photos.count) {
         self.photosView.frame = questionFrame.photosViewF;
-        self.photosView.photos = question.pic_urls;
+        self.photosView.photos = question.photos;
         self.photosView.hidden = NO;
     } else {
         self.photosView.hidden = YES;
@@ -139,7 +141,7 @@
     
     /** 回复 */
     self.replyView.frame = questionFrame.replyF;
-    self.replyView.replys = question.replys;
+    self.replyView.replys = question.replies;
 }
 
 @end

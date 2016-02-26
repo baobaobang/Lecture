@@ -27,6 +27,12 @@
     return self;
 }
 
+- (void)setPages:(NSArray *)pages{
+    _pages = pages;
+    
+    [self.collectionView reloadData];
+}
+
 - (void)setupCollectionView{
     
     XXCollectionViewFlowLayout *layout=[[XXCollectionViewFlowLayout alloc] init];
@@ -76,7 +82,7 @@
 //每个分区上的元素个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.musics.count;
+    return self.pages.count;
 }
 
 //设置元素内容
@@ -86,7 +92,7 @@
     XXCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:XXPlayerPicViewCellIdentifier forIndexPath:indexPath];
     
     // 设置cell的数据
-    cell.music = self.musics[indexPath.item];
+    cell.page = self.pages[indexPath.item];
     
     
     return cell;

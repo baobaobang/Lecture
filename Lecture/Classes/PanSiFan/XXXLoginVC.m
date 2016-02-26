@@ -126,6 +126,8 @@
             if ([result[@"data"][@"type"] integerValue] == 1) {
                 UserDefaultsSave(@"expert", @"isExpert");
             }
+            UserDefaultsSave(@"mobile", @"mobile");//FIXME: 
+            
             
             AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:[[XXXMainPageVC alloc]init]];

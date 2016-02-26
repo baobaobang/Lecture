@@ -7,7 +7,7 @@
 //
 
 #import "XXJoinLectureActionSheet.h"
-#import "XXLecture.h"
+#import "XXXLectureModel.h"
 
 @interface XXJoinLectureActionSheet ()
 @property (nonatomic, weak) UIView *actionSheet;
@@ -25,6 +25,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         // 设置自己的属性(自己为灰底)
+        // 设置为全屏
         self.frame = CGRectMake(0, 0, XXScreenWidth, XXScreenHeight);
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
         
@@ -98,32 +99,24 @@
     return self;
 }
 
-- (void)setLecture:(XXLecture *)lecture{
+- (void)setLecture:(XXXLectureModel *)lecture{
     _lecture = lecture;
     
     // nameLabel
-    _nameLabel.text = [NSString stringWithFormat:@"主题：%@", lecture.name];
+    _nameLabel.text = [NSString stringWithFormat:@"主题：%@", lecture.title];
+    [_nameLabel sizeToFit];
     
     // timeLabel
-    _timeLabel.text = @"时间：2016-2-11 20:00-21:00";
-    //TODO: 报名时间计算
+    _timeLabel.text = [NSString stringWithFormat:@"开始时间：%@", lecture.startDate];
+    [_timeLabel sizeToFit];
     
     // expertLabel
-    NSMutableString *expertStr = [NSMutableString string];
-    NSUInteger count = lecture.experts.count;
-    for (NSUInteger i = 0; i < count; i++) {
-        XXExpert *expert = lecture.experts[i];
-        if (i != count - 1) { // 不是最后一位专家
-            [expertStr appendFormat:@"%@，", expert.name];
-        }else{
-            [expertStr appendString:expert.name];
-        }
-    }
     _expertLabel.text =
-    [NSString stringWithFormat:@"专家：%@", expertStr];
+    [NSString stringWithFormat:@"专家：%@", lecture.name];
+    [_expertLabel sizeToFit];
     
     // pointsLabel
-    _pointsLabel.text = [NSString stringWithFormat:@"报名需要消费%zd积分!", lecture.points];
+//    _pointsLabel.text = [NSString stringWithFormat:@"报名需要消费%zd积分!", lecture.points];
 }
 
 - (void)layoutSubviews{
@@ -132,20 +125,20 @@
     // actionSheet
     _actionSheet.frame = CGRectMake(0, self.height, self.width, kXXJoinLectureActionSheetHeight);
 
-    CGFloat width = self.width;
+    CGFloat width = _actionSheet.width;
     CGFloat height = 25;
     CGFloat margin = 3;
     
     // nameLabel
     _nameLabel.frame = CGRectMake(0, 25, width, height);
     
-    // timeLabel
-    CGFloat timeY = CGRectGetMaxY(_nameLabel.frame) + margin;
-    _timeLabel.frame = CGRectMake(0, timeY, width, height);
-    
     // expertLabel
-    CGFloat expertY = CGRectGetMaxY(_timeLabel.frame) + margin;
+    CGFloat expertY = CGRectGetMaxY(_nameLabel.frame) + margin;
     _expertLabel.frame = CGRectMake(0, expertY, width, height);
+    
+    // timeLabel
+    CGFloat timeY = CGRectGetMaxY(_expertLabel.frame) + margin;
+    _timeLabel.frame = CGRectMake(0, timeY, width, height);
     
     // pointsLabel
     CGFloat pointsY = CGRectGetMaxY(_expertLabel.frame) + margin;

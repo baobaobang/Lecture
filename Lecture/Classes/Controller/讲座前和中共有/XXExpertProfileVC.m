@@ -17,20 +17,9 @@
 static NSString * const expertProfileCellReuseId = @"expertProfileCell";
 
 @interface XXExpertProfileVC ()
-// 模型数据组
-@property (nonatomic, strong) NSArray *experts;
 @end
 
 @implementation XXExpertProfileVC
-
-
-- (NSArray *)experts
-{
-    if (!_experts) {
-        _experts = [XXExpert mj_objectArrayWithFilename:@"Experts.plist"];
-    }
-    return _experts;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +27,13 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
     // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"XXExpertProfileCell" bundle:nil] forCellReuseIdentifier:expertProfileCellReuseId];
 }
+
+//- (void)setLecture:(XXXLectureModel *)lecture{
+//    _lecture = lecture;
+//    
+//    [self.tableView reloadData];
+//}
+
 
 #pragma mark - Table view data source
 
@@ -55,17 +51,20 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     XXExpertProfileCell *expertCell = [tableView dequeueReusableCellWithIdentifier:expertProfileCellReuseId forIndexPath:indexPath];
-//    expertCell.expert = self.experts[indexPath.row];
-    expertCell.lecture = self.lecture;
+    [self configureCell:expertCell atIndexPath:indexPath];
     
     return expertCell;
 }
 
-#pragma mark - cell的高度
+- (void)configureCell:(XXExpertProfileCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.lecture = self.lecture;
+}
+#pragma mark - cell的高度(自适应高度)
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [tableView fd_heightForCellWithIdentifier:expertProfileCellReuseId cacheByIndexPath:indexPath configuration:^(XXExpertProfileCell *cell) {
         // configurations
+        [self configureCell:cell atIndexPath:indexPath];
     }];
     
 }

@@ -9,5 +9,7 @@
 #import "XXReply.h"
 
 @implementation XXReply
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName{
+    return @{@"ID" : @"id", @"text" : @"content"};
+}
 @end

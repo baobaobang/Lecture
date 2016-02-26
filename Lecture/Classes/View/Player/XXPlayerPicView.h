@@ -27,7 +27,7 @@
 @property (nonatomic, weak) XXPlayerMaskView *maskView;
 
 /** 音乐数据 */
-@property(strong,nonatomic) NSArray *musics;
+@property(strong,nonatomic) NSArray *pages;
 
 @property (nonatomic, weak) id<XXPlayerPicViewDelegate> delegate;
 @end

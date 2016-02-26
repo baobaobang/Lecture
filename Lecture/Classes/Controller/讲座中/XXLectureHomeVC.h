@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XXXLectureModel.h"
 @interface XXLectureHomeVC : UIViewController
-
+@property (nonatomic, strong) XXXLectureModel *lecture;
 @end

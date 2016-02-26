@@ -17,6 +17,7 @@
 #import "XXXMyLecturesVC.h"
 #import "AudioTool.h"
 #import "XXLectureJoinVC.h"
+#import "XXLectureHomeVC.h"
 
 @interface XXXMainPageVC ()<XXXMakeLectureViewDelegate>
 
@@ -28,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"医讲堂";
-    
     
 //    //NetworkManager *manager = [[NetworkManager s];
 //    UIImage *a = [UIImage imageNamed:@"1"];
@@ -112,11 +112,17 @@
     return [MainPageLectureCell cellForTableView:tableView with:self.dataArray[indexPath.row]];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 讲座前页面
+//    XXLectureJoinVC *vc = [[XXLectureJoinVC alloc] init];
+    // 讲座中页面
+    XXLectureHomeVC *vc = [[XXLectureHomeVC alloc] init];
+    // 数据模型
     XXXLectureModel *lectureModel = self.dataArray[indexPath.row];
-    XXLectureJoinVC *joinVc = [[XXLectureJoinVC alloc] init];
-    joinVc.lecture = lectureModel;
-    [self.navigationController pushViewController:joinVc animated:YES];
+    vc.lecture = lectureModel;
+    
+    [self.navigationController pushViewController:vc animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

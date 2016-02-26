@@ -38,6 +38,7 @@
 {
     [super viewDidLoad];
     self.navigationBar.shadowImage = [[UIImage alloc]init];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 /**

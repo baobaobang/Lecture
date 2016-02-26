@@ -30,7 +30,7 @@ typedef enum{
 /** 当前显示的item索引 */
 @property(assign, nonatomic) NSInteger currentItem;
 /** 音乐数据 */
-@property(strong,nonatomic) NSArray *musics;
+@property(strong,nonatomic) NSArray *pages;
 
 @property (nonatomic, weak) id<XXPlayerMaskViewDelegate> delegate;
 @end

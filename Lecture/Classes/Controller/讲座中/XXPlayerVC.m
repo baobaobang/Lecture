@@ -11,9 +11,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import "UIButton+CZ.h"
 #import "XXCollectionCell.h"
-#import "XXMusic.h"
+#import "XXXLecturePageModel.h"
 #import "MBProgressHUD.h"
 #import "MJExtension.h"
+#import "AudioTool.h"
+#import <UMSocial.h>
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define XXMaxSections 3
@@ -22,28 +24,23 @@
 
 @property (nonatomic, weak) XXPlayerToolBar *playerToolBar;
 /** 播放器 */
-@property(nonatomic,strong)AVAudioPlayer *player;
+//@property(nonatomic,strong)AVAudioPlayer *player; // 只能播放本地音频
+@property (nonatomic, strong) AVPlayer *player; // 可播放本地和网络音频的播放器
+@property (nonatomic, strong) AVPlayerItem *playerItem; // 当前播放的资源
 
+@property (nonatomic, assign) CGFloat currentDuration; // 当前播放时间
+@property (nonatomic, assign) CGFloat totalDuration; // 播放总时间
 /** 当前显示的item索引 */
 @property(assign, nonatomic) NSInteger currentItem;
 
 /** 音乐数据 */
-@property(strong,nonatomic) NSArray *musics;
+@property(strong,nonatomic) NSArray *pages;
 @end
 
 @implementation XXPlayerVC
 
 
 #pragma mark - 懒加载
-
--(NSArray *)musics{
-    
-    if (!_musics) {
-        _musics = [XXMusic objectArrayWithFilename:@"Musics.plist"];
-    }
-    
-    return _musics;
-}
 
 #pragma mark - 生命周期
 
@@ -56,11 +53,28 @@
     
     [self setupPlayerToolBar];
     
-    // 设置显示的item索引，即要播放的音乐
-    self.currentItem = 0;
+    [XXNotificationCenter addObserver:self selector:@selector(avPlayerItemDidPlayToEndTime:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
 }
 
+- (void)dealloc{
+    [XXNotificationCenter removeObserver:self];
+}
 
+#pragma mark - 传递lecture详情数据给PlayerPicView和PlayerToolBar
+- (void)setLectureDetail:(XXXLectureModel *)lectureDetail{
+    _lectureDetail = lectureDetail;
+    
+    self.pages = lectureDetail.pages;
+    self.playerPicView.pages = lectureDetail.pages;
+    
+    // 设置进入时候播放第一首音乐
+    self.currentItem = 0;
+    
+    // 给maskView传递数据
+    self.playerPicView.maskView.currentItem = self.currentItem;
+    self.playerPicView.maskView.pages = self.pages;
+    
+}
 
 #pragma mark - 初始化
 
@@ -68,16 +82,12 @@
 {
     // 创建playerPicView
     XXPlayerPicView *playerPicView = [[XXPlayerPicView alloc] init];
-    playerPicView.musics = self.musics;
     playerPicView.delegate = self;
     [self.view addSubview:playerPicView];
     self.playerPicView = playerPicView;
     
     // 设置maskView的代理
     playerPicView.maskView.delegate = self;
-    // 给maskView传递数据
-    playerPicView.maskView.currentItem = self.currentItem;
-    playerPicView.maskView.musics = self.musics;
     
     // 设置音频会话类型
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -125,8 +135,10 @@
     // 更新索引
     _currentItem = currentItem;
     
-    // 更改音乐模型
-    self.currentMusic = self.musics[currentItem];
+    if (self.pages.count > 0) {
+        // 更改音乐模型
+        self.currentPage = self.pages[currentItem];
+    }
     
     // 给maskView传递数据，更新当前页码
     self.playerPicView.maskView.currentItem = self.currentItem;
@@ -134,32 +146,41 @@
 
 #pragma mark - 切换音乐，准备播放音乐，刷新相关控件
 
-- (void)setCurrentMusic:(XXMusic *)currentMusic{
-    _currentMusic = currentMusic;
+- (void)setCurrentPage:(XXXLecturePageModel *)currentPage{
+    _currentPage = currentPage;
     
     // 初始化一个 "音频播放器"player，一首音乐对应一个player
-    NSURL *musicURL = [[NSBundle mainBundle] URLForResource:currentMusic.filename withExtension:nil];
-    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:musicURL error:nil];
-    
-    // 准备
-    [player prepareToPlay];
-    
-    // 设置player的代理
-    player.delegate = self;
-    
-    // 开始播放
-    if (self.isPlaying) {
-        [player play];
+    if (self.playerItem) {// 移除上一个item的kvo监听
+        [self.playerItem removeObserver:self forKeyPath:@"status"];
     }
-    
-    // 重置当前播放时间为0
-    player.currentTime = 0;
-    
-    //
+    AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:currentPage.audio];
     self.player = player;
-    
-    // 将player传递给playerToolBar
-    self.playerToolBar.player = player;
+    self.playerItem = player.currentItem;
+    // 添加新的监听
+    [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
+}
+
+#pragma mark - KVO监听AVplayer的播放状态，是否已经准备就绪
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    if (object == _playerItem && [keyPath isEqualToString:@"status"]) {
+        if ([_playerItem status] == AVPlayerStatusReadyToPlay) {
+            NSLog(@"AVPlayerStatusReadyToPlay");
+            
+            // 开始播放
+            if (self.isPlaying) {
+                [_player play];
+            }
+            
+            // 重置当前播放时间为0
+            self.currentDuration = 0;
+            
+            // 将player传递给playerToolBar
+            self.playerToolBar.player = _player;
+            
+        } else if ([_playerItem status] == AVPlayerStatusFailed) {
+            NSLog(@"AVPlayerStatusFailed");
+        }
+    }
 }
 
 #pragma mark - 播放或者暂停
@@ -199,7 +220,7 @@
 -(void)previous{
     
     if (self.currentItem == 0){ // 如果是第一首
-        [self showHudWithMessage:@"已经是第一首了"];
+        [self showHudWithMessage:@"已经是第一页了"];
     }else{
         
         // 当前不是第一首，就更改索引为上一首
@@ -214,8 +235,8 @@
 
 -(void)next{
     
-    if (self.currentItem == self.musics.count - 1) { // 如果是最后一首
-        [self showHudWithMessage:@"已经是最后一首了"];
+    if (self.currentItem == self.pages.count - 1) { // 如果是最后一首
+        [self showHudWithMessage:@"已经是最后一页了"];
         
     }else{
         // 当前不是最后一首，更改索引为下一首
@@ -242,7 +263,7 @@
 }
 
 #pragma mark - 自动播放下一首
--(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+-(void)avPlayerItemDidPlayToEndTime:(AVPlayer *)player{
     //自动播放下一首
     [self next];
 }
@@ -303,9 +324,11 @@
 
 // 拖动slider的时候，更新播放时间
 
-- (void)playerToolBar:(XXPlayerToolBar *)toolBar sliderValueChanged:(UISlider *)slider{
-    
-    self.player.currentTime = slider.value;
+- (void)playerToolBar:(XXPlayerToolBar *)toolBar sliderValueChanged:(UISlider *)slider
+{
+    self.currentDuration = slider.value;
+    CMTime currentTime = CMTimeMake(slider.value, 1);
+    [self.player seekToTime:currentTime];
 }
 
 // 手指离开slider的时候，继续播放
@@ -324,7 +347,7 @@
 - (void)playerMaskView:(XXPlayerMaskView *)playerMaskView didClickBtnType:(XXPlayerMaskViewButtonType)type{
     switch (type) {
         case XXPlayerMaskViewButtonTypeShare:
-            
+            [self share];
             break;
         case XXPlayerMaskViewButtonTypePrevious:
             [self previous];
@@ -340,5 +363,30 @@
             break;
     }
 }
+
+#pragma mark - 分享页面
+- (void)share{
+    // 设置点击返回的url和title
+    NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lectureDetail.lectureId];
+    NSString *title = self.lectureDetail.title;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = url;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = url;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
+    [UMSocialData defaultData].extConfig.qqData.url = url;
+    [UMSocialData defaultData].extConfig.qqData.title = title;
+    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = url;
+    [UMSocialData defaultData].extConfig.sinaData.snsName = @"医讲堂";
+    
+    // 跳出分享页面
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:UMKey
+                                      shareText:self.lectureDetail.desc
+                                     shareImage:[UIImage imageNamed:@"logo"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToSina,nil]
+                                       delegate:nil];
+}
+
+
 
 @end

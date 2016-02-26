@@ -10,9 +10,12 @@
 #import "XXQuestionCell.h"
 #import "XXQuestionToolbar.h"
 #import "CXTextView.h"
+#import "XXReply.h"
 
 @interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
 @property (nonatomic, strong) UIImageView *noDataImage;
+@property (nonatomic, copy) NSString *replyingQuestionId;
+@property (nonatomic, assign) NSInteger replyingQuestionIndex;
 @end
 
 @implementation XXQuestionBaseVC
@@ -141,7 +144,6 @@
 {
     XXQuestionFrame *frame = self.questionFrames[indexPath.row];
     return frame.cellHeight;
-    
 }
 
 #pragma mark - 点击cell后的反应
@@ -169,21 +171,40 @@
             break;
     }
 }
+
+#pragma mark - 根据toolbar获得question的id
+- (NSString *)questionId:(XXQuestionToolbar *)toolbar{
+    // 找到所点击的cell和问题id
+    XXQuestionCell *cell = (XXQuestionCell *)toolbar.superview.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    self.replyingQuestionIndex = indexPath.row;
+    XXQuestionFrame *frame = self.questionFrames[indexPath.row];
+    return frame.question.ID;
+}
+
 #pragma mark - 点击分享后
 - (void)clickShareBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
-    //TODO: 弹出分享窗口
+    //TODO: 弹出分享窗口，潘思凡
 }
 #pragma mark - 点击回复后
 - (void)clickReplyBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
     [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
+    self.replyingQuestionId = [self questionId:toolbar];
 }
 
 #pragma mark - 点击点赞后
 - (void)clickUnlikeBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
-    
+    // 陈旭接口-点赞接口
+    //FIXME: 何老师，点赞接口是不是要加入lecture的id
+    NSString *url = [NSString stringWithFormat:@"questions/%@/likers", [self questionId:toolbar]];
+    [NetworkManager postWithApi:url params:nil success:^(id result) {
+        
+    } fail:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - 键盘的frame发生改变时调用（显示、隐藏等）
@@ -249,10 +270,61 @@
     return YES;
 }
 
+#pragma mark - 发送回复接口
 - (void)send{
-    //TODO: 记录text并显示出来
-    XXLog(@"send");
+    //本地显示
+//    [self showInLocal];
+    //上传到服务器
+    [self postReply];
+    
     [self.textView resignFirstResponder];
+}
+
+- (void)showInLocal{
+    
+    [self.tableView reloadData];
+}
+
+- (void)postReply{
+    // 陈旭接口-发送回复接口
+    NSString *url = [NSString stringWithFormat:@"questions/%@/replies", self.replyingQuestionId];
+    NSLog(@"url ---%@", url);
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"content"] = self.textView.text;
+    params[@"type"] = isExpert ? @"1" : @"0";
+    [NetworkManager postWithApi:url params:params success:^(id result) {
+        // 插入新增回复(以后用本地离线缓存来做插入)
+        XXQuestionFrame *frame = self.questionFrames[self.replyingQuestionIndex];
+        XXReply *reply = [[XXReply alloc] init];
+
+        reply.questionId = self.replyingQuestionId;
+        reply.nickName = @"匿名用户"; // 当前用户的昵称
+        reply.text = self.textView.text;
+        reply.type = isExpert ? 1 : 0;
+        
+        NSUInteger count = self.questionFrames.count;
+        NSMutableArray *questionsM = [NSMutableArray array];
+        for (NSInteger i = 0; i < count; i++) {
+            XXQuestionFrame * frame = self.questionFrames[i];
+            XXQuestion *question = frame.question;
+            if (i == self.replyingQuestionIndex) {
+                [question.replies addObject:reply];
+            }
+            [questionsM addObject:question];
+        }
+        
+        self.questionFrames = [self questionFramesWithQuestions:questionsM];
+        
+        // 刷新当前问题行
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.replyingQuestionIndex inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+
+        // 清空文字
+        self.textView.text = nil;
+        
+    } fail:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - scrollView Delegate

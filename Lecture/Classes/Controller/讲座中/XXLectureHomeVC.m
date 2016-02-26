@@ -23,6 +23,8 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    [self loadLectureDetail];
+    
     /* 设置导航栏刷新item */
     UIImage *rightImage = [UIImage imageNamed:@"middle_nav_refresh"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStyleDone target:self action:@selector(rightItemClick)];
@@ -55,6 +57,21 @@
 - (void)rightItemClick
 {
     NSLog(@"refresh");//TODO:
+}
+
+- (void)loadLectureDetail{
+    // 陈旭接口-讲座的详情接口
+//    NSString *url = [NSString stringWithFormat:@"lectures/%@", self.lecture.lectureId];
+//    //    NSString *url = [NSString stringWithFormat:@"lectures/108"];//TODO: 定死id
+//    NSLog(@"url-------------------%@", url);
+//     __weak XXLectureHomeVC *weakSelf = self;
+//    [NetworkManager getWithApi:url params:nil success:^(id result) {
+//        _lectureDetail = [XXXLectureModel mj_objectWithKeyValues:result[@"data"][@"lecture"]];
+//        weakSelf.lecture = _lectureDetail;
+//        
+//    } fail:^(NSError *error) {
+//        
+//    }];
 }
 
 #pragma mark - 切换navSegmentedControl

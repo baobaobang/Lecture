@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class AVAudioPlayer, XXPlayerToolBar;
+@class AVPlayer, XXPlayerToolBar;
 
 @protocol XXPlayerToolBarDelegate <NSObject>
 
@@ -31,10 +31,12 @@
 
 
 /** 播放器 */
-@property(nonatomic,strong) AVAudioPlayer *player;
+@property(nonatomic,strong) AVPlayer *player;
 
 @property (nonatomic, weak) id<XXPlayerToolBarDelegate> delegate;
 /** 是否正在拖拽 */
 @property(assign,nonatomic,getter=isDragging)BOOL dragging;
+
+@property (nonatomic, assign) CGFloat currentDuration;
 
 @end

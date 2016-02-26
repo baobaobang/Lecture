@@ -28,6 +28,8 @@
 @property (nonatomic, assign, getter=isLandscape) BOOL landscape;
 @property (nonatomic, assign, getter=isHiddenStatusBar) BOOL hiddenStatusBar;
 
+@property (nonatomic, strong) XXXLectureModel *lectureDetail;// 讲座详情
+
 @end
 
 @implementation XXLectureVC
@@ -36,6 +38,8 @@
 #pragma mark - 生命周期
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -73,6 +77,20 @@
 
 #pragma mark - 初始化
 
+//- (void)loadLectureDetail{
+//    // 陈旭接口-讲座的详情接口
+//    NSString *url = [NSString stringWithFormat:@"lectures/%@", self.lecture.lectureId];
+////    NSString *url = [NSString stringWithFormat:@"lectures/108"];//TODO: 定死id
+//    NSLog(@"url-------------------%@", url);
+//    [NetworkManager getWithApi:url params:nil success:^(id result) {
+//        _lectureDetail = [XXXLectureModel mj_objectWithKeyValues:result[@"data"][@"lecture"]];
+//        self.playerVc.lectureDetail = _lectureDetail;
+//        
+//    } fail:^(NSError *error) {
+//        
+//    }];
+//}
+
 /**
  *  设置导航栏内容
  */
@@ -86,6 +104,7 @@
     XXPlayerVC *playerVc = [[XXPlayerVC alloc] init];
     [self addChildViewController:playerVc];
     [self.view addSubview:playerVc.view];
+    
     self.playerVc = playerVc;
 
     _playerVc.view.x = 0;
@@ -119,6 +138,8 @@
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
     self.expertVc = expertVc;
+    
+    expertVc.lecture = self.lecture;// 传递数据
 }
 
 // 在线交流头部
@@ -170,6 +191,7 @@
 
     XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
 //    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
+    vc.lecture = self.lecture;
     vc.view.frame = self.view.frame;
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:nav animated:YES completion:nil];

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *levelView;// 等级
 @property (weak, nonatomic) IBOutlet UILabel *departmentLabel;// 科室
 @property (weak, nonatomic) IBOutlet UILabel *hospitalLabel;// 医院
+@property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;// 职称
 @property (weak, nonatomic) IBOutlet UILabel *profileLabel;// 简介
 
 @end
@@ -41,6 +42,9 @@
     self.iconBtn.layer.cornerRadius = self.iconBtn.frame.size.width / 2;
     self.iconBtn.layer.masksToBounds = YES;
     
+    // vip等级
+    self.levelView.image = [UIImage imageNamed:@"avatar_vip_os7"];
+    
     // 名字
     self.nameLabel.text = lecture.name;
     
@@ -49,6 +53,9 @@
     
     // 医院
     self.hospitalLabel.text = lecture.hospital;
+    
+    // 职称
+    self.jobTitleLabel.text = lecture.jobTitle;
     
     // 简介
     self.profileLabel.text = lecture.introduction;

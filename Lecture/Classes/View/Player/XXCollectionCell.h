@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXMusic;
+#import "XXXLecturePageModel.h"
 @interface XXCollectionCell : UICollectionViewCell
-@property (nonatomic, strong) XXMusic *music;
+@property (nonatomic, strong) XXXLecturePageModel *page;
 @end

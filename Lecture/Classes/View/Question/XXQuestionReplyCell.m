@@ -7,7 +7,6 @@
 //
 
 #import "XXQuestionReplyCell.h"
-#import "XXReply.h"
 #import <AVFoundation/AVFoundation.h>
 
 
@@ -38,10 +37,7 @@
 }
 
 - (void)awakeFromNib {
-    
-    self.backgroundColor =[UIColor clearColor];
-    self.contentView.backgroundColor=[UIColor clearColor];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    [super awakeFromNib];
     
     [self.playBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.playBtn setBackgroundColor:[UIColor whiteColor]];
@@ -65,13 +61,13 @@
 - (void)setReply:(XXReply *)reply{
     _reply = reply;
     
-    self.userNameLabel.text = reply.expert.name;
+    self.userNameLabel.text = reply.nickName;
     [self setupPlayBtn:reply];
 }
 
 - (void)setupPlayBtn:(XXReply *)reply{
     // 初始化一个 "音频播放器"player，一首音乐对应一个player
-    NSURL *musicURL = [[NSBundle mainBundle] URLForResource:reply.mp3Str withExtension:nil];
+    NSURL *musicURL = [[NSBundle mainBundle] URLForResource:reply.mp3Str withExtension:nil];//TODO: 回复中的网络音频播放
     AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:musicURL error:nil];
     
     // 准备

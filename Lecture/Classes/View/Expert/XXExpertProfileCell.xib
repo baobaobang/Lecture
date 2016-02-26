@@ -70,8 +70,9 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="广州市和睦家医院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93M-9S-2JH" userLabel="医院">
-                                <rect key="frame" x="5" y="30" width="230" height="16"/>
+                                <rect key="frame" x="5" y="30" width="104" height="16"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="JdR-4R-3S1"/>
                                     <constraint firstAttribute="height" constant="16" id="kiI-tf-75E"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -84,20 +85,35 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="教授" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZQ-D3-kt1" userLabel="医院">
+                                <rect key="frame" x="123" y="30" width="112" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="gZQ-D3-kt1" firstAttribute="bottom" secondItem="93M-9S-2JH" secondAttribute="bottom" id="24j-X4-WSN"/>
+                            <constraint firstItem="gZQ-D3-kt1" firstAttribute="trailing" secondItem="LVf-ko-KxP" secondAttribute="trailing" id="8Ld-8y-7zD"/>
+                            <constraint firstItem="gZQ-D3-kt1" firstAttribute="leading" secondItem="93M-9S-2JH" secondAttribute="trailing" constant="14" id="GZ8-rn-9aJ"/>
                             <constraint firstItem="93M-9S-2JH" firstAttribute="trailing" secondItem="bpO-vs-TLN" secondAttribute="trailing" id="GuU-GQ-wAr"/>
                             <constraint firstItem="LVf-ko-KxP" firstAttribute="top" secondItem="93M-9S-2JH" secondAttribute="bottom" constant="5" id="HG9-jd-OyY"/>
                             <constraint firstItem="93M-9S-2JH" firstAttribute="leading" secondItem="bpO-vs-TLN" secondAttribute="leading" id="Km2-OC-fph"/>
                             <constraint firstAttribute="trailing" secondItem="bpO-vs-TLN" secondAttribute="trailing" constant="5" id="Mkw-Ce-D4Z"/>
                             <constraint firstItem="LVf-ko-KxP" firstAttribute="leading" secondItem="bpO-vs-TLN" secondAttribute="leading" id="Zhc-dr-xTr"/>
+                            <constraint firstItem="gZQ-D3-kt1" firstAttribute="top" secondItem="93M-9S-2JH" secondAttribute="top" id="eTi-hf-UIT"/>
                             <constraint firstItem="bpO-vs-TLN" firstAttribute="leading" secondItem="wgJ-Wt-DBv" secondAttribute="leading" constant="5" id="fyi-rb-6nA"/>
                             <constraint firstItem="bpO-vs-TLN" firstAttribute="top" secondItem="wgJ-Wt-DBv" secondAttribute="top" constant="5" id="gUW-we-OwB"/>
                             <constraint firstItem="93M-9S-2JH" firstAttribute="top" secondItem="bpO-vs-TLN" secondAttribute="bottom" constant="5" id="iao-Sa-AZC"/>
                             <constraint firstItem="LVf-ko-KxP" firstAttribute="trailing" secondItem="bpO-vs-TLN" secondAttribute="trailing" id="tZR-rF-nis"/>
                             <constraint firstAttribute="bottom" secondItem="LVf-ko-KxP" secondAttribute="bottom" constant="5" id="uCL-3i-Jpp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GuU-GQ-wAr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMn-6i-T4e" userLabel="专家头像">
                         <rect key="frame" x="10" y="5" width="55" height="55"/>
@@ -122,6 +138,7 @@
                 <outlet property="grayContentView" destination="wgJ-Wt-DBv" id="OZN-y5-ZjN"/>
                 <outlet property="hospitalLabel" destination="93M-9S-2JH" id="DdY-gi-L6E"/>
                 <outlet property="iconBtn" destination="OMn-6i-T4e" id="5sE-WD-jWM"/>
+                <outlet property="jobTitleLabel" destination="gZQ-D3-kt1" id="qSS-l6-SVA"/>
                 <outlet property="levelView" destination="0Ic-e1-EhJ" id="hsK-MM-kgb"/>
                 <outlet property="nameLabel" destination="g3E-yq-ptv" id="OBI-AR-LtW"/>
                 <outlet property="profileLabel" destination="LVf-ko-KxP" id="nGq-a0-CCf"/>

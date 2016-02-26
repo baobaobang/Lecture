@@ -86,7 +86,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     self.title=@"提问";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(createFeed)];
-    self.navigationItem.rightBarButtonItem.enabled = NO; // 一进入的时候没有文字，因此发送按钮不可用
+    self.navigationItem.rightBarButtonItem.enabled = self.textView.hasText; // 一进入的时候没有文字，因此发送按钮不可用
     
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
 }
@@ -136,23 +136,36 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 - (void)postNewQuestion{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-//    NetworkManager qiniuUpload:<#(NSData *)#> progress:<#^(NSString *key, float percent)progressHandler#> success:<#^(id result)successBlock#> fail:<#^(NSError *error)failBlock#> isImageType:<#(BOOL)#>
-    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions", self.lecture.lectureId];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"content"] = self.textView.text;
-    [NetworkManager postWithApi:url params:params success:^(id result) {
-        if ([result[@"ret"] intValue] == 0) {
-            [MBProgressHUD hideHUDForView:self.view animated:NO];
-            [MBProgressHUD showSuccess:@"发送成功！" toView:self.view];
-        }else{
-            [MBProgressHUD hideHUDForView:self.view animated:NO];
-            [MBProgressHUD showSuccess:@"发送失败！" toView:self.view];
-        }
-    } fail:^(NSError *error) {
+    // 上传图片
+    //FIXME: 两个方法重名
+    [NetworkManager qiniuUpload:self.selectPhotos progress:^(NSString *key, float percent) {
         
+    } success:^(id result) {
+        
+    } fail:^(NSError *error) {
+        NSLog(@"error---%@", error);
+    } allcompleteBlock:^(id result) {
+        // 陈旭接口-发送提问接口
+        NSString *url = [NSString stringWithFormat:@"lectures/%@/questions", self.lecture.lectureId];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"content"] = self.textView.text;
+        params[@"images"] = result;
+        [NetworkManager postWithApi:url params:params success:^(id result) {
+            if ([result[@"ret"] intValue] == 0) {
+                [MBProgressHUD hideHUDForView:self.view animated:NO];
+                [MBProgressHUD showSuccess:@"发送成功！" toView:self.view];
+            }else{
+                [MBProgressHUD hideHUDForView:self.view animated:NO];
+                [MBProgressHUD showSuccess:@"发送失败！" toView:self.view];
+            }
+            
+            [self dismiss];
+        } fail:^(NSError *error) {
+            [self dismiss];
+        }];
     }];
+
     
-    [self dismiss];
 }
 
 /**
@@ -187,7 +200,9 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 #pragma mark - 退出控制器
 -(void)dismiss{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.textView resignFirstResponder];
+    }];
 }
 
 

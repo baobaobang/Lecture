@@ -66,6 +66,7 @@ extern const NSUInteger kXXQuestionVCTextViewMaxWords;// 最大字数限制
 /** Identifier*/
 extern NSString * const XXQuestionCellReuseId;
 extern NSString * const XXQuestionReplyCellReuseId;
+extern NSString * const XXQuestionReplyUserCellReuseId;
 
 #pragma mark - 讲座中
 /** frame*/

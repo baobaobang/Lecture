@@ -49,7 +49,7 @@
 //        self.backgroundColor = XXTestColor;
         
         // 添加按钮
-        self.shareBtn = [self setupBtn:XXQuestionToolbarShareTitle icon:@"timeline_icon_share" type:XXQuestionToolbarButtonTypeShare];
+//        self.shareBtn = [self setupBtn:XXQuestionToolbarShareTitle icon:@"timeline_icon_share" type:XXQuestionToolbarButtonTypeShare];//以后做
         self.replyBtn = [self setupBtn:XXQuestionToolbarReplyTitle icon:@"timeline_icon_reply" type:XXQuestionToolbarButtonTypeReply];
         self.attitudeBtn = [self setupBtn:XXQuestionToolbarUnlikeTitle icon:@"timeline_icon_unlike" type:XXQuestionToolbarButtonTypeUnlike];
         
@@ -116,7 +116,7 @@
             break;
         }
         case XXQuestionToolbarButtonTypeReply:{ // 回复
-            question.replys_count++;
+//            question.replies_count++;
             self.questionFrame = frame;
             if ([self.delegate respondsToSelector:@selector(questionToolbar:didClickBtnType:)]) {
                 [self.delegate questionToolbar:self didClickBtnType:XXQuestionToolbarButtonTypeReply];
@@ -181,7 +181,7 @@
     // 转发
     [self setupBtnCount:question.shares_count btn:self.shareBtn title:XXQuestionToolbarShareTitle];
     // 评论
-    [self setupBtnCount:question.replys_count btn:self.replyBtn title:XXQuestionToolbarReplyTitle];
+    [self setupBtnCount:0 btn:self.replyBtn title:XXQuestionToolbarReplyTitle];
     // 赞
     [self setupBtnCount:question.attitudes_count btn:self.attitudeBtn title:XXQuestionToolbarUnlikeTitle];
     //TODO:

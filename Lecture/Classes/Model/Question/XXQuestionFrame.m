@@ -14,8 +14,6 @@
 - (void)setQuestion:(XXQuestion *)question{
     _question = question;
     
-    XXUser *user = question.user;
-    
     // cell的宽度
     CGFloat cellW = [UIScreen mainScreen].bounds.size.width;
 
@@ -28,31 +26,32 @@
     /** 昵称 */
     CGFloat nameX = CGRectGetMaxX(self.iconViewF) + XXQuestionCellBorderW;
     CGFloat nameY = iconY;
-    CGSize nameSize = [user.name sizeWithFont:XXQuestionCellNameFont];
+    question.nickName = question.nickName ? question.nickName : @"匿名用户";
+    CGSize nameSize = [question.nickName sizeWithFont:XXQuestionCellNameFont];
     self.nameLabelF = (CGRect){{nameX, nameY}, nameSize};
     
     /** vip会员图标 */
-    if (user.isVip) {
-        CGFloat vipX = CGRectGetMaxX(self.nameLabelF) + XXQuestionCellBorderW;
-        CGFloat vipY = nameY + 3;
-        CGFloat vipH = 15;
-        CGFloat vipW = 20;
-        self.vipViewF = CGRectMake(vipX, vipY, vipW, vipH);
-    }
+//    if (user.isVip) {
+//        CGFloat vipX = CGRectGetMaxX(self.nameLabelF) + XXQuestionCellBorderW;
+//        CGFloat vipY = nameY + 3;
+//        CGFloat vipH = 15;
+//        CGFloat vipW = 20;
+//        self.vipViewF = CGRectMake(vipX, vipY, vipW, vipH);
+//    }
     
     /** 正文 */
     CGFloat contentX = nameX;
     CGFloat contentY = CGRectGetMaxY(self.nameLabelF) + XXQuestionCellBorderW;
     CGFloat maxW = cellW - contentX - XXQuestionCellBorderW;
-    CGSize contentSize = [question.text sizeWithFont:XXQuestionCellContentFont maxW:maxW];
+    CGSize contentSize = [question.content sizeWithFont:XXQuestionCellContentFont maxW:maxW];
     self.contentLabelF = (CGRect){{contentX, contentY}, contentSize};
     
     /** 配图 */
     CGFloat originalH = 0;
-    if (question.pic_urls.count) { // 有配图
+    if (question.photos.count) { // 有配图
         CGFloat photosX = nameX;
         CGFloat photosY = CGRectGetMaxY(self.contentLabelF) + XXQuestionCellBorderW;
-        CGSize photosSize = [XXQuestionPhotosView sizeWithCount:question.pic_urls.count];
+        CGSize photosSize = [XXQuestionPhotosView sizeWithCount:question.photos.count];
         self.photosViewF = (CGRect){{photosX, photosY}, photosSize};
         
         originalH = CGRectGetMaxY(self.photosViewF) + XXQuestionCellBorderW;
@@ -71,11 +70,11 @@
     CGFloat replyX = nameX;
     CGFloat replyY = CGRectGetMaxY(self.toolbarF);
     CGFloat replyW = maxW;
-    CGFloat replyH = question.replys.count * kXXQuestionReplyCellHeight;
+    CGFloat replyH = question.replies.count * kXXQuestionReplyCellHeight;
     self.replyF = CGRectMake(replyX, replyY, replyW, replyH);
     
     /* cell的高度 */
-    if (question.replys.count) { // 有回复
+    if (question.replies.count) { // 有回复
         self.cellHeight = CGRectGetMaxY(self.replyF);
     }else{
         self.cellHeight = CGRectGetMaxY(self.toolbarF);

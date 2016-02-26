@@ -8,7 +8,7 @@
 
 #import "XXLectureJoinVC.h"
 #import "XXCollectionCell.h"
-#import "XXLecture.h"
+#import "XXXLectureModel.h"
 #import "XXExpertProfileVC.h"
 #import "XXQuestionVC.h"
 #import "XXJoinLectureActionSheet.h"
@@ -19,11 +19,10 @@
 #import "XXQuestionCreateVC.h"
 #import "XXNavigationController.h"
 #import "CXTextView.h"
+#import <UMSocial.h>
 
 @interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
-
-@property (nonatomic, strong) NSArray *lectures;
 @property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
 @property (nonatomic, weak) XXQuestionHeaderView *questionHeaderView;
@@ -34,14 +33,6 @@
 
 @implementation XXLectureJoinVC
 #pragma mark - 懒加载
-
-- (NSArray *)lectures
-{
-    if (!_lectures) {
-        _lectures = [XXLecture mj_objectArrayWithFilename:@"Lectures.plist"];
-    }
-    return _lectures;
-}
 
 #pragma mark - 生命周期
 - (void)viewDidLoad {
@@ -134,8 +125,9 @@
     /* 导航栏标题 */
     self.title = @"公益讲堂";
     
-    // 创建分享按钮//TODO: 分享按钮换图片
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(clickShareLectureBtn) bgImageStr:@"before_nav_shar" bgHighImageStr:@"before_nav_shar"];;
+    /* 设置导航栏分享按钮 */
+    UIImage *rightImage = [UIImage imageNamed:@"before_nav_share"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStyleDone target:self action:@selector(clickShareLectureBtn)];
 }
 
 - (void)setupPicView{
@@ -145,7 +137,7 @@
     picView.y = kXXStatusAndNavBarHeight;
     picView.width = self.view.width;
     picView.height = kXXPlayerPicViewHeightWidthRatio * picView.width;
-    [picView sd_setImageWithURL:[NSURL URLWithString:self.lecture.cover]  placeholderImage:[UIImage imageNamed:@""]];
+    [picView sd_setImageWithURL:[NSURL URLWithString:self.lecture.cover]  placeholderImage:[UIImage imageNamed:@""]];//占位图
     picView.userInteractionEnabled = YES;
     [self.view addSubview:picView];
     self.picView = picView;
@@ -168,15 +160,16 @@
 // 专家简介
 - (void)setupExpertVc{
     
-    XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];
-    expertVc.lecture = self.lecture;
-    expertVc.view.x = 0;
+    XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];    expertVc.view.x = 0;
     expertVc.view.y = CGRectGetMaxY(self.expertHeaderView.frame);
     expertVc.view.width = self.view.width;
     expertVc.view.height = kXXExpertTableViewHeight;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
     self.expertVc = expertVc;
+    
+    expertVc.lecture = self.lecture;// 传递数据
+
 }
 
 // 精选提问头部
@@ -234,9 +227,28 @@
 }
 
 
+#pragma mark - 分享页面
 - (void)clickShareLectureBtn{
-    //TODO: 点击分享按钮
-    XXLog(@"clickShareLectureBtn");
+    
+    // 设置点击返回的url和title
+    NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lecture.lectureId];
+    NSString *title = self.lecture.title;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = url;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = url;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
+    [UMSocialData defaultData].extConfig.qqData.url = url;
+    [UMSocialData defaultData].extConfig.qqData.title = title;
+    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = url;
+    [UMSocialData defaultData].extConfig.sinaData.snsName = @"医讲堂";
+    
+    // 跳出分享页面
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:UMKey
+                                      shareText:self.lecture.desc
+                                     shareImage:[UIImage imageNamed:@"logo"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToSina,nil]
+                                       delegate:nil];
 }
 
 #pragma mark - 点击报名
@@ -244,7 +256,7 @@
     
     XXJoinLectureActionSheet *sheet = [[XXJoinLectureActionSheet alloc] init];
     sheet.delegate = self;
-    sheet.lecture = [self.lectures lastObject];
+    sheet.lecture = self.lecture;
     // 注意sheet要添加到窗口上，而非self.view上面，因为self.view会因为动画而改变frame，导致sheet的位置会变化
     [sheet showInView:XXKeyWindow];
 }
@@ -253,6 +265,7 @@
 - (void)joinLectureActionSheet:(XXJoinLectureActionSheet *)sheet didClickDoneButton:(UIButton *)btn{
     [MBProgressHUD showHUDAddedTo:XXKeyWindow animated:YES];
     
+    // 陈旭接口-报名接口
     NSString *url = [NSString stringWithFormat:@"lectures/%@/enroll", self.lecture.lectureId];
     [NetworkManager postWithApi:url params:nil success:^(id result) {
         if ([result[@"ret"] intValue] == 0) {

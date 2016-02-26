@@ -6,21 +6,24 @@
 //  Copyright © 2016年 陈旭. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "XXExpert.h"
-#import "XXUser.h"
+#import "XXBaseModel.h"
 
-@interface XXReply : NSObject
+@interface XXReply : XXBaseModel
+// 回复id
+@property (nonatomic, copy) NSString *ID;
+
+// 问题id
+@property (nonatomic, copy) NSString *questionId;
+
+@property (nonatomic, copy) NSString *uid; // 用户id
+@property (nonatomic, copy) NSString *nickName; // 用户昵称
+@property (nonatomic, copy) NSString *headPic; // 用户头像
+
 /**	问题文字内容*/
 @property (nonatomic, copy) NSString *text;
 
-
 /**	问题音频urlStr*/
-@property (nonatomic, copy) NSString *mp3Str;
+@property (nonatomic, copy) NSString *mp3Str;//FIXME: 少字段
 
-/**	回复问题的用户*/
-@property (nonatomic, strong) XXUser *user;
-
-/**	回复问题的专家*/
-@property (nonatomic, strong) XXExpert *expert;
+@property (nonatomic, assign) USERTYPE type;
 @end

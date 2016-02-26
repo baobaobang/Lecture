@@ -46,7 +46,7 @@
     _photo = photo;
     
     // 从网络加载缩小图
-    [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self sd_setImageWithURL:[NSURL URLWithString:photo.highQuality_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (error) {
             XXLog(@"%@", error);
         }
@@ -55,7 +55,7 @@
     
     // 显示\隐藏gif控件
     // 判断是够以gif或者GIF结尾
-    self.gifView.hidden = ![photo.thumbnail_pic.lowercaseString hasSuffix:@"gif"];
+    self.gifView.hidden = ![photo.highQuality_pic.lowercaseString hasSuffix:@"gif"];
 }
 
 - (void)layoutSubviews
