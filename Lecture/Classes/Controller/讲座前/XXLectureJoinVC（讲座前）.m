@@ -65,6 +65,11 @@
     
 }
 
+
+- (void)dealloc{
+    
+}
+
 #pragma mark - 只要点击虚拟键盘和编辑区域外的地方，就可以将键盘收起
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (![self.questionVc.textView isExclusiveTouch]) {
@@ -301,8 +306,5 @@
     [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)dealloc{
-    XXTestLog;
-}
 
 @end
