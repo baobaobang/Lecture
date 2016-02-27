@@ -114,17 +114,36 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // 讲座前页面
-    XXLectureJoinVC *vc = [[XXLectureJoinVC alloc] init];
-    // 讲座中页面
-//    XXLectureHomeVC *vc = [[XXLectureHomeVC alloc] init];
     // 数据模型
     XXXLectureModel *lectureModel = self.dataArray[indexPath.row];
-    vc.lecture = lectureModel;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self isOldLecture:lectureModel]) {
+        // 历史讲座：讲座中页面
+        XXLectureHomeVC *vc = [[XXLectureHomeVC alloc] init];
+        vc.lecture = lectureModel;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        // 还没开始的讲座：讲座前页面
+        XXLectureJoinVC *vc = [[XXLectureJoinVC alloc] init];
+        vc.lecture = lectureModel;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (BOOL)isOldLecture:(XXXLectureModel *)lectureModel{
+    NSString *dateStr = lectureModel.startDate;
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    //2016-02-29 18:38:29
+    fmt.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSDate *date = [fmt dateFromString:dateStr];
+    NSComparisonResult result = [date compare:[NSDate date]];
+    if (result == NSOrderedAscending) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 - (void)XXXMakeLectureView:(XXXMakeLectureView *)mlview clickedIndex:(NSInteger)index{
