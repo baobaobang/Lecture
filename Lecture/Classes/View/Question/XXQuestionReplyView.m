@@ -9,7 +9,7 @@
 #import "XXQuestionReplyView.h"
 #import "XXQuestionReplyCell.h"
 #import "XXQuestionReplyUserCell.h"
-
+#import "XXQuestionFrame.h"
 
 @interface XXQuestionReplyView ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *commentTableView;
@@ -21,10 +21,11 @@
     if (self = [super initWithFrame:frame]) {
         
         self.clipsToBounds=YES;
-        self.backgroundColor=XXColor(230, 230, 230);
+        self.backgroundColor = XXQuestionReplyBackgroundColor;
     }
     return self;
 }
+
 
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -79,10 +80,43 @@
         return cell;
     }
 }
+#pragma mark - 计算cell高度
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return kXXQuestionReplyCellHeight;
+    XXReply *reply = self.replys[indexPath.row];
+    return [XXQuestionReplyView calculateCellHeightWithReply:reply];
 }
+
++ (CGFloat)calculateCellHeightWithReply:(XXReply *)reply
+{
+    if(reply==nil){
+        return 0;
+    }
+    
+    NSString* text;
+    if (reply.type == 0) {
+        text = [reply buildCommentText];
+    }else{
+        text = reply.nickName;
+    }
+    CGSize size = [text sizeWithFont:XXQuestionCellReplyFont maxW:XXQuestionCellMaxWidth];
+    return size.height + 3;//+3是为了每个cell有间距
+}
+
+#pragma mark - 计算整个view的高度
++ (CGFloat)calculateReplyViewHeightWithReplys:(NSArray *)replys{
+    
+    CGFloat replysHeight = 0;
+    for(XXReply *reply in replys){
+        replysHeight += [self calculateCellHeightWithReply:reply];
+    }
+    return replysHeight;
+}
+
+#pragma mark - 点击cell弹出回复textview
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [XXNotificationCenter postNotificationName:XXReplyCellDidClickNotification object:nil];
+//}
 
 @end

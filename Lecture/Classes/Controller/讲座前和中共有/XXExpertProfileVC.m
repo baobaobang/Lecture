@@ -40,7 +40,6 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
     return 1;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     XXExpertProfileCell *expertCell = [tableView dequeueReusableCellWithIdentifier:expertProfileCellReuseId forIndexPath:indexPath];

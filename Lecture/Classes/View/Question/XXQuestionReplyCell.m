@@ -39,6 +39,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    self.userNameLabel.font = XXQuestionCellReplyFont;
+    self.userNameLabel.numberOfLines = 0;
+    
     [self.playBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.playBtn setBackgroundColor:[UIColor whiteColor]];
     

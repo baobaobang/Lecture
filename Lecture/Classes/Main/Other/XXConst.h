@@ -27,6 +27,7 @@
 #define XXColorTint XXColor(47, 180, 254)// 项目默认颜色（浅蓝色）
 #define XXColorText [UIColor whiteColor]// 项目默认文字颜色
 #define XXSelectedColor XXColor(175, 220, 250)// 项目默认选中状态颜色（浅浅蓝色）
+
 /** frame*/
 extern const CGFloat kXXStatusAndNavBarHeight;// 状态栏和导航栏的总高度
 /** 字体*/
@@ -82,5 +83,13 @@ extern NSString * const XXStartPlayingNotification;
 extern NSString * const XXStopPlayingNotification;
 /** 时间*/
 extern const CGFloat kXXPlayerVCChageToLandscapeDuration;
+
+#pragma mark - 专家简介
+#define XXExpertProfileCellContentViewBackgroundColor XXQuestionReplyBackgroundColor// 专家简介的背景颜色
+
+#pragma mark - 问题
+extern NSString * const XXReplyCellDidClickNotification;
+#define XXQuestionCellReplyFont [UIFont systemFontOfSize:14]// 回复字体
+#define XXQuestionReplyBackgroundColor XXColor(240, 240, 242)// 回复的背景颜色
 
 @end

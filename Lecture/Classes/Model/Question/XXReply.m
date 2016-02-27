@@ -12,4 +12,8 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName{
     return @{@"ID" : @"id", @"text" : @"content"};
 }
+
+- (NSString *)buildCommentText{
+    return [NSString stringWithFormat:@"%@: %@", self.nickName, self.text];
+}
 @end

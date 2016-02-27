@@ -10,4 +10,5 @@
 
 @interface XXQuestionReplyView : UIView
 @property (nonatomic, strong) NSArray *replys;
++ (CGFloat)calculateReplyViewHeightWithReplys:(NSArray *)replys;
 @end

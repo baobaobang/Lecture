@@ -26,4 +26,6 @@
 @property (nonatomic, copy) NSString *mp3Str;//FIXME: 少字段
 
 @property (nonatomic, assign) USERTYPE type;
+
+- (NSString *)buildCommentText;
 @end

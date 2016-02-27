@@ -31,6 +31,8 @@
     // 设置灰色容器为圆角
     self.grayContentView.layer.cornerRadius = 5;
     [self.grayContentView.layer masksToBounds];
+    // 设置灰色容器的颜色
+    self.grayContentView.backgroundColor = XXExpertProfileCellContentViewBackgroundColor;
 }
 //给cell的子控件赋值
 - (void)setLecture:(XXXLectureModel *)lecture{

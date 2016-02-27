@@ -8,17 +8,15 @@
 
 #import "XXQuestionFrame.h"
 #import "XXQuestionPhotosView.h"
+#import "XXQuestionReplyView.h"
 
 @implementation XXQuestionFrame
 
 - (void)setQuestion:(XXQuestion *)question{
     _question = question;
-    
-    // cell的宽度
-    CGFloat cellW = [UIScreen mainScreen].bounds.size.width;
 
     /** 头像 */
-    CGFloat iconWH = 44;
+    CGFloat iconWH = XXQuestionCellIconWH;
     CGFloat iconX = XXQuestionCellBorderW;
     CGFloat iconY = XXQuestionCellBorderW;
     self.iconViewF = CGRectMake(iconX, iconY, iconWH, iconWH);
@@ -42,8 +40,7 @@
     /** 正文 */
     CGFloat contentX = nameX;
     CGFloat contentY = CGRectGetMaxY(self.nameLabelF) + XXQuestionCellBorderW;
-    CGFloat maxW = cellW - contentX - XXQuestionCellBorderW;
-    CGSize contentSize = [question.content sizeWithFont:XXQuestionCellContentFont maxW:maxW];
+    CGSize contentSize = [question.content sizeWithFont:XXQuestionCellContentFont maxW:XXQuestionCellMaxWidth];
     self.contentLabelF = (CGRect){{contentX, contentY}, contentSize};
     
     /** 配图 */
@@ -58,19 +55,19 @@
     } else { // 没配图
         originalH = CGRectGetMaxY(self.contentLabelF) + XXQuestionCellBorderW;
     }
-  
+    
     /** 工具条 */
     CGFloat toolbarX = nameX;
     CGFloat toolbarY = originalH;
-    CGFloat toolbarW = maxW;
+    CGFloat toolbarW = XXQuestionCellMaxWidth;
     CGFloat toolbarH = 35;
     self.toolbarF = CGRectMake(toolbarX, toolbarY, toolbarW, toolbarH);
     
     /** 回复 */
     CGFloat replyX = nameX;
     CGFloat replyY = CGRectGetMaxY(self.toolbarF);
-    CGFloat replyW = maxW;
-    CGFloat replyH = question.replies.count * kXXQuestionReplyCellHeight;
+    CGFloat replyW = XXQuestionCellMaxWidth;
+    CGFloat replyH = [XXQuestionReplyView calculateReplyViewHeightWithReplys:question.replies];
     self.replyF = CGRectMake(replyX, replyY, replyW, replyH);
     
     /* cell的高度 */

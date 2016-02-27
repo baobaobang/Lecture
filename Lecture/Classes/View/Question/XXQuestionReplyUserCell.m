@@ -18,12 +18,14 @@
 - (void)awakeFromNib {
     // Initialization code
     [super awakeFromNib];
+    self.contentLabel.font = XXQuestionCellReplyFont;
+    self.contentLabel.numberOfLines = 0;
 }
 
 - (void)setReply:(XXReply *)reply{
     _reply = reply;
     
-    self.contentLabel.text = [NSString stringWithFormat:@"%@: %@", reply.nickName, reply.text];
+    self.contentLabel.text = [reply buildCommentText];
 }
 
 @end

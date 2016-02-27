@@ -168,7 +168,7 @@
         UIImageView *divider = self.dividers[i];
         divider.width = 1;
         divider.height = btnH;
-        divider.x = (i + 1) * btnW;
+        divider.x = i * btnW;
         divider.y = 0;
     }
 }

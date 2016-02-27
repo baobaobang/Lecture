@@ -55,6 +55,8 @@
     
     [self setupRefresh];
     
+//    [XXNotificationCenter addObserver:self selector:@selector(clickReplyCell:) name:XXReplyCellDidClickNotification object:nil];
+    
 //    self.tableView.tag = 1;
 }
 
@@ -182,19 +184,32 @@
     return frame.question.ID;
 }
 
-#pragma mark - 点击分享后
+//#pragma mark - 点击分享按钮后，以后做
 - (void)clickShareBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
-    //TODO: 弹出分享窗口，潘思凡
-}
-#pragma mark - 点击回复后
-- (void)clickReplyBtnInToolbar:(XXQuestionToolbar *)toolbar
-{
-    [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
-    self.replyingQuestionId = [self questionId:toolbar];
+
 }
 
-#pragma mark - 点击点赞后
+#pragma mark - 弹出回复键盘，开始回复
+- (void)beginReplyWithQuestionId:(NSString *)questionId{
+    [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
+    self.replyingQuestionId = questionId;
+}
+
+#pragma mark - 点击回复按钮后，开始回复
+- (void)clickReplyBtnInToolbar:(XXQuestionToolbar *)toolbar
+{
+    [self beginReplyWithQuestionId:[self questionId:toolbar]];
+}
+
+#pragma mark - 点击回复cell后，开始回复
+- (void)clickReplyCell:(NSNotification *)noti{
+    
+}
+
+#pragma mark - 点击回复中的cell，开始回复
+
+#pragma mark - 点击点赞按钮后
 - (void)clickUnlikeBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
     // 陈旭接口-点赞接口
@@ -291,7 +306,7 @@
 - (void)postReply{
     // 陈旭接口-发送回复接口
     NSString *url = [NSString stringWithFormat:@"questions/%@/replies", self.replyingQuestionId];
-    NSLog(@"url ---%@", url);
+
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"content"] = self.textView.text;
     params[@"type"] = isExpert ? @"1" : @"0";

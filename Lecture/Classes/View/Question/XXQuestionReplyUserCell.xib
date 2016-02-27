@@ -14,23 +14,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="34.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXo-te-Yaz">
-                        <rect key="frame" x="8" y="7" width="304" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXo-te-Yaz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="34.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="lXo-te-Yaz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Tvq-Eg-Lpl"/>
-                    <constraint firstAttribute="trailing" secondItem="lXo-te-Yaz" secondAttribute="trailing" constant="8" id="lDR-rV-qe3"/>
-                    <constraint firstAttribute="bottom" secondItem="lXo-te-Yaz" secondAttribute="bottom" constant="6.5" id="yl7-S0-AwM"/>
-                    <constraint firstItem="lXo-te-Yaz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="z8O-ab-AEb"/>
+                    <constraint firstItem="lXo-te-Yaz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Tvq-Eg-Lpl"/>
+                    <constraint firstAttribute="trailing" secondItem="lXo-te-Yaz" secondAttribute="trailing" id="lDR-rV-qe3"/>
+                    <constraint firstAttribute="bottom" secondItem="lXo-te-Yaz" secondAttribute="bottom" id="yl7-S0-AwM"/>
+                    <constraint firstItem="lXo-te-Yaz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="z8O-ab-AEb"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLabel" destination="lXo-te-Yaz" id="6B5-ue-oOL"/>
             </connections>
+            <point key="canvasLocation" x="29" y="234.5"/>
         </tableViewCell>
     </objects>
 </document>

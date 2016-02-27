@@ -92,7 +92,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 }
 
 - (void)setupTextView{
-    _textView.placeholder = @"每人只能提一个问题，请珍惜！";
+    _textView.placeholder = @"写点什么。。。";
     
     // 文字改变的通知
     [XXNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:_textView];
