@@ -85,12 +85,12 @@
 - (void)hidePicView{
 
     // 需要上移的高度
-    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight + kXXStatusAndNavBarHeight;
+    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
     
-    // 隐藏导航栏
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    // 隐藏状态栏
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+//    // 隐藏导航栏
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    // 隐藏状态栏
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
     WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -104,12 +104,13 @@
 
 - (void)showPicView{
     // 需要下移的高度
-    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight + kXXStatusAndNavBarHeight;
+    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
     
-    // 显示导航栏
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    // 显示状态栏
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+//    // 显示导航栏
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    // 显示状态栏
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    
     WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         weakSelf.questionHeaderView.y += height;

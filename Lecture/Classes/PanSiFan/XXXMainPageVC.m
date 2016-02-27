@@ -115,9 +115,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 讲座前页面
-//    XXLectureJoinVC *vc = [[XXLectureJoinVC alloc] init];
+    XXLectureJoinVC *vc = [[XXLectureJoinVC alloc] init];
     // 讲座中页面
-    XXLectureHomeVC *vc = [[XXLectureHomeVC alloc] init];
+//    XXLectureHomeVC *vc = [[XXLectureHomeVC alloc] init];
     // 数据模型
     XXXLectureModel *lectureModel = self.dataArray[indexPath.row];
     vc.lecture = lectureModel;
