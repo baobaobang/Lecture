@@ -25,13 +25,14 @@
     NSUInteger size = 10;
     NSUInteger questionId = 0;
     // 陈旭接口-所有问题接口-加载新问题
+    WS(weakSelf);
     NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%ld", self.lecture.lectureId, questionId , size];
     
     [NetworkManager getWithApi:url params:nil success:^(id result) {
         NSArray *arr = result[@"data"];
         NSMutableArray *questions = [XXQuestion mj_objectArrayWithKeyValuesArray:arr];
         // question模型转为questionFrames模型
-        self.questionFrames = [self questionFramesWithQuestions:questions];
+        weakSelf.questionFrames = [weakSelf questionFramesWithQuestions:questions];
         
         // 将最新的微博数据，添加到总数组的最前面
 //        NSRange range = NSMakeRange(0, size);
@@ -39,13 +40,13 @@
 //        [self.questionFrames insertObjects:questionFrames atIndexes:set];
         
         // 刷新表格
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
         
         // 结束刷新
-        [self endHeaderRefresh];
+        [weakSelf endHeaderRefresh];
     } fail:^(NSError *error) {
         // 结束刷新
-        [self endHeaderRefresh];
+        [weakSelf endHeaderRefresh];
     }];
 }
 
@@ -58,13 +59,13 @@
     
     // 陈旭接口-所有问题接口-加载旧问题
     NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%ld", self.lecture.lectureId, questionId, size];
-    
+    WS(weakSelf);
     [NetworkManager getWithApi:url params:nil success:^(id result) {
         NSArray *arr = result[@"data"];
         NSMutableArray *questions = [XXQuestion mj_objectArrayWithKeyValuesArray:arr];
         // question模型转为questionFrames模型
-        NSMutableArray *newFrames = [self questionFramesWithQuestions:questions];
-        [self.questionFrames addObjectsFromArray:newFrames];
+        NSMutableArray *newFrames = [weakSelf questionFramesWithQuestions:questions];
+        [weakSelf.questionFrames addObjectsFromArray:newFrames];
         
         // 将最新的微博数据，添加到总数组的最前面
         //        NSRange range = NSMakeRange(0, size);
@@ -72,13 +73,13 @@
         //        [self.questionFrames insertObjects:questionFrames atIndexes:set];
         
         // 刷新表格
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
         
         // 结束刷新
-        [self endFooterRefresh];
+        [weakSelf endFooterRefresh];
     } fail:^(NSError *error) {
         // 结束刷新
-        [self endFooterRefresh];
+        [weakSelf endFooterRefresh];
     }];
 }
 

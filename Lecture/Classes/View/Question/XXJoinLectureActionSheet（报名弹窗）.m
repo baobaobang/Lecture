@@ -166,23 +166,24 @@
 }
 
 - (void)cancel{
+    WS(weakSelf);
     [UIView animateWithDuration:kXXJoinLectureActionSheetDuration animations:^{
   
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-        self.actionSheet.y += self.actionSheet.height;
+        weakSelf.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        weakSelf.actionSheet.y += weakSelf.actionSheet.height;
     } completion:^(BOOL finished) {
-        [self removeFromSuperview];
+        [weakSelf removeFromSuperview];
     }];
 }
 
 -(void)showInView:(UIView *)view{
     [view addSubview:self];
-    
+    WS(weakSelf);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:kXXJoinLectureActionSheetDuration animations:^{
             
-            self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-            self.actionSheet.y -= self.actionSheet.height;
+            weakSelf.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+            weakSelf.actionSheet.y -= weakSelf.actionSheet.height;
         } completion:^(BOOL finished) {
         }];
     });

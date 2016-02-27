@@ -38,12 +38,17 @@
     
     // 专家头像(圆形)
 //    UIImage *expertIcon = [UIImage circleImageWithName: borderWidth:0 borderColor:[UIColor clearColor]];
-    [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:lecture.headPic] forState:0 placeholderImage:[UIImage imageNamed:@""]];
+    [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:lecture.headPic] forState:0 placeholderImage:[UIImage imageNamed:@"placeholder_expert_Head"]];
     self.iconBtn.layer.cornerRadius = self.iconBtn.frame.size.width / 2;
     self.iconBtn.layer.masksToBounds = YES;
     
     // vip等级
-    self.levelView.image = [UIImage imageNamed:@"avatar_vip_os7"];
+    if (lecture == nil) {// 网络不好的情况
+        self.levelView.image = nil;
+    }else{
+        self.levelView.image = [UIImage imageNamed:@"avatar_vip_os7"];
+    }
+    
     
     // 名字
     self.nameLabel.text = lecture.name;

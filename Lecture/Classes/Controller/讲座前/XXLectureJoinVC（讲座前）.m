@@ -92,10 +92,11 @@
     // 隐藏状态栏
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
+    WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.questionHeaderView.y -= height;
-        self.questionVc.view.y -= height;
-        self.questionVc.view.height += height;
+        weakSelf.questionHeaderView.y -= height;
+        weakSelf.questionVc.view.y -= height;
+        weakSelf.questionVc.view.height += height;
         
     } completion:^(BOOL finished) {
     }];
@@ -109,11 +110,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     // 显示状态栏
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    
+    WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.questionHeaderView.y += height;
-        self.questionVc.view.y += height;
-        self.questionVc.view.height -= height;
+        weakSelf.questionHeaderView.y += height;
+        weakSelf.questionVc.view.y += height;
+        weakSelf.questionVc.view.height -= height;
     } completion:^(BOOL finished) {
         
     }];
@@ -160,7 +161,8 @@
 // 专家简介
 - (void)setupExpertVc{
     
-    XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];    expertVc.view.x = 0;
+    XXExpertProfileVC *expertVc = [[XXExpertProfileVC alloc] init];
+    expertVc.view.x = 0;
     expertVc.view.y = CGRectGetMaxY(self.expertHeaderView.frame);
     expertVc.view.width = self.view.width;
     expertVc.view.height = kXXExpertTableViewHeight;
@@ -169,7 +171,6 @@
     self.expertVc = expertVc;
     
     expertVc.lecture = self.lecture;// 传递数据
-
 }
 
 // 精选提问头部
@@ -266,12 +267,13 @@
     [MBProgressHUD showHUDAddedTo:XXKeyWindow animated:YES];
     
     // 陈旭接口-报名接口
+    WS(weakSelf);
     NSString *url = [NSString stringWithFormat:@"lectures/%@/enroll", self.lecture.lectureId];
     [NetworkManager postWithApi:url params:nil success:^(id result) {
         if ([result[@"ret"] intValue] == 0) {
             [MBProgressHUD hideHUDForView:XXKeyWindow animated:NO];
             [MBProgressHUD showSuccess:@"报名成功！" toView:XXKeyWindow];
-            self.joinBtn.enabled = NO;
+            weakSelf.joinBtn.enabled = NO;
         }else{
             [MBProgressHUD hideHUDForView:XXKeyWindow animated:NO];
             [MBProgressHUD showSuccess:@"人数已满，报名失败！" toView:XXKeyWindow];

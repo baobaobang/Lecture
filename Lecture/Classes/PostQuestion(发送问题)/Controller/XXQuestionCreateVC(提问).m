@@ -137,7 +137,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     // 上传图片
-    //FIXME: 两个方法重名
+    WS(weakSelf);
     [NetworkManager qiniuUpload:self.selectPhotos progress:^(NSString *key, float percent) {
         
     } success:^(id result) {
@@ -146,22 +146,22 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
         NSLog(@"error---%@", error);
     } allcompleteBlock:^(id result) {
         // 陈旭接口-发送提问接口
-        NSString *url = [NSString stringWithFormat:@"lectures/%@/questions", self.lecture.lectureId];
+        NSString *url = [NSString stringWithFormat:@"lectures/%@/questions", weakSelf.lecture.lectureId];
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        params[@"content"] = self.textView.text;
+        params[@"content"] = weakSelf.textView.text;
         params[@"images"] = result;
         [NetworkManager postWithApi:url params:params success:^(id result) {
             if ([result[@"ret"] intValue] == 0) {
-                [MBProgressHUD hideHUDForView:self.view animated:NO];
-                [MBProgressHUD showSuccess:@"发送成功！" toView:self.view];
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
+                [MBProgressHUD showSuccess:@"发送成功！" toView:weakSelf.view];
             }else{
-                [MBProgressHUD hideHUDForView:self.view animated:NO];
-                [MBProgressHUD showSuccess:@"发送失败！" toView:self.view];
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
+                [MBProgressHUD showSuccess:@"发送失败！" toView:weakSelf.view];
             }
             
-            [self dismiss];
+            [weakSelf dismiss];
         } fail:^(NSError *error) {
-            [self dismiss];
+            [weakSelf dismiss];
         }];
     }];
 
@@ -200,8 +200,9 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 
 #pragma mark - 退出控制器
 -(void)dismiss{
+    WS(weakSelf);
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.textView resignFirstResponder];
+        [weakSelf.textView resignFirstResponder];
     }];
 }
 

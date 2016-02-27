@@ -17,9 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeCount;
+@property (weak, nonatomic) IBOutlet UILabel *timeCount;// 讲座倒计时
 @property (nonatomic, strong) NSTimer *timer;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;// 讲座主题
 @property (nonatomic, strong) XXXLectureModel *lectureModel;
 @end
 

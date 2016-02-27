@@ -199,6 +199,7 @@
 {
     // 陈旭接口-点赞接口
     //FIXME: 何老师，点赞接口是不是要加入lecture的id
+    WS(weakSelf);
     NSString *url = [NSString stringWithFormat:@"questions/%@/likers", [self questionId:toolbar]];
     [NetworkManager postWithApi:url params:nil success:^(id result) {
         
@@ -219,9 +220,10 @@
     // {{0, 344}, {320, 224}}
     //    NSLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
+    WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{
         // textview的Y值 == 键盘的Y值 - textview的高度
-        self.textView.y = keyboardF.origin.y  - self.textView.height;
+        weakSelf.textView.y = keyboardF.origin.y  - weakSelf.textView.height;
     }];
 }
 
@@ -235,9 +237,10 @@
     // {{0, 568}, {320, 224}}
     //    NSLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
+    WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{
         // textview的Y值 == 键盘的Y值
-        self.textView.y = keyboardF.origin.y;
+        weakSelf.textView.y = keyboardF.origin.y;
     }];
 }
 
@@ -292,35 +295,36 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"content"] = self.textView.text;
     params[@"type"] = isExpert ? @"1" : @"0";
+    WS(weakSelf);
     [NetworkManager postWithApi:url params:params success:^(id result) {
         // 插入新增回复(以后用本地离线缓存来做插入)
-        XXQuestionFrame *frame = self.questionFrames[self.replyingQuestionIndex];
+        XXQuestionFrame *frame = weakSelf.questionFrames[weakSelf.replyingQuestionIndex];
         XXReply *reply = [[XXReply alloc] init];
 
-        reply.questionId = self.replyingQuestionId;
+        reply.questionId = weakSelf.replyingQuestionId;
         reply.nickName = @"匿名用户"; // 当前用户的昵称
-        reply.text = self.textView.text;
+        reply.text = weakSelf.textView.text;
         reply.type = isExpert ? 1 : 0;
         
-        NSUInteger count = self.questionFrames.count;
+        NSUInteger count = weakSelf.questionFrames.count;
         NSMutableArray *questionsM = [NSMutableArray array];
         for (NSInteger i = 0; i < count; i++) {
-            XXQuestionFrame * frame = self.questionFrames[i];
+            XXQuestionFrame * frame = weakSelf.questionFrames[i];
             XXQuestion *question = frame.question;
-            if (i == self.replyingQuestionIndex) {
+            if (i == weakSelf.replyingQuestionIndex) {
                 [question.replies addObject:reply];
             }
             [questionsM addObject:question];
         }
         
-        self.questionFrames = [self questionFramesWithQuestions:questionsM];
+        weakSelf.questionFrames = [weakSelf questionFramesWithQuestions:questionsM];
         
         // 刷新当前问题行
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.replyingQuestionIndex inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:weakSelf.replyingQuestionIndex inSection:0];
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 
         // 清空文字
-        self.textView.text = nil;
+        weakSelf.textView.text = nil;
         
     } fail:^(NSError *error) {
         

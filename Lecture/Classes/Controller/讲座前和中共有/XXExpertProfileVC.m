@@ -28,13 +28,6 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"XXExpertProfileCell" bundle:nil] forCellReuseIdentifier:expertProfileCellReuseId];
 }
 
-//- (void)setLecture:(XXXLectureModel *)lecture{
-//    _lecture = lecture;
-//    
-//    [self.tableView reloadData];
-//}
-
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -62,11 +55,11 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
 #pragma mark - cell的高度(自适应高度)
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    WS(weakSelf);
     return [tableView fd_heightForCellWithIdentifier:expertProfileCellReuseId cacheByIndexPath:indexPath configuration:^(XXExpertProfileCell *cell) {
         // configurations
-        [self configureCell:cell atIndexPath:indexPath];
+        [weakSelf configureCell:cell atIndexPath:indexPath];
     }];
-    
 }
 
 - (void)dealloc{

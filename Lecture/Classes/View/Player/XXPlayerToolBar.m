@@ -128,11 +128,13 @@
     CGFloat sliderH = self.height;
     self.timeSlider.frame = CGRectMake(sliderX, sliderY, sliderW, sliderH);
     
-    // 设置各个子控件的默认数据（无网络数据的默认数据设置）
-    [self setUpDefaultData];
+    // 网络不好的情况（设置各个子控件的默认数据）
+    if (self.player == nil) {
+        [self setUpDefaultData];
+    }
 }
 
-#pragma mark -设置各个子控件的默认数据
+#pragma mark -设置各个子控件的默认数据-网络不好的情况
 - (void)setUpDefaultData{
     
     NSString *durationStr = [NSString getHourMinuteSecondWithSecond:0];

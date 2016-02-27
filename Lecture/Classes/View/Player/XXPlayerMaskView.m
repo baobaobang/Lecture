@@ -106,8 +106,9 @@
     CGFloat nextY = self.bigPlayBtn.y;
     self.nextBtn.frame = CGRectMake(nextX, nextY, nextW, nextH);
     
-    // 无网络数据的默认数据设置
-    [self setPageNumber:0 totalNumber:0];
+    if (self.pages.count == 0) { // 网络不好的情况
+        [self setPageNumber:0 totalNumber:0];
+    }
 }
 
 - (void)btnClick:(UIButton *)btn{
@@ -133,7 +134,7 @@
 - (void)setPages:(NSArray *)pages{
     _pages = pages;
     
-    [self setPageNumber:_currentItem+1 totalNumber:self.pages.count];
+    [self setPageNumber:_currentItem+1 totalNumber:pages.count];
 }
 
 

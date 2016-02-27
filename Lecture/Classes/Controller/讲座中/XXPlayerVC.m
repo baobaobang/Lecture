@@ -71,9 +71,7 @@
     self.currentItem = 0;
     
     // 给maskView传递数据
-    self.playerPicView.maskView.currentItem = self.currentItem;
     self.playerPicView.maskView.pages = self.pages;
-    
 }
 
 #pragma mark - 初始化
@@ -156,7 +154,7 @@
     AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:currentPage.audio];
     self.player = player;
     self.playerItem = player.currentItem;
-    // 添加新的监听
+    // 添加kvo监听播放器的状态
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
 }
 
@@ -218,16 +216,19 @@
 #pragma mark - 上一首
 
 -(void)previous{
-    
-    if (self.currentItem == 0){ // 如果是第一首
-        [self showHudWithMessage:@"已经是第一页了"];
+    if (self.pages == nil) {// 网络不好的情况
+        [self showHudWithMessage:@"暂无数据。。。"];
     }else{
-        
-        // 当前不是第一首，就更改索引为上一首
-        self.currentItem --;
-        
-        // 有动画滚动到对应currentItem的位置
-        [self scrollToItemWithAnimation:self.currentItem];
+        if (self.currentItem == 0){ // 如果是第一首
+            [self showHudWithMessage:@"已经是第一页了"];
+        }else{
+            
+            // 当前不是第一首，就更改索引为上一首
+            self.currentItem --;
+            
+            // 有动画滚动到对应currentItem的位置
+            [self scrollToItemWithAnimation:self.currentItem];
+        }
     }
 }
 
@@ -235,16 +236,21 @@
 
 -(void)next{
     
-    if (self.currentItem == self.pages.count - 1) { // 如果是最后一首
-        [self showHudWithMessage:@"已经是最后一页了"];
-        
+    if (self.pages == nil) {// 网络不好的情况
+        [self showHudWithMessage:@"暂无数据。。。"];
     }else{
-        // 当前不是最后一首，更改索引为下一首
-        self.currentItem ++;
-        
-        // 有动画滚动到对应currentItem的位置
-        [self scrollToItemWithAnimation:self.currentItem];
+        if (self.currentItem == self.pages.count - 1) { // 如果是最后一首
+            [self showHudWithMessage:@"已经是最后一页了"];
+            
+        }else{
+            // 当前不是最后一首，更改索引为下一首
+            self.currentItem ++;
+            
+            // 有动画滚动到对应currentItem的位置
+            [self scrollToItemWithAnimation:self.currentItem];
+        }
     }
+
 }
 
 - (void)showHudWithMessage:(NSString *)message{
@@ -259,6 +265,7 @@
 #pragma mark - 有动画滚动到对应currentItem的位置
 
 - (void)scrollToItemWithAnimation:(NSUInteger)item{
+    
     [self.playerPicView.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
 }
 

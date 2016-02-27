@@ -43,10 +43,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    // 设置导航栏
-    [self setupNav];
-    
-    // 设置讲座图片和音频部分
+    // 创建XXPlayerVC
     [self setupPlayerVc];
     
     // 设置专家简介头部
@@ -75,29 +72,31 @@
     [XXNotificationCenter removeObserver:self];
 }
 
-#pragma mark - 初始化
 
-//- (void)loadLectureDetail{
-//    // 陈旭接口-讲座的详情接口
-//    NSString *url = [NSString stringWithFormat:@"lectures/%@", self.lecture.lectureId];
-////    NSString *url = [NSString stringWithFormat:@"lectures/108"];//TODO: 定死id
-//    NSLog(@"url-------------------%@", url);
-//    [NetworkManager getWithApi:url params:nil success:^(id result) {
-//        _lectureDetail = [XXXLectureModel mj_objectWithKeyValues:result[@"data"][@"lecture"]];
-//        self.playerVc.lectureDetail = _lectureDetail;
-//        
-//    } fail:^(NSError *error) {
-//        
-//    }];
-//}
+#pragma mark - 讲座的详情接口
 
-/**
- *  设置导航栏内容
- */
-- (void)setupNav
-{
+- (void)setLecture:(XXXLectureModel *)lecture{
+    _lecture = lecture;
+
+    [self loadLectureDetail];// 传递数据给播放器
+    
+    _expertVc.lecture = lecture;// 传递数据给专家简介
+    
 }
-
+- (void)loadLectureDetail{
+    // 陈旭接口-讲座的详情接口
+    NSString *url = [NSString stringWithFormat:@"lectures/%@", self.lecture.lectureId];
+//    NSString *url = [NSString stringWithFormat:@"lectures/108"];//TODO: 定死id
+    WS(weakSelf);
+    [NetworkManager getWithApi:url params:nil success:^(id result) {
+        _lectureDetail = [XXXLectureModel mj_objectWithKeyValues:result[@"data"][@"lecture"]];
+        weakSelf.playerVc.lectureDetail = _lectureDetail;
+        
+    } fail:^(NSError *error) {
+        
+    }];
+}
+#pragma mark - 初始化
 
 - (void)setupPlayerVc{
     
@@ -111,6 +110,8 @@
     _playerVc.view.y = kXXStatusAndNavBarHeight;
     _playerVc.view.width = self.view.width;
     _playerVc.view.height = self.view.width * 0.6;
+    
+
 }
 
 // 专家简介头部
@@ -138,8 +139,6 @@
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
     self.expertVc = expertVc;
-    
-    expertVc.lecture = self.lecture;// 传递数据
 }
 
 // 在线交流头部
@@ -219,13 +218,13 @@
     // 需要上移的高度
     CGFloat heightOne = self.playerVc.playerPicView.height;
     CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
-    
+    WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.playerVc.view.y -= heightOne;
-        self.expertVc.view.y -= heightOne;
-        self.onlineHeaderView.y -= heightTwo;
-        self.onlineVc.view.y -= heightTwo;
-        self.onlineVc.view.height += heightTwo;
+        weakSelf.playerVc.view.y -= heightOne;
+        weakSelf.expertVc.view.y -= heightOne;
+        weakSelf.onlineHeaderView.y -= heightTwo;
+        weakSelf.onlineVc.view.y -= heightTwo;
+        weakSelf.onlineVc.view.height += heightTwo;
         
     } completion:^(BOOL finished) {
     }];
@@ -236,13 +235,13 @@
     // 需要下移的高度
     CGFloat heightOne = self.playerVc.playerPicView.height;
     CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
-    
+    WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.playerVc.view.y += heightOne;
-        self.expertVc.view.y += heightOne;
-        self.onlineHeaderView.y += heightTwo;
-        self.onlineVc.view.y += heightTwo;
-        self.onlineVc.view.height -= heightTwo;
+        weakSelf.playerVc.view.y += heightOne;
+        weakSelf.expertVc.view.y += heightOne;
+        weakSelf.onlineHeaderView.y += heightTwo;
+        weakSelf.onlineVc.view.y += heightTwo;
+        weakSelf.onlineVc.view.height -= heightTwo;
     } completion:^(BOOL finished) {
         
     }];
@@ -273,8 +272,9 @@
     transform = CGAffineTransformTranslate(transform, tx, ty);
     transform = CGAffineTransformScale(transform, sx, sy);
     transform = CGAffineTransformRotate(transform, M_PI_2);
+    WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{
-        self.playerVc.view.transform = transform;
+        weakSelf.playerVc.view.transform = transform;
     }];
     
 //    XXLog(@"_landscapeVc.view.width-%f, _landscapeVc.view.height-%f", _landscapeVc.view.width, _landscapeVc.view.height);
@@ -288,9 +288,9 @@
 
 - (void)hideLandscapeViewWithDuration:(NSTimeInterval)duration
 {
-    
+    WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{
-        self.playerVc.view.transform = CGAffineTransformIdentity;
+        weakSelf.playerVc.view.transform = CGAffineTransformIdentity;
     }];
 
     // 显示导航栏
@@ -334,14 +334,14 @@
     
     // 需要上移的高度
     CGFloat height = kXXStatusAndNavBarHeight;
-    
+    WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.playerVc.view.y -= height;
-        self.expertHeaderView.y -= height;
-        self.expertVc.view.y -= height;
-        self.onlineHeaderView.y -= height;
-        self.onlineVc.view.y -= height;
-        self.onlineVc.view.height += height;
+        weakSelf.playerVc.view.y -= height;
+        weakSelf.expertHeaderView.y -= height;
+        weakSelf.expertVc.view.y -= height;
+        weakSelf.onlineHeaderView.y -= height;
+        weakSelf.onlineVc.view.y -= height;
+        weakSelf.onlineVc.view.height += height;
         
     } completion:^(BOOL finished) {
     }];
@@ -355,14 +355,14 @@
     
     // 需要下移的高度
     CGFloat height = kXXStatusAndNavBarHeight;
-    
+    WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.playerVc.view.y += height;
-        self.expertHeaderView.y += height;
-        self.expertVc.view.y += height;
-        self.onlineHeaderView.y += height;
-        self.onlineVc.view.y += height;
-        self.onlineVc.view.height -= height;
+        weakSelf.playerVc.view.y += height;
+        weakSelf.expertHeaderView.y += height;
+        weakSelf.expertVc.view.y += height;
+        weakSelf.onlineHeaderView.y += height;
+        weakSelf.onlineVc.view.y += height;
+        weakSelf.onlineVc.view.height -= height;
     } completion:^(BOOL finished) {
         
     }];

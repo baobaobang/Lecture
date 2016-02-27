@@ -82,7 +82,12 @@
 //每个分区上的元素个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.pages.count;
+    if (self.pages == nil) {// 网络不好的情况
+        return 1;
+    }else{
+        return self.pages.count;
+    }
+    
 }
 
 //设置元素内容

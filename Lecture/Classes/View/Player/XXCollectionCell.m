@@ -22,6 +22,7 @@
     }
     return self;
 }
+
 - (void)setPage:(XXXLecturePageModel *)page
 {
     _page = page;
