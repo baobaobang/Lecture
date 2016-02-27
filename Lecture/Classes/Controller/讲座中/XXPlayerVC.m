@@ -340,8 +340,6 @@
 
 - (void)playerToolBar:(XXPlayerToolBar *)toolBar didClickPlayBtn:(UIButton *)btn{
     [self playOrStop];
-    
-    NSLog(@"");
 }
 
 // 在maskView隐藏和显现的时候添加动画效果
