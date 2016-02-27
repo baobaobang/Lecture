@@ -68,6 +68,14 @@
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    if (self.isHiddenStatusBar) {
+        [self showNavigationBarAndStatusBar];
+    }
+}
+
 - (void)dealloc{
     [XXNotificationCenter removeObserver:self];
 }
@@ -277,12 +285,8 @@
     }];
     
 //    XXLog(@"_landscapeVc.view.width-%f, _landscapeVc.view.height-%f", _landscapeVc.view.width, _landscapeVc.view.height);
-
-    // 隐藏导航栏
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    // 隐藏状态栏
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    //    [self hideStatusBar];
+    // 隐藏导航栏和状态栏
+    [self hideNavigationBarAndStatusBar];
 }
 
 - (void)hideLandscapeViewWithDuration:(NSTimeInterval)duration
@@ -291,7 +295,22 @@
     [UIView animateWithDuration:duration animations:^{
         weakSelf.playerVc.view.transform = CGAffineTransformIdentity;
     }];
+    // 显示导航栏和状态栏
+    [self showNavigationBarAndStatusBar];
+}
 
+- (void)hideNavigationBarAndStatusBar
+{
+    self.hiddenStatusBar = YES;
+    // 隐藏导航栏
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    // 隐藏状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+}
+
+- (void)showNavigationBarAndStatusBar
+{
+    self.hiddenStatusBar = NO;
     // 显示导航栏
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     // 显示状态栏
@@ -300,29 +319,29 @@
 
 #pragma mark - 隐藏导航栏和状态栏 适配iOS7
 
-- (BOOL)prefersStatusBarHidden{
-    // iOS7后,[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-    // 已经不起作用了
-    return _hiddenStatusBar;
-}
-
-- (void)showStatusBar
-{
-    _hiddenStatusBar = NO;
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
-}
-
-- (void)hideStatusBar
-{
-    _hiddenStatusBar = YES;
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
-}
+//- (BOOL)prefersStatusBarHidden{
+//    // iOS7后,[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+//    // 已经不起作用了
+//    return _hiddenStatusBar;
+//}
+//
+//- (void)showStatusBar
+//{
+//    _hiddenStatusBar = NO;
+//    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+//        [self prefersStatusBarHidden];
+//        [self setNeedsStatusBarAppearanceUpdate];
+//    }
+//}
+//
+//- (void)hideStatusBar
+//{
+//    _hiddenStatusBar = YES;
+//    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+//        [self prefersStatusBarHidden];
+//        [self setNeedsStatusBarAppearanceUpdate];
+//    }
+//}
 
 #pragma mark - 播放时隐藏导航栏和状态栏
 - (void)startPlaying{
