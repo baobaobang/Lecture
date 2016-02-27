@@ -29,7 +29,7 @@ NSString * const XXTextDidDeleteNotification = @"XXTextDidDeleteNotification";//
 
 #pragma mark - 讲座前
 /** frame*/
-const CGFloat kXXPlayerPicViewHeightWidthRatio = 0.5;// 高宽比
+const CGFloat kXXPlayerPicViewHeightWidthRatio = 0.65;// 高宽比
 const CGFloat kXXExpertHeaderViewHeight = 44;
 const CGFloat kXXExpertTableViewHeight = 80;
 const CGFloat kXXQuestionHeaderViewHeight = 44;

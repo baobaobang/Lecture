@@ -118,9 +118,7 @@
     _playerVc.view.x = 0;
     _playerVc.view.y = kXXStatusAndNavBarHeight;
     _playerVc.view.width = self.view.width;
-    _playerVc.view.height = self.view.width * 0.6;
-    
-
+    _playerVc.view.height = self.view.width * kXXPlayerPicViewHeightWidthRatio;
 }
 
 // 专家简介头部
