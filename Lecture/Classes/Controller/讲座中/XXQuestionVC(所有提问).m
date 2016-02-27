@@ -10,7 +10,6 @@
 #import "MJRefresh.h"
 
 @interface XXQuestionVC ()
-@property (nonatomic, strong) NSArray *frames;
 
 @end
 

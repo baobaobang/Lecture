@@ -90,7 +90,11 @@
     _expertVc.lecture = lecture;// 传递数据给专家简介
     
 }
-- (void)loadLectureDetail{
+- (void)loadLectureDetail
+{
+    // 如果已经有pages数据，重新从首页进入同一个讲座不再重复加载pages数据
+    if (self.lectureDetail) return;
+
     // 陈旭接口-讲座的详情接口
     NSString *url = [NSString stringWithFormat:@"lectures/%@", self.lecture.lectureId];
 //    NSString *url = [NSString stringWithFormat:@"lectures/108"];//TODO: 定死id

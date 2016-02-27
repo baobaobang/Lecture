@@ -56,12 +56,20 @@
     [XXNotificationCenter addObserver:self selector:@selector(avPlayerItemDidPlayToEndTime:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    // 离开讲座中页面就不能继续播放了，但是按住home键可以进入后台播放
+    [self playOrStop];
+}
+
 - (void)dealloc{
     [XXNotificationCenter removeObserver:self];
 }
 
 #pragma mark - 传递lecture详情数据给PlayerPicView和PlayerToolBar
 - (void)setLectureDetail:(XXXLectureModel *)lectureDetail{
+    
     _lectureDetail = lectureDetail;
     
     self.pages = lectureDetail.pages;
@@ -162,7 +170,6 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if (object == _playerItem && [keyPath isEqualToString:@"status"]) {
         if ([_playerItem status] == AVPlayerStatusReadyToPlay) {
-            NSLog(@"AVPlayerStatusReadyToPlay");
             
             // 开始播放
             if (self.isPlaying) {

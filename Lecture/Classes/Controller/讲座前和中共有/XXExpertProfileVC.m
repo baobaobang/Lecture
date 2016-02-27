@@ -62,7 +62,7 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
 }
 
 - (void)dealloc{
-    XXTestLog;
+
 }
 
 
