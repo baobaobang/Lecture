@@ -55,7 +55,7 @@
     
     [self setupRefresh];
     
-
+//    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
 //    self.tableView.tag = 1;
 }

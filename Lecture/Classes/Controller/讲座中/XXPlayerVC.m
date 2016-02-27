@@ -35,6 +35,8 @@
 
 /** 音乐数据 */
 @property(strong,nonatomic) NSArray *pages;
+
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation XXPlayerVC
@@ -107,7 +109,7 @@
 {
     // 创建playerToolBar
     XXPlayerToolBar *playerToolBar = [[XXPlayerToolBar alloc] init];
-    playerToolBar.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5];
+    playerToolBar.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.7];
     playerToolBar.delegate = self;
     [self.view addSubview:playerToolBar];
     self.playerToolBar = playerToolBar;
@@ -201,8 +203,9 @@
         self.playerToolBar.playBtn.selected = YES;
         [self.player play];
         
-        [self addFadeAnimation];
+        [self addFadeAnimationForView:self.playerPicView.maskView];
         self.playerPicView.maskView.hidden = YES;
+        [self addFadeAnimationForView:self.playerToolBar];
         self.playerToolBar.hidden = YES;
         // 隐藏导航栏
 //        [XXNotificationCenter postNotificationName:XXStartPlayingNotification object:nil];
@@ -212,9 +215,11 @@
         self.playerToolBar.playBtn.selected = NO;
         [self.player pause];
         
-        [self addFadeAnimation];
+        [self addFadeAnimationForView:self.playerPicView.maskView];
         self.playerPicView.maskView.hidden = NO;
+        [self addFadeAnimationForView:self.playerToolBar];
         self.playerToolBar.hidden = NO;
+        [self.timer invalidate]; // 暂停播放的时候就一直显示播放条
         // 显示导航栏
 //        [XXNotificationCenter postNotificationName:XXStopPlayingNotification object:nil];
     }
@@ -288,12 +293,25 @@
 #pragma mark - 点击maskView
 - (void)playerPicView:(XXPlayerPicView *)playerPicView didClickPlayerMaskView:(XXPlayerMaskView *)maskView{
     
-    [self playOrStop];
+//    [self playOrStop];
 }
 #pragma mark - 点击collectionView
 - (void)playerPicView:(XXPlayerPicView *)playerPicView didClickCollectionView:(UICollectionView *)collectionView{
     
-    [self playOrStop];
+    [self addFadeAnimationForView:self.playerToolBar];
+    self.playerToolBar.hidden = !self.playerToolBar.hidden;
+    
+    if (self.playerToolBar.hidden) { // 如果已经隐藏
+        [self.timer invalidate];
+    }else{ // 如果没有隐藏
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(hidePlayerToolbar) userInfo:nil repeats:NO];
+        self.timer = timer;
+    }
+}
+
+- (void)hidePlayerToolbar{
+    [self addFadeAnimationForView:self.playerToolBar];
+    self.playerToolBar.hidden = YES;
 }
 
 #pragma mark - 滚动图片切换到另一张后自动切换音乐
@@ -321,12 +339,11 @@
 
 // 在maskView隐藏和显现的时候添加动画效果
 
-- (void)addFadeAnimation{
+- (void)addFadeAnimationForView:(UIView *)view{
     CATransition *animation = [CATransition animation];
     animation.type = kCATransitionFade;
     animation.duration = 0.4;
-    [self.playerPicView.maskView.layer addAnimation:animation forKey:nil];
-    [self.playerToolBar.layer addAnimation:animation forKey:nil];
+    [view.layer addAnimation:animation forKey:nil];
 }
 
 // 点击slider的时候，暂停播放
