@@ -63,15 +63,14 @@
     
     [XXNotificationCenter addObserver:self selector:@selector(landscapeBtnClick) name:XXLandscapeBtnDidClickNotification object:nil];
     
-    [XXNotificationCenter addObserver:self selector:@selector(startPlaying) name:XXStartPlayingNotification object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(stopPlaying) name:XXStopPlayingNotification object:nil];
+//    [XXNotificationCenter addObserver:self selector:@selector(startPlaying) name:XXStartPlayingNotification object:nil];
+//    [XXNotificationCenter addObserver:self selector:@selector(stopPlaying) name:XXStopPlayingNotification object:nil];
     
 }
 
 - (void)dealloc{
     [XXNotificationCenter removeObserver:self];
 }
-
 
 #pragma mark - 讲座的详情接口
 
