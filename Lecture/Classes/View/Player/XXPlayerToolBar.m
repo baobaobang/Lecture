@@ -23,6 +23,14 @@
 
 @implementation XXPlayerToolBar
 
+#pragma mark - 生命周期
+
+-(void)dealloc{
+    //移除定时器
+
+    [self.link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
 #pragma mark - 懒加载
 -(CADisplayLink *)link{
     if (!_link) {
@@ -144,12 +152,6 @@
     self.currentTimeLabel.text = [NSString stringWithFormat:@"%@", currentTimeStr];
 }
 
-#pragma mark - 生命周期
-
--(void)dealloc{
-    //移除定时器
-    [self.link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-}
 
 #pragma mark - 给子控件赋值数据
 

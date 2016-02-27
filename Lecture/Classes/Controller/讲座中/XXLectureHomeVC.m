@@ -12,10 +12,10 @@
 #import "XXLectureSelectedQuestions.h"
 
 @interface XXLectureHomeVC ()
-@property (nonatomic, strong) XXLectureVC *lectureVc;
+@property (nonatomic, weak) XXLectureVC *lectureVc;
 
 @property (nonatomic, assign) NSInteger fromIndex;
-@property (nonatomic, strong) UISegmentedControl *segment;
+@property (nonatomic, weak) UISegmentedControl *segment;
 @end
 
 @implementation XXLectureHomeVC

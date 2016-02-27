@@ -62,7 +62,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"%@",self.textView);
+//    XXLog(@"%@",self.textView);
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -242,7 +242,7 @@
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     // {{0, 344}, {320, 224}}
-    //    NSLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
+    //    XXLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
     WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{
@@ -259,7 +259,7 @@
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     // {{0, 568}, {320, 224}}
-    //    NSLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
+    //    XXLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
     // 执行动画
     WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{
@@ -322,7 +322,7 @@
     WS(weakSelf);
     [NetworkManager postWithApi:url params:params success:^(id result) {
         // 插入新增回复(以后用本地离线缓存来做插入)
-        XXQuestionFrame *frame = weakSelf.questionFrames[weakSelf.replyingQuestionIndex];
+//        XXQuestionFrame *frame = weakSelf.questionFrames[weakSelf.replyingQuestionIndex];
         XXReply *reply = [[XXReply alloc] init];
 
         reply.questionId = weakSelf.replyingQuestionId;

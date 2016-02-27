@@ -99,7 +99,9 @@
     WS(weakSelf);
     [NetworkManager getWithApi:url params:nil success:^(id result) {
         _lectureDetail = [XXXLectureModel mj_objectWithKeyValues:result[@"data"][@"lecture"]];
-        weakSelf.playerVc.lectureDetail = _lectureDetail;
+        if(weakSelf.playerVc){
+            weakSelf.playerVc.lectureDetail = _lectureDetail;
+        }
         
     } fail:^(NSError *error) {
         
