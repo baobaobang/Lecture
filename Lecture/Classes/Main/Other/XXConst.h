@@ -81,6 +81,10 @@ extern NSString * const XXQuestionToolbarUnlikeButtonClickNotification;
 extern NSString * const XXLandscapeBtnDidClickNotification;
 extern NSString * const XXStartPlayingNotification;
 extern NSString * const XXStopPlayingNotification;
+
+extern NSString * const XXLectureVCRefreshNotification;
+extern NSString * const XXLectureExpertOnlyVCRefreshNotification;
+extern NSString * const XXLectureSelectedQuestionsVCRefreshNotification;
 /** 时间*/
 extern const CGFloat kXXPlayerVCChageToLandscapeDuration;
 

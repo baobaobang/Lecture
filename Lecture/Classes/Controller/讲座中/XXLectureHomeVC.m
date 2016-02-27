@@ -15,6 +15,7 @@
 @property (nonatomic, strong) XXLectureVC *lectureVc;
 
 @property (nonatomic, assign) NSInteger fromIndex;
+@property (nonatomic, strong) UISegmentedControl *segment;
 @end
 
 @implementation XXLectureHomeVC
@@ -54,11 +55,25 @@
     [segment addTarget:self action:@selector(selected:) forControlEvents:UIControlEventValueChanged];
     segment.selectedSegmentIndex = 0;//选中第几个segment 一般用于初始化时选中
     self.navigationItem.titleView = segment;
+    self.segment = segment;
 }
 
-- (void)rightItemClick
-{
-    
+#pragma mark - 点击刷新按钮
+- (void)rightItemClick{
+    switch (self.segment.selectedSegmentIndex) {
+        case 0://全部信息
+            [XXNotificationCenter postNotificationName:XXLectureVCRefreshNotification object:nil];
+            break;
+        case 1://只看专家
+            [XXNotificationCenter postNotificationName:XXLectureExpertOnlyVCRefreshNotification object:nil];
+            break;
+        case 2://精选提问
+            [XXNotificationCenter postNotificationName:XXLectureSelectedQuestionsVCRefreshNotification object:nil];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - 切换navSegmentedControl

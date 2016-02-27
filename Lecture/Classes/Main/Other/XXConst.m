@@ -72,6 +72,10 @@ NSString * const XXLandscapeBtnDidClickNotification = @"XXLandscapeBtnDidClickNo
 NSString * const XXStartPlayingNotification = @"XXStartPlayingNotification";
 NSString * const XXStopPlayingNotification = @"XXStopPlayingNotification";
 
+NSString * const XXLectureVCRefreshNotification = @"XXLectureVCRefreshNotification";
+NSString * const XXLectureExpertOnlyVCRefreshNotification = @"XXLectureExpertOnlyVCRefreshNotification";
+NSString * const XXLectureSelectedQuestionsVCRefreshNotification = @"XXLectureSelectedQuestionsVCRefreshNotification";
+
 #pragma mark - 问题
 NSString * const XXReplyCellDidClickNotification = @"XXReplyCellDidClickNotification";
 @end

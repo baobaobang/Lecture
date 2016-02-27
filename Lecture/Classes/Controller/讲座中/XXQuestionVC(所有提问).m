@@ -18,8 +18,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [XXNotificationCenter addObserver:self selector:@selector(loadNewQuestions) name:XXLectureVCRefreshNotification object:nil];
 }
 
+// 点击导航栏的刷新按钮加载新问题
+- (void)loadNewQuestions
+{
+    [self.tableView.mj_header beginRefreshing];
+}
+
+// 下拉加载最新的问题
 - (void)headerRefreshAction
 {
     NSUInteger size = 10;
@@ -35,9 +44,9 @@
         weakSelf.questionFrames = [weakSelf questionFramesWithQuestions:questions];
         
         // 将最新的微博数据，添加到总数组的最前面
-//        NSRange range = NSMakeRange(0, size);
-//        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
-//        [self.questionFrames insertObjects:questionFrames atIndexes:set];
+        //        NSRange range = NSMakeRange(0, size);
+        //        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+        //        [self.questionFrames insertObjects:questionFrames atIndexes:set];
         
         // 刷新表格
         [weakSelf.tableView reloadData];
@@ -50,6 +59,7 @@
     }];
 }
 
+// 上拉加载旧的问题
 - (void)footerRefreshAction
 {
     NSUInteger size = 10;
