@@ -60,7 +60,9 @@
     [super viewWillDisappear:animated];
     
     // 离开讲座中页面就不能继续播放了，但是按住home键可以进入后台播放
-    [self playOrStop];
+    // 这样也有问题，切换到只看专家的时候也会停止播放
+//    self.playing = YES;
+//    [self playOrStop];
 }
 
 - (void)dealloc{
