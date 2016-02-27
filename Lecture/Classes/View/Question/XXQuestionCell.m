@@ -141,7 +141,7 @@
     
     /** 回复 */
     self.replyView.frame = questionFrame.replyF;
-    self.replyView.replys = question.replies;
+    self.replyView.question = question;
 }
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XXQuestion.h"
 
 @interface XXQuestionReplyView : UIView
-@property (nonatomic, strong) NSArray *replys;
+@property (nonatomic, strong) XXQuestion *question;
+
 + (CGFloat)calculateReplyViewHeightWithReplys:(NSArray *)replys;
 @end

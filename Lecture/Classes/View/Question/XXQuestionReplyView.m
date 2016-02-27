@@ -60,12 +60,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.replys.count;
+    return self.question.replies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    XXReply *reply = self.replys[indexPath.row];
+    XXReply *reply = self.question.replies[indexPath.row];
     if (reply.type == 0) {
         // 用户回复
         XXQuestionReplyUserCell *cell = (XXQuestionReplyUserCell *)[tableView dequeueReusableCellWithIdentifier:XXQuestionReplyUserCellReuseId forIndexPath:indexPath];
@@ -84,7 +84,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    XXReply *reply = self.replys[indexPath.row];
+    XXReply *reply = self.question.replies[indexPath.row];
     return [XXQuestionReplyView calculateCellHeightWithReply:reply];
 }
 
@@ -115,8 +115,9 @@
 }
 
 #pragma mark - 点击cell弹出回复textview
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [XXNotificationCenter postNotificationName:XXReplyCellDidClickNotification object:nil];
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [XXNotificationCenter postNotificationName:XXReplyCellDidClickNotification object:nil userInfo:@{@"questionId" : self.question.ID, @"row" : @(indexPath.row)}];
+}
 
 @end

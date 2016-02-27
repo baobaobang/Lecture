@@ -55,7 +55,7 @@
     
     [self setupRefresh];
     
-//    [XXNotificationCenter addObserver:self selector:@selector(clickReplyCell:) name:XXReplyCellDidClickNotification object:nil];
+
     
 //    self.tableView.tag = 1;
 }
@@ -67,6 +67,8 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
+    [XXNotificationCenter addObserver:self selector:@selector(clickReplyCell:) name:XXReplyCellDidClickNotification object:nil];
     
     // 键盘的frame发生改变时发出的通知（位置和尺寸）
     [XXNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -192,8 +194,14 @@
 
 #pragma mark - 弹出回复键盘，开始回复
 - (void)beginReplyWithQuestionId:(NSString *)questionId{
-    [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
-    self.replyingQuestionId = questionId;
+    if (![self.textView isFirstResponder]) {
+        [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
+    }
+    if (![questionId isEqualToString:self.replyingQuestionId]) { // 如果回复的是不同的问题，就清空之前的回复
+        self.textView.text = nil;
+        self.replyingQuestionId = questionId;
+    }
+    
 }
 
 #pragma mark - 点击回复按钮后，开始回复
@@ -203,8 +211,9 @@
 }
 
 #pragma mark - 点击回复cell后，开始回复
-- (void)clickReplyCell:(NSNotification *)noti{
-    
+- (void)clickReplyCell:(NSNotification *)noti
+{
+    [self beginReplyWithQuestionId:noti.userInfo[@"questionId"]];
 }
 
 #pragma mark - 点击回复中的cell，开始回复
