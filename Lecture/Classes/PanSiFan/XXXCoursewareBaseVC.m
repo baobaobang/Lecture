@@ -204,7 +204,7 @@
         pageModel.audio = path;
     }
     
-//    NSLog(@"%d", [self.lectureModel save]);
+    NSLog(@"%d", [self.lectureModel save]);
     
     if ([self.lectureModel save]) {
         [SVProgressHUD showSuccessWithStatus:@"已保存到草稿箱"];

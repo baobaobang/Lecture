@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "XXHomeVC.h"
 #import "XXNavigationController.h"
+#import "XXLectureJoinVC.h"
+#import "XXLectureHomeVC.h"
 #import "XXXLoginVC.h"
 #import "XXXMainPageVC.h"
 #import "AppDelegate+UM.h"
