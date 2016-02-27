@@ -10,6 +10,7 @@
 #import "MJExtension.h"
 #import "XXQuestionFrame.h"
 #import "MJRefresh.h"
+#import "XXXLectureModel.h"
 
 @class XXUser, CXTextView;
 
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) NSMutableArray *questionFrames;
 
 @property (nonatomic, weak) CXTextView *textView;// 回复的输入框
+
+@property (nonatomic, strong) XXXLectureModel *lecture;
 
 /**
  *  将XXQuestion模型转为XXQuestionFrame模型

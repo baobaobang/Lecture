@@ -30,20 +30,24 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStyleDone target:self action:@selector(rightItemClick)];
 
     // 添加子控制器
+    // 全部信息
     XXLectureVC *lectureVc = [[XXLectureVC alloc] init];
     [self addChildViewController:lectureVc];
     lectureVc.view.frame = self.view.bounds;
     _lectureVc = lectureVc;
-    
     lectureVc.lecture = self.lecture; // 传递讲座id数据
     
+    // 只看专家
     XXLectureExpertOnlyVC *expertOnlyVc = [[XXLectureExpertOnlyVC alloc] init];
     [self addChildViewController:expertOnlyVc];
-    expertOnlyVc.view.frame = CGRectMake(0, kXXStatusAndNavBarHeight, self.view.width, self.view.height - kXXStatusAndNavBarHeight);
+//    expertOnlyVc.view.frame = CGRectMake(0, kXXStatusAndNavBarHeight, self.view.width, self.view.height - kXXStatusAndNavBarHeight);// 不能再这里设置frame，否则会直接加载它的view
+    expertOnlyVc.lecture = self.lecture; // 传递讲座id数据
     
+    // 精选提问
     XXLectureSelectedQuestions *selectedQuestionVc = [[XXLectureSelectedQuestions alloc] init];
     [self addChildViewController:selectedQuestionVc];
-    selectedQuestionVc.view.frame = CGRectMake(0, kXXStatusAndNavBarHeight, self.view.width, self.view.height - kXXStatusAndNavBarHeight);
+//    selectedQuestionVc.view.frame = CGRectMake(0, kXXStatusAndNavBarHeight, self.view.width, self.view.height - kXXStatusAndNavBarHeight);
+    selectedQuestionVc.lecture = self.lecture; // 传递讲座id数据
     
     // 默认显示XXLectureVC
     [self.view addSubview:lectureVc.view];
@@ -54,6 +58,7 @@
 //    [segment setTintColor:XXColorTint];
     [segment addTarget:self action:@selector(selected:) forControlEvents:UIControlEventValueChanged];
     segment.selectedSegmentIndex = 0;//选中第几个segment 一般用于初始化时选中
+    self.fromIndex = 0;
     self.navigationItem.titleView = segment;
     self.segment = segment;
 }

@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "XXQuestionBaseVC.h"
-#import "XXXLectureModel.h"
 
 @interface XXQuestionVC : XXQuestionBaseVC
-@property (nonatomic, strong) XXXLectureModel *lecture;
 @end
 
 

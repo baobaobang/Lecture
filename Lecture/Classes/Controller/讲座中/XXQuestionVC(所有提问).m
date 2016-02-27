@@ -22,6 +22,10 @@
     [XXNotificationCenter addObserver:self selector:@selector(loadNewQuestions) name:XXLectureVCRefreshNotification object:nil];
 }
 
+- (void)dealloc{
+    [XXNotificationCenter removeObserver:self];
+}
+
 // 点击导航栏的刷新按钮加载新问题
 - (void)loadNewQuestions
 {
@@ -65,7 +69,8 @@
     NSUInteger size = 10;
     // 计算questionId
     XXQuestionFrame *lastQuestionF = self.questionFrames.lastObject;
-    NSInteger questionId = lastQuestionF.question.ID.integerValue - 10;
+    
+    NSInteger questionId = lastQuestionF.question.ID.integerValue - 10;//TODO:
     
     // 陈旭接口-所有问题接口-加载旧问题
     NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%ld", self.lecture.lectureId, questionId, size];
@@ -93,8 +98,5 @@
     }];
 }
 
-- (void)dealloc{
-    XXTestLog;
-}
 
 @end
