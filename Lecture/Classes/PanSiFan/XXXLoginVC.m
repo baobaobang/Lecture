@@ -143,7 +143,7 @@
 {
     switch (sender.tag) {
         case 1001:{
-//            NSLog(@"微信登陆...");
+
             UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
             
             snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
@@ -158,7 +158,7 @@
         }
             break;
         case 1002:{
-//            NSLog(@"微博登陆...");
+
             UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
             
             snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
@@ -175,7 +175,7 @@
         }
             break;
         case 1003:{
-//            NSLog(@"QQ登陆...");
+
             UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
             
             snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
@@ -196,7 +196,7 @@
 
 //type 1-QQ   2-微信  3-微博
 - (void)dealWithUserInfo:(UMSocialAccountEntity *)snsAccount type:(THIRDPARTYTYPE)type{
-//    NSLog(@"--------------------------username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+
     XXXUser *user = [[XXXUser alloc]init];
     user.thirdPartyType = type;
     user.token = snsAccount.accessToken;

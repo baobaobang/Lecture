@@ -170,7 +170,7 @@
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    NSLog(@"cellForItemAtIndexPath --- start");
+//    //NSLog(@"cellForItemAtIndexPath --- start");
     LGPhotoPickerCollectionViewCell *cell = [LGPhotoPickerCollectionViewCell cellWithCollectionView:collectionView cellForItemAtIndexPath:indexPath];
  
     [self setupPickerImageViewOnCell:cell AtIndex:indexPath];

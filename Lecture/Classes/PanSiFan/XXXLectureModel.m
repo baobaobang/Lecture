@@ -106,7 +106,7 @@
 }
 
 - (NSString *)startDate{
-    //NSLog(@"%@",_startDate);
+    ////NSLog(@"%@",_startDate);
     NSString *d = [_startDate substringToIndex:10];
     NSString *h = [_startDate substringWithRange:NSMakeRange(11, 5)];
     NSDate *date = [DateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@",d,h]];

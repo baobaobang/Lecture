@@ -47,7 +47,7 @@
 ////    [manager qiniuUpload: progress:^(NSString *key, float percent) {
 ////        
 ////    } success:^(id result) {
-////        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>%@",result);
+////        //NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>%@",result);
 ////    } fail:^(NSError *error) {
 ////        
 ////    }];
@@ -83,6 +83,7 @@
         [self endHeaderRefresh];
         [self endFooterRefresh];
         NSArray *tempArr = [XXXLectureModel objectArrayWithArray:result[@"data"]];
+        
         if (tempArr.count == 0) {
             [SVProgressHUD showInfoWithStatus:@"没有新数据"];
         }
@@ -94,6 +95,9 @@
     } fail:^(NSError *error) {
         
     }];
+    
+}
+- (void)sortByDate:(NSArray *)dateArray{
     
 }
 #pragma -tableView代理,数据源

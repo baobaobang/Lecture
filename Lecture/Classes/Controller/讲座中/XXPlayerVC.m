@@ -200,7 +200,7 @@
             self.playerToolBar.player = _player;
             
         } else if ([_playerItem status] == AVPlayerStatusFailed) {
-            XXLog(@"AVPlayerStatusFailed");
+
         }
     }
 }

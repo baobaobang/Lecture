@@ -25,7 +25,7 @@
     NSString *url = [NSString stringWithFormat:@"%@/api/%@",HOST,api];
     AFHTTPSessionManager *manager = [NetworkManager shareNetworkManager].manager;
     manager.requestSerializer.timeoutInterval = 10;
-    NSLog(@"%@",ACCESS_TOKEN);
+    //NSLog(@"%@",ACCESS_TOKEN);
     
     [manager.requestSerializer setValue:ACCESS_TOKEN forHTTPHeaderField:@"token"];
     [manager GET:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

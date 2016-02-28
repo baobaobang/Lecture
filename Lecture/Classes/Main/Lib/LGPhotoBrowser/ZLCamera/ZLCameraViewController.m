@@ -120,7 +120,7 @@ static CGFloat BOTTOM_HEIGHT = 60;
     self.preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
     self.preview.frame = CGRectMake(0, 40,viewWidth, viewHeight);
     
-    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
+    //NSLog(@"%@",NSStringFromCGRect(self.view.frame));
     ZLCameraView *caramView = [[ZLCameraView alloc] initWithFrame:CGRectMake(0, 40, viewWidth, viewHeight)];
     caramView.backgroundColor = [UIColor clearColor];
     caramView.delegate = self;
@@ -140,7 +140,7 @@ static CGFloat BOTTOM_HEIGHT = 60;
 //对焦回调
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if( [keyPath isEqualToString:@"adjustingFocus"] ){
-        NSLog(@"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+        //NSLog(@"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
     }
 }
 

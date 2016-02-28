@@ -112,7 +112,7 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expert_2" translatesAutoresizingMaskIntoConstraints="NO" id="0tA-eB-XLh">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0tA-eB-XLh">
                             <rect key="frame" x="99" y="136" width="120" height="120"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -227,7 +227,6 @@
     </objects>
     <resources>
         <image name="1" width="30" height="30"/>
-        <image name="expert_2" width="180" height="180"/>
         <image name="user_register_Backgroundimage" width="980" height="1597"/>
         <image name="user_register_consent_after" width="40" height="40"/>
         <image name="user_register_consent_before" width="40" height="40"/>

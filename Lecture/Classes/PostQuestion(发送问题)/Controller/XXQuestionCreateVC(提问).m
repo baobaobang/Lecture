@@ -144,6 +144,9 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
         
     } fail:^(NSError *error) {
         XXLog(@"error---%@", error);
+
+        //NSLog(@"error---%@", error);
+
     } allcompleteBlock:^(id result) {
         // 陈旭接口-发送提问接口
         NSString *url = [NSString stringWithFormat:@"lectures/%@/questions", weakSelf.lecture.lectureId];
@@ -396,7 +399,8 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     if (self.showType == LGShowImageTypeImageBroswer) {
         return self.LGPhotoPickerBrowserPhotoArray.count;
     } else {
-        XXLog(@"非法数据源");
+
+
         return 0;
     }
 }
@@ -409,6 +413,8 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
         return [self.LGPhotoPickerBrowserPhotoArray objectAtIndex:indexPath.item];
     } else {
         XXLog(@"非法数据源");
+        //NSLog(@"非法数据源");
+
         return nil;
     }
 }
