@@ -1731,6 +1731,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
 				ENABLE_BITCODE = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Lecture/Classes/PanSiFan/Info.plist";
@@ -1857,6 +1858,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Lecture/Classes/PanSiFan/Info.plist";
@@ -1878,6 +1881,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
 				ENABLE_BITCODE = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Lecture/Classes/PanSiFan/Info.plist";
