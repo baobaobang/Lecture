@@ -151,7 +151,7 @@
     picView.y = kXXStatusAndNavBarHeight;
     picView.width = self.view.width;
     picView.height = kXXPlayerPicViewHeightWidthRatio * picView.width;
-    [picView sd_setImageWithURL:[NSURL URLWithString:self.lecture.cover]  placeholderImage:[UIImage imageNamed:@""]];//占位图
+    [picView sd_setImageWithURL:[NSURL URLWithString:self.lecture.cover]  placeholderImage:[UIImage imageNamed:@"placeholder_lecture_cover"]];//占位图
     picView.userInteractionEnabled = YES;
     [self.view addSubview:picView];
     self.picView = picView;

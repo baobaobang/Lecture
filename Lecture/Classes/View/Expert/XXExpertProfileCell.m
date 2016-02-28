@@ -39,7 +39,7 @@
     _lecture = lecture;
     
     // 专家头像(圆形)
-//    UIImage *expertIcon = [UIImage circleImageWithName: borderWidth:0 borderColor:[UIColor clearColor]];
+//    UIImage *expertIcon = [UIImage circleImageWithName: borderWidth:0 borderColor:[UIColor clearColor]];// 占位图
     [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:lecture.headPic] forState:0 placeholderImage:[UIImage imageNamed:@"placeholder_expert_Head"]];
     self.iconBtn.layer.cornerRadius = self.iconBtn.frame.size.width / 2;
     self.iconBtn.layer.masksToBounds = YES;

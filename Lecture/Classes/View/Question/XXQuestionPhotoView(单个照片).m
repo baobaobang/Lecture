@@ -45,7 +45,7 @@
 {
     _photo = photo;
     
-    // 从网络加载缩小图
+    // 从网络加载缩小图（占位图）
     [self sd_setImageWithURL:[NSURL URLWithString:photo.highQuality_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (error) {
             XXLog(@"%@", error);
