@@ -44,6 +44,10 @@
 }
 
 #pragma mark - 生命周期
+- (void)dealloc
+{
+    //    XXLog(@"%@",self.textView);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,10 +64,6 @@
 //    self.tableView.tag = 1;
 }
 
-- (void)dealloc
-{
-
-}
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

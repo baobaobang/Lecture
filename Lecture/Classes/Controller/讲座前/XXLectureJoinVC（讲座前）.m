@@ -20,6 +20,7 @@
 #import "XXNavigationController.h"
 #import "CXTextView.h"
 #import <UMSocial.h>
+#import "XXXLoginVC.h"
 
 @interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
@@ -67,7 +68,13 @@
 
 
 - (void)dealloc{
-    
+    [self.expertVc willMoveToParentViewController:nil];
+    [[self.expertVc view] removeFromSuperview];
+    [self.expertVc removeFromParentViewController];
+
+    [self.questionVc willMoveToParentViewController:nil];
+    [[self.questionVc view] removeFromSuperview];
+    [self.questionVc removeFromParentViewController];
 }
 
 #pragma mark - 只要点击虚拟键盘和编辑区域外的地方，就可以将键盘收起
@@ -144,7 +151,7 @@
     picView.y = kXXStatusAndNavBarHeight;
     picView.width = self.view.width;
     picView.height = kXXPlayerPicViewHeightWidthRatio * picView.width;
-    [picView sd_setImageWithURL:[NSURL URLWithString:self.lecture.cover]  placeholderImage:[UIImage imageNamed:@""]];//占位图
+    [picView sd_setImageWithURL:[NSURL URLWithString:self.lecture.cover]  placeholderImage:[UIImage imageNamed:@"placeholder_lecture_cover"]];//占位图
     picView.userInteractionEnabled = YES;
     [self.view addSubview:picView];
     self.picView = picView;
@@ -174,6 +181,7 @@
     expertVc.view.height = kXXExpertTableViewHeight;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
+    [expertVc didMoveToParentViewController:self];
     self.expertVc = expertVc;
     
     expertVc.lecture = self.lecture;// 传递数据
@@ -203,6 +211,7 @@
     questionVc.view.height = self.view.height - questionVc.view.y - kXXJoinButtonHeight;
     [self addChildViewController:questionVc];
     [self.view addSubview:questionVc.view];
+    [questionVc didMoveToParentViewController:self];
     self.questionVc = questionVc;
 }
 
@@ -261,11 +270,18 @@
 #pragma mark - 点击报名
 - (void)joinBtnClick:(XXButton *)btn{
     
-    XXJoinLectureActionSheet *sheet = [[XXJoinLectureActionSheet alloc] init];
-    sheet.delegate = self;
-    sheet.lecture = self.lecture;
-    // 注意sheet要添加到窗口上，而非self.view上面，因为self.view会因为动画而改变frame，导致sheet的位置会变化
-    [sheet showInView:XXKeyWindow];
+    // 判断是否登录
+    if (ACCESS_TOKEN) { // 如果已经登录
+        XXJoinLectureActionSheet *sheet = [[XXJoinLectureActionSheet alloc] init];
+        sheet.delegate = self;
+        sheet.lecture = self.lecture;
+        // 注意sheet要添加到窗口上，而非self.view上面，因为self.view会因为动画而改变frame，导致sheet的位置会变化
+        [sheet showInView:XXKeyWindow];
+    }else{ // 如果未登录
+        XXXLoginVC *vc = [[XXXLoginVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
 }
 
 #pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
@@ -298,12 +314,18 @@
 #pragma mark - 点击提问按钮跳到提问界面 XXQuestionHeaderViewDelegate
 - (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn
 {
-    XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
-    vc.lecture = self.lecture;
-    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
-    vc.view.frame = self.view.frame;
-    XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
-    [self.navigationController presentViewController:nav animated:YES completion:nil];
+    // 判断是否登录
+    if (ACCESS_TOKEN) { // 如果已经登录
+        XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
+        vc.lecture = self.lecture;
+        vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
+        vc.view.frame = self.view.frame;
+        XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
+    }else{ // 如果未登录
+        XXXLoginVC *vc = [[XXXLoginVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

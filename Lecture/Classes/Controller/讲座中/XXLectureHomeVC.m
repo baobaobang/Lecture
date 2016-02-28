@@ -20,6 +20,10 @@
 
 @implementation XXLectureHomeVC
 
+- (void)dealloc{
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -63,9 +67,6 @@
     self.segment = segment;
 }
 
-- (void)dealloc{
-    
-}
 
 #pragma mark - 点击刷新按钮
 - (void)rightItemClick{

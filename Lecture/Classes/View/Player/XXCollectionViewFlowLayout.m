@@ -9,6 +9,7 @@
 #import "XXCollectionViewFlowLayout.h"
 
 @implementation XXCollectionViewFlowLayout
+
 // 什么时候调用:每次collectionView布局都会调用这个方法,每次collectionView刷新数据也会调用
 // 一般情况下,只会调用一次
 // 作用:计算所有cell的尺寸,前提条件,cell的位置固定的时候才在这计算.

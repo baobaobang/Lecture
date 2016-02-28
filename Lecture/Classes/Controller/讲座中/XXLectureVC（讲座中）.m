@@ -36,6 +36,22 @@
 #pragma mark - 懒加载
 
 #pragma mark - 生命周期
+
+- (void)dealloc{
+    [XXNotificationCenter removeObserver:self];
+    
+    [self.playerVc willMoveToParentViewController:nil];
+    [[self.playerVc view] removeFromSuperview];
+    [self.playerVc removeFromParentViewController];
+    
+    [self.expertVc willMoveToParentViewController:nil];
+    [[self.expertVc view] removeFromSuperview];
+    [self.expertVc removeFromParentViewController];
+    
+    [self.onlineVc willMoveToParentViewController:nil];
+    [[self.onlineVc view] removeFromSuperview];
+    [self.onlineVc removeFromParentViewController];
+}
 - (void)viewDidLoad{
     [super viewDidLoad];
     
@@ -76,9 +92,6 @@
     }
 }
 
-- (void)dealloc{
-    [XXNotificationCenter removeObserver:self];
-}
 
 #pragma mark - 讲座的详情接口
 
@@ -114,6 +127,7 @@
     XXPlayerVC *playerVc = [[XXPlayerVC alloc] init];
     [self addChildViewController:playerVc];
     [self.view addSubview:playerVc.view];
+    [playerVc didMoveToParentViewController:self];
     
     self.playerVc = playerVc;
 
@@ -147,6 +161,7 @@
     expertVc.view.height = kXXExpertTableViewHeight;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
+    [expertVc didMoveToParentViewController:self];
     self.expertVc = expertVc;
 }
 
@@ -173,6 +188,7 @@
     onlineVc.view.height = self.view.height - onlineVc.view.y - kXXJoinButtonHeight;
     [self addChildViewController:onlineVc];
     [self.view addSubview:onlineVc.view];
+    [onlineVc didMoveToParentViewController:self];
     self.onlineVc = onlineVc;
 }
 
@@ -196,9 +212,9 @@
 
 // 提问
 - (void)postQuestion:(XXButton *)btn{
-
+    
     XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
-//    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
+    //    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
     vc.lecture = self.lecture;
     vc.view.frame = self.view.frame;
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];

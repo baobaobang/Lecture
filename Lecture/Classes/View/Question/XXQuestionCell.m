@@ -98,7 +98,7 @@
     
     XXQuestion *question = questionFrame.question;
     
-    /** 头像 */
+    /** 头像 */// 占位图
     self.iconView.frame = questionFrame.iconViewF;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:question.headPic] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholder_expert_Head"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
     }];
