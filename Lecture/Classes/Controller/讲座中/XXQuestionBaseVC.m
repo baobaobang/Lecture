@@ -62,11 +62,7 @@
 
 - (void)dealloc
 {
-<<<<<<< Updated upstream
-//    XXLog(@"%@",self.textView);
-=======
-    //NSLog(@"%@",self.textView);
->>>>>>> Stashed changes
+
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -246,11 +242,7 @@
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     // {{0, 344}, {320, 224}}
-<<<<<<< Updated upstream
-    //    XXLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
-=======
-    //    //NSLog(@"keyboardWillShow--%@", NSStringFromCGRect(keyboardF));
->>>>>>> Stashed changes
+
     // 执行动画
     WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{
@@ -267,11 +259,7 @@
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     // {{0, 568}, {320, 224}}
-<<<<<<< Updated upstream
-    //    XXLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
-=======
-    //    //NSLog(@"keyboardWillHide--%@", NSStringFromCGRect(keyboardF));
->>>>>>> Stashed changes
+
     // 执行动画
     WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{

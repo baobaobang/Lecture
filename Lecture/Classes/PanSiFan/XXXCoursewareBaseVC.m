@@ -204,11 +204,9 @@
         pageModel.audio = path;
     }
     
-<<<<<<< Updated upstream
-//    NSLog(@"%d", [self.lectureModel save]);
-=======
+
     //NSLog(@"%d", [self.lectureModel save]);
->>>>>>> Stashed changes
+
     
     if ([self.lectureModel save]) {
         [SVProgressHUD showSuccessWithStatus:@"已保存到草稿箱"];

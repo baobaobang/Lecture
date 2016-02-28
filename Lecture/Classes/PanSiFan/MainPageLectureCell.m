@@ -69,7 +69,7 @@
     NSDate *date = [DateFormatter dateFromString:lectureModel.startDate];
     NSString *dateStr = [DateFormatter formatDate:date pattern:@"MM月dd日 HH:mm EE"];
     self.timeLabel.text = dateStr;
-    self.titleLabel.text = lectureModel.title;
+    //self.titleLabel.text = lectureModel.title;
     //self.titleLabel.text = @"哈哈哈哈哈哈哈哈哈哈";
     [self.titleLabel sizeToFit];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(timeCountAction) userInfo:nil repeats:YES];
