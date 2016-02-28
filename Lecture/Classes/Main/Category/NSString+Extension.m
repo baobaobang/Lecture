@@ -16,7 +16,7 @@
     CGSize maxSize = CGSizeMake(maxW, MAXFLOAT);
     
     // 获得系统版本
-    if (iOS7) {
+    if (iOS7_OR_LATER) {
         return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     } else {
         return [self sizeWithFont:font constrainedToSize:maxSize];

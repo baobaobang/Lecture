@@ -202,9 +202,23 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     [self.textView resignFirstResponder];
 //    [self dismiss];
     
-    UIAlertView *alertView=[[UIAlertView alloc]
-                            initWithTitle:@"退出此次编辑？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
-    [alertView show];
+
+    if (iOS8_OR_LATER){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"退出此次编辑？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        // 添加按钮
+        WS(weakSelf);
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [weakSelf dismiss];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else{
+        UIAlertView *alertView=[[UIAlertView alloc]
+                                initWithTitle:@"退出此次编辑？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+        [alertView show];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

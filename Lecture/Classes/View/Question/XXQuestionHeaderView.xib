@@ -71,9 +71,9 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="hvG-p4-XVu"/>
                             <exclude reference="3nk-cT-6kX"/>
                             <exclude reference="LUV-RY-OMd"/>
-                            <exclude reference="hvG-p4-XVu"/>
                         </mask>
                     </variation>
                 </view>
