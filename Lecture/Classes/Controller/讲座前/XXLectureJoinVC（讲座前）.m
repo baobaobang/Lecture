@@ -20,6 +20,7 @@
 #import "XXNavigationController.h"
 #import "CXTextView.h"
 #import <UMSocial.h>
+#import "XXXLoginVC.h"
 
 @interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
@@ -269,11 +270,18 @@
 #pragma mark - 点击报名
 - (void)joinBtnClick:(XXButton *)btn{
     
-    XXJoinLectureActionSheet *sheet = [[XXJoinLectureActionSheet alloc] init];
-    sheet.delegate = self;
-    sheet.lecture = self.lecture;
-    // 注意sheet要添加到窗口上，而非self.view上面，因为self.view会因为动画而改变frame，导致sheet的位置会变化
-    [sheet showInView:XXKeyWindow];
+    // 判断是否登录
+    if (ACCESS_TOKEN) { // 如果已经登录
+        XXJoinLectureActionSheet *sheet = [[XXJoinLectureActionSheet alloc] init];
+        sheet.delegate = self;
+        sheet.lecture = self.lecture;
+        // 注意sheet要添加到窗口上，而非self.view上面，因为self.view会因为动画而改变frame，导致sheet的位置会变化
+        [sheet showInView:XXKeyWindow];
+    }else{ // 如果未登录
+        XXXLoginVC *vc = [[XXXLoginVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
 }
 
 #pragma mark - XXJoinLectureActionSheetDelegate 点击确认报名后
@@ -306,12 +314,18 @@
 #pragma mark - 点击提问按钮跳到提问界面 XXQuestionHeaderViewDelegate
 - (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickPostQuestionBtn:(UIButton *)btn
 {
-    XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
-    vc.lecture = self.lecture;
-    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
-    vc.view.frame = self.view.frame;
-    XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
-    [self.navigationController presentViewController:nav animated:YES completion:nil];
+    // 判断是否登录
+    if (ACCESS_TOKEN) { // 如果已经登录
+        XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
+        vc.lecture = self.lecture;
+        vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
+        vc.view.frame = self.view.frame;
+        XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
+    }else{ // 如果未登录
+        XXXLoginVC *vc = [[XXXLoginVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

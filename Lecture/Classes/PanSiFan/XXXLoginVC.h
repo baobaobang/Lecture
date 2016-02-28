@@ -9,5 +9,5 @@
 #import "XXXBaseScrollVC.h"
 
 @interface XXXLoginVC : XXXBaseScrollVC
-
+@property (nonatomic, assign, getter=isFromLeftMenu) BOOL fromLeftMenu;// 是否从左侧菜单推出
 @end

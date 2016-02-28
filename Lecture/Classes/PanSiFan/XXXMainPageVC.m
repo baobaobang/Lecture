@@ -19,6 +19,7 @@
 #import "XXLectureJoinVC.h"
 #import "XXLectureHomeVC.h"
 #import "DateFormatter.h"
+#import "XXXLoginVC.h"
 @interface XXXMainPageVC ()<XXXMakeLectureViewDelegate>
 
 
@@ -127,9 +128,17 @@
     XXXLectureModel *lectureModel = self.dataArray[indexPath.row];
     if ([self isOldLecture:lectureModel]) {
         // 历史讲座：讲座中页面
-        XXLectureHomeVC *vc = [[XXLectureHomeVC alloc] init];
-        vc.lecture = lectureModel;
-        [self.navigationController pushViewController:vc animated:YES];
+        
+        // 判断是否登录
+        if (ACCESS_TOKEN) { // 如果已经登录
+            
+            XXLectureHomeVC *vc = [[XXLectureHomeVC alloc] init];
+            vc.lecture = lectureModel;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{ // 如果未登录
+            XXXLoginVC *vc = [[XXXLoginVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }else{
         // 还没开始的讲座：讲座前页面
         XXLectureJoinVC *vc = [[XXLectureJoinVC alloc] init];

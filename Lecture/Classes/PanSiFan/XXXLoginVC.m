@@ -126,13 +126,19 @@
             if ([result[@"data"][@"type"] integerValue] == 1) {
                 UserDefaultsSave(@"expert", @"isExpert");
             }
-            UserDefaultsSave(@"mobile", @"mobile");//FIXME: 
-            
-            
-            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:[[XXXMainPageVC alloc]init]];
-            [delegate.sliderMenu changeMainViewController:nav close:YES];
+            UserDefaultsSave(@"mobile", @"mobile");//FIXME:
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            // 登陆成功后的操作
+            if (self.isFromLeftMenu) {
+                // 如果是侧滑进来的登陆页面，就返回首页
+                AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:[[XXXMainPageVC alloc]init]];
+                [delegate.sliderMenu changeMainViewController:nav close:YES];
+            }else{
+                // 如果是push进来的登陆页面，就pop掉
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
         }
     } fail:^(NSError *error) {
         

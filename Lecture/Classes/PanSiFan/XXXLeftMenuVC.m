@@ -72,6 +72,7 @@
                 [self.tableView reloadData];
             }else{
                 XXXLoginVC *lvc = [[XXXLoginVC alloc]init];
+                lvc.fromLeftMenu = YES;
                 XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:lvc];
                 AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
                 [delegate.sliderMenu changeMainViewController:nav close:YES];

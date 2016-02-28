@@ -212,9 +212,9 @@
 
 // 提问
 - (void)postQuestion:(XXButton *)btn{
-
+    
     XXQuestionCreateVC *vc = [[XXQuestionCreateVC alloc] initWithNibName:@"XXQuestionCreateVC" bundle:nil];
-//    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
+    //    vc.questionVC = self.questionVc;//TODO: 以后用通知或者代理来做
     vc.lecture = self.lecture;
     vc.view.frame = self.view.frame;
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
