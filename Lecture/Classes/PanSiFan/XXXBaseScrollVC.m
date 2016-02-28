@@ -39,7 +39,11 @@
  *  @param nottification 通知
  */
 - (void)doKeyBoardShow:(NSNotification *)nottification {
+<<<<<<< Updated upstream
 //    NSLog(@"%f",self.scrollView.contentSize.height);
+=======
+    //NSLog(@"%f",self.scrollView.contentSize.height);
+>>>>>>> Stashed changes
     
     CGRect keyBoardFrame = [nottification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyBoardFrame.size.height, 0);

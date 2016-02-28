@@ -340,7 +340,7 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
         
         [picker dismissViewControllerAnimated:YES completion:nil];
     }else{
-        NSLog(@"请在真机使用!");
+        //NSLog(@"请在真机使用!");
     }
 }
 
@@ -528,7 +528,7 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
 - (void) sendBtnTouched {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:PICKER_TAKE_DONE object:nil userInfo:@{@"selectAssets":self.selectAssets,@"isOriginal":@(self.isOriginal)}];
-        NSLog(@"%@",@(self.isOriginal));
+        //NSLog(@"%@",@(self.isOriginal));
     });
     [self dismissViewControllerAnimated:NO completion:nil];
 }

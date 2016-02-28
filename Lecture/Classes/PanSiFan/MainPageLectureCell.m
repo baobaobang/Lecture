@@ -79,7 +79,7 @@
 - (void)timeCountAction{
     NSDate *startDate = [DateFormatter dateFromString:self.lectureModel.startDate];
     NSTimeInterval sec = [startDate timeIntervalSinceDate:[NSDate date]];
-    //NSLog(@"%f",sec);
+    ////NSLog(@"%f",sec);
     if (sec > 0) {
         int s = ((long long)sec)%60;
         int m = (((long long)sec)/60)%60;

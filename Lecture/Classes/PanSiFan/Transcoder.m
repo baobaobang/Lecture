@@ -53,11 +53,11 @@
         fclose(pcm);
     }
     @catch (NSException *exception) {
-        NSLog(@"%@",[exception description]);
+        //NSLog(@"%@",[exception description]);
     }  
     @finally {  
 //        self.audioFileSavePath = mp3FilePath;  
-        NSLog(@"MP3生成成功: %@",mp3savePath);
+        //NSLog(@"MP3生成成功: %@",mp3savePath);
         NSFileManager *fileManager = [NSFileManager defaultManager];
         [fileManager removeItemAtPath:filePath error:nil];
         

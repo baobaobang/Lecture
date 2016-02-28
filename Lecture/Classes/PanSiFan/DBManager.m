@@ -25,7 +25,7 @@
         NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         NSString *path = [document stringByAppendingPathComponent:@"LectureRoom.db"];
         _db = [FMDatabase databaseWithPath:path];
-        NSLog(@"%@",path);
+        //NSLog(@"%@",path);
     }
     return _db;
 }

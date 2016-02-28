@@ -268,7 +268,7 @@ typedef NS_ENUM(NSInteger, DraggingDirect) {
     
     if (self.currentPage >= 0) {
         CGPoint point = CGPointMake(self.currentPage * self.collectionView.width, 0);
-        NSLog(@"%ld,%f,%f",(long)self.currentPage , self.collectionView.width,point.x);
+        //NSLog(@"%ld,%f,%f",(long)self.currentPage , self.collectionView.width,point.x);
         self.collectionView.contentOffset = point;
         self.beginDraggingContentOffsetX = self.collectionView.contentOffset.x;
     }
@@ -516,7 +516,7 @@ typedef NS_ENUM(NSInteger, DraggingDirect) {
 
 #pragma mark - 长按动作
 - (void)longPressAction {
-    NSLog(@"long pressed");
+    //NSLog(@"long pressed");
 }
 
 

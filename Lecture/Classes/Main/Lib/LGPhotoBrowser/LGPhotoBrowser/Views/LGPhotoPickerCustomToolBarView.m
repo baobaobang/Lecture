@@ -32,7 +32,7 @@
     if (self) {
         self.showType = showType;
         _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame))];
-        NSLog(@"%@",NSStringFromCGRect(_toolbar.frame));
+        //NSLog(@"%@",NSStringFromCGRect(_toolbar.frame));
         if ([_toolbar respondsToSelector:@selector(setBarTintColor:)]) {
             _toolbar.barTintColor = nil;
         }

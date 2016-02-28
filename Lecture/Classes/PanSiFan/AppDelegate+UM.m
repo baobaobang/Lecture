@@ -25,7 +25,7 @@
 - (void)UMApplication:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     
     [UMSocialData setAppKey:UMKey];//分享
-    [UMSocialData openLog:YES];
+    //[UMSocialData openLog:YES];
     //新浪
 //    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WBAppKey RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];

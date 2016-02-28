@@ -34,7 +34,7 @@
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 
 #ifdef DEBUG // 处于开发阶段
-#define XXLog(...) NSLog(__VA_ARGS__)
+#define XXLog(...) //NSLog(__VA_ARGS__)
 #else // 处于发布阶段
 #define XXLog(...)
 #endif

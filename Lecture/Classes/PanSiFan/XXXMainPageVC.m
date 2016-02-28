@@ -47,7 +47,7 @@
 ////    [manager qiniuUpload: progress:^(NSString *key, float percent) {
 ////        
 ////    } success:^(id result) {
-////        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>%@",result);
+////        //NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>%@",result);
 ////    } fail:^(NSError *error) {
 ////        
 ////    }];

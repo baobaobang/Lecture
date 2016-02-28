@@ -92,7 +92,7 @@
         // 当网络状态改变了, 就会调用这个block
         switch (status) {
             case AFNetworkReachabilityStatusUnknown:{ // 未知网络
-                //NSLog(@"未知网络");
+                ////NSLog(@"未知网络");
             }
                 break;
                 

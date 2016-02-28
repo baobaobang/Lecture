@@ -190,7 +190,11 @@
             self.playerToolBar.player = _player;
             
         } else if ([_playerItem status] == AVPlayerStatusFailed) {
+<<<<<<< Updated upstream
             XXLog(@"AVPlayerStatusFailed");
+=======
+            //NSLog(@"AVPlayerStatusFailed");
+>>>>>>> Stashed changes
         }
     }
 }

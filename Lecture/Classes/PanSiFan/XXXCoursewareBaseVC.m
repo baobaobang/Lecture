@@ -149,7 +149,7 @@
  */
 - (void)selectPage:(UIButton *)sender{
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag-1001 inSection:0];
-    //NSLog(@"%ld----------------",(long)sender.tag);
+    ////NSLog(@"%ld----------------",(long)sender.tag);
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
 }
 
@@ -204,7 +204,11 @@
         pageModel.audio = path;
     }
     
+<<<<<<< Updated upstream
 //    NSLog(@"%d", [self.lectureModel save]);
+=======
+    //NSLog(@"%d", [self.lectureModel save]);
+>>>>>>> Stashed changes
     
     if ([self.lectureModel save]) {
         [SVProgressHUD showSuccessWithStatus:@"已保存到草稿箱"];

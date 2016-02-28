@@ -257,7 +257,7 @@
         {
             [_loadOriginButton setTag:ORIGINALBTN_TAG];
             [_loadOriginButton setFrame:CGRectMake((SCREEN_WIDTH - 148)/2, SCREEN_HEIGHT-42, 148, 32)];
-            NSLog(@"%@",[self.superview class]);
+            //NSLog(@"%@",[self.superview class]);
             [self.superview addSubview:_loadOriginButton];
             [self.superview bringSubviewToFront:_loadOriginButton];
         }
