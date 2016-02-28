@@ -228,7 +228,7 @@
     [NetworkManager postWithApi:url params:nil success:^(id result) {
         
     } fail:^(NSError *error) {
-        
+
     }];
 }
 
@@ -351,7 +351,7 @@
         weakSelf.textView.text = nil;
         
     } fail:^(NSError *error) {
-        
+        [MBProgressHUD showError:@"发送失败！" toView:weakSelf.view];
     }];
 }
 

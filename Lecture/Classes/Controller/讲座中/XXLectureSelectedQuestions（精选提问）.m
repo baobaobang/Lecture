@@ -63,6 +63,7 @@
     } fail:^(NSError *error) {
         // 结束刷新
         [weakSelf endHeaderRefresh];
+        [MBProgressHUD showError:@"数据加载失败" toView:weakSelf.view];
     }];
 }
 

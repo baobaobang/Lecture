@@ -21,15 +21,15 @@
     [super awakeFromNib];
     
     // 设置我要提问按钮文字和颜色
-    [self.postQuestionBtn setTitle:@"我要提问" forState:UIControlStateSelected];
+    [self.postQuestionBtn setTitle:@"提问" forState:UIControlStateSelected];
     
-    UIImage *postQuestionBtnImage = [[UIImage imageNamed:@"before_question"] imageRenderingModeAlwaysOriginal];
-    [self.postQuestionBtn setImage:postQuestionBtnImage forState:UIControlStateNormal];
+//    UIImage *postQuestionBtnImage = [[UIImage imageNamed:@"before_question"] imageRenderingModeAlwaysOriginal];
+//    [self.postQuestionBtn setImage:postQuestionBtnImage forState:UIControlStateNormal];
 
     // 用纯色image作为背景可以实现按钮在disable状态下颜色变浅的效果
     [self.postQuestionBtn setBackgroundImage:[UIImage createImageWithColor:XXColorGreen] forState:UIControlStateNormal];
     
-    [self.postQuestionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+//    [self.postQuestionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
     
     [self.postQuestionBtn setTitle:@"已提问" forState:UIControlStateDisabled];

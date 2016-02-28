@@ -105,7 +105,8 @@
 }
 - (void)loadLectureDetail
 {
-
+    [MBProgressHUD showHUDAddedTo:self.playerVc.view animated:YES];
+    
     // 陈旭接口-讲座的详情接口
     NSString *url = [NSString stringWithFormat:@"lectures/%@", self.lecture.lectureId];
 //    NSString *url = [NSString stringWithFormat:@"lectures/108"];//TODO: 定死id
@@ -115,9 +116,11 @@
         if(weakSelf.playerVc){
             weakSelf.playerVc.lectureDetail = _lectureDetail;
         }
+        [MBProgressHUD hideHUDForView:weakSelf.playerVc.view animated:NO];
         
     } fail:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:weakSelf.playerVc.view animated:NO];
+        [MBProgressHUD showError:@"讲座音频数据加载失败" toView:weakSelf.playerVc.view];
     }];
 }
 #pragma mark - 初始化
@@ -196,7 +199,7 @@
 - (void)setupPostQuestionBtn{
     
     XXButton *postQuestionBtn = [[XXButton alloc] init];
-    [postQuestionBtn setTitle:@"我要提问" forState:UIControlStateNormal];
+    [postQuestionBtn setTitle:@"提问" forState:UIControlStateNormal];
     UIImage *image =[UIImage imageNamed:@"before_question"];
     [postQuestionBtn setImage:image forState:UIControlStateNormal];
     postQuestionBtn.backgroundColor = XXColorGreen;

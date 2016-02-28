@@ -301,7 +301,8 @@
             [MBProgressHUD showSuccess:@"人数已满，报名失败！" toView:XXKeyWindow];
         }
     } fail:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:XXKeyWindow animated:NO];
+        [MBProgressHUD showError:@"报名失败" toView:weakSelf.view];
     }];
 
 }

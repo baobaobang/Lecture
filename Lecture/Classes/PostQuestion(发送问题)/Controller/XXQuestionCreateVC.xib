@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="photoCollectionView" destination="bOy-0L-s4S" id="SQP-ew-Duk"/>
                 <outlet property="textView" destination="lF8-Rs-mTL" id="jw3-We-WmD"/>
+                <outlet property="textViewHeightConstraint" destination="IOg-nr-cCZ" id="RAc-oO-2UO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

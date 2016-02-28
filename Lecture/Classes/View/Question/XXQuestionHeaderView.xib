@@ -14,12 +14,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDF-fc-FsA">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-dk-cFB" customClass="XXButton">
-                            <rect key="frame" x="242" y="5" width="70" height="25"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-dk-cFB" customClass="XXButton">
+                            <rect key="frame" x="115" y="3" width="50" height="29"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="70" id="ldA-2i-ulG"/>
+                                <constraint firstAttribute="width" constant="50" id="ldA-2i-ulG"/>
                             </constraints>
-                            <state key="normal" title="我要提问">
+                            <state key="normal" title="提问">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -36,7 +36,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hD-by-Ce3" customClass="XXContractButton">
-                            <rect key="frame" x="115" y="3" width="90" height="30"/>
+                            <rect key="frame" x="220" y="3" width="90" height="29"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Phz-7w-otI"/>
                                 <constraint firstAttribute="width" constant="90" id="hAW-w4-zAa"/>
@@ -44,6 +44,11 @@
                             <state key="normal">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Phz-7w-otI"/>
+                                </mask>
+                            </variation>
                             <connections>
                                 <action selector="showAndHidePicView:" destination="HdW-RH-oUn" eventType="touchUpInside" id="Kfr-fV-AYf"/>
                             </connections>
@@ -51,15 +56,26 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="2hD-by-Ce3" firstAttribute="centerX" secondItem="hDF-fc-FsA" secondAttribute="centerX" id="3nk-cT-6kX"/>
-                        <constraint firstItem="4t3-dk-cFB" firstAttribute="top" secondItem="hDF-fc-FsA" secondAttribute="top" constant="5" id="Iv3-Oe-Tgb"/>
+                        <constraint firstItem="2hD-by-Ce3" firstAttribute="centerX" secondItem="hDF-fc-FsA" secondAttribute="centerX" constant="-5" id="3nk-cT-6kX"/>
+                        <constraint firstItem="4t3-dk-cFB" firstAttribute="top" secondItem="hDF-fc-FsA" secondAttribute="top" constant="3" id="Iv3-Oe-Tgb"/>
                         <constraint firstItem="2hD-by-Ce3" firstAttribute="centerY" secondItem="hDF-fc-FsA" secondAttribute="centerY" id="LUV-RY-OMd"/>
                         <constraint firstItem="ubc-84-nLB" firstAttribute="leading" secondItem="hDF-fc-FsA" secondAttribute="leading" constant="15" id="SZf-Vu-Qfk"/>
                         <constraint firstItem="ubc-84-nLB" firstAttribute="top" secondItem="hDF-fc-FsA" secondAttribute="top" constant="5" id="cR7-Nf-IXt"/>
+                        <constraint firstItem="4t3-dk-cFB" firstAttribute="centerX" secondItem="hDF-fc-FsA" secondAttribute="centerX" constant="-20" id="fuc-zg-yU9"/>
                         <constraint firstAttribute="trailing" secondItem="4t3-dk-cFB" secondAttribute="trailing" constant="10" id="hvG-p4-XVu"/>
                         <constraint firstAttribute="bottom" secondItem="ubc-84-nLB" secondAttribute="bottom" constant="5" id="ihH-ox-AXT"/>
-                        <constraint firstAttribute="bottom" secondItem="4t3-dk-cFB" secondAttribute="bottom" constant="5" id="pcb-fr-1eQ"/>
+                        <constraint firstAttribute="bottom" secondItem="2hD-by-Ce3" secondAttribute="bottom" constant="3" id="meL-I7-4jE"/>
+                        <constraint firstAttribute="bottom" secondItem="4t3-dk-cFB" secondAttribute="bottom" constant="3" id="pcb-fr-1eQ"/>
+                        <constraint firstItem="2hD-by-Ce3" firstAttribute="top" secondItem="hDF-fc-FsA" secondAttribute="top" constant="3" id="q6f-MX-W8j"/>
+                        <constraint firstAttribute="trailing" secondItem="2hD-by-Ce3" secondAttribute="trailing" constant="10" id="wW8-yE-RPQ"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="3nk-cT-6kX"/>
+                            <exclude reference="LUV-RY-OMd"/>
+                            <exclude reference="hvG-p4-XVu"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
