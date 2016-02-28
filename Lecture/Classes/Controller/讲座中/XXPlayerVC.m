@@ -46,6 +46,18 @@
 
 #pragma mark - 生命周期
 
+- (void)dealloc{
+    [XXNotificationCenter removeObserver:self];
+//    NSLog(@"%@", [self.playerToolBar superview]);
+    [self.playerToolBar removeFromSuperview];
+    self.playerToolBar = nil;
+    
+    [self.player pause];
+    self.player = nil;
+    
+    [self.playerItem removeObserver:self forKeyPath:@"status"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -70,9 +82,6 @@
 //    [self playOrStop];
 }
 
-- (void)dealloc{
-    [XXNotificationCenter removeObserver:self];
-}
 
 #pragma mark - 传递lecture详情数据给PlayerPicView和PlayerToolBar
 - (void)setLectureDetail:(XXXLectureModel *)lectureDetail{
@@ -169,6 +178,7 @@
     AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:currentPage.audio];
     self.player = player;
     self.playerItem = player.currentItem;
+    
     // 添加kvo监听播放器的状态
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
 }

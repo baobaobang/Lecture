@@ -67,7 +67,13 @@
 
 
 - (void)dealloc{
-    
+    [self.expertVc willMoveToParentViewController:nil];
+    [[self.expertVc view] removeFromSuperview];
+    [self.expertVc removeFromParentViewController];
+
+    [self.questionVc willMoveToParentViewController:nil];
+    [[self.questionVc view] removeFromSuperview];
+    [self.questionVc removeFromParentViewController];
 }
 
 #pragma mark - 只要点击虚拟键盘和编辑区域外的地方，就可以将键盘收起
@@ -174,6 +180,7 @@
     expertVc.view.height = kXXExpertTableViewHeight;
     [self addChildViewController:expertVc];
     [self.view addSubview:expertVc.view];
+    [expertVc didMoveToParentViewController:self];
     self.expertVc = expertVc;
     
     expertVc.lecture = self.lecture;// 传递数据
@@ -203,6 +210,7 @@
     questionVc.view.height = self.view.height - questionVc.view.y - kXXJoinButtonHeight;
     [self addChildViewController:questionVc];
     [self.view addSubview:questionVc.view];
+    [questionVc didMoveToParentViewController:self];
     self.questionVc = questionVc;
 }
 

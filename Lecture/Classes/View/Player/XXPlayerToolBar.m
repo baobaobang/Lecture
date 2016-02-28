@@ -29,6 +29,7 @@
     //移除定时器
 
     [self.link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    self.link = nil;
 }
 
 #pragma mark - 懒加载

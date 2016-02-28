@@ -21,6 +21,11 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
 
 @implementation XXExpertProfileVC
 
+
+- (void)dealloc{
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -61,9 +66,6 @@ static NSString * const expertProfileCellReuseId = @"expertProfileCell";
     }];
 }
 
-- (void)dealloc{
-
-}
 
 
 @end
