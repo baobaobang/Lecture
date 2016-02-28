@@ -48,6 +48,8 @@
         des = 85;
         self.logoTop.constant = 60;
     }
+    CGSize size = [UIScreen mainScreen].currentMode.size;
+    NSLog(@"%f---%f",size.width,size.height);
     if (iPhone6Plus) {
         des = 85;
     }

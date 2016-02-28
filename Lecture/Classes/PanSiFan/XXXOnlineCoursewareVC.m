@@ -195,12 +195,13 @@
     
     //TODO: 上传
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,self.pageModel.pageNo]];
+    NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,(long)self.pageModel.pageNo]];
     [self executeVoices:path];
 
     NSData *data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
     
     [NetworkManager qiniuUpload:data progress:^(NSString *key, float percent) {
+        [SVProgressHUD showProgress:percent];
         [SVProgressHUD showProgress:percent];
     } success:^(id result) {
         //音频上传成功 开始上传图片
