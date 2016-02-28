@@ -167,8 +167,7 @@
     CMTime totalTime = playerItem.duration;
     CGFloat duration = (CGFloat)totalTime.value/totalTime.timescale;
 //    CGFloat duration = CMTimeGetSeconds(totalTime);
-    NSString *durationStr = [NSString getHourMinuteSecondWithSecond:duration];
-    self.totalTimeLabel.text = [NSString stringWithFormat:@"%@", durationStr];
+    self.totalTimeLabel.text = [NSString getHourMinuteSecondWithSecond:duration];
     
     // 设置currentTimeLabel
     CMTime currentTime = self.player.currentItem.currentTime;

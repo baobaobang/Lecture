@@ -10,10 +10,10 @@
 
 @implementation XXReply
 + (NSDictionary *)mj_replacedKeyFromPropertyName{
-    return @{@"ID" : @"id", @"text" : @"content"};
+    return @{@"ID" : @"id"};
 }
 
 - (NSString *)buildCommentText{
-    return [NSString stringWithFormat:@"%@: %@", self.nickName, self.text];
+    return [NSString stringWithFormat:@"%@: %@", self.nickName, self.content];
 }
 @end
