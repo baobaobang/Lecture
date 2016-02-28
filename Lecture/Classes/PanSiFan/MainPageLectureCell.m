@@ -63,8 +63,9 @@
     [self.timer invalidate];
     [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:lectureModel.cover] placeholderImage:[UIImage imageNamed:@""]];
     [self.avatarView sd_setImageWithURL:[NSURL URLWithString:lectureModel.headPic] placeholderImage:[UIImage imageNamed:@""]];
-    self.nameLabel.text = [NSString stringWithFormat:@"%@",lectureModel.name];
-    self.descLabel.text = lectureModel.jobTitle;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@",lectureModel.title];
+    self.descLabel.text = [NSString stringWithFormat:@"%@:%@",lectureModel.name,lectureModel.jobTitle];
+    //self.descLabel.text = lectureModel.jobTitle;
     self.timeLabel.text = lectureModel.startDate;
     NSDate *date = [DateFormatter dateFromString:lectureModel.startDate];
     NSString *dateStr = [DateFormatter formatDate:date pattern:@"MM月dd日 HH:mm EE"];
