@@ -18,7 +18,7 @@
 #import "AudioTool.h"
 #import "XXLectureJoinVC.h"
 #import "XXLectureHomeVC.h"
-
+#import "DateFormatter.h"
 @interface XXXMainPageVC ()<XXXMakeLectureViewDelegate>
 
 
@@ -83,7 +83,7 @@
         [self endHeaderRefresh];
         [self endFooterRefresh];
         NSArray *tempArr = [XXXLectureModel objectArrayWithArray:result[@"data"]];
-        
+        tempArr = [self sortByDate:tempArr];
         if (tempArr.count == 0) {
             [SVProgressHUD showInfoWithStatus:@"没有新数据"];
         }
@@ -97,8 +97,13 @@
     }];
     
 }
-- (void)sortByDate:(NSArray *)dateArray{
-    
+- (NSArray *)sortByDate:(NSArray *)dateArray{
+    //NSMutableArray *temp = [NSMutableArray array];
+    return [dateArray sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSDate *date1 = [DateFormatter dateFromString:((XXXLectureModel *)obj1).startDate];
+        NSDate *date2 = [DateFormatter dateFromString:((XXXLectureModel *)obj2).startDate];
+        return [date2 compare:date1];
+    }];
 }
 #pragma -tableView代理,数据源
 

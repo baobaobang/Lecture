@@ -246,6 +246,7 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     XXQuestionPhotoCollectionViewCell* cell=(XXQuestionPhotoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:photoCellIndentifier forIndexPath:indexPath];
     if(indexPath.row==self.selectPhotos.count){ // 最后一个cell为加号按钮
         cell.photoImageView.image=[UIImage imageNamed:@"AlbumAddBtn"];
+        //cell.photoImageView.image = [UIImage imageNamed:]
         cell.photoImageView.highlightedImage=[UIImage imageNamed:@"AlbumAddBtnHL"];
         cell.photoImageView.deleBjView.hidden= YES;
         return cell;
