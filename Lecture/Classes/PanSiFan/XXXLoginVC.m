@@ -120,8 +120,9 @@
     }
     [self.curTextField resignFirstResponder];
     NSDictionary *params = @{@"mobile":self.phone.text,
-                             @"certCode":self.password.text,
-                             @"type":@(!self.checkBox.selected)};
+                             @"certCode":self.password.text
+//                             ,@"type":@(!self.checkBox.selected)
+                             };
     [NetworkManager postWithApi:@"register" params:params success:^(id result) {
         if ([result[@"ret"] integerValue] == 0) {
             UserDefaultsSave(result[@"data"][@"token"], @"access_token");

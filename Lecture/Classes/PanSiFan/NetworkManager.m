@@ -54,7 +54,9 @@
 + (void)qiniuUpload:(NSData *)data progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock isImageType:(BOOL)isImageType{
     NSString *token = UserDefaultsGet(@"qiniutoken");
     //QNUploadManager *upManager = [[QNUploadManager alloc] init];
-    QNUploadManager *upManager = [QNUploadManager sharedInstanceWithConfiguration:nil];
+    QNUploadManager *upManager = [QNUploadManager sharedInstanceWithConfiguration:[QNConfiguration build:^(QNConfigurationBuilder *builder) {
+        builder.timeoutInterval = 10;
+    }]];
     [upManager putData:data key:nil token:token
               complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                   if (resp) {
@@ -70,8 +72,11 @@
     NSString *token = UserDefaultsGet(@"qiniutoken");
     __weak NetworkManager *weakManager = [NetworkManager shareNetworkManager];
     int num = (int)imageArray.count;
+    
     for (UIImage *image in imageArray) {
-        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        QNUploadManager *upManager = [[QNUploadManager alloc]initWithConfiguration:[QNConfiguration build:^(QNConfigurationBuilder *builder) {
+            builder.timeoutInterval = 10;
+        }]];
         NSData *data = UIImageJPEGRepresentation(image, 1);
         [upManager putData:data key:nil token:token
                   complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
@@ -83,7 +88,7 @@
                               [weakManager.resultArray removeAllObjects];
                           }
                       }else{
-                          failBlock([NSError errorWithDomain:@"上传失败" code:-1 userInfo:nil]);
+                          failBlock(info.error);
                       }
                   } option:[[QNUploadOption alloc] initWithMime:nil progressHandler:progressHandler params:nil checkCrc:nil cancellationSignal:nil]];
         

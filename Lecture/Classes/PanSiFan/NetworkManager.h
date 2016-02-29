@@ -39,6 +39,15 @@ typedef void (^AllCompleteBlock)(id result);
 + (void)qiniuUpload:(NSData *)data progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock isImageType:(BOOL)isImageType;
 
 
+/**
+ *  七牛多图上传
+ *
+ *  @param imageArray       图片集合
+ *  @param progressHandler  进度
+ *  @param successBlock     每张上传成功调用
+ *  @param failBlock        每失败一次调用
+ *  @param allcompleteBlock 全部完成时block
+ */
 + (void)qiniuUpload:(NSArray<UIImage *> *)imageArray progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock allcompleteBlock:(AllCompleteBlock) allcompleteBlock;
 
 ///**

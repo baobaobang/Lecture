@@ -84,6 +84,7 @@
     return ocwVC;
 }
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(preView)];
@@ -127,6 +128,8 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [_titleLabel resignFirstResponder];
     return YES;
@@ -220,9 +223,9 @@
     } fail:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"音频上传失败"];
     } isImageType:NO];
-    
-
 }
+
+
 - (void)addPageTolecture{
     NSDictionary *params = @{@"pageNo":@(self.pageModel.pageNo),
                              @"title":self.titleLabel.text,
@@ -238,6 +241,8 @@
         
     }];
 }
+
+
 - (void)uploadSuccess{
     [_indicator stopAnimating];
     _indicator.hidden = YES;
@@ -255,9 +260,8 @@
         [self.supperVC clickAddPage];//添加一个空页
     }];
 }
+
 #pragma actionSheet 代理
-
-
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     switch (buttonIndex) {
@@ -326,9 +330,11 @@
     [[AudioTool shareAudioTool].player stop];
 }
 
+
 - (void)stopRecord:(RecordButton *)button{
     [self saveRecord:[self.pageModel.localUrls lastObject]];
 }
+
 
 - (IBAction)savePage:(UIButton *)sender {
 

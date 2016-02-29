@@ -111,7 +111,7 @@
                                 <action selector="getCertCode:" destination="-1" eventType="touchUpInside" id="jGy-jc-ZAE"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcx-yh-ERb">
+                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcx-yh-ERb">
                             <rect key="frame" x="12" y="281" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="3hd-5q-39Y"/>
@@ -127,7 +127,7 @@
                                 <action selector="isDoctor:" destination="-1" eventType="touchUpInside" id="jPi-kJ-fnF"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是医生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNM-kk-ebk">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNM-kk-ebk">
                             <rect key="frame" x="44" y="280.5" width="80" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="TQP-ca-jNr"/>

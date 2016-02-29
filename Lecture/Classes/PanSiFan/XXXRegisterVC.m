@@ -128,8 +128,9 @@
     
     //type == 1 医生 == 0 普通用户
     NSDictionary *temp = @{@"mobile":self.phone.text,
-                             @"certCode":self.code.text,
-                             @"type":@(!self.checkBox.selected)};
+                             @"certCode":self.code.text
+                           //,@"type":@(!self.checkBox.selected)
+                           };
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:temp];
     [params setObject:@(self.user.thirdPartyType) forKey:@"thirdPartyType"];
     switch (self.user.thirdPartyType) {
