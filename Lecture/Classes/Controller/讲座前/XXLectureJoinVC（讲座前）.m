@@ -97,7 +97,7 @@
 - (void)hidePicView{
 
     // 需要上移的高度
-    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+    CGFloat height = self.picView.height + self.expertHeaderView.height + self.expertVc.view.height;
     
 //    // 隐藏导航栏
 //    [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -116,7 +116,7 @@
 
 - (void)showPicView{
     // 需要下移的高度
-    CGFloat height = self.picView.height + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+    CGFloat height = self.picView.height + self.expertHeaderView.height + self.expertVc.view.height;
     
 //    // 显示导航栏
 //    [self.navigationController setNavigationBarHidden:NO animated:YES];
