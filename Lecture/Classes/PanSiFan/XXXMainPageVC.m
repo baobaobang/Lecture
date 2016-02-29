@@ -125,7 +125,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_mlv animateBtns:nil];
+    if (_mlv.isOpen) {
+        [_mlv animateBtns:nil];
+    }
+    
     // 数据模型
     XXXLectureModel *lectureModel = self.dataArray[indexPath.row];
     if ([self isOldLecture:lectureModel]) {

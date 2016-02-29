@@ -15,7 +15,7 @@
 @end
 
 @interface XXXMakeLectureView : UIView
-
+@property (nonatomic, assign) BOOL isOpen;//按钮收缩状态
 @property (nonatomic, weak) id<XXXMakeLectureViewDelegate> delegate;
 
 - (void)animateBtns:(UIButton *)plus;
