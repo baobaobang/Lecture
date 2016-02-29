@@ -75,7 +75,7 @@
     
     for (UIImage *image in imageArray) {
         QNUploadManager *upManager = [[QNUploadManager alloc]initWithConfiguration:[QNConfiguration build:^(QNConfigurationBuilder *builder) {
-            builder.timeoutInterval = 2;
+            builder.timeoutInterval = 10;
         }]];
         NSData *data = UIImageJPEGRepresentation(image, 1);
         [upManager putData:data key:nil token:token

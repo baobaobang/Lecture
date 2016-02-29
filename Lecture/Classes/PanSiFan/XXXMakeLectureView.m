@@ -10,7 +10,7 @@
 #define PlusBtnW 50.0
 @interface XXXMakeLectureView()
 
-@property (nonatomic, assign) BOOL isOpen;//按钮收缩状态
+//@property (nonatomic, assign) BOOL isOpen;//按钮收缩状态
 @property (nonatomic, assign) CGRect rect;
 
 @end
