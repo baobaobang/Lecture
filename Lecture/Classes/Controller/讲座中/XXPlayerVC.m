@@ -16,6 +16,7 @@
 #import "MJExtension.h"
 #import "AudioTool.h"
 #import <UMSocial.h>
+#import "CXShareTool.h"
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define XXMaxSections 3
@@ -415,22 +416,7 @@
     // 设置点击返回的url和title
     NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lectureDetail.lectureId];
     NSString *title = self.lectureDetail.title;
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = url;
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = url;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
-    [UMSocialData defaultData].extConfig.qqData.url = url;
-    [UMSocialData defaultData].extConfig.qqData.title = title;
-    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = url;
-    [UMSocialData defaultData].extConfig.sinaData.snsName = @"医讲堂";
-
-    // 跳出分享页面
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:UMKey
-                                      shareText:self.lectureDetail.desc
-                                     shareImage:[UIImage imageNamed:@"logo"]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToSina,nil]
-                                       delegate:nil];
+    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc];
 }
 
 

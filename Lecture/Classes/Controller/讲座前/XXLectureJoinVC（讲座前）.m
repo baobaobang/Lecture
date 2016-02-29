@@ -19,8 +19,8 @@
 #import "XXQuestionCreateVC.h"
 #import "XXNavigationController.h"
 #import "CXTextView.h"
-#import <UMSocial.h>
 #import "XXXLoginVC.h"
+#import "CXShareTool.h"
 
 @interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
@@ -249,22 +249,7 @@
     // 设置点击返回的url和title
     NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lecture.lectureId];
     NSString *title = self.lecture.title;
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = url;
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = url;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
-    [UMSocialData defaultData].extConfig.qqData.url = url;
-    [UMSocialData defaultData].extConfig.qqData.title = title;
-    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = url;
-    [UMSocialData defaultData].extConfig.sinaData.snsName = @"医讲堂";
-    
-    // 跳出分享页面
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:UMKey
-                                      shareText:self.lecture.desc
-                                     shareImage:[UIImage imageNamed:@"logo"]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToSina,nil]
-                                       delegate:nil];
+    [CXShareTool shareInVc:self url:url title:title shareText:self.lecture.desc];
 }
 
 #pragma mark - 点击报名
