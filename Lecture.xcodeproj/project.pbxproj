@@ -44,6 +44,7 @@
 		2D1BDF111C5B62BE00056E87 /* XXQuestionVC(所有提问).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDF0A1C5B62BE00056E87 /* XXQuestionVC(所有提问).m */; };
 		2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01E51C3EA3910056B10C /* Main.storyboard */; };
 		2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01EA1C3EA3910056B10C /* LaunchScreen.storyboard */; };
+		2D1E59851C83F95A008A8893 /* XXReplyPlayingIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E59841C83F95A008A8893 /* XXReplyPlayingIndex.m */; };
 		2D23726C1C5F0DE800A422EF /* AppDelegate+UM.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */; };
 		2D23726D1C5F0DE800A422EF /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372431C5F0DE800A422EF /* DBManager.m */; };
 		2D23726F1C5F0DE800A422EF /* MainPageLectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372481C5F0DE800A422EF /* MainPageLectureCell.m */; };
@@ -246,6 +247,8 @@
 		2D1D01F21C3EA3910056B10C /* LectureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LectureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1D01FD1C3EA3910056B10C /* LectureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LectureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1D20141C3F733F0093C310 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		2D1E59831C83F95A008A8893 /* XXReplyPlayingIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXReplyPlayingIndex.h; sourceTree = "<group>"; };
+		2D1E59841C83F95A008A8893 /* XXReplyPlayingIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXReplyPlayingIndex.m; sourceTree = "<group>"; };
 		2D2372401C5F0DE800A422EF /* AppDelegate+UM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UM.h"; sourceTree = "<group>"; };
 		2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UM.m"; sourceTree = "<group>"; };
 		2D2372421C5F0DE800A422EF /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
@@ -1132,6 +1135,8 @@
 				2D6308991C549B2F0092F622 /* XXQuestionFrame.m */,
 				2D63089A1C549B2F0092F622 /* XXQuestionPhoto.h */,
 				2D63089B1C549B2F0092F622 /* XXQuestionPhoto.m */,
+				2D1E59831C83F95A008A8893 /* XXReplyPlayingIndex.h */,
+				2D1E59841C83F95A008A8893 /* XXReplyPlayingIndex.m */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -1572,6 +1577,7 @@
 				2D6308DB1C549B2F0092F622 /* NSString+Extension.m in Sources */,
 				2D2372761C5F0DE800A422EF /* UIView+RoundAndShadow.m in Sources */,
 				16CFE3681C707F4D0033C3BE /* DateFormatter.m in Sources */,
+				2D1E59851C83F95A008A8893 /* XXReplyPlayingIndex.m in Sources */,
 				2D55BB801C5618F900BA1542 /* LGPhotoPickerImageView.m in Sources */,
 				2D6309011C549B2F0092F622 /* XXJoinLectureActionSheet（报名弹窗）.m in Sources */,
 				2D6308FE1C549B2F0092F622 /* XXPlayerMaskView.m in Sources */,

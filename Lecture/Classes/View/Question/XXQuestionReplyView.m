@@ -10,6 +10,7 @@
 #import "XXQuestionReplyCell.h"
 #import "XXQuestionReplyUserCell.h"
 #import "XXQuestionFrame.h"
+#import "XXReplyPlayingIndex.h"
 
 @interface XXQuestionReplyView ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *commentTableView;
@@ -76,7 +77,12 @@
         // 专家回复
         XXQuestionReplyCell *cell = (XXQuestionReplyCell *)[tableView dequeueReusableCellWithIdentifier:XXQuestionReplyCellReuseId forIndexPath:indexPath];
         cell.reply = reply;
-        cell.tag = indexPath.row;
+        
+        XXReplyPlayingIndex *index = [[XXReplyPlayingIndex alloc] init];
+        index.replyIndexPath = indexPath;
+        index.questionIndexPath = self.indexPath;
+        cell.index = index;
+        cell.clickedIndex = self.clickedIndex;
         return cell;
     }
 }

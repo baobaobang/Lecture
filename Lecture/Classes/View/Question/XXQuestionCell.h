@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXQuestion, XXQuestionToolbar, XXQuestionFrame;
+@class XXQuestion, XXQuestionToolbar, XXQuestionFrame, XXReplyPlayingIndex;
 
 @interface XXQuestionCell : UITableViewCell
 
 @property (nonatomic, weak) XXQuestionToolbar *toolbar;
 
 @property (nonatomic, strong) XXQuestionFrame *questionFrame;
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) XXReplyPlayingIndex *clickedIndex; // 被点击的回复index
 @end

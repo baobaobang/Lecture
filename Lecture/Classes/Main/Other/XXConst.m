@@ -78,4 +78,5 @@ NSString * const XXLectureSelectedQuestionsVCRefreshNotification = @"XXLectureSe
 
 #pragma mark - 问题
 NSString * const XXReplyCellDidClickNotification = @"XXReplyCellDidClickNotification";
+NSString * const XXReplyCellPlayBtnDidClickNotification = @"XXReplyCellPlayBtnDidClickNotification";
 @end

@@ -11,11 +11,14 @@
 #import "XXQuestionToolbar.h"
 #import "CXTextView.h"
 #import "XXReply.h"
+#import "XXReplyPlayingIndex.h"
 
 @interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
 @property (nonatomic, strong) UIImageView *noDataImage;
 @property (nonatomic, copy) NSString *replyingQuestionId;
 @property (nonatomic, assign) NSInteger replyingQuestionIndex;
+
+@property (nonatomic, strong) XXReplyPlayingIndex *clickedIndex; // 正在播放的回复index
 @end
 
 @implementation XXQuestionBaseVC
@@ -47,6 +50,7 @@
 - (void)dealloc
 {
     //    XXLog(@"%@",self.textView);
+    [XXNotificationCenter removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -62,6 +66,11 @@
 //    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
 //    self.tableView.tag = 1;
+    
+    // 点击回复音频按钮收到的通知
+    [XXNotificationCenter addObserver:self selector:@selector(clickReplyAudio:) name:XXReplyCellPlayBtnDidClickNotification object:nil];
+    
+    self.clickedIndex = nil;
 }
 
 
@@ -139,6 +148,8 @@
     
     // 给cell的子控件赋值
     questionCell.questionFrame = self.questionFrames[indexPath.row];
+    questionCell.indexPath = indexPath;
+    questionCell.clickedIndex = self.clickedIndex;
     
     return questionCell;
 }
@@ -392,6 +403,11 @@
         [self.tableView addSubview:_noDataImage];
     }
     return _noDataImage;
+}
+#pragma mark - 点击回复音频后，传递值给tableview
+- (void)clickReplyAudio:(NSNotification *)noti
+{
+    self.clickedIndex = noti.userInfo[@"index"];
 }
 
 @end

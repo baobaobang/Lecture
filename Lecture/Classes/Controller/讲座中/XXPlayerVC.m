@@ -51,10 +51,10 @@
 //    NSLog(@"%@", [self.playerToolBar superview]);
     [self.playerToolBar removeFromSuperview];
     self.playerToolBar = nil;
-    
+    [self.player replaceCurrentItemWithPlayerItem:nil];
     [self.player pause];
     self.player = nil;
-    
+
     [self.playerItem removeObserver:self forKeyPath:@"status"];
 }
 
@@ -67,7 +67,7 @@
     
     [self setupPlayerToolBar];
     
-    [XXNotificationCenter addObserver:self selector:@selector(avPlayerItemDidPlayToEndTime:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(endPlay) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -303,7 +303,7 @@
 }
 
 #pragma mark - 自动播放下一首
--(void)avPlayerItemDidPlayToEndTime:(AVPlayer *)player{
+-(void)endPlay{
     //自动播放下一首
     [self next];
 }

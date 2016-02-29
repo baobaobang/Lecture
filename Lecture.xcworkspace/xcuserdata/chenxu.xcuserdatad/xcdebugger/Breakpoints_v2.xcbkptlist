@@ -22,7 +22,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lecture/Classes/View/Player/XXPlayerToolBar.m"
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lecture/Classes/Controller/&#x8bb2;&#x5ea7;&#x4e2d;/XXQuestionBaseVC.m"
-            timestampString = "478287277.962386"
+            timestampString = "478423560.966592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>

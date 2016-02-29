@@ -13,6 +13,7 @@
 #import "XXQuestionFrame.h"
 #import "UIButton+WebCache.h"
 #import "XXQuestionReplyView.h"
+#import "XXReplyPlayingIndex.h"
 
 @interface XXQuestionCell ()
 
@@ -142,6 +143,16 @@
     /** 回复 */
     self.replyView.frame = questionFrame.replyF;
     self.replyView.question = question;
+}
+
+- (void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = indexPath;
+    self.replyView.indexPath = indexPath;
+}
+
+- (void)setClickedIndex:(XXReplyPlayingIndex *)clickedIndex{
+    _clickedIndex = clickedIndex;
+    self.replyView.clickedIndex = clickedIndex;
 }
 
 @end

@@ -57,16 +57,19 @@
 //                   error:nil];
 //    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
 //    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
-    
+    // 为了能够外放
     UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
     AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+    // 暂停前面一个
     [_streamPlayer pause];
-    NSURL *URL;
+    // 同时支持本地和网络播放
+    NSURL *URL; 
     if ( [url hasPrefix:@"http"]) {
         URL = [NSURL URLWithString:url];
     }else{
         URL = [NSURL fileURLWithPath:url];
     }
+    // 一次只有一个player
     _streamPlayer = [[AVPlayer alloc]initWithURL:URL];
     return _streamPlayer;
 }
