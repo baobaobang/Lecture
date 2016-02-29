@@ -29,19 +29,19 @@
 +(NSString *)getHourMinuteSecondWithSecond:(NSTimeInterval)time
 {
     NSInteger sec = round(time);
-    NSString *tmphh = [NSString stringWithFormat:@"%ld",sec/3600];
+    NSString *tmphh = [NSString stringWithFormat:@"%d",sec/3600];
     if ([tmphh length] == 1)
     {
         tmphh = [NSString stringWithFormat:@"0%@",tmphh];
     }
     
-    NSString *tmpmm = [NSString stringWithFormat:@"%ld",(sec/60)%60];
+    NSString *tmpmm = [NSString stringWithFormat:@"%d",(sec/60)%60];
     if ([tmpmm length] == 1)
     {
         tmpmm = [NSString stringWithFormat:@"0%@",tmpmm];
     }
     
-    NSString *tmpss = [NSString stringWithFormat:@"%ld",sec%60];
+    NSString *tmpss = [NSString stringWithFormat:@"%d",sec%60];
     if ([tmpss length] == 1)
     {
         tmpss = [NSString stringWithFormat:@"0%@",tmpss];
@@ -55,5 +55,22 @@
     }
     return result;
 }
+
+// 微信语音显示的时间格式
++(NSString *)wechatTime:(NSTimeInterval)time
+{
+    NSInteger sec = round(time);
+    NSString *tmpmm = [NSString stringWithFormat:@"%d",(sec/60)%60];
+    NSString *tmpss = [NSString stringWithFormat:@"%d",sec%60];
+    
+    NSString *result;
+    if ((sec/60)%60 == 0) {
+        result = [NSString stringWithFormat:@"%@\"",tmpss];
+    }else{
+        result = [NSString stringWithFormat:@"%@\'%@\"",tmpmm,tmpss];
+    }
+    return result;
+}
+
 
 @end

@@ -179,6 +179,9 @@
     self.player = player;
     self.playerItem = player.currentItem;
     
+//    [MBProgressHUD showMessage:@"正在加载音频中。。。"];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     // 添加kvo监听播放器的状态
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
 }
@@ -187,7 +190,6 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if (object == _playerItem && [keyPath isEqualToString:@"status"]) {
         if ([_playerItem status] == AVPlayerStatusReadyToPlay) {
-            
             // 开始播放
             if (self.isPlaying) {
                 [_player play];
@@ -199,8 +201,11 @@
             // 将player传递给playerToolBar
             self.playerToolBar.player = _player;
             
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
         } else if ([_playerItem status] == AVPlayerStatusFailed) {
-
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD showError:@"讲座音频加载失败" toView:self.view];
         }
     }
 }

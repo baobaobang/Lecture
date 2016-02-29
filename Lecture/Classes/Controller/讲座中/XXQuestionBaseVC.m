@@ -228,7 +228,7 @@
     [NetworkManager postWithApi:url params:nil success:^(id result) {
         
     } fail:^(NSError *error) {
-        
+
     }];
 }
 
@@ -327,7 +327,7 @@
 
         reply.questionId = weakSelf.replyingQuestionId;
         reply.nickName = @"匿名用户"; // 当前用户的昵称
-        reply.text = weakSelf.textView.text;
+        reply.content = weakSelf.textView.text;
         reply.type = isExpert ? 1 : 0;
         
         NSUInteger count = weakSelf.questionFrames.count;
@@ -351,7 +351,7 @@
         weakSelf.textView.text = nil;
         
     } fail:^(NSError *error) {
-        
+        [MBProgressHUD showError:@"发送失败！" toView:weakSelf.view];
     }];
 }
 

@@ -19,8 +19,8 @@
 @property (nonatomic, copy) NSString *nickName; // 用户昵称
 @property (nonatomic, copy) NSString *headPic; // 用户头像
 
-/**	问题文字内容*/
-@property (nonatomic, copy) NSString *text;
+/**	问题内容*/
+@property (nonatomic, copy) NSString *content;
 
 /**	问题音频urlStr*/
 @property (nonatomic, copy) NSString *mp3Str;//FIXME: 少字段
