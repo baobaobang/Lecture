@@ -22,6 +22,7 @@
 #import "XXXLoginVC.h"
 @interface XXXMainPageVC ()<XXXMakeLectureViewDelegate>
 
+@property (nonatomic, strong) XXXMakeLectureView *mlv;
 
 @end
 
@@ -58,9 +59,9 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (isExpert) {
-        XXXMakeLectureView *mlv = [[XXXMakeLectureView alloc]initWithFrame:CGRectMake(SWIDTH/2-25, SHEIGHT-100, 50, 100)];
-        mlv.delegate = self;
-        [self.view addSubview:mlv];
+        _mlv = [[XXXMakeLectureView alloc]initWithFrame:CGRectMake(SWIDTH/2-25, SHEIGHT-100, 50, 100)];
+        _mlv.delegate = self;
+        [self.view addSubview:_mlv];
     }
     
 }
@@ -124,6 +125,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [_mlv animateBtns:nil];
     // 数据模型
     XXXLectureModel *lectureModel = self.dataArray[indexPath.row];
     if ([self isOldLecture:lectureModel]) {

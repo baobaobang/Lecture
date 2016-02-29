@@ -73,7 +73,7 @@
 }
 
 - (void)setupTotalTimeLabel:(XXReply *)reply{
-    // 初始化一个 "音频播放器"player，一首音乐对应一个player
+     //初始化一个 "音频播放器"player，一首音乐对应一个player
     AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:reply.content];
     self.player = player;
     AVPlayerItem *playerItem = player.currentItem;

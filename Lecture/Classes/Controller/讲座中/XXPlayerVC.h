@@ -24,4 +24,5 @@
 @property (nonatomic, weak) XXPlayerPicView *playerPicView;
 
 @property (nonatomic, strong) XXXLectureModel *lectureDetail;
+
 @end
