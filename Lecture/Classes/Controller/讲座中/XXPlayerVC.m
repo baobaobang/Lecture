@@ -48,12 +48,10 @@
 
 - (void)dealloc{
     [XXNotificationCenter removeObserver:self];
-//    NSLog(@"%@", [self.playerToolBar superview]);
-    [self.playerToolBar removeFromSuperview];
-    self.playerToolBar = nil;
+
     [self.player replaceCurrentItemWithPlayerItem:nil];
-    [self.player pause];
-    self.player = nil;
+    [self.player pause];// 暂停讲座的音频
+    [[AudioTool shareAudioTool].streamPlayer pause];// 暂停回复的音频
 
     [self.playerItem removeObserver:self forKeyPath:@"status"];
 }
@@ -170,7 +168,7 @@
     if (self.playerItem) {// 移除上一个item的kvo监听
         [self.playerItem removeObserver:self forKeyPath:@"status"];
     }
-    AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:currentPage.audio];
+    AVPlayer *player = [[AudioTool shareAudioTool] noSinglePlayerWithURL:currentPage.audio];
     self.player = player;
     self.playerItem = player.currentItem;
     

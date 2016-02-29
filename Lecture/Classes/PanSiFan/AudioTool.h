@@ -18,4 +18,5 @@
 - (AVAudioRecorder *)recorderWithURL:(NSURL *)url;
 - (AVAudioPlayer *)playerWithURL:(NSURL *)url;
 - (AVPlayer *)streamPlayerWithURL:(NSString *)url;
+- (AVPlayer *)noSinglePlayerWithURL:(NSString *)url;
 @end
