@@ -27,7 +27,6 @@
 
 -(void)dealloc{
     //移除定时器
-    [XXNotificationCenter removeObserver:self];
 
     [self.link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     self.link = nil;
@@ -93,8 +92,6 @@
         
         // 开启定时器
         [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-        
-        [XXNotificationCenter addObserver:self selector:@selector(updateTotalTimeLabel) name:XXChangePageNotification object:nil];
     }
     return self;
 }
@@ -141,7 +138,7 @@
     self.timeSlider.frame = CGRectMake(sliderX, sliderY, sliderW, sliderH);
     
     // 网络不好的情况（设置各个子控件的默认数据）
-    if ([AudioTool shareAudioTool].streamPlayer == nil) {
+    if (self.player == nil) {
         [self setUpDefaultData];
     }
 }
@@ -157,30 +154,36 @@
 }
 
 
-#pragma mark - 更新总时间
+#pragma mark - 给子控件赋值数据
 
-- (void)updateTotalTimeLabel{
+// 设置初始化时候的显示
+- (void)setPlayer:(AVPlayer *)player{
+    
+    _player = player;
+    
+    AVPlayerItem *playerItem = player.currentItem;
+    
     // 设置totalTimeLabel
-//    AVPlayerItem *playerItem = [AudioTool shareAudioTool].streamPlayer.currentItem;
-//    
-//    CMTime totalTime = playerItem.duration;
+    CMTime totalTime = playerItem.duration;
+    CGFloat duration = (CGFloat)totalTime.value/totalTime.timescale;
 //    CGFloat duration = CMTimeGetSeconds(totalTime);
-//    self.totalTimeLabel.text = [NSString getHourMinuteSecondWithSecond:duration];
-//    
-//    // 设置currentTimeLabel
-//    CMTime currentTime = playerItem.currentTime;
+    self.totalTimeLabel.text = [NSString getHourMinuteSecondWithSecond:duration];
+    
+    // 设置currentTimeLabel
+    CMTime currentTime = self.player.currentItem.currentTime;
+    self.currentDuration = (CGFloat)currentTime.value/currentTime.timescale;
 //    self.currentDuration = CMTimeGetSeconds(currentTime);
-//    self.currentTimeLabel.text = [NSString getHourMinuteSecondWithSecond:self.currentDuration];
-//    
-//    // 设置slider
-//    self.timeSlider.maximumValue = duration;
-//    self.timeSlider.value = self.currentDuration;
+    self.currentTimeLabel.text = [NSString getHourMinuteSecondWithSecond:self.currentDuration];
+    
+    // 设置slider
+    self.timeSlider.maximumValue = duration;
+    self.timeSlider.value = self.currentDuration;
 }
 
 
 #pragma mark - 定时器监听currentTime属性变化，刷新进度条和currentTimeLabel
 - (void)currentTimeUpdate{
-    CMTime currentTime = [AudioTool shareAudioTool].streamPlayer.currentItem.currentTime;
+    CMTime currentTime = self.player.currentItem.currentTime;
     self.currentDuration = (CGFloat)currentTime.value/currentTime.timescale;
     if (self.isDragging == NO){
         // 如果没有在拖拽进度条，就根据currentTime更新进度条

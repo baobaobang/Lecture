@@ -98,7 +98,4 @@ extern NSString * const XXReplyCellPlayBtnDidClickNotification;
 #define XXQuestionCellReplyTimeFont [UIFont systemFontOfSize:11]// 回复语音的时间字体
 #define XXQuestionReplyBackgroundColor XXColor(240, 240, 242)// 回复的背景颜色
 
-#pragma mark - 播放器
-extern NSString * const XXChangePageNotification;
-
 @end
