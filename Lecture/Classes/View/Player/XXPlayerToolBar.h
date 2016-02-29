@@ -29,10 +29,6 @@
 /** 总播放时长 */
 @property (weak, nonatomic) UILabel *totalTimeLabel;
 
-
-/** 播放器 */
-@property(nonatomic,strong) AVPlayer *player;
-
 @property (nonatomic, weak) id<XXPlayerToolBarDelegate> delegate;
 /** 是否正在拖拽 */
 @property(assign,nonatomic,getter=isDragging)BOOL dragging;

@@ -25,8 +25,8 @@
 @property (nonatomic, weak) XXPlayerToolBar *playerToolBar;
 /** 播放器 */
 //@property(nonatomic,strong)AVAudioPlayer *player; // 只能播放本地音频
-@property (nonatomic, strong) AVPlayer *player; // 可播放本地和网络音频的播放器
-@property (nonatomic, strong) AVPlayerItem *playerItem; // 当前播放的资源
+@property (nonatomic, weak) AVPlayer *player; // 可播放本地和网络音频的播放器
+//@property (nonatomic, strong) AVPlayerItem *playerItem; // 当前播放的资源
 
 @property (nonatomic, assign) CGFloat currentDuration; // 当前播放时间
 @property (nonatomic, assign) CGFloat totalDuration; // 播放总时间
@@ -51,11 +51,11 @@
 //    NSLog(@"%@", [self.playerToolBar superview]);
     [self.playerToolBar removeFromSuperview];
     self.playerToolBar = nil;
-    [self.player replaceCurrentItemWithPlayerItem:nil];
-    [self.player pause];
-    self.player = nil;
+//    [self.player replaceCurrentItemWithPlayerItem:nil];
+//    [self.player pause];
+//    self.player = nil;
 
-    [self.playerItem removeObserver:self forKeyPath:@"status"];
+//    [self.playerItem removeObserver:self forKeyPath:@"status"];
 }
 
 - (void)viewDidLoad {
@@ -167,38 +167,38 @@
     _currentPage = currentPage;
     
     // 初始化一个 "音频播放器"player，一首音乐对应一个player
-    if (self.playerItem) {// 移除上一个item的kvo监听
-        [self.playerItem removeObserver:self forKeyPath:@"status"];
+    if ([AudioTool shareAudioTool].streamPlayer) {// 移除上一个item的kvo监听
+        [[AudioTool shareAudioTool].streamPlayer removeObserver:self forKeyPath:@"status"];
     }
     AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:currentPage.audio];
     self.player = player;
-    self.playerItem = player.currentItem;
     
 //    [MBProgressHUD showMessage:@"正在加载音频中。。。"];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // 添加kvo监听播放器的状态
-    [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
+    [player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
 }
 
 #pragma mark - KVO监听AVplayer的播放状态，是否已经准备就绪
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    if (object == _playerItem && [keyPath isEqualToString:@"status"]) {
-        if ([_playerItem status] == AVPlayerStatusReadyToPlay) {
+    AVPlayer *player = [AudioTool shareAudioTool].streamPlayer;
+    if (object == player && [keyPath isEqualToString:@"status"]) {
+        if ([player status] == AVPlayerStatusReadyToPlay) {
             // 开始播放
             if (self.isPlaying) {
-                [_player play];
+                [player play];
             }
             
             // 重置当前播放时间为0
             self.currentDuration = 0;
             
-            // 将player传递给playerToolBar
-            self.playerToolBar.player = _player;
+            // 通知更新
+            [XXNotificationCenter postNotificationName:XXChangePageNotification object:nil];
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-        } else if ([_playerItem status] == AVPlayerStatusFailed) {
+        } else if ([player status] == AVPlayerStatusFailed) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [MBProgressHUD showError:@"讲座音频加载失败" toView:self.view];
         }
@@ -210,11 +210,11 @@
 - (void)playOrStop{
     //更改播放状态
     self.playing = !self.playing;
-    
+    AVPlayer *player = [AudioTool shareAudioTool].streamPlayer;
     if (self.playing) {//播放音乐
         //1.如果是播放的状态，按钮的图片更改为暂停的状态
         self.playerToolBar.playBtn.selected = YES;
-        [self.player play];
+        [player play];
         
         [self addFadeAnimationForView:self.playerPicView.maskView];
         self.playerPicView.maskView.hidden = YES;
@@ -226,7 +226,7 @@
     }else{//暂停音乐
         //2.如果当前是暂停的状态，按钮的图片更改为播放的状态
         self.playerToolBar.playBtn.selected = NO;
-        [self.player pause];
+        [player pause];
         
         [self addFadeAnimationForView:self.playerPicView.maskView];
         self.playerPicView.maskView.hidden = NO;
