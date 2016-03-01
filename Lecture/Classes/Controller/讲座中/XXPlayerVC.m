@@ -16,6 +16,7 @@
 #import "MJExtension.h"
 #import "AudioTool.h"
 #import <UMSocial.h>
+#import "CXShareTool.h"
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define XXMaxSections 3
@@ -26,7 +27,7 @@
 /** 播放器 */
 //@property(nonatomic,strong)AVAudioPlayer *player; // 只能播放本地音频
 @property (nonatomic, strong) AVPlayer *player; // 可播放本地和网络音频的播放器
-@property (nonatomic, strong) AVPlayerItem *playerItem; // 当前播放的资源
+@property (nonatomic, weak) AVPlayerItem *playerItem; // 当前播放的资源
 
 @property (nonatomic, assign) CGFloat currentDuration; // 当前播放时间
 @property (nonatomic, assign) CGFloat totalDuration; // 播放总时间
@@ -48,12 +49,10 @@
 
 - (void)dealloc{
     [XXNotificationCenter removeObserver:self];
-//    NSLog(@"%@", [self.playerToolBar superview]);
-    [self.playerToolBar removeFromSuperview];
-    self.playerToolBar = nil;
+
     [self.player replaceCurrentItemWithPlayerItem:nil];
-    [self.player pause];
-    self.player = nil;
+    [self.player pause];// 暂停讲座的音频
+    [[AudioTool shareAudioTool].streamPlayer pause];// 暂停回复的音频
 
     [self.playerItem removeObserver:self forKeyPath:@"status"];
 }
@@ -75,11 +74,6 @@
     
     [self.timer invalidate];
     self.timer = nil;
-    
-    // 离开讲座中页面就不能继续播放了，但是按住home键可以进入后台播放
-    // 这样也有问题，切换到只看专家的时候也会停止播放
-//    self.playing = YES;
-//    [self playOrStop];
 }
 
 
@@ -175,7 +169,7 @@
     if (self.playerItem) {// 移除上一个item的kvo监听
         [self.playerItem removeObserver:self forKeyPath:@"status"];
     }
-    AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:currentPage.audio];
+    AVPlayer *player = [[AudioTool shareAudioTool] noSinglePlayerWithURL:currentPage.audio];
     self.player = player;
     self.playerItem = player.currentItem;
     
@@ -422,22 +416,7 @@
     // 设置点击返回的url和title
     NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lectureDetail.lectureId];
     NSString *title = self.lectureDetail.title;
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = url;
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = url;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
-    [UMSocialData defaultData].extConfig.qqData.url = url;
-    [UMSocialData defaultData].extConfig.qqData.title = title;
-    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = url;
-    [UMSocialData defaultData].extConfig.sinaData.snsName = @"医讲堂";
-
-    // 跳出分享页面
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:UMKey
-                                      shareText:self.lectureDetail.desc
-                                     shareImage:[UIImage imageNamed:@"logo"]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToSina,nil]
-                                       delegate:nil];
+    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc];
 }
 
 

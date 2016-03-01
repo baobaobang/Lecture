@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
 @property (nonatomic, assign, getter=isPlaying) BOOL playing;
 
-
 @end
 
 @implementation XXQuestionReplyCell
@@ -24,10 +23,6 @@
 -(void)dealloc{
     
     [XXNotificationCenter removeObserver:self];
-    
-//    AVPlayer *player = [AudioTool shareAudioTool].streamPlayer;
-//    [player.currentItem removeObserver:self forKeyPath:@"status"];
-//    [player replaceCurrentItemWithPlayerItem:nil];
 }
 
 - (void)awakeFromNib {
@@ -81,6 +76,7 @@
     self.userNameLabel.text = [NSString stringWithFormat:@"%@:", reply.nickName];
 }
 
+
 //- (void)setupTotalTimeLabel:(XXReply *)reply{
 //     //初始化一个 "音频播放器"player，一首音乐对应一个player
 //    AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:reply.content];
@@ -113,6 +109,8 @@
 //    }
 //}
 
+=======
+>>>>>>> origin/master
 #pragma mark - 点击播放按钮，发送通知，通知所有回复cell
 - (IBAction)clickPlayBtn:(XXButton *)btn {
     [XXNotificationCenter postNotificationName:XXReplyCellPlayBtnDidClickNotification object:nil userInfo:@{@"index" : self.index}];

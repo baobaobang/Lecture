@@ -45,6 +45,7 @@
 		2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01E51C3EA3910056B10C /* Main.storyboard */; };
 		2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D01EA1C3EA3910056B10C /* LaunchScreen.storyboard */; };
 		2D1E59851C83F95A008A8893 /* XXReplyPlayingIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E59841C83F95A008A8893 /* XXReplyPlayingIndex.m */; };
+		2D1E59881C846F4E008A8893 /* CXShareTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E59871C846F4E008A8893 /* CXShareTool.m */; };
 		2D23726C1C5F0DE800A422EF /* AppDelegate+UM.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */; };
 		2D23726D1C5F0DE800A422EF /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372431C5F0DE800A422EF /* DBManager.m */; };
 		2D23726F1C5F0DE800A422EF /* MainPageLectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2372481C5F0DE800A422EF /* MainPageLectureCell.m */; };
@@ -249,6 +250,8 @@
 		2D1D20141C3F733F0093C310 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2D1E59831C83F95A008A8893 /* XXReplyPlayingIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXReplyPlayingIndex.h; sourceTree = "<group>"; };
 		2D1E59841C83F95A008A8893 /* XXReplyPlayingIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXReplyPlayingIndex.m; sourceTree = "<group>"; };
+		2D1E59861C846F4E008A8893 /* CXShareTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXShareTool.h; sourceTree = "<group>"; };
+		2D1E59871C846F4E008A8893 /* CXShareTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXShareTool.m; sourceTree = "<group>"; };
 		2D2372401C5F0DE800A422EF /* AppDelegate+UM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UM.h"; sourceTree = "<group>"; };
 		2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UM.m"; sourceTree = "<group>"; };
 		2D2372421C5F0DE800A422EF /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
@@ -1079,6 +1082,8 @@
 				2D6308821C549B2F0092F622 /* Singleton.h */,
 				2DBAF6C41C619DFD00D4BC49 /* CXHttpTool.h */,
 				2DBAF6C51C619DFD00D4BC49 /* CXHttpTool.m */,
+				2D1E59861C846F4E008A8893 /* CXShareTool.h */,
+				2D1E59871C846F4E008A8893 /* CXShareTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1579,6 +1584,7 @@
 				16CFE3681C707F4D0033C3BE /* DateFormatter.m in Sources */,
 				2D1E59851C83F95A008A8893 /* XXReplyPlayingIndex.m in Sources */,
 				2D55BB801C5618F900BA1542 /* LGPhotoPickerImageView.m in Sources */,
+				2D1E59881C846F4E008A8893 /* CXShareTool.m in Sources */,
 				2D6309011C549B2F0092F622 /* XXJoinLectureActionSheet（报名弹窗）.m in Sources */,
 				2D6308FE1C549B2F0092F622 /* XXPlayerMaskView.m in Sources */,
 				2D1BDEEB1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m in Sources */,

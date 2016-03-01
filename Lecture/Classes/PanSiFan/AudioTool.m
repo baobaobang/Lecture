@@ -73,4 +73,20 @@
     _streamPlayer = [[AVPlayer alloc]initWithURL:URL];
     return _streamPlayer;
 }
+
+- (AVPlayer *)noSinglePlayerWithURL:(NSString *)url{
+    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+    // 暂停前面一个
+    [_streamPlayer pause];
+    // 同时支持本地和网络播放
+    NSURL *URL;
+    if ( [url hasPrefix:@"http"]) {
+        URL = [NSURL URLWithString:url];
+    }else{
+        URL = [NSURL fileURLWithPath:url];
+    }
+    
+    return [[AVPlayer alloc]initWithURL:URL];
+}
 @end
