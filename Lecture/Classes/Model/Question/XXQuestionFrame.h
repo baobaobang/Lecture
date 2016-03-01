@@ -26,10 +26,6 @@
 // cell之间的间距
 #define XXQuestionCellMargin 15
 
-// cell的边框宽度
-#define XXQuestionCellBorderW 10
-// cell头像的宽高
-#define XXQuestionCellIconWH 44
 // cell内容的最大宽度
 #define XXQuestionCellMaxWidth (XXScreenWidth - XXQuestionCellBorderW - XXQuestionCellIconWH - XXQuestionCellBorderW - XXQuestionCellBorderW)
 

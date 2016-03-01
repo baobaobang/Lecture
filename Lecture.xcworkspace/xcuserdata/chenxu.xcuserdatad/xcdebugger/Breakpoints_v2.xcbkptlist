@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lecture/Classes/Controller/&#x8bb2;&#x5ea7;&#x524d;/XXLectureJoinVC&#xff08;&#x8bb2;&#x5ea7;&#x524d;&#xff09;.m"
-            timestampString = "478328735.896003"
+            timestampString = "478501900.380646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>

@@ -32,6 +32,7 @@ NSString * const XXTextDidDeleteNotification = @"XXTextDidDeleteNotification";//
 const CGFloat kXXPlayerPicViewHeightWidthRatio = 0.65;// 高宽比
 const CGFloat kXXExpertHeaderViewHeight = 0;
 const CGFloat kXXExpertTableViewHeight = 0;
+const CGFloat kXXLectureDescriptioinViewHeight = 60;
 const CGFloat kXXQuestionHeaderViewHeight = 35;
 const CGFloat kXXJoinButtonHeight = 35;// 报名活动按钮的高度
 const CGFloat kXXJoinLectureActionSheetHeight = 180;
@@ -79,4 +80,5 @@ NSString * const XXLectureSelectedQuestionsVCRefreshNotification = @"XXLectureSe
 #pragma mark - 问题
 NSString * const XXReplyCellDidClickNotification = @"XXReplyCellDidClickNotification";
 NSString * const XXReplyCellPlayBtnDidClickNotification = @"XXReplyCellPlayBtnDidClickNotification";
+
 @end

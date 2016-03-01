@@ -44,6 +44,7 @@ extern NSString * const XXTextDidDeleteNotification;
 extern const CGFloat kXXPlayerPicViewHeightWidthRatio;// PlayerPicView高宽比
 extern const CGFloat kXXExpertHeaderViewHeight;// 专家简介头部的高度
 extern const CGFloat kXXExpertTableViewHeight;// 专家简介的高度
+extern const CGFloat kXXLectureDescriptioinViewHeight;
 extern const CGFloat kXXQuestionHeaderViewHeight;//精选提问头部高度
 extern const CGFloat kXXJoinButtonHeight;// 报名活动按钮的高度
 extern const CGFloat kXXJoinLectureActionSheetHeight;
@@ -96,6 +97,9 @@ extern NSString * const XXReplyCellDidClickNotification;
 extern NSString * const XXReplyCellPlayBtnDidClickNotification;
 #define XXQuestionCellReplyFont [UIFont systemFontOfSize:14]// 回复字体
 #define XXQuestionCellReplyTimeFont [UIFont systemFontOfSize:11]// 回复语音的时间字体
-#define XXQuestionReplyBackgroundColor XXColor(240, 240, 242)// 回复的背景颜色
+#define XXQuestionReplyBackgroundColor XXColor(240, 240, 242)// 回复的背景颜色// cell的边框宽度
+#define XXQuestionCellBorderW 10
+// cell头像的宽高
+#define XXQuestionCellIconWH 44
 
 @end
