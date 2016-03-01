@@ -81,17 +81,17 @@
     self.userNameLabel.text = [NSString stringWithFormat:@"%@:", reply.nickName];
 }
 
-- (void)setupTotalTimeLabel:(XXReply *)reply{
-     //初始化一个 "音频播放器"player，一首音乐对应一个player
-    AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:reply.content];
-    self.player = player;
-    AVPlayerItem *playerItem = player.currentItem;
-    self.playerItem = playerItem;
-    
-    // 添加kvo监听播放器的状态
-    [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
->>>>>>> origin/master
-}
+//- (void)setupTotalTimeLabel:(XXReply *)reply{
+//     //初始化一个 "音频播放器"player，一首音乐对应一个player
+//    AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:reply.content];
+//    self.player = player;
+//    AVPlayerItem *playerItem = player.currentItem;
+//    self.playerItem = playerItem;
+//    
+//    // 添加kvo监听播放器的状态
+//    [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
+//>>>>>>> origin/master
+//}
 
 #pragma mark - KVO监听AVplayer的播放状态，是否已经准备就绪
 //- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{

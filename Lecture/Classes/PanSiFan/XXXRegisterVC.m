@@ -35,7 +35,6 @@
     
     [super viewDidLoad];
     [self setuserData];
-    //self.titleLabel.text = @"绑定手机";
     self.title = @"绑定账号";
     
     self.avatarlead.constant = self.avatartrail.constant = SWIDTH/2 - self.avatar.frame.size.width/2;
@@ -129,7 +128,7 @@
     //type == 1 医生 == 0 普通用户
     NSDictionary *temp = @{@"mobile":self.phone.text,
                              @"certCode":self.code.text
-                           //,@"type":@(!self.checkBox.selected)
+                           ,@"type":@(!self.checkBox.selected)
                            };
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:temp];
     [params setObject:@(self.user.thirdPartyType) forKey:@"thirdPartyType"];
