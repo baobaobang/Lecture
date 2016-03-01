@@ -277,6 +277,8 @@
             [self scrollToItemWithAnimation:self.currentItem];
         }
     }
+    NSLog(@"----%@", NSStringFromCGRect(self.view.frame));
+    NSLog(@"----%@", NSStringFromCGRect(self.playerPicView.frame));
 
 }
 

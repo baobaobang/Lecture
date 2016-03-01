@@ -194,11 +194,13 @@
     view.y = CGRectGetMaxY(self.expertVc.view.frame);
     view.width = self.view.width;
     view.height = kXXLectureDescriptioinViewHeight;
+    view.backgroundColor = [UIColor whiteColor];
     UITextView *textView = [[UITextView alloc] init];
     [view addSubview:textView];
-    textView.frame = view.bounds;
     textView.x = 2 * XXQuestionCellBorderW + XXQuestionCellIconWH;
-    textView.width = self.view.width - textView.x - XXQuestionCellBorderW;
+    textView.y = 0;
+    textView.width = view.width - textView.x - XXQuestionCellBorderW;
+    textView.height = view.height;
     textView.font = XXQuestionCellReplyFont;
     textView.text = self.lecture.desc;
     textView.textColor = [UIColor blackColor];
