@@ -18,11 +18,11 @@
     if (self) {
         self.tintColor = [UIColor whiteColor];// 取消选中状态下的小蓝点
         
-        [self setTitle:@"展开提问" forState:UIControlStateNormal];
+        [self setTitle:@"展开" forState:UIControlStateNormal];
         [self setImage:[UIImage imageNamed:@"before_spread_problem"] forState:UIControlStateNormal];
         [self setBackgroundImage:[UIImage createImageWithColor:XXColorTint] forState:UIControlStateNormal];
         
-        [self setTitle:@"收起提问" forState:UIControlStateSelected];
+        [self setTitle:@"收起" forState:UIControlStateSelected];
         [self setBackgroundImage:[UIImage createImageWithColor:XXColorTint] forState:UIControlStateSelected];
         [self setImage:[UIImage imageNamed:@"before_contract_problem"] forState:UIControlStateSelected];
     }
@@ -33,11 +33,11 @@
     if (self = [super initWithCoder:aDecoder]) {
         self.tintColor = [UIColor whiteColor];// 取消选中状态下的小蓝点
         
-        [self setTitle:@"展开提问" forState:UIControlStateNormal];
+        [self setTitle:@"展开" forState:UIControlStateNormal];
         [self setImage:[UIImage imageNamed:@"before_spread_problem"] forState:UIControlStateNormal];
         [self setBackgroundImage:[UIImage createImageWithColor:XXColorTint] forState:UIControlStateNormal];
         
-        [self setTitle:@"收起提问" forState:UIControlStateSelected];
+        [self setTitle:@"收起" forState:UIControlStateSelected];
         [self setBackgroundImage:[UIImage createImageWithColor:XXColorTint] forState:UIControlStateSelected];
         [self setImage:[UIImage imageNamed:@"before_contract_problem"] forState:UIControlStateSelected];
     }

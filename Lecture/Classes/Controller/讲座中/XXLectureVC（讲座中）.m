@@ -298,7 +298,7 @@
     
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformTranslate(transform, tx, ty);
-    transform = CGAffineTransformScale(transform, sx, sy);
+    transform = CGAffineTransformScale(transform, sx , sy);
     transform = CGAffineTransformRotate(transform, M_PI_2);
     WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{

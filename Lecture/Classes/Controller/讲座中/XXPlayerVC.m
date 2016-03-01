@@ -185,6 +185,8 @@
     if (object == _playerItem && [keyPath isEqualToString:@"status"]) {
         if ([_playerItem status] == AVPlayerStatusReadyToPlay) {
             // 开始播放
+            NSLog(@"%@", NSStringFromCGRect(self.view.frame));
+            NSLog(@"%@", NSStringFromCGRect(self.view.maskView.frame));
             if (self.isPlaying) {
                 [_player play];
             }
@@ -277,8 +279,6 @@
             [self scrollToItemWithAnimation:self.currentItem];
         }
     }
-    NSLog(@"----%@", NSStringFromCGRect(self.view.frame));
-    NSLog(@"----%@", NSStringFromCGRect(self.playerPicView.frame));
 
 }
 
