@@ -64,9 +64,9 @@
     self.maskView = maskView;
     
     // 向maskView添加单击手势
-//    UITapGestureRecognizer *maskViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickMaskView:)];
-//    maskViewTap.numberOfTapsRequired = 1;
-//    [self.maskView addGestureRecognizer:maskViewTap];
+    UITapGestureRecognizer *maskViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickMaskView:)];
+    maskViewTap.numberOfTapsRequired = 1;
+    [self.maskView addGestureRecognizer:maskViewTap];
 }
 
 - (void)layoutSubviews{
@@ -132,10 +132,10 @@
 
 #pragma mark - XXPlayerPicView delegate
 
-//- (void)clickMaskView:(XXPlayerMaskView *)maskView{
-//    if ([self.delegate respondsToSelector:@selector(playerPicView:didClickPlayerMaskView:)]) {
-//        [self.delegate playerPicView:self didClickPlayerMaskView:maskView];
-//    }
-//}
+- (void)clickMaskView:(XXPlayerMaskView *)maskView{
+    if ([self.delegate respondsToSelector:@selector(playerPicView:didClickPlayerMaskView:)]) {
+        [self.delegate playerPicView:self didClickPlayerMaskView:maskView];
+    }
+}
 
 @end
