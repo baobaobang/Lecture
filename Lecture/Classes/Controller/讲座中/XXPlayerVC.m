@@ -27,7 +27,7 @@
 /** 播放器 */
 //@property(nonatomic,strong)AVAudioPlayer *player; // 只能播放本地音频
 @property (nonatomic, strong) AVPlayer *player; // 可播放本地和网络音频的播放器
-@property (nonatomic, strong) AVPlayerItem *playerItem; // 当前播放的资源
+@property (nonatomic, weak) AVPlayerItem *playerItem; // 当前播放的资源
 
 @property (nonatomic, assign) CGFloat currentDuration; // 当前播放时间
 @property (nonatomic, assign) CGFloat totalDuration; // 播放总时间

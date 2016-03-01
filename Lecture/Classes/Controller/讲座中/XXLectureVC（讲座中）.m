@@ -202,7 +202,7 @@
     [postQuestionBtn setTitle:@"提问" forState:UIControlStateNormal];
     UIImage *image =[UIImage imageNamed:@"before_question"];
     [postQuestionBtn setImage:image forState:UIControlStateNormal];
-    postQuestionBtn.backgroundColor = XXColorGreen;
+    [postQuestionBtn setBackgroundImage:[UIImage imageNamed:@"bottom_button_bg"] forState:UIControlStateNormal];
     postQuestionBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     [postQuestionBtn addTarget:self action:@selector(postQuestion:) forControlEvents:UIControlEventTouchUpInside];
     postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;

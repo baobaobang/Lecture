@@ -224,7 +224,7 @@
     [joinBtn setTitle:@"已报名" forState:UIControlStateDisabled];
 
     // 用纯色image作为背景可以实现按钮在disable状态下颜色变浅的效果
-    [joinBtn setBackgroundImage:[UIImage createImageWithColor:XXColorGreen] forState:UIControlStateNormal];
+    [joinBtn setBackgroundImage:[UIImage imageNamed:@"bottom_button_bg"] forState:UIControlStateNormal];
     //    joinBtn.backgroundColor = XXColorGreen;
     
     [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];

@@ -31,7 +31,7 @@
 
 
 /** 播放器 */
-@property(nonatomic, strong) AVPlayer *player;
+@property(nonatomic, weak) AVPlayer *player;
 
 @property (nonatomic, weak) id<XXPlayerToolBarDelegate> delegate;
 /** 是否正在拖拽 */
