@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+//#import <Qiniu/QiniuSDK.h>
 #import "QiniuSDK.h"
 typedef void (^SuccessBlock)(id result);
 typedef void (^FailBlock)(NSError *error);

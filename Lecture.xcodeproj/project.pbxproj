@@ -1747,7 +1747,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
@@ -1874,7 +1875,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = NO;
@@ -1898,7 +1899,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
+
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;

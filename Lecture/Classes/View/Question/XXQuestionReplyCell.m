@@ -76,6 +76,41 @@
     self.userNameLabel.text = [NSString stringWithFormat:@"%@:", reply.nickName];
 }
 
+
+//- (void)setupTotalTimeLabel:(XXReply *)reply{
+//     //初始化一个 "音频播放器"player，一首音乐对应一个player
+//    AVPlayer *player = [[AudioTool shareAudioTool] streamPlayerWithURL:reply.content];
+//    self.player = player;
+//    AVPlayerItem *playerItem = player.currentItem;
+//    self.playerItem = playerItem;
+//    
+//    // 添加kvo监听播放器的状态
+//    [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
+//>>>>>>> origin/master
+//}
+
+#pragma mark - KVO监听AVplayer的播放状态，是否已经准备就绪
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+//    AVPlayerItem *playerItem = [AudioTool shareAudioTool].streamPlayer.currentItem;
+//    if (object == playerItem && [keyPath isEqualToString:@"status"]) {
+//        if ([playerItem status] == AVPlayerStatusReadyToPlay) {// 准备就绪后
+//            // 设置默认显示总时长
+//            CMTime totalTime = playerItem.duration;
+//            CGFloat duration = (CGFloat)totalTime.value/totalTime.timescale;
+//            self.totalTimeLabel.text = [NSString wechatTime:duration];
+//            
+//            self.playBtn.enabled = YES;
+//            
+//        } else if ([playerItem status] == AVPlayerStatusFailed) {
+//            self.playBtn.enabled = NO;
+//        }
+//    }else{
+//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//    }
+//}
+
+=======
+>>>>>>> origin/master
 #pragma mark - 点击播放按钮，发送通知，通知所有回复cell
 - (IBAction)clickPlayBtn:(XXButton *)btn {
     [XXNotificationCenter postNotificationName:XXReplyCellPlayBtnDidClickNotification object:nil userInfo:@{@"index" : self.index}];
