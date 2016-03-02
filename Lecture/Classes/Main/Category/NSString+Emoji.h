@@ -24,4 +24,9 @@
  *  是否为emoji字符
  */
 - (BOOL)isEmoji;
+
+/**
+ *  禁用emoji字符并提示
+ */
+- (BOOL)forbiddenEmoji;
 @end

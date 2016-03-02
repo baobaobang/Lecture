@@ -305,7 +305,8 @@
         return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
     }
     
-    return YES;
+    // 禁用emoji字符并提示
+    return [text forbiddenEmoji];
 }
 
 #pragma mark - 发送回复接口

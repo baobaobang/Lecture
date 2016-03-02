@@ -9,6 +9,8 @@
 #import "NSString+Emoji.h"
 #define EmojiCodeToSymbol(c) ((((0x808080F0 | (c & 0x3F000) >> 4) | (c & 0xFC0) << 10) | (c & 0x1C0000) << 18) | (c & 0x3F) << 24)
 
+static NSCharacterSet* VariationSelectors = nil;
+
 @implementation NSString (Emoji)
 
 + (NSString *)emojiWithIntCode:(int)intCode {
@@ -36,7 +38,7 @@
 - (BOOL)isEmoji
 {
      BOOL returnValue = NO;
-         
+    
      const unichar hs = [self characterAtIndex:0];
      // surrogate pair
      if (0xd800 <= hs && hs <= 0xdbff) {
@@ -69,4 +71,22 @@
     
     return returnValue;
 }
+
+/**
+ *  禁用emoji字符并提示
+ */
+- (BOOL)forbiddenEmoji{
+    // 这里必须加这个判断，否则[text isEmoji]中调用[self characterAtIndex:0]时候会数组越界
+    if ([self isEqualToString:@""]) return YES;
+    
+    if ([self isEmoji]) { // 在顶层窗口提示，防止被遮盖
+        [MBProgressHUD showError:@"暂不支持表情输入" toView:[[UIApplication sharedApplication].windows lastObject]];
+        
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+
 @end

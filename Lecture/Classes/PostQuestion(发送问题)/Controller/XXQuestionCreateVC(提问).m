@@ -23,7 +23,7 @@
 static CGFloat kXXQuestionCreateVCPhotoSize = 60; // 每张图片的大小
 static NSUInteger kXXQuestionPhotosLimitCount = 3; // 图片的数量限制
 
-@interface XXQuestionCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,LGPhotoPickerBrowserViewControllerDataSource,LGPhotoPickerBrowserViewControllerDelegate, ZLCameraImageViewDelegate>
+@interface XXQuestionCreateVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,LGPhotoPickerBrowserViewControllerDataSource,LGPhotoPickerBrowserViewControllerDelegate, ZLCameraImageViewDelegate, UITextViewDelegate>
 
 /**
  *  文字容器
@@ -96,10 +96,12 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
     }
     
     // 文字改变的通知
-    [XXNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:_textView];
+    [XXNotificationCenter addObserver:self selector:@selector(textDidChange:) name:UITextViewTextDidChangeNotification object:_textView];
     
     // 删除文字的通知
     [XXNotificationCenter addObserver:self selector:@selector(textDidDelete) name:XXTextDidDeleteNotification object:nil];
+    
+    _textView.delegate = self;
 }
 
 - (void)setupPhotoCollectionView{
@@ -123,9 +125,16 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 /**
  * 监听文字改变，没有文字的时候不能发送
  */
-- (void)textDidChange
+
+- (void)textDidChange:(NSNotification *)noti
 {
     self.navigationItem.rightBarButtonItem.enabled = self.textView.hasText;
+}
+
+#pragma mark - TextView的代理方法
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    
+    return [text forbiddenEmoji];
 }
 
 #pragma mark - 点击发送按钮，发送提问
