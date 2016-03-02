@@ -125,6 +125,7 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
+    // 这里只能在第一次加载页面和横竖屏切换的时候调用，否则子控件布局会出问题
     [self setupPlayerToolBarFrame];
     [self setupPlayerPicViewFrame];
 }
@@ -173,8 +174,10 @@
     self.player = player;
     self.playerItem = player.currentItem;
     
-//    [MBProgressHUD showMessage:@"正在加载音频中。。。"];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showMessage:@"数据加载中。。。"];
+    
+    // 横屏后切换下一页时不能重新布局，否则子控件的布局会出错，因此viewWillLayoutSubviews在切换下一页的时候，不应该再被调用，因此不能再添加子控件，比如将hud添加到self.view上
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // 添加kvo监听播放器的状态
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
@@ -185,6 +188,8 @@
     if (object == _playerItem && [keyPath isEqualToString:@"status"]) {
         if ([_playerItem status] == AVPlayerStatusReadyToPlay) {
             // 开始播放
+            NSLog(@"%@", NSStringFromCGRect(self.view.frame));
+            NSLog(@"%@", NSStringFromCGRect(self.view.maskView.frame));
             if (self.isPlaying) {
                 [_player play];
             }
@@ -304,10 +309,10 @@
 
 #pragma mark - XXPlayerPicViewDelegate
 #pragma mark - 点击maskView
-//- (void)playerPicView:(XXPlayerPicView *)playerPicView didClickPlayerMaskView:(XXPlayerMaskView *)maskView{
-//    
-////    [self playOrStop];
-//}
+- (void)playerPicView:(XXPlayerPicView *)playerPicView didClickPlayerMaskView:(XXPlayerMaskView *)maskView{
+    
+//    [self playOrStop];
+}
 #pragma mark - 点击collectionView
 - (void)playerPicView:(XXPlayerPicView *)playerPicView didClickCollectionView:(UICollectionView *)collectionView{
     

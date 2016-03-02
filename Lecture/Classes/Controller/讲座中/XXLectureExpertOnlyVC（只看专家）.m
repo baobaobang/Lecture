@@ -74,13 +74,17 @@
     // 计算questionId
     XXQuestionFrame *lastQuestionF = self.questionFrames.lastObject;
     
-    NSInteger questionId = lastQuestionF.question.ID.integerValue - 10;//TODO:
+    NSInteger questionId = lastQuestionF.question.ID.integerValue + 1;//TODO:
     
     // 陈旭接口-所有问题接口-加载旧问题
     NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%ld", self.lecture.lectureId, questionId, size];
     WS(weakSelf);
     [NetworkManager getWithApi:url params:nil success:^(id result) {
         NSArray *arr = result[@"data"];
+        
+        if (arr.count == 0) {
+            [MBProgressHUD showError:@"已无更多数据！" toView:self.view];
+        }
         NSMutableArray *questions = [XXQuestion mj_objectArrayWithKeyValuesArray:arr];
         // question模型转为questionFrames模型
         NSMutableArray *newFrames = [weakSelf questionFramesWithQuestions:questions];
@@ -96,6 +100,7 @@
         
         // 结束刷新
         [weakSelf endFooterRefresh];
+        
     } fail:^(NSError *error) {
         // 结束刷新
         [weakSelf endFooterRefresh];

@@ -20,10 +20,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufl-YL-KcA" customClass="XXContractButton">
-                    <rect key="frame" x="220" y="7" width="90" height="30"/>
+                    <rect key="frame" x="240" y="7" width="70" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="95I-xX-Hvr"/>
-                        <constraint firstAttribute="width" constant="90" id="dVC-ao-5zw"/>
+                        <constraint firstAttribute="width" constant="70" id="dVC-ao-5zw"/>
                     </constraints>
                     <state key="normal" title="Button">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

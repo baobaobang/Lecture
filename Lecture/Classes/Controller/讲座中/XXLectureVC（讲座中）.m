@@ -298,7 +298,7 @@
     
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformTranslate(transform, tx, ty);
-    transform = CGAffineTransformScale(transform, sx, sy);
+    transform = CGAffineTransformScale(transform, sx , sy);
     transform = CGAffineTransformRotate(transform, M_PI_2);
     WS(weakSelf);
     [UIView animateWithDuration:duration animations:^{
@@ -364,47 +364,47 @@
 //    }
 //}
 
-#pragma mark - 播放时隐藏导航栏和状态栏
-- (void)startPlaying{
-    // 隐藏导航栏
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    // 隐藏状态栏
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    
-    // 需要上移的高度
-    CGFloat height = kXXStatusAndNavBarHeight;
-    WS(weakSelf);
-    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        weakSelf.playerVc.view.y -= height;
-        weakSelf.expertHeaderView.y -= height;
-        weakSelf.expertVc.view.y -= height;
-        weakSelf.onlineHeaderView.y -= height;
-        weakSelf.onlineVc.view.y -= height;
-        weakSelf.onlineVc.view.height += height;
-        
-    } completion:^(BOOL finished) {
-    }];
-}
-
-- (void)stopPlaying{
-    // 显示导航栏
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    // 显示状态栏
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    
-    // 需要下移的高度
-    CGFloat height = kXXStatusAndNavBarHeight;
-    WS(weakSelf);
-    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        weakSelf.playerVc.view.y += height;
-        weakSelf.expertHeaderView.y += height;
-        weakSelf.expertVc.view.y += height;
-        weakSelf.onlineHeaderView.y += height;
-        weakSelf.onlineVc.view.y += height;
-        weakSelf.onlineVc.view.height -= height;
-    } completion:^(BOOL finished) {
-        
-    }];
-}
+//#pragma mark - 播放时隐藏导航栏和状态栏
+//- (void)startPlaying{
+//    // 隐藏导航栏
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    // 隐藏状态栏
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+//    
+//    // 需要上移的高度
+//    CGFloat height = kXXStatusAndNavBarHeight;
+//    WS(weakSelf);
+//    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        weakSelf.playerVc.view.y -= height;
+//        weakSelf.expertHeaderView.y -= height;
+//        weakSelf.expertVc.view.y -= height;
+//        weakSelf.onlineHeaderView.y -= height;
+//        weakSelf.onlineVc.view.y -= height;
+//        weakSelf.onlineVc.view.height += height;
+//        
+//    } completion:^(BOOL finished) {
+//    }];
+//}
+//
+//- (void)stopPlaying{
+//    // 显示导航栏
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    // 显示状态栏
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+//    
+//    // 需要下移的高度
+//    CGFloat height = kXXStatusAndNavBarHeight;
+//    WS(weakSelf);
+//    [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        weakSelf.playerVc.view.y += height;
+//        weakSelf.expertHeaderView.y += height;
+//        weakSelf.expertVc.view.y += height;
+//        weakSelf.onlineHeaderView.y += height;
+//        weakSelf.onlineVc.view.y += height;
+//        weakSelf.onlineVc.view.height -= height;
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+//}
 
 @end

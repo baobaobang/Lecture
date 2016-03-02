@@ -143,6 +143,7 @@
 		2D6309071C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308CE1C549B2F0092F622 /* XXQuestionPhotoView(单个照片).m */; };
 		2D6309081C549B2F0092F622 /* XXQuestionToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */; };
 		2D64BE311C5DE10F00B23D2D /* XXCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D64BE301C5DE10F00B23D2D /* XXCollectionViewFlowLayout.m */; };
+		2D68C8121C854B2C00E8F07B /* XXLectureDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D68C8111C854B2C00E8F07B /* XXLectureDescriptionView.m */; };
 		2D6CD02F1C643F6C0076FFCD /* XXContractButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6CD02E1C643F6C0076FFCD /* XXContractButton.m */; };
 		2D6F60121C58B842006D8488 /* CXTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F60111C58B842006D8488 /* CXTextView.m */; };
 		2D75DA4B1C5708720056FA6C /* XXOnlineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D75DA4A1C5708720056FA6C /* XXOnlineHeaderView.m */; };
@@ -436,6 +437,8 @@
 		2D6308D11C549B2F0092F622 /* XXQuestionToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionToolbar.m; sourceTree = "<group>"; };
 		2D64BE2F1C5DE10F00B23D2D /* XXCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		2D64BE301C5DE10F00B23D2D /* XXCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		2D68C8101C854B2C00E8F07B /* XXLectureDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLectureDescriptionView.h; sourceTree = "<group>"; };
+		2D68C8111C854B2C00E8F07B /* XXLectureDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLectureDescriptionView.m; sourceTree = "<group>"; };
 		2D6CD02D1C643F6C0076FFCD /* XXContractButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXContractButton.h; sourceTree = "<group>"; };
 		2D6CD02E1C643F6C0076FFCD /* XXContractButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXContractButton.m; sourceTree = "<group>"; };
 		2D6F60101C58B842006D8488 /* CXTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXTextView.h; sourceTree = "<group>"; };
@@ -1211,6 +1214,8 @@
 			children = (
 				2D6CD02D1C643F6C0076FFCD /* XXContractButton.h */,
 				2D6CD02E1C643F6C0076FFCD /* XXContractButton.m */,
+				2D68C8101C854B2C00E8F07B /* XXLectureDescriptionView.h */,
+				2D68C8111C854B2C00E8F07B /* XXLectureDescriptionView.m */,
 				2D6308B81C549B2F0092F622 /* Player */,
 				2D6308B11C549B2F0092F622 /* Expert */,
 				2D6308C31C549B2F0092F622 /* Question */,
@@ -1580,6 +1585,7 @@
 				16CFE3681C707F4D0033C3BE /* DateFormatter.m in Sources */,
 				2D1E59851C83F95A008A8893 /* XXReplyPlayingIndex.m in Sources */,
 				2D55BB801C5618F900BA1542 /* LGPhotoPickerImageView.m in Sources */,
+				2D68C8121C854B2C00E8F07B /* XXLectureDescriptionView.m in Sources */,
 				2D1E59881C846F4E008A8893 /* CXShareTool.m in Sources */,
 				2D6309011C549B2F0092F622 /* XXJoinLectureActionSheet（报名弹窗）.m in Sources */,
 				2D6308FE1C549B2F0092F622 /* XXPlayerMaskView.m in Sources */,
@@ -1744,7 +1750,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Lecture/Classes/PanSiFan/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1872,7 +1878,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Lecture/Classes/PanSiFan/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1895,7 +1901,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Lecture/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Lecture/Classes/PanSiFan/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";

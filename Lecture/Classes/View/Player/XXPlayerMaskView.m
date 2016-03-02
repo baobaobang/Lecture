@@ -79,6 +79,8 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
+    CGFloat btnWH = 40;
+    CGFloat btnMargin = 20;
     // pageNumberLabel
     CGFloat pageX = XXPlayerCornerMaigin;
     CGFloat pageY = XXPlayerCornerMaigin;
@@ -94,19 +96,19 @@
     
     // bigPlayBtn
     self.bigPlayBtn.center = self.center;
-    self.bigPlayBtn.width = self.bigPlayBtn.height = 60;
+    self.bigPlayBtn.width = self.bigPlayBtn.height = btnWH;
     
     // previousBtn
     CGFloat previousW = self.bigPlayBtn.width;
     CGFloat previousH = previousW;
-    CGFloat previousX = self.bigPlayBtn.x - previousW;
+    CGFloat previousX = self.bigPlayBtn.x - previousW - btnMargin;
     CGFloat previousY = self.bigPlayBtn.y;
     self.previousBtn.frame = CGRectMake(previousX, previousY, previousW, previousH);
     
     // nextBtn
     CGFloat nextW = self.bigPlayBtn.width;
     CGFloat nextH = nextW;
-    CGFloat nextX = CGRectGetMaxX(self.bigPlayBtn.frame);
+    CGFloat nextX = CGRectGetMaxX(self.bigPlayBtn.frame) + btnMargin;
     CGFloat nextY = self.bigPlayBtn.y;
     self.nextBtn.frame = CGRectMake(nextX, nextY, nextW, nextH);
     

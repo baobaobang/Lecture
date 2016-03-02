@@ -26,6 +26,7 @@
 @property (nonatomic, weak) UIImageView *picView;
 @property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
+@property (nonatomic, weak) UIView *lectureDescriptionView;
 @property (nonatomic, weak) XXQuestionHeaderView *questionHeaderView;
 @property (nonatomic, weak) XXQuestionVC *questionVc;
 @property (nonatomic, weak) XXButton *joinBtn;
@@ -52,6 +53,9 @@
     
     // 设置专家简介
     [self setupExpertVc];
+    
+    // 设置讲座简介
+    [self setupLectureDec];
     
     // 设置精选提问头部
     [self setupQuestionHeaderView];
@@ -87,18 +91,16 @@
 #pragma mark - 收起头部和展开头部
 
 - (void)questionHeaderView:(XXQuestionHeaderView *)headerView didClickContractBtn:(UIButton *)btn{
+    // 需要上移和下移的高度
+    CGFloat height = self.picView.height + self.expertHeaderView.height + self.expertVc.view.height + self.lectureDescriptionView.height;
     if (!btn.selected) {
-        [self hidePicView];
+        [self hidePicView:height];
     }else{
-        [self showPicView];
+        [self showPicView:height];
     }
 }
 
-- (void)hidePicView{
-
-    // 需要上移的高度
-    CGFloat height = self.picView.height + self.expertHeaderView.height + self.expertVc.view.height;
-    
+- (void)hidePicView:(CGFloat)height{
 //    // 隐藏导航栏
 //    [self.navigationController setNavigationBarHidden:YES animated:YES];
 //    // 隐藏状态栏
@@ -114,9 +116,7 @@
     }];
 }
 
-- (void)showPicView{
-    // 需要下移的高度
-    CGFloat height = self.picView.height + self.expertHeaderView.height + self.expertVc.view.height;
+- (void)showPicView:(CGFloat)height{
     
 //    // 显示导航栏
 //    [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -187,11 +187,33 @@
     expertVc.lecture = self.lecture;// 传递数据
 }
 
+// 设置讲座简介
+- (void)setupLectureDec{
+    UIView *view = [[UIView alloc] init];
+    view.x = 0;
+    view.y = CGRectGetMaxY(self.expertVc.view.frame);
+    view.width = self.view.width;
+    view.height = kXXLectureDescriptioinViewHeight;
+    view.backgroundColor = [UIColor whiteColor];
+    UITextView *textView = [[UITextView alloc] init];
+    [view addSubview:textView];
+    textView.x = 2 * XXQuestionCellBorderW + XXQuestionCellIconWH;
+    textView.y = 0;
+    textView.width = view.width - textView.x - XXQuestionCellBorderW;
+    textView.height = view.height;
+    textView.font = XXQuestionCellReplyFont;
+    textView.text = self.lecture.desc;
+    textView.textColor = [UIColor blackColor];
+    textView.editable = NO;
+    [self.view addSubview:view];
+    self.lectureDescriptionView = view;
+}
+
 // 精选提问头部
 - (void)setupQuestionHeaderView{
     XXQuestionHeaderView *questionHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXQuestionHeaderView" owner:nil options:0]lastObject];
     questionHeaderView.x = 0;
-    questionHeaderView.y = CGRectGetMaxY(self.expertVc.view.frame);
+    questionHeaderView.y = CGRectGetMaxY(self.lectureDescriptionView.frame);
     questionHeaderView.height = kXXQuestionHeaderViewHeight;
     questionHeaderView.width = self.view.width;
     
