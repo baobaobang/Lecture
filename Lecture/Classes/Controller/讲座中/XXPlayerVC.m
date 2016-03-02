@@ -124,6 +124,10 @@
 #pragma mark - 重新布局
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
+
+    // 如果横屏就不要重新布局子控件
+    NSLog(@"%@", NSStringFromCGRect(self.view.frame));
+    if (self.view.height == XXScreenHeight) return;
     
     // 这里只能在第一次加载页面和横竖屏切换的时候调用，否则子控件布局会出问题
     [self setupPlayerToolBarFrame];
@@ -174,10 +178,8 @@
     self.player = player;
     self.playerItem = player.currentItem;
     
-    [MBProgressHUD showMessage:@"数据加载中。。。"];
-    
     // 横屏后切换下一页时不能重新布局，否则子控件的布局会出错，因此viewWillLayoutSubviews在切换下一页的时候，不应该再被调用，因此不能再添加子控件，比如将hud添加到self.view上
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // 添加kvo监听播放器的状态
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
