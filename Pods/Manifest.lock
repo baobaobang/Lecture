@@ -59,7 +59,7 @@ CHECKOUT OPTIONS:
     :commit: a4c3b57f94089df72976404aa1a767b83e969632
     :git: https://github.com/qiniu/objc-sdk.git
   SVProgressHUD:
-    :commit: 8d25b659df56ef86ce8b03e532c2278cfc3cb294
+    :commit: 2241d428ac866e6603388430aac83902a01b111c
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
