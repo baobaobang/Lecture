@@ -12,12 +12,18 @@
 #define SSIZE [UIScreen mainScreen].bounds.size
 //#define SWIDTH SSIZE.width
 //#define SHEIGHT SSIZE.height
+@protocol SelectPageDelegate <NSObject>
+
+- (void)selectPage;
+
+@end
+
 @interface XXXCoursewareBaseVC : XXXBaseVC
 
 @property (nonatomic, strong) XXXLectureModel *lectureModel;//模型
 @property (nonatomic, strong) UIScrollView *titleTips;
 @property (assign,nonatomic)NSInteger curPage;//当前编辑页
-
+@property (weak,nonatomic)id<SelectPageDelegate> pageSelectedDelegate;
 - (void)addpage:(XXXLecturePageModel *)pageModel;
 - (void)clickAddPage;
 @end

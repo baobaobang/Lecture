@@ -10,12 +10,15 @@
 #import "XXXBaseVC.h"
 #import "UIView+RoundAndShadow.h"
 #import "XXXLecturePageModel.h"
+#import "RecordButton.h"
+#import "AudioTool.h"
 @class XXXCoursewareBaseVC;
+
 @interface XXXOnlineCoursewareVC : UIViewController
 
 @property (nonatomic, assign) NSInteger page;//页码
 @property (nonatomic, strong) XXXLecturePageModel *pageModel;
 @property (nonatomic, weak) XXXCoursewareBaseVC *supperVC;
-
+@property (weak, nonatomic) IBOutlet RecordButton *recordBtn;//录音按钮
 + (instancetype)onlineCoursewareViewController;
 @end

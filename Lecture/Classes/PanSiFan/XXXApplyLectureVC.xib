@@ -201,9 +201,9 @@
                     </constraints>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gj-uw-cgJ">
-                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="520" width="320" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="xtd-Pf-MGS"/>
+                        <constraint firstAttribute="height" constant="48" id="xtd-Pf-MGS"/>
                     </constraints>
                     <state key="normal" backgroundImage="user_register_save"/>
                     <connections>

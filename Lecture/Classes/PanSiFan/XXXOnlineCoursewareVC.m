@@ -7,19 +7,19 @@
 //
 
 #import "XXXOnlineCoursewareVC.h"
-#import "AudioTool.h"
+
 #import "RecordView.h"
 #import "Masonry.h"
 #import "RecordButton.h"
 #import "Transcoder.h"
 #import "XXXCoursewareBaseVC.h"
 #import "LGPhoto.h"
-#import "RecordButton.h"
 
-@interface XXXOnlineCoursewareVC ()<UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,RecordViewDelegate,RecordStopDelegate,AVAudioPlayerDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
+@interface XXXOnlineCoursewareVC ()<UIActionSheetDelegate,LGPhotoPickerViewControllerDelegate,RecordViewDelegate,RecordStopDelegate,AVAudioPlayerDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,SelectPageDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *pageLabel;//页码
-@property (weak, nonatomic) IBOutlet RecordButton *recordBtn;//录音按钮
+//@property (weak, nonatomic) IBOutlet RecordButton *recordBtn;//录音按钮
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;//保存
 @property (weak, nonatomic) IBOutlet UIButton *uploadBtn;//上传
 @property (weak, nonatomic) IBOutlet UIButton *addPage;//添加页面
@@ -108,10 +108,18 @@
     [self updateVoiceList];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endPreView) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
- 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageSelected:) name:@"SELECTPAGENOTE" object:nil];
     
 }
 
+- (void)pageSelected:(NSNotification *)note{
+    if ([note.userInfo[@"page"] integerValue] == self.pageModel.pageNo) {
+        return;
+    }
+    if (_recordBtn.recorderState == RecorderStateRecording) {
+        [_recordBtn stopRecord];
+    }
+}
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.view.frame = CGRectMake(0,94, SWIDTH, SHEIGHT-94);
@@ -430,9 +438,12 @@
     }
 }
 
-
+- (void)selectPage{
+    [_recordBtn stopRecord];
+}
 - (void)setPageModel:(XXXLecturePageModel *)pageModel{
     _pageModel = pageModel;
+    self.supperVC.pageSelectedDelegate = self;
     if (pageModel.localUrls.count == 0 && pageModel.audio) {
         [pageModel.localUrls addObject:[pageModel.audio copy]];
     }
@@ -467,4 +478,6 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
+
 @end

@@ -13,7 +13,7 @@
 @property (nonatomic, strong) UIView *recordingView;
 @property (nonatomic, strong) UIButton *stateBtn;
 @property (nonatomic, strong)  AVAudioRecorder *recorder;
-@property (nonatomic, assign) RecorderState recorderState;
+
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @end
 @implementation RecordButton
@@ -61,7 +61,7 @@
 
 - (void)record:(UIButton *)sender{
     [self addSubview:self.recordingView];
-    
+    //NSLog(@"recording>>>>>>>>>>>>>>>>>>>>>>");
         NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
         if (!_recorder) {
@@ -73,7 +73,9 @@
             [self.voiceUrls addObject:path];
     
             _recorder = [[AudioTool shareAudioTool] recorderWithURL:[NSURL URLWithString:path]];
-    
+            if (!_recorder) {
+                [SVProgressHUD showErrorWithStatus:@"录音机初始化失败"];
+            }
             _recorderState = RecorderStateStop;//停止状态
         }
         switch (_recorderState) {

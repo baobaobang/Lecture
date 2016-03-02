@@ -32,6 +32,6 @@
 
 - (void)clicked{
     [self.delegate tipView:self clickAtIndex:self.tag];
-    self.selected = YES;
+    //self.selected = YES;
 }
 @end

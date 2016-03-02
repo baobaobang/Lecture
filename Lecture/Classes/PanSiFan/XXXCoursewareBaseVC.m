@@ -11,11 +11,13 @@
 #import "TipView.h"
 #import "XXXCourseWareCell.h"
 #import "Transcoder.h"
+#import "RecordButton.h"
 @interface XXXCoursewareBaseVC ()<TipViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDelegate>
 @property (nonatomic, strong) UIButton *addBtn;//添加页面的按钮
 @property (nonatomic, strong) XXXOnlineCoursewareVC *curVC;//当前操作的view
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
 
 @end
 
@@ -49,7 +51,7 @@
     }else{
         [self setTips];
     }
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, SHEIGHT-50, SWIDTH, 50)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, SHEIGHT-50, SWIDTH, 48)];
     [button addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundImage:[UIImage imageNamed:@"save"] forState:0];
     [button setTitleColor:[UIColor whiteColor] forState:0];
@@ -106,6 +108,14 @@
 }
 
 - (void)clickAddPage{
+    
+    if([AudioTool shareAudioTool].recorder.recording){
+        [SVProgressHUD showInfoWithStatus:@"请先停止录音"];
+        
+        
+        return;
+    }
+    
     XXXLecturePageModel *page = [[XXXLecturePageModel alloc]init];
     page.lectureId = self.lectureModel.lectureId;
     page.pageNo = self.lectureModel.pages.count+1;
@@ -148,9 +158,31 @@
  *  @param sender
  */
 - (void)selectPage:(UIButton *)sender{
+   NSLog(@"%ld----------------",(long)sender.tag);
+    
+    if([AudioTool shareAudioTool].recorder.recording){
+        [SVProgressHUD showInfoWithStatus:@"请先停止录音"];
+        for (UIView *v in _titleTips.subviews) {
+            if ([v isKindOfClass:[TipView class]]) {
+                NSLog(@"%d",(long)v.tag==(long)self.curPage + 1000);
+                if (v.tag == self.curPage + 1000) {
+                    ((TipView *)v).selected = YES;
+                }else{
+                    ((TipView *)v).selected = NO;
+                }
+                
+                
+            }
+        }
+//        [self.view bringSubviewToFront:_titleTips];
+        return;
+    }
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag-1001 inSection:0];
-    ////NSLog(@"%ld----------------",(long)sender.tag);
+    
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+    
+    self.curPage = sender.tag - 1000;
 }
 
 /**
@@ -160,15 +192,16 @@
  *  @param index   index
  */
 - (void)tipView:(TipView *)tipView clickAtIndex:(NSInteger)index{
-    [self selectPage:tipView];
     
-    self.curPage = index-1000;
+    
+    //self.curPage = index-1000;
     for (UIView *v in _titleTips.subviews) {
         if ([v isKindOfClass:[TipView class]]) {
             ((TipView *)v).selected = NO;
         }
     }
     tipView.selected = YES;
+    [self selectPage:tipView];
     [self.view bringSubviewToFront:_titleTips];
     
 }
@@ -245,9 +278,7 @@
         [_addBtn addTarget:self action:@selector(clickAddPage) forControlEvents:UIControlEventTouchUpInside];
         [_titleTips addSubview:_addBtn];
         [self.view addSubview:_titleTips];
-        
-        //[_addBtn shadow];
-        
+       
     }
     return _titleTips;
 }

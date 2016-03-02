@@ -30,5 +30,8 @@ typedef NS_ENUM(NSInteger,RecorderState){
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) XXXLecturePageModel *pageModel;
 @property (nonatomic, weak) id<RecordStopDelegate> delegate;
+@property (nonatomic, assign) RecorderState recorderState;
+
+- (void)stopRecord;
 @end
 

@@ -23,6 +23,7 @@
 }
 
 - (AVAudioRecorder *)recorderWithURL:(NSURL *)url{
+    _recorder = nil;
     NSDictionary *recordSettings=[NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithInt:AVAudioQualityMin],
                                   AVEncoderAudioQualityKey,

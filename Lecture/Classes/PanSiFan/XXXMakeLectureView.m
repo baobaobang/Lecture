@@ -33,8 +33,11 @@
             btn.layer.cornerRadius = btn.frame.size.width/2;
             
             if (i == 4) {
-                [btn setBackgroundImage:[[UIImage imageNamed:@"plus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]forState:0];
+//                [btn setBackgroundImage:[[UIImage imageNamed:@"plus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]forState:0];
+                [btn setBackgroundImage:[UIImage imageNamed:@"logo"] forState:0];
                 [btn setTintColor:[UIColor whiteColor]];
+                btn.layer.masksToBounds = YES;
+                btn.layer.cornerRadius = PlusBtnW/2;
             }
             [self addSubview:btn];
             btn.backgroundColor = navColor;
@@ -99,7 +102,7 @@
                 if (sender.tag != 1004) {
                     sender.frame = CGRectOffset(sender.frame, vector.dx, vector.dy);
                 }else{
-                    sender.layer.transform = CATransform3DMakeRotation(M_PI_4*3, 0, 0, 1);
+                    sender.layer.transform = CATransform3DMakeRotation(M_PI*2, 0, 0, 1);
                     //[sender setTintColor:[UIColor redColor]];
                 }
                 

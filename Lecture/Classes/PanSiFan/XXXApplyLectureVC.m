@@ -98,11 +98,12 @@
     [NetworkManager postWithApi:@"lectures" params:params success:^(id result) {
         [SVProgressHUD dismiss];
         [SVProgressHUD showSuccessWithStatus:@"申请成功"];
+        XXXLectureModel *model = [[XXXLectureModel alloc]init];
+        model.lectureId = [result[@"data"][@"lectureId"] stringValue];
         [self dismissViewControllerAnimated:YES completion:^{
             XXXCoursewareBaseVC *cb = [[XXXCoursewareBaseVC alloc]init];
-            cb.lectureModel = [[XXXLectureModel alloc]init];
-            cb.lectureModel.lectureId = [result[@"data"][@"lectureId"] stringValue];
-            
+            cb.lectureModel = model;
+            NSLog(@"%@",cb.lectureModel.lectureId);
             AppDelegate *delegate = Delegate;
             [delegate.sliderMenu.mainViewController presentViewController:cb animated:NO completion:^{
                 

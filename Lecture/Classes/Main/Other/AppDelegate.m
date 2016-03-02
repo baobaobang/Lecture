@@ -54,7 +54,7 @@
     
     [self DetectionNetwork];
     
-    [NSThread sleepForTimeInterval:5];
+    //[NSThread sleepForTimeInterval:5];
     return YES;
 }
 

@@ -84,7 +84,7 @@
 //获取验证码
 - (IBAction)getCode:(UIButton *)sender {
     
-    if (self.phone.text.length<=6) {
+    if (self.phone.text.length != 11) {
         [SVProgressHUD showErrorWithStatus:@"手机号不正确"];
         return;
     }
@@ -120,7 +120,7 @@
 
 //完成
 - (IBAction)finish:(UIButton *)sender {
-    if (self.phone.text.length <= 6 || self.code.text.length < 4) {
+    if (self.phone.text.length != 11 || self.code.text.length < 4) {
         [SVProgressHUD showErrorWithStatus:@"信息不正确"];
         return;
     }

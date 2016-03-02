@@ -12,7 +12,7 @@
                 <outlet property="pageLabel" destination="iRF-dI-bHa" id="gnF-dR-a55"/>
                 <outlet property="preView" destination="yaN-Sf-bzr" id="FVM-Lc-wmz"/>
                 <outlet property="preViewImageView" destination="7er-wK-s50" id="0YK-p3-yBk"/>
-                <outlet property="recordBtn" destination="9xf-7J-ELS" id="moU-ge-iAN"/>
+                <outlet property="recordBtn" destination="9xf-7J-ELS" id="9O8-9J-7Yr"/>
                 <outlet property="scrollView" destination="q57-7x-DOk" id="lil-RG-T37"/>
                 <outlet property="seperator" destination="Lvf-v0-GbX" id="VUQ-l6-UhJ"/>
                 <outlet property="seperatorWidth" destination="RS7-St-pwX" id="bMy-jV-LqX"/>
