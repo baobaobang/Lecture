@@ -77,8 +77,14 @@
         {
             if (ACCESS_TOKEN) {
                 UserDefaultsSave(nil, @"access_token");
+                UserDefaultsSave(nil,@"isExpert");
                 [self.titlesArray replaceObjectAtIndex:1 withObject:@"登录"];
                 [self.tableView reloadData];
+                
+                XXXMainPageVC *lvc = [[XXXMainPageVC alloc]init];
+                XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:lvc];
+                AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                [delegate.sliderMenu changeMainViewController:nav close:YES];
             }else{
                 XXXLoginVC *lvc = [[XXXLoginVC alloc]init];
                 lvc.fromLeftMenu = YES;
