@@ -4,7 +4,7 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "736h",
-      "filename" : "医讲堂启动页面750x1134@2x-1.png",
+      "filename" : "医讲堂启动页面1242x2208@3x-1.png",
       "minimum-system-version" : "8.0",
       "orientation" : "portrait",
       "scale" : "3x"
@@ -47,7 +47,6 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "医讲堂启动页面320x480.png",
       "extent" : "full-screen",
       "scale" : "1x"
     },
@@ -61,7 +60,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "医讲堂启动页面640x1136@2x-1.png",
+      "filename" : "医讲堂启动页面-1.png",
       "extent" : "full-screen",
       "subtype" : "retina4",
       "scale" : "2x"

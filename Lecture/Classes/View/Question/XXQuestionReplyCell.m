@@ -109,8 +109,7 @@
 //    }
 //}
 
-=======
->>>>>>> origin/master
+
 #pragma mark - 点击播放按钮，发送通知，通知所有回复cell
 - (IBAction)clickPlayBtn:(XXButton *)btn {
     [XXNotificationCenter postNotificationName:XXReplyCellPlayBtnDidClickNotification object:nil userInfo:@{@"index" : self.index}];

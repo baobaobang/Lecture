@@ -21,9 +21,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
     self.titlesArray = [NSMutableArray arrayWithArray:@[@"首页",@"登录"]];
 //    self.tableView.delegate = self;
 //    self.tableView.dataSource = self;
+    UIView *tableViewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SWIDTH, 40)];
+    self.tableView.tableHeaderView = tableViewHeader;
+    self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    //self.tableView.backgroundColor = RGB(200, 200, 200);
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc]initWithEffect:effect];
+    blurView.frame = self.tableView.bounds;
+    self.tableView.backgroundView = blurView;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -46,9 +56,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseStr];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.textColor = RGB(51, 51, 51);
-        cell.imageView.frame = CGRectMake(0, 0, 40, 40);
+        cell.backgroundColor = [UIColor clearColor];
     }
-    //cell.imageView.image = [UIImage imageNamed:@"logo"];
     cell.textLabel.text = _titlesArray[indexPath.row];
     return cell;
 }

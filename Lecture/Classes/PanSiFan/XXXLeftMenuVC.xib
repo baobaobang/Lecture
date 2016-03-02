@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="emd-AX-CJQ">
-                    <rect key="frame" x="0.0" y="60" width="600" height="540"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="erb-Bd-yR5"/>
@@ -27,7 +27,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="emd-AX-CJQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="8Of-K4-xOm"/>
+                <constraint firstItem="emd-AX-CJQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8Of-K4-xOm"/>
                 <constraint firstAttribute="trailing" secondItem="emd-AX-CJQ" secondAttribute="trailing" id="Q41-Ui-dgI"/>
                 <constraint firstAttribute="bottom" secondItem="emd-AX-CJQ" secondAttribute="bottom" id="c0n-XP-yg8"/>
                 <constraint firstItem="emd-AX-CJQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uMp-AK-6kK"/>

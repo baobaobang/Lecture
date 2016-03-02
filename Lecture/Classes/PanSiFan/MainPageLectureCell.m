@@ -9,6 +9,7 @@
 #import "MainPageLectureCell.h"
 #import "XXXLectureModel.h"
 #import "DateFormatter.h"
+#import "UIView+RoundAndShadow.h"
 
 @interface MainPageLectureCell()
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
@@ -53,7 +54,9 @@
     if (!cell) {
         [tableView registerNib:[UINib nibWithNibName:@"MainPageLectureCell" bundle:nil] forCellReuseIdentifier:reuseStr];
         cell = [tableView dequeueReusableCellWithIdentifier:reuseStr];
+        
     }
+    [cell.titleImageView shadow];
     [cell setLectureData:lecutreModel];
     return  cell;
 }
@@ -61,6 +64,7 @@
 -(void)setLectureData:(XXXLectureModel *) lectureModel{
     self.lectureModel = lectureModel;
     [self.timer invalidate];
+    
     [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:lectureModel.cover] placeholderImage:[UIImage imageNamed:@""]];
     [self.avatarView sd_setImageWithURL:[NSURL URLWithString:lectureModel.headPic] placeholderImage:[UIImage imageNamed:@""]];
     self.nameLabel.text = [NSString stringWithFormat:@"%@",lectureModel.title];

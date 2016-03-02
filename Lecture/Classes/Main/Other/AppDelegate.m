@@ -42,6 +42,7 @@
     XXNavigationController *nav = [[XXNavigationController alloc]initWithRootViewController:[[XXXMainPageVC alloc]init]];
 //    SlideMenuController *sliderMenuVC = [[SlideMenuController alloc] initWithMainViewController:nav leftMenuViewController:[[XXXLeftMenuVC alloc]init] rightMenuViewController:nil];
     SlideMenuController *sliderMenuVC = [[SlideMenuController alloc] initWithMainViewController:nav leftMenuViewController:[[XXXLeftMenuVC alloc]init]];
+    sliderMenuVC.view.backgroundColor = [UIColor clearColor];
     [sliderMenuVC changeLeftViewWidth:150];
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = sliderMenuVC;
@@ -52,6 +53,8 @@
     [self getQNToken];
     
     [self DetectionNetwork];
+    
+    [NSThread sleepForTimeInterval:5];
     return YES;
 }
 

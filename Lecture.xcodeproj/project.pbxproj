@@ -15,7 +15,6 @@
 		1627094B1C719D780015DF65 /* XXXDraftBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 162709491C719D780015DF65 /* XXXDraftBoxCell.xib */; };
 		162E889B1C619F32004F4C00 /* XXXBaseScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */; };
 		162E88A11C61EE9D004F4C00 /* XXXProtocolTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */; };
-		162E88A51C61F1FB004F4C00 /* protocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 162E88A41C61F1FB004F4C00 /* protocol.html */; };
 		16665EAE1C7C004D00A0B4B5 /* XXXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 16665EAD1C7C004D00A0B4B5 /* XXXUser.m */; };
 		16C139031C5F2D67003B1CB9 /* XXXMakeLectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */; };
 		16C139061C5F4EA8003B1CB9 /* AudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139051C5F4EA8003B1CB9 /* AudioTool.m */; };
@@ -190,7 +189,6 @@
 		162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXBaseScrollVC.m; sourceTree = "<group>"; };
 		162E889F1C61EE9D004F4C00 /* XXXProtocolTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXProtocolTipView.h; sourceTree = "<group>"; };
 		162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXProtocolTipView.m; sourceTree = "<group>"; };
-		162E88A41C61F1FB004F4C00 /* protocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = protocol.html; path = Source.bundle/protocol.html; sourceTree = "<group>"; };
 		16665EAC1C7C004D00A0B4B5 /* XXXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXUser.h; sourceTree = "<group>"; };
 		16665EAD1C7C004D00A0B4B5 /* XXXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXUser.m; sourceTree = "<group>"; };
 		16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXMakeLectureView.h; sourceTree = "<group>"; };
@@ -733,7 +731,6 @@
 		2D1D01D01C3EA3910056B10C = {
 			isa = PBXGroup;
 			children = (
-				162E88A41C61F1FB004F4C00 /* protocol.html */,
 				2D1D01DB1C3EA3910056B10C /* Lecture */,
 				2D1D01DA1C3EA3910056B10C /* Products */,
 				06C61D4F4F50164C87B238D7 /* Pods */,
@@ -1426,7 +1423,6 @@
 				2D1D01EC1C3EA3910056B10C /* LaunchScreen.storyboard in Resources */,
 				2D1D01E71C3EA3910056B10C /* Main.storyboard in Resources */,
 				161F40E31C7587EA00033FA6 /* XXXMyLecturesVC.xib in Resources */,
-				162E88A51C61F1FB004F4C00 /* protocol.html in Resources */,
 				2D6309051C549B2F0092F622 /* XXQuestionHeaderView.xib in Resources */,
 				1627094B1C719D780015DF65 /* XXXDraftBoxCell.xib in Resources */,
 				2DED0B9F1C80578700B1145E /* XXQuestionReplyUserCell.xib in Resources */,
@@ -1740,8 +1736,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
@@ -1752,7 +1748,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4767742c-f788-4d28-bb34-1689f0c2fc2d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = adHoc;
 		};
@@ -1867,8 +1863,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = NO;
@@ -1880,7 +1876,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4767742c-f788-4d28-bb34-1689f0c2fc2d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1891,8 +1887,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: IDoctor Healthcare Technology Co. Ltd. (C9W95T72UV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
@@ -1903,7 +1899,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4767742c-f788-4d28-bb34-1689f0c2fc2d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

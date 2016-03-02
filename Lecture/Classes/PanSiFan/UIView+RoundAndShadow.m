@@ -18,7 +18,7 @@
 
 - (instancetype)shadow{
     self.layer.shadowColor = [UIColor grayColor].CGColor;
-    self.layer.shadowOffset = CGSizeMake(0.5, 0.5);
+    self.layer.shadowOffset = CGSizeMake(0, 0.5);
     self.layer.shadowOpacity = 1;
     return self;
 }

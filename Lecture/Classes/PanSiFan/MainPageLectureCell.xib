@@ -54,7 +54,7 @@
                     <constraint firstItem="VpT-3v-kuE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="0hQ-Oz-jwK"/>
                     <constraint firstItem="ZQf-ai-9nQ" firstAttribute="leading" secondItem="VfP-BB-WLH" secondAttribute="trailing" constant="-218" id="1Ml-cS-hTH"/>
                     <constraint firstItem="VpT-3v-kuE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="1qC-iD-1xg"/>
-                    <constraint firstItem="ZQf-ai-9nQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="12" id="8Jn-si-Qvc"/>
+                    <constraint firstItem="ZQf-ai-9nQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="8Jn-si-Qvc"/>
                     <constraint firstAttribute="bottomMargin" secondItem="VfP-BB-WLH" secondAttribute="bottom" constant="5" id="J1D-gz-fY1"/>
                     <constraint firstItem="VfP-BB-WLH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="SIh-Ds-ULx"/>
                     <constraint firstItem="VfP-BB-WLH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="SKZ-er-pO3"/>
@@ -71,7 +71,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96033752041111109" green="0.96033752041111109" blue="0.96033752041111109" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="timeCount" destination="ZQf-ai-9nQ" id="UPv-KP-hc0"/>
                 <outlet property="titleImageView" destination="VfP-BB-WLH" id="4Zc-5i-jHe"/>
