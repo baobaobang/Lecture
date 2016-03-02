@@ -8,7 +8,7 @@
 
 #import "NetworkManager.h"
 #import "AFNetworking.h"
-
+#import "UIImage+CutImage.h"
 
 #define HOST @"http://121.42.171.213:3000"
 
@@ -53,7 +53,12 @@
 
 + (void)qiniuUpload:(NSData *)data progress:(QNUpProgressHandler)progressHandler success:(SuccessBlock)successBlock fail:(FailBlock)failBlock isImageType:(BOOL)isImageType{
     NSString *token = UserDefaultsGet(@"qiniutoken");
-    //QNUploadManager *upManager = [[QNUploadManager alloc] init];
+    
+    if (isImageType) {
+        UIImage *image = [UIImage imageWithData:data];
+        image = [image cutImage];
+        image = [image scaleTo200K];
+    }
     QNUploadManager *upManager = [QNUploadManager sharedInstanceWithConfiguration:[QNConfiguration build:^(QNConfigurationBuilder *builder) {
         builder.timeoutInterval = 10;
     }]];

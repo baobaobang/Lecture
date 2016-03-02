@@ -16,6 +16,7 @@
 		162E889B1C619F32004F4C00 /* XXXBaseScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E889A1C619F32004F4C00 /* XXXBaseScrollVC.m */; };
 		162E88A11C61EE9D004F4C00 /* XXXProtocolTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */; };
 		16665EAE1C7C004D00A0B4B5 /* XXXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 16665EAD1C7C004D00A0B4B5 /* XXXUser.m */; };
+		16832C741C86EB3700692E74 /* UIImage+CutImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16832C731C86EB3700692E74 /* UIImage+CutImage.m */; };
 		16C139031C5F2D67003B1CB9 /* XXXMakeLectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */; };
 		16C139061C5F4EA8003B1CB9 /* AudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139051C5F4EA8003B1CB9 /* AudioTool.m */; };
 		16C64A041C62EB5200C6CB58 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C64A021C62EB5200C6CB58 /* SlideMenuController.swift */; };
@@ -192,6 +193,8 @@
 		162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXProtocolTipView.m; sourceTree = "<group>"; };
 		16665EAC1C7C004D00A0B4B5 /* XXXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXUser.h; sourceTree = "<group>"; };
 		16665EAD1C7C004D00A0B4B5 /* XXXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXUser.m; sourceTree = "<group>"; };
+		16832C721C86EB3700692E74 /* UIImage+CutImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CutImage.h"; sourceTree = "<group>"; };
+		16832C731C86EB3700692E74 /* UIImage+CutImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CutImage.m"; sourceTree = "<group>"; };
 		16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXMakeLectureView.h; sourceTree = "<group>"; };
 		16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXMakeLectureView.m; sourceTree = "<group>"; };
 		16C139041C5F4EA8003B1CB9 /* AudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTool.h; sourceTree = "<group>"; };
@@ -555,6 +558,8 @@
 				2D2372411C5F0DE800A422EF /* AppDelegate+UM.m */,
 				2D2372541C5F0DE800A422EF /* UIView+RoundAndShadow.h */,
 				2D2372551C5F0DE800A422EF /* UIView+RoundAndShadow.m */,
+				16832C721C86EB3700692E74 /* UIImage+CutImage.h */,
+				16832C731C86EB3700692E74 /* UIImage+CutImage.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -1623,6 +1628,7 @@
 				2D1BDF101C5B62BE00056E87 /* XXQuestionBaseVC.m in Sources */,
 				2D1BDF111C5B62BE00056E87 /* XXQuestionVC(所有提问).m in Sources */,
 				2D55BB6E1C5618F900BA1542 /* LGPhotoPickerBrowserPhoto.m in Sources */,
+				16832C741C86EB3700692E74 /* UIImage+CutImage.m in Sources */,
 				162709451C7199940015DF65 /* XXXDraftBoxVC.m in Sources */,
 				2D2372771C5F0DE800A422EF /* XXXBaseModel.m in Sources */,
 				2D2372751C5F0DE800A422EF /* Transcoder.m in Sources */,
