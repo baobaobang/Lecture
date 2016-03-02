@@ -40,15 +40,7 @@
 
 + (UIImage *)imageFromMainBundleWithName:(NSString *)name;
 
-/**
- *  缩放图片大小
- *
- *  @param image 原图片
- *  @param size  目标尺寸
- *
- *  @return 缩放后的图片
- */
-- (UIImage *)imageScaleToSize:(CGSize)size;
+
 
 /**
  *  不渲染图片
@@ -60,4 +52,26 @@
  *  渲染图片颜色
  */
 - (UIImage *) imageWithTintColor:(UIColor *)tintColor;
+
+/**
+ *  缩放图片尺寸
+ *
+ *  @param image 原图片
+ *  @param size  目标尺寸
+ *
+ *  @return 缩放后的图片
+ */
+- (UIImage *)imageScaleToSize:(CGSize)size;
+
+//压缩图片质量
+- (UIImage *)reduceImageToTargetPercent:(float)percent ;
+
+//等比例压缩，限制最大宽高
+- (UIImage *)imageCompressToTargetSize:(CGSize)size;
+
+//等比例压缩，限制最大宽度
+- (UIImage *)imageCompressToTargetWidth:(CGFloat)defineWidth;
+
+//将图片等比例压缩到指定的最大宽高和最大kb数
+- (UIImage *)imageCompressToWidth:(CGFloat)defineWidth kb:(NSUInteger)kb;
 @end

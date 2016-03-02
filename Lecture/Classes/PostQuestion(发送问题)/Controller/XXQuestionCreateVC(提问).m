@@ -179,7 +179,12 @@ static NSString* photoCellIndentifier = @"photoCellIndentifier";
 - (void)postNewQuestionWithPhotos{
     // 上传图片
     WS(weakSelf);
-    [NetworkManager qiniuUpload:self.selectPhotos progress:^(NSString *key, float percent) {
+    NSMutableArray *arrayM = [NSMutableArray array];
+    for (UIImage *originalImage in self.selectPhotos) {
+        UIImage *image = [originalImage imageCompressToWidth:XXScreenWidth kb:200];
+        [arrayM addObject:image];
+    }
+    [NetworkManager qiniuUpload:arrayM progress:^(NSString *key, float percent) {
         
     } success:^(id result) {//FIXME: 
         
