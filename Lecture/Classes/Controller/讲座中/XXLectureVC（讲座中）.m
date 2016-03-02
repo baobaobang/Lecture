@@ -181,20 +181,6 @@
     self.onlineHeaderView = onlineHeaderView;
 }
 
-// 在线交流
-- (void)setupOnlineVc{
-    
-    XXQuestionVC *onlineVc = [[XXQuestionVC alloc] init];
-    onlineVc.view.x = 0;
-    onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
-    onlineVc.view.width = self.view.width;
-    onlineVc.view.height = self.view.height - onlineVc.view.y - kXXJoinButtonHeight;
-    [self addChildViewController:onlineVc];
-    [self.view addSubview:onlineVc.view];
-    [onlineVc didMoveToParentViewController:self];
-    self.onlineVc = onlineVc;
-}
-
 // 设置提问按钮（最底部）
 - (void)setupPostQuestionBtn{
     
@@ -211,6 +197,24 @@
     postQuestionBtn.y = self.view.height - postQuestionBtn.height;
     [self.view addSubview:postQuestionBtn];
     self.postQuestionBtn = postQuestionBtn;
+    
+    if (isExpert) {
+        self.postQuestionBtn.height = 0;
+    }
+}
+
+// 在线交流
+- (void)setupOnlineVc{
+    
+    XXQuestionVC *onlineVc = [[XXQuestionVC alloc] init];
+    onlineVc.view.x = 0;
+    onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
+    onlineVc.view.width = self.view.width;
+    onlineVc.view.height = self.view.height - onlineVc.view.y - self.postQuestionBtn.height;
+    [self addChildViewController:onlineVc];
+    [self.view addSubview:onlineVc.view];
+    [onlineVc didMoveToParentViewController:self];
+    self.onlineVc = onlineVc;
 }
 
 // 提问

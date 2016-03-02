@@ -90,6 +90,7 @@
             <connections>
                 <outlet property="contractBtn" destination="2hD-by-Ce3" id="QnT-Z5-1mb"/>
                 <outlet property="postQuestionBtn" destination="4t3-dk-cFB" id="Yfv-Ea-Jqb"/>
+                <outlet property="postQuestionBtnWidthConstraint" destination="ldA-2i-ulG" id="hWf-Jp-RuS"/>
             </connections>
             <point key="canvasLocation" x="129" y="221.5"/>
         </view>

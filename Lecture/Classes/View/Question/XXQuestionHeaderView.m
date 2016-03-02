@@ -13,12 +13,18 @@
 @property (weak, nonatomic) IBOutlet XXButton *postQuestionBtn;
 
 @property (weak, nonatomic) IBOutlet XXContractButton *contractBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *postQuestionBtnWidthConstraint;
+
 @end
 
 @implementation XXQuestionHeaderView
 
 - (void)awakeFromNib{
     [super awakeFromNib];
+    
+    if (isExpert) {
+        self.postQuestionBtnWidthConstraint.constant = 0;
+    }
     
     // 设置我要提问按钮文字和颜色
     [self.postQuestionBtn setTitle:@"提问" forState:UIControlStateSelected];
