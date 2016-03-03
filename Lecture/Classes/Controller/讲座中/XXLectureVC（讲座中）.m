@@ -14,6 +14,7 @@
 #import "XXOnlineHeaderView.h"
 #import "XXExpertProfileHeaderView.h"
 #import "XXQuestionCreateVC.h"
+#import "CXShareTool.h"
 
 
 @interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
@@ -78,6 +79,8 @@
     [self setupPostQuestionBtn];
     
     [XXNotificationCenter addObserver:self selector:@selector(landscapeBtnClick) name:XXLandscapeBtnDidClickNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(shareBtnClick) name:XXPlayerShareNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(showShareToWechatTimelineBtn) name:XXPlayerShareToTimeLineNotification object:nil];
     
 //    [XXNotificationCenter addObserver:self selector:@selector(startPlaying) name:XXStartPlayingNotification object:nil];
 //    [XXNotificationCenter addObserver:self selector:@selector(stopPlaying) name:XXStopPlayingNotification object:nil];
@@ -312,6 +315,8 @@
 //    XXLog(@"_landscapeVc.view.width-%f, _landscapeVc.view.height-%f", _landscapeVc.view.width, _landscapeVc.view.height);
     // 隐藏导航栏和状态栏
     [self hideNavigationBarAndStatusBar];
+    // 隐藏分享按钮
+    self.playerVc.playerPicView.maskView.shareLectureBtn.hidden = YES;
 }
 
 - (void)hideLandscapeViewWithDuration:(NSTimeInterval)duration
@@ -322,6 +327,8 @@
     }];
     // 显示导航栏和状态栏
     [self showNavigationBarAndStatusBar];
+    // 显示分享按钮
+    self.playerVc.playerPicView.maskView.shareLectureBtn.hidden = NO;
 }
 
 - (void)hideNavigationBarAndStatusBar
@@ -411,4 +418,40 @@
 //    }];
 //}
 
-@end
+#pragma mark - share分享部分
+- (void)shareBtnClick{
+    // 设置点击返回的url和title
+    NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lectureDetail.lectureId];
+    NSString *title = self.lectureDetail.title;
+    UIImage *image = [UIImage imageNamed:@"logo"];
+    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc shareImage:image];
+}
+
+- (void)showShareToWechatTimelineBtn{
+    // 添加一个蒙版
+    UIView *maskView = [UIView maskView];
+    [XXTopWindow addSubview:maskView];
+    // 添加分析提示页面的按钮到最顶层窗口
+    UIButton *btn = [[UIButton alloc] init];
+    [maskView addSubview:btn];
+    btn.bounds = CGRectMake(0, 0, 250, 312);// 1:1.25
+    btn.center = maskView.center;
+    [btn setImage:[UIImage imageNamed:@"shareTip"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(shareToWechatTimeline:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)shareToWechatTimeline:(UIButton *)btn{
+    
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:self.lectureDetail.desc image:[UIImage imageNamed:@"logo"] location:nil urlResource:nil presentedController:nil completion:^(UMSocialResponseEntity *response){
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            NSLog(@"分享成功！");
+            // 通知播放页面继续播放下一首
+            [XXNotificationCenter postNotificationName:XXShareToWechatTimelineSuccessNotification object:nil];
+            // 移除分享页面
+            [btn.superview removeFromSuperview];
+            // 保存已分享的讲座id
+            UserDefaultsSaveBool(YES, self.lectureDetail.lectureId);
+        }
+    }];
+}
+  @end

@@ -10,5 +10,5 @@
 #import <UMSocial.h>
 
 @interface CXShareTool : NSObject
-+ (void)shareInVc:(UIViewController *)vc url:(NSString *)url title:(NSString *)title shareText:(NSString *)shareText;
++ (void)shareInVc:(UIViewController *)vc url:(NSString *)url title:(NSString *)title shareText:(NSString *)shareText shareImage:(UIImage *)shareImage;
 @end

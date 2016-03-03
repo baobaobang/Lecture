@@ -153,6 +153,7 @@
 		2D9D7DAB1C6324350070AA57 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D7DA61C6324350070AA57 /* SDPhotoBrowser.m */; };
 		2D9D7DAC1C6324350070AA57 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D7DA91C6324350070AA57 /* SDWaitingView.m */; };
 		2DBAF6C61C619DFD00D4BC49 /* CXHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBAF6C51C619DFD00D4BC49 /* CXHttpTool.m */; };
+		2DC246E01C87F717008C56A6 /* UIView+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC246DF1C87F717008C56A6 /* UIView+Mask.m */; };
 		2DD01BC51C7DEF4B0081D63F /* XXBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD01BC41C7DEF4B0081D63F /* XXBaseModel.m */; };
 		2DED0B9E1C80578700B1145E /* XXQuestionReplyUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DED0B9C1C80578700B1145E /* XXQuestionReplyUserCell.m */; };
 		2DED0B9F1C80578700B1145E /* XXQuestionReplyUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DED0B9D1C80578700B1145E /* XXQuestionReplyUserCell.xib */; };
@@ -458,6 +459,8 @@
 		2D9D7DA91C6324350070AA57 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		2DBAF6C41C619DFD00D4BC49 /* CXHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXHttpTool.h; sourceTree = "<group>"; };
 		2DBAF6C51C619DFD00D4BC49 /* CXHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXHttpTool.m; sourceTree = "<group>"; };
+		2DC246DE1C87F717008C56A6 /* UIView+Mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Mask.h"; sourceTree = "<group>"; };
+		2DC246DF1C87F717008C56A6 /* UIView+Mask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Mask.m"; sourceTree = "<group>"; };
 		2DD01BC31C7DEF4B0081D63F /* XXBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBaseModel.h; sourceTree = "<group>"; };
 		2DD01BC41C7DEF4B0081D63F /* XXBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBaseModel.m; sourceTree = "<group>"; };
 		2DED0B9B1C80578700B1145E /* XXQuestionReplyUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionReplyUserCell.h; sourceTree = "<group>"; };
@@ -1019,6 +1022,8 @@
 				2D63086B1C549B2F0092F622 /* UITextView+Extension.m */,
 				2D63086C1C549B2F0092F622 /* UIView+Extension.h */,
 				2D63086D1C549B2F0092F622 /* UIView+Extension.m */,
+				2DC246DE1C87F717008C56A6 /* UIView+Mask.h */,
+				2DC246DF1C87F717008C56A6 /* UIView+Mask.m */,
 				2D63086E1C549B2F0092F622 /* 单例头文件 */,
 			);
 			path = Category;
@@ -1611,6 +1616,7 @@
 				2D6309061C549B2F0092F622 /* XXQuestionPhotosView(相册).m in Sources */,
 				2D2372811C5F0DE800A422EF /* XXXRegisterVC.m in Sources */,
 				2D23726F1C5F0DE800A422EF /* MainPageLectureCell.m in Sources */,
+				2DC246E01C87F717008C56A6 /* UIView+Mask.m in Sources */,
 				16CBD2591C741A500054BC10 /* XXXApplyLectureVC.m in Sources */,
 				2D75DA4B1C5708720056FA6C /* XXOnlineHeaderView.m in Sources */,
 				2D6308E41C549B2F0092F622 /* MBProgressHUD.m in Sources */,

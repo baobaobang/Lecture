@@ -64,6 +64,7 @@ const CGFloat kXXPlayerVCChageToLandscapeDuration = 0.3; // 横屏切换时间
 
 /** Identifier*/
 NSString * const XXPlayerPicViewCellIdentifier = @"XXPlayerPicViewCellIdentifier";
+NSString * const XXSharedLectureIdKey = @"XXSharedLectureIdKey";
 
 /** 通知*/
 NSString * const XXQuestionToolbarShareButtonClickNotification = @"XXQuestionToolbarShareButtonClickNotification";
@@ -76,6 +77,9 @@ NSString * const XXStopPlayingNotification = @"XXStopPlayingNotification";
 NSString * const XXLectureVCRefreshNotification = @"XXLectureVCRefreshNotification";
 NSString * const XXLectureExpertOnlyVCRefreshNotification = @"XXLectureExpertOnlyVCRefreshNotification";
 NSString * const XXLectureSelectedQuestionsVCRefreshNotification = @"XXLectureSelectedQuestionsVCRefreshNotification";
+NSString * const XXPlayerShareNotification = @"XXPlayerShareNotification";
+NSString * const XXPlayerShareToTimeLineNotification = @"XXPlayerShareToTimeLineNotification";
+NSString * const XXShareToWechatTimelineSuccessNotification = @"XXShareToWechatTimelineSuccessNotification";
 
 #pragma mark - 问题
 NSString * const XXReplyCellDidClickNotification = @"XXReplyCellDidClickNotification";

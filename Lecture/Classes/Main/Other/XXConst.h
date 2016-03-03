@@ -76,6 +76,8 @@ extern const CGFloat kXXPlayerToolBarHeight; //播放条的高度
 extern const CGFloat kXXOnlineHeaderViewHeight;//在线交流头部高度
 /** Identifier*/
 extern NSString * const XXPlayerPicViewCellIdentifier;//播放图片的cell
+extern NSString * const XXSharedLectureIdKey;
+
 /** 通知*/
 extern NSString * const XXQuestionToolbarShareButtonClickNotification;
 extern NSString * const XXQuestionToolbarUnlikeButtonClickNotification;
@@ -86,7 +88,11 @@ extern NSString * const XXStopPlayingNotification;
 extern NSString * const XXLectureVCRefreshNotification;
 extern NSString * const XXLectureExpertOnlyVCRefreshNotification;
 extern NSString * const XXLectureSelectedQuestionsVCRefreshNotification;
+extern NSString * const XXPlayerShareNotification;
+extern NSString * const XXPlayerShareToTimeLineNotification;
+extern NSString * const XXShareToWechatTimelineSuccessNotification;
 /** 时间*/
+
 extern const CGFloat kXXPlayerVCChageToLandscapeDuration;
 
 #pragma mark - 专家简介
@@ -101,5 +107,9 @@ extern NSString * const XXReplyCellPlayBtnDidClickNotification;
 #define XXQuestionCellBorderW 10
 // cell头像的宽高
 #define XXQuestionCellIconWH 44
+
+
+// 第几页开始需要分享
+#define XXSharePageNumber 3
 
 @end

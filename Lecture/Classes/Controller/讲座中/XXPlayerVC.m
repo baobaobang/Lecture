@@ -16,7 +16,6 @@
 #import "MJExtension.h"
 #import "AudioTool.h"
 #import <UMSocial.h>
-#import "CXShareTool.h"
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define XXMaxSections 3
@@ -276,6 +275,8 @@
         if (self.currentItem == self.pages.count - 1) { // 如果是最后一首
             [self showHudWithMessage:@"已经是最后一页了"];
             
+        }else if (self.currentItem == XXSharePageNumber - 2){ // 判断是否已经分享
+            [self sharedJugeScrollOrNot:YES];
         }else{
             // 当前不是最后一首，更改索引为下一首
             self.currentItem ++;
@@ -287,6 +288,29 @@
 
 }
 
+- (void)sharedJugeScrollOrNot:(BOOL)scroll{
+    
+    BOOL isShared = UserDefaultsGetBool(self.lectureDetail.lectureId);
+    if (isShared) {
+        
+        self.currentItem ++;
+        if (scroll) { // 点击按钮的需要有动画滚动到对应currentItem的位置
+            [self scrollToItemWithAnimation:self.currentItem];
+        }
+    }else{
+        
+        [XXNotificationCenter postNotificationName:XXPlayerShareToTimeLineNotification object:nil];
+        [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
+    }
+}
+
+// 分享到朋友圈成功后才可以继续播放下一页
+- (void)shareToWechatTimelineSuccess{
+    self.currentItem++;
+    // 有动画滚动到对应currentItem的位置
+    [self scrollToItemWithAnimation:self.currentItem];
+}
+
 - (void)showHudWithMessage:(NSString *)message{
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.playerPicView animated:YES];
@@ -294,6 +318,24 @@
     hud.labelText = message;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:1];
+}
+
+
+#pragma mark - 滚动图片切换到另一张后自动切换音乐
+
+- (void)playerPicView:(XXPlayerPicView *)playerPicView collectionViewDidEndDecelerating:(UICollectionView *)collectionView{
+    
+    // 滚动结束后，屏幕上正显示的cell的索引数组，有时候里面有一个对象，有时候是两个对象
+    NSArray *array = [collectionView indexPathsForVisibleItems];
+    NSIndexPath *firstIndexPath = [array firstObject];
+    NSIndexPath *lastIndexPath = [array lastObject];
+    
+    // 如果索引为新，就变更索引
+    if (self.currentItem != firstIndexPath.item ){
+        self.currentItem = firstIndexPath.item;
+    }else {
+        self.currentItem = lastIndexPath.item;
+    }
 }
 
 #pragma mark - 有动画滚动到对应currentItem的位置
@@ -333,23 +375,6 @@
 - (void)hidePlayerToolbar{
     [self addFadeAnimationForView:self.playerToolBar];
     self.playerToolBar.hidden = YES;
-}
-
-#pragma mark - 滚动图片切换到另一张后自动切换音乐
-
-- (void)playerPicView:(XXPlayerPicView *)playerPicView collectionViewDidEndDecelerating:(UICollectionView *)collectionView{
-    
-    // 滚动结束后，屏幕上正显示的cell的索引数组，有时候里面有一个对象，有时候是两个对象
-    NSArray *array = [collectionView indexPathsForVisibleItems];
-    NSIndexPath *firstIndexPath = [array firstObject];
-    NSIndexPath *lastIndexPath = [array lastObject];
-    
-    // 如果索引为新，就变更索引
-    if (self.currentItem != firstIndexPath.item ){
-        self.currentItem = firstIndexPath.item;
-    }else {
-        self.currentItem = lastIndexPath.item;
-    }
 }
 
 #pragma mark - XXPlayerToolBarDelegate 控制slider
@@ -420,10 +445,7 @@
 
 #pragma mark - 分享页面
 - (void)share{
-    // 设置点击返回的url和title
-    NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lectureDetail.lectureId];
-    NSString *title = self.lectureDetail.title;
-    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc];
+    [XXNotificationCenter postNotificationName:XXPlayerShareNotification object:nil];
 }
 
 
