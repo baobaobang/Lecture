@@ -51,7 +51,7 @@
     }else{
         [self setTips];
     }
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, SHEIGHT-50, SWIDTH, 48)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, SHEIGHT-50, SWIDTH, 50)];
     [button addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundImage:[UIImage imageNamed:@"save"] forState:0];
     [button setTitleColor:[UIColor whiteColor] forState:0];

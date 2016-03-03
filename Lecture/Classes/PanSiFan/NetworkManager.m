@@ -58,6 +58,7 @@
         UIImage *image = [UIImage imageWithData:data];
         image = [image cutImage];
         image = [image scaleTo200K];
+        data = UIImageJPEGRepresentation(image, 1);
     }
     QNUploadManager *upManager = [QNUploadManager sharedInstanceWithConfiguration:[QNConfiguration build:^(QNConfigurationBuilder *builder) {
         builder.timeoutInterval = 10;

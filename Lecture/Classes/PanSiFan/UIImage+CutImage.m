@@ -25,7 +25,7 @@
     CGImageRef subImageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
     CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
     
-    UIGraphicsBeginImageContext(smallBounds.size);
+    UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextDrawImage(context, smallBounds, subImageRef);
     UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
@@ -36,8 +36,27 @@
 
 - (UIImage *)scaleTo200K{
     
-   NSData *data = UIImageJPEGRepresentation(self,1);
-    CGFloat ratio = 200*1024*8/data.length;
-    return [UIImage imageWithData:UIImageJPEGRepresentation(self, ratio)];
+//    NSData *data = UIImageJPEGRepresentation(self,1);
+//    CGFloat ratio = 200000.0/data.length;
+//    NSLog(@"ratio:%f>>>>>>>>%ld",ratio,(unsigned long)data.length);
+//    
+//    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+//    CGImageRef subImageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
+//    CGRect smallBounds = CGRectMake(0, 0, SWIDTH, SWIDTH*kXXPlayerPicViewHeightWidthRatio);
+//    
+//    UIGraphicsBeginImageContext(smallBounds.size);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextDrawImage(context, smallBounds, subImageRef);
+//    //UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+//    UIGraphicsEndImageContext();
+//    
+//    return smallImage;
+    //return [UIImage imageWithData:UIImageJPEGRepresentation(self, ratio)];
+    CGSize newSize = CGSizeMake(SWIDTH, SWIDTH*kXXPlayerPicViewHeightWidthRatio);
+    UIGraphicsBeginImageContext(newSize);
+    [self drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 @end
