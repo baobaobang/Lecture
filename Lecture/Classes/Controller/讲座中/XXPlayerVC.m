@@ -275,9 +275,18 @@
         if (self.currentItem == self.pages.count - 1) { // 如果是最后一首
             [self showHudWithMessage:@"已经是最后一页了"];
             
-        }else if (self.currentItem == 0){
-            [XXNotificationCenter postNotificationName:XXPlayerShareToTimeLineNotification object:nil];
-            [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
+        }else if (self.currentItem == 0){ // 判断是否已经分享
+            BOOL isShared = UserDefaultsGetBool(self.lectureDetail.lectureId);
+            if (isShared) {
+                
+                self.currentItem ++;
+                // 有动画滚动到对应currentItem的位置
+                [self scrollToItemWithAnimation:self.currentItem];
+            }else{
+                
+                [XXNotificationCenter postNotificationName:XXPlayerShareToTimeLineNotification object:nil];
+                [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
+            }
         }else{
             // 当前不是最后一首，更改索引为下一首
             self.currentItem ++;
@@ -292,6 +301,8 @@
 // 分享到朋友圈成功后才可以继续播放下一页
 - (void)shareToWechatTimelineSuccess{
     self.currentItem++;
+    // 有动画滚动到对应currentItem的位置
+    [self scrollToItemWithAnimation:self.currentItem];
 }
 
 - (void)showHudWithMessage:(NSString *)message{

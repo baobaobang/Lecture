@@ -45,7 +45,9 @@
 #define XXLog(...)
 #endif
 
+#define UserDefaultsSaveBool(value,key) [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];[[NSUserDefaults standardUserDefaults] synchronize]
 
+#define UserDefaultsGetBool(key) [[NSUserDefaults standardUserDefaults] boolForKey:key]
 
 
 #endif /* PrefixHeader_pch */

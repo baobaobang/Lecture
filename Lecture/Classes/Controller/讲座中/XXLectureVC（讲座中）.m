@@ -441,8 +441,12 @@
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:self.lectureDetail.desc image:[UIImage imageNamed:@"logo"] location:nil urlResource:nil presentedController:nil completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess) {
             NSLog(@"分享成功！");
+            // 通知播放页面继续播放下一首
             [XXNotificationCenter postNotificationName:XXShareToWechatTimelineSuccessNotification object:nil];
+            // 移除分享页面
             [btn.superview removeFromSuperview];
+            // 保存已分享的讲座id
+            UserDefaultsSaveBool(YES, self.lectureDetail.lectureId);
         }
     }];
 }

@@ -42,7 +42,8 @@
 
 #define AlertMessage(msg) [[[UIAlertView alloc]initWithTitle:msg message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show]
 
-//
+//]
+
 #define UserDefaultsSave(value,key) [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];[[NSUserDefaults standardUserDefaults] synchronize]
 
 #define UserDefaultsGet(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]

@@ -64,6 +64,7 @@ const CGFloat kXXPlayerVCChageToLandscapeDuration = 0.3; // 横屏切换时间
 
 /** Identifier*/
 NSString * const XXPlayerPicViewCellIdentifier = @"XXPlayerPicViewCellIdentifier";
+NSString * const XXSharedLectureIdKey = @"XXSharedLectureIdKey";
 
 /** 通知*/
 NSString * const XXQuestionToolbarShareButtonClickNotification = @"XXQuestionToolbarShareButtonClickNotification";
