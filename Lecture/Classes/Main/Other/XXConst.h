@@ -91,6 +91,7 @@ extern NSString * const XXLectureSelectedQuestionsVCRefreshNotification;
 extern NSString * const XXPlayerShareNotification;
 extern NSString * const XXPlayerShareToTimeLineNotification;
 extern NSString * const XXShareToWechatTimelineSuccessNotification;
+extern NSString * const XXShareToWechatTimelineFailNotification;
 /** 时间*/
 
 extern const CGFloat kXXPlayerVCChageToLandscapeDuration;
@@ -109,7 +110,7 @@ extern NSString * const XXReplyCellPlayBtnDidClickNotification;
 #define XXQuestionCellIconWH 44
 
 
-// 第几页开始需要分享
-#define XXSharePageNumber 3
+// 只能收听几页，之后需要分享才能继续收听
+#define XXSharePageNumber 2
 
 @end

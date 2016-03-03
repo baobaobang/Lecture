@@ -66,6 +66,8 @@
     [self setupPlayerToolBar];
     
     [XXNotificationCenter addObserver:self selector:@selector(endPlay) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineFail) name:XXShareToWechatTimelineFailNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -155,13 +157,19 @@
     // 更新索引
     _currentItem = currentItem;
     
-    if (self.pages.count > 0) {
-        // 更改音乐模型
-        self.currentPage = self.pages[currentItem];
-    }
-    
     // 给maskView传递数据，更新当前页码
     self.playerPicView.maskView.currentItem = self.currentItem;
+    
+    if (self.pages.count <= 0) return;
+    
+    self.currentPage = self.pages[currentItem];
+    
+    if (currentItem == XXSharePageNumber && !UserDefaultsGet(self.lectureDetail.lectureId)) {
+        // 如果用户没有分享过就出分享接力页面
+        [self showShareToWechatTimeline];
+        self.playing = YES;
+        [self playOrStop];
+    }
 }
 
 #pragma mark - 切换音乐，准备播放音乐，刷新相关控件
@@ -182,6 +190,26 @@
     
     // 添加kvo监听播放器的状态
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
+}
+
+
+
+#pragma mark - 分享到朋友圈
+// 点击分享图片按钮
+- (void)showShareToWechatTimeline
+{
+    [XXNotificationCenter postNotificationName:XXPlayerShareToTimeLineNotification object:nil];
+    
+}
+
+// 分享到朋友圈成功
+- (void)shareToWechatTimelineSuccess{
+    [self playOrStop];
+}
+
+// 分享到朋友圈失败
+- (void)shareToWechatTimelineFail{
+    [self previous];
 }
 
 #pragma mark - KVO监听AVplayer的播放状态，是否已经准备就绪
@@ -265,6 +293,16 @@
     }
 }
 
+
+- (void)showHudWithMessage:(NSString *)message{
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.playerPicView animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = message;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:1];
+}
+
 #pragma mark - 下一首
 
 -(void)next{
@@ -275,8 +313,6 @@
         if (self.currentItem == self.pages.count - 1) { // 如果是最后一首
             [self showHudWithMessage:@"已经是最后一页了"];
             
-        }else if (self.currentItem == XXSharePageNumber - 2){ // 判断是否已经分享
-            [self sharedJugeScrollOrNot:YES];
         }else{
             // 当前不是最后一首，更改索引为下一首
             self.currentItem ++;
@@ -286,38 +322,6 @@
         }
     }
 
-}
-
-- (void)sharedJugeScrollOrNot:(BOOL)scroll{
-    
-    BOOL isShared = UserDefaultsGetBool(self.lectureDetail.lectureId);
-    if (isShared) {
-        
-        self.currentItem ++;
-        if (scroll) { // 点击按钮的需要有动画滚动到对应currentItem的位置
-            [self scrollToItemWithAnimation:self.currentItem];
-        }
-    }else{
-        
-        [XXNotificationCenter postNotificationName:XXPlayerShareToTimeLineNotification object:nil];
-        [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
-    }
-}
-
-// 分享到朋友圈成功后才可以继续播放下一页
-- (void)shareToWechatTimelineSuccess{
-    self.currentItem++;
-    // 有动画滚动到对应currentItem的位置
-    [self scrollToItemWithAnimation:self.currentItem];
-}
-
-- (void)showHudWithMessage:(NSString *)message{
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.playerPicView animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = message;
-    hud.removeFromSuperViewOnHide = YES;
-    [hud hide:YES afterDelay:1];
 }
 
 

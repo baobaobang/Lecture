@@ -80,6 +80,7 @@ NSString * const XXLectureSelectedQuestionsVCRefreshNotification = @"XXLectureSe
 NSString * const XXPlayerShareNotification = @"XXPlayerShareNotification";
 NSString * const XXPlayerShareToTimeLineNotification = @"XXPlayerShareToTimeLineNotification";
 NSString * const XXShareToWechatTimelineSuccessNotification = @"XXShareToWechatTimelineSuccessNotification";
+NSString * const XXShareToWechatTimelineFailNotification = @"XXShareToWechatTimelineFailNotification";
 
 #pragma mark - 问题
 NSString * const XXReplyCellDidClickNotification = @"XXReplyCellDidClickNotification";

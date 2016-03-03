@@ -13,8 +13,6 @@
     UIView *view = [[UIView alloc] init];
     view.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.7];
     view.frame = CGRectMake(0, 0, XXScreenWidth, XXScreenHeight);
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:view action:@selector(removeFromSuperview)];
-    [view addGestureRecognizer:tap];
     return view;
 }
 @end

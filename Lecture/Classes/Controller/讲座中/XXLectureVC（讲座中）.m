@@ -31,6 +31,8 @@
 
 @property (nonatomic, strong) XXXLectureModel *lectureDetail;// 讲座详情
 
+@property (nonatomic, weak) UIView *maskView;
+
 @end
 
 @implementation XXLectureVC
@@ -431,6 +433,9 @@
     // 添加一个蒙版
     UIView *maskView = [UIView maskView];
     [XXTopWindow addSubview:maskView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickShareMaskView)];
+    self.maskView = maskView;
+    [maskView addGestureRecognizer:tap];
     // 添加分析提示页面的按钮到最顶层窗口
     UIButton *btn = [[UIButton alloc] init];
     [maskView addSubview:btn];
@@ -454,4 +459,9 @@
         }
     }];
 }
-  @end
+
+- (void)clickShareMaskView{
+    [self.maskView removeFromSuperview];
+    [XXNotificationCenter postNotificationName:XXShareToWechatTimelineFailNotification object:nil];
+}
+@end
