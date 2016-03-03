@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+
+#define NOTIFICATION_HEADESTUNPLUGGED @"HeadestUnplugged"
+#define NOTIFICATION_HEADESTPLUGGED @"Headestplugged"
+
 @interface AudioTool : NSObject
 
 @property (nonatomic, strong)  AVAudioPlayer*player;

@@ -68,6 +68,9 @@
     [XXNotificationCenter addObserver:self selector:@selector(endPlay) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
     [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineFail) name:XXShareToWechatTimelineFailNotification object:nil];
+    
+    // 观察拔出耳机时候暂停播放音乐
+    [XXNotificationCenter addObserver:self selector:@selector(unpluggedEarPhone) name:NOTIFICATION_HEADESTUNPLUGGED object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -450,6 +453,11 @@
 #pragma mark - 分享页面
 - (void)share{
     [XXNotificationCenter postNotificationName:XXPlayerShareNotification object:nil];
+}
+
+- (void)unpluggedEarPhone{
+    self.playing = YES;
+    [self playOrStop];
 }
 
 
