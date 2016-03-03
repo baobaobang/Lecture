@@ -76,6 +76,9 @@ NSString * const XXStopPlayingNotification = @"XXStopPlayingNotification";
 NSString * const XXLectureVCRefreshNotification = @"XXLectureVCRefreshNotification";
 NSString * const XXLectureExpertOnlyVCRefreshNotification = @"XXLectureExpertOnlyVCRefreshNotification";
 NSString * const XXLectureSelectedQuestionsVCRefreshNotification = @"XXLectureSelectedQuestionsVCRefreshNotification";
+NSString * const XXPlayerShareNotification = @"XXPlayerShareNotification";
+NSString * const XXPlayerShareToTimeLineNotification = @"XXPlayerShareToTimeLineNotification";
+NSString * const XXShareToWechatTimelineSuccessNotification = @"XXShareToWechatTimelineSuccessNotification";
 
 #pragma mark - 问题
 NSString * const XXReplyCellDidClickNotification = @"XXReplyCellDidClickNotification";

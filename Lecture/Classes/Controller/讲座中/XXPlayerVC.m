@@ -16,7 +16,6 @@
 #import "MJExtension.h"
 #import "AudioTool.h"
 #import <UMSocial.h>
-#import "CXShareTool.h"
 
 #define PlayerCurrentTimeKeyPath @"currentTime"
 #define XXMaxSections 3
@@ -276,6 +275,9 @@
         if (self.currentItem == self.pages.count - 1) { // 如果是最后一首
             [self showHudWithMessage:@"已经是最后一页了"];
             
+        }else if (self.currentItem == 0){
+            [XXNotificationCenter postNotificationName:XXPlayerShareToTimeLineNotification object:nil];
+            [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
         }else{
             // 当前不是最后一首，更改索引为下一首
             self.currentItem ++;
@@ -285,6 +287,11 @@
         }
     }
 
+}
+
+// 分享到朋友圈成功后才可以继续播放下一页
+- (void)shareToWechatTimelineSuccess{
+    self.currentItem++;
 }
 
 - (void)showHudWithMessage:(NSString *)message{
@@ -420,10 +427,7 @@
 
 #pragma mark - 分享页面
 - (void)share{
-    // 设置点击返回的url和title
-    NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lectureDetail.lectureId];
-    NSString *title = self.lectureDetail.title;
-    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc];
+    [XXNotificationCenter postNotificationName:XXPlayerShareNotification object:nil];
 }
 
 
