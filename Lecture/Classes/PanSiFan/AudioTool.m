@@ -16,7 +16,15 @@
     dispatch_once(&onceToken, ^{
         if (!sharedInstance) {
             sharedInstance = [[self alloc]init];
+            
             [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+            
+            UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+            AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+            
+            
+            //外放 耳机切换时监听
+            AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange,audioRouteChangeListenerCallback, (__bridge void *)(self));
         }
     });
     return sharedInstance;
@@ -31,7 +39,7 @@
                                   AVEncoderBitRateKey,
                                   [NSNumber numberWithInt:2],
                                   AVNumberOfChannelsKey,
-                                  [NSNumber numberWithFloat:44100.0],
+                                  [NSNumber numberWithFloat:SAMPLERATE],
                                   AVSampleRateKey,
                                   [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,nil];
     self.recorder = [[AVAudioRecorder alloc]initWithURL:url settings:recordSettings error:nil];
@@ -50,14 +58,7 @@
 }
 
 - (AVPlayer *)streamPlayerWithURL:(NSString *)url{
-//    _streamPlayer = [[AVPlayer alloc]initWithPlayerItem:[[AVPlayerItem alloc] initWithURL:url]];
-//    AVAudioSession *session = [AVAudioSession sharedInstance];
-//    
-//    [session setCategory:AVAudioSessionCategoryPlayAndRecord
-//             withOptions:AVAudioSessionCategoryOptionMixWithOthers
-//                   error:nil];
-//    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
-//    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
+
     // 为了能够外放
     UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
     AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
@@ -76,8 +77,8 @@
 }
 
 - (AVPlayer *)noSinglePlayerWithURL:(NSString *)url{
-    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+//    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+//    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
     // 暂停前面一个
     [_streamPlayer pause];
     // 同时支持本地和网络播放
@@ -89,5 +90,44 @@
     }
     
     return [[AVPlayer alloc]initWithURL:URL];
+}
+
+#define NOTIFICATION_HEADESTUNPLUGGED @"HeadestUnplugged"
+#define NOTIFICATION_HEADESTPLUGGED @"Headestplugged"
+//触发的监听事件
+void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID inPropertyID, UInt32 inPropertyValueSize,const void *inPropertyValue ) {
+    // ensure that this callback was invoked for a route change
+    if (inPropertyID != kAudioSessionProperty_AudioRouteChange) return;
+    
+    
+    {
+        // Determines the reason for the route change, to ensure that it is not
+        //      because of a category change.
+        CFDictionaryRef routeChangeDictionary = (CFDictionaryRef)inPropertyValue;
+        
+        CFNumberRef routeChangeReasonRef = (CFNumberRef)CFDictionaryGetValue (routeChangeDictionary, CFSTR (kAudioSession_AudioRouteChangeKey_Reason) );
+        SInt32 routeChangeReason;
+        CFNumberGetValue (routeChangeReasonRef, kCFNumberSInt32Type, &routeChangeReason);
+        
+        if (routeChangeReason == kAudioSessionRouteChangeReason_OldDeviceUnavailable) {
+            
+            //Handle Headset Unplugged
+            //NSLog(@"拔出耳机>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+            AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+            //DLog(@"没有耳机！");
+            //HeadestUnplugged note
+            NSNotification *note = [[NSNotification alloc]initWithName:NOTIFICATION_HEADESTUNPLUGGED object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:note];
+        } else if (routeChangeReason == kAudioSessionRouteChangeReason_NewDeviceAvailable) {
+            //Handle Headset plugged in
+            //DLog(@"有耳机！");
+            //NSLog(@"插入耳机>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            NSNotification *note = [[NSNotification alloc]initWithName:NOTIFICATION_HEADESTPLUGGED object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:note];
+            
+        }
+        
+    }
 }
 @end

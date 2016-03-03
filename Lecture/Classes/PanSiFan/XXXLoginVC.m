@@ -123,7 +123,9 @@
                              @"certCode":self.password.text
                              ,@"type":@(!self.checkBox.selected)
                              };
+    [SVProgressHUD show];
     [NetworkManager postWithApi:@"register" params:params success:^(id result) {
+        [SVProgressHUD dismiss];
         if ([result[@"ret"] integerValue] == 0) {
             UserDefaultsSave(result[@"data"][@"token"], @"access_token");
             if ([result[@"data"][@"type"] integerValue] == 1) {
@@ -144,7 +146,6 @@
             
         }
     } fail:^(NSError *error) {
-        
     }];
 }
 

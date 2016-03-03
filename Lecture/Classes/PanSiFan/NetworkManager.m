@@ -32,6 +32,7 @@
         successBlock(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failBlock(error);
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
     }];
 }
 
@@ -46,6 +47,7 @@
         successBlock(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failBlock(error);
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
     }];
 }
 

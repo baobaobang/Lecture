@@ -55,6 +55,8 @@
 
 #define QINIU_HOST @"http://7xoadl.com2.z0.glb.qiniucdn.com"
 
+//音频采样率
+#define SAMPLERATE 10000.0  //44100.0
 
 #define UMKey @"569eec33e0f55a6ad500118c"//友盟Key
 #define QQAppKey @"QNusQiGZCItieACl"

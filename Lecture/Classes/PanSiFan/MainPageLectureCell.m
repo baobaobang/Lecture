@@ -65,7 +65,7 @@
     self.lectureModel = lectureModel;
     [self.timer invalidate];
     
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:lectureModel.cover] placeholderImage:[UIImage imageNamed:@""]];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:lectureModel.cover] placeholderImage:[UIImage imageNamed:@"placeholder_lecture_cover"]];
     [self.avatarView sd_setImageWithURL:[NSURL URLWithString:lectureModel.headPic] placeholderImage:[UIImage imageNamed:@""]];
     self.nameLabel.text = [NSString stringWithFormat:@"%@",lectureModel.title];
     self.descLabel.text = [NSString stringWithFormat:@"%@:%@",lectureModel.name,lectureModel.jobTitle];

@@ -33,7 +33,7 @@
         
         lame_t lame = lame_init();
         //lame_set_in_samplerate(lame, 11025.0);
-        lame_set_in_samplerate(lame, 44100.0);
+        lame_set_in_samplerate(lame, SAMPLERATE);
         lame_set_VBR(lame, vbr_default);
         lame_init_params(lame);
         
