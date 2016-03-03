@@ -17,7 +17,6 @@
 @interface XXPlayerMaskView ()
 
 /** 转发讲座按钮 */
-@property (weak, nonatomic) UIButton *shareLectureBtn;
 @property (weak, nonatomic) UIButton *bigPlayBtn;
 @property (weak, nonatomic) UIButton *previousBtn;
 @property (weak, nonatomic) UIButton *nextBtn;

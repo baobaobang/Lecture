@@ -315,6 +315,8 @@
 //    XXLog(@"_landscapeVc.view.width-%f, _landscapeVc.view.height-%f", _landscapeVc.view.width, _landscapeVc.view.height);
     // 隐藏导航栏和状态栏
     [self hideNavigationBarAndStatusBar];
+    // 隐藏分享按钮
+    self.playerVc.playerPicView.maskView.shareLectureBtn.hidden = YES;
 }
 
 - (void)hideLandscapeViewWithDuration:(NSTimeInterval)duration
@@ -325,6 +327,8 @@
     }];
     // 显示导航栏和状态栏
     [self showNavigationBarAndStatusBar];
+    // 显示分享按钮
+    self.playerVc.playerPicView.maskView.shareLectureBtn.hidden = NO;
 }
 
 - (void)hideNavigationBarAndStatusBar

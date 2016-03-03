@@ -109,6 +109,7 @@ extern NSString * const XXReplyCellPlayBtnDidClickNotification;
 #define XXQuestionCellIconWH 44
 
 
-
+// 第几页开始需要分享
+#define XXSharePageNumber 3
 
 @end

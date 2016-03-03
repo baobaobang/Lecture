@@ -33,4 +33,5 @@ typedef enum{
 @property(strong,nonatomic) NSArray *pages;
 
 @property (nonatomic, weak) id<XXPlayerMaskViewDelegate> delegate;
+@property (weak, nonatomic) UIButton *shareLectureBtn;
 @end
