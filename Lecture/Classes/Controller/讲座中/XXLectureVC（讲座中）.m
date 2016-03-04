@@ -17,7 +17,7 @@
 #import "CXShareTool.h"
 
 
-@interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
+@interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate, UMSocialUIDelegate>
 @property (nonatomic, weak) XXPlayerVC *playerVc;
 @property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
@@ -31,7 +31,7 @@
 
 @property (nonatomic, strong) XXXLectureModel *lectureDetail;// 讲座详情
 
-@property (nonatomic, weak) UIView *maskView;
+@property (nonatomic, weak) UIImageView *shareView;
 
 @end
 
@@ -82,7 +82,7 @@
     
     [XXNotificationCenter addObserver:self selector:@selector(landscapeBtnClick) name:XXLandscapeBtnDidClickNotification object:nil];
     [XXNotificationCenter addObserver:self selector:@selector(shareBtnClick) name:XXPlayerShareNotification object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(showShareToWechatTimelineBtn) name:XXPlayerShareToTimeLineNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(showShareView) name:showShareView object:nil];
     
 //    [XXNotificationCenter addObserver:self selector:@selector(startPlaying) name:XXStartPlayingNotification object:nil];
 //    [XXNotificationCenter addObserver:self selector:@selector(stopPlaying) name:XXStopPlayingNotification object:nil];
@@ -426,42 +426,35 @@
     NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lectureDetail.lectureId];
     NSString *title = self.lectureDetail.title;
     UIImage *image = [UIImage imageNamed:@"logo"];
-    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc shareImage:image];
+    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc shareImage:image delegate:self];
 }
-
-- (void)showShareToWechatTimelineBtn{
-    // 添加一个蒙版
-    UIView *maskView = [UIView maskView];
-    [XXTopWindow addSubview:maskView];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickShareMaskView)];
-    self.maskView = maskView;
-    [maskView addGestureRecognizer:tap];
-    // 添加分析提示页面的按钮到最顶层窗口
-    UIButton *btn = [[UIButton alloc] init];
-    [maskView addSubview:btn];
-    btn.bounds = CGRectMake(0, 0, 250, 312);// 1:1.25
-    btn.center = maskView.center;
-    [btn setImage:[UIImage imageNamed:@"shareTip"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(shareToWechatTimeline:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)shareToWechatTimeline:(UIButton *)btn{
+// 显示分享提示图
+- (void)showShareView{
     
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:self.lectureDetail.desc image:[UIImage imageNamed:@"logo"] location:nil urlResource:nil presentedController:nil completion:^(UMSocialResponseEntity *response){
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            NSLog(@"分享成功！");
-            // 通知播放页面继续播放下一首
-            [XXNotificationCenter postNotificationName:XXShareToWechatTimelineSuccessNotification object:nil];
-            // 移除分享页面
-            [btn.superview removeFromSuperview];
-            // 保存已分享的讲座id
-            UserDefaultsSaveBool(YES, self.lectureDetail.lectureId);
-        }
-    }];
+    [self shareBtnClick];
+    // 添加分析提示页面的按钮到最顶层窗口
+    UIImageView *shareView = [[UIImageView alloc] init];
+    [XXTopWindow addSubview:shareView];
+    shareView.bounds = CGRectMake(0, 0, 250, 312);// 1:1.25
+    shareView.center = XXTopWindow.center;
+    shareView.image = [UIImage imageNamed:@"shareTip"];
+    self.shareView = shareView;
 }
 
-- (void)clickShareMaskView{
-    [self.maskView removeFromSuperview];
-    [XXNotificationCenter postNotificationName:XXShareToWechatTimelineFailNotification object:nil];
+// 分享成功后
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response{
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        NSLog(@"分享成功！");
+        // 保存已分享的讲座id
+        UserDefaultsSaveBool(YES, self.lectureDetail.lectureId);
+        [XXNotificationCenter postNotificationName:XXShareSuccessNotification object:nil];
+    }
+}
+
+// 关闭分享页面时(分享失败)
+-(void)didCloseUIViewController:(UMSViewControllerType)fromViewControllerType
+{
+    [self.shareView removeFromSuperview];
+    [XXNotificationCenter postNotificationName:XXShareFailNotification object:nil];
 }
 @end

@@ -78,9 +78,9 @@ NSString * const XXLectureVCRefreshNotification = @"XXLectureVCRefreshNotificati
 NSString * const XXLectureExpertOnlyVCRefreshNotification = @"XXLectureExpertOnlyVCRefreshNotification";
 NSString * const XXLectureSelectedQuestionsVCRefreshNotification = @"XXLectureSelectedQuestionsVCRefreshNotification";
 NSString * const XXPlayerShareNotification = @"XXPlayerShareNotification";
-NSString * const XXPlayerShareToTimeLineNotification = @"XXPlayerShareToTimeLineNotification";
-NSString * const XXShareToWechatTimelineSuccessNotification = @"XXShareToWechatTimelineSuccessNotification";
-NSString * const XXShareToWechatTimelineFailNotification = @"XXShareToWechatTimelineFailNotification";
+NSString * const showShareView = @"showShareView";
+NSString * const XXShareSuccessNotification = @"XXShareSuccessNotification";
+NSString * const XXShareFailNotification = @"XXShareFailNotification";
 
 #pragma mark - 问题
 NSString * const XXReplyCellDidClickNotification = @"XXReplyCellDidClickNotification";

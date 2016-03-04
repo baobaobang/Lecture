@@ -89,9 +89,9 @@ extern NSString * const XXLectureVCRefreshNotification;
 extern NSString * const XXLectureExpertOnlyVCRefreshNotification;
 extern NSString * const XXLectureSelectedQuestionsVCRefreshNotification;
 extern NSString * const XXPlayerShareNotification;
-extern NSString * const XXPlayerShareToTimeLineNotification;
-extern NSString * const XXShareToWechatTimelineSuccessNotification;
-extern NSString * const XXShareToWechatTimelineFailNotification;
+extern NSString * const showShareView;
+extern NSString * const XXShareSuccessNotification;
+extern NSString * const XXShareFailNotification;
 /** 时间*/
 
 extern const CGFloat kXXPlayerVCChageToLandscapeDuration;

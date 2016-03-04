@@ -65,9 +65,12 @@
     
     [self setupPlayerToolBar];
     
+    // 播放完一首后
     [XXNotificationCenter addObserver:self selector:@selector(endPlay) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineFail) name:XXShareToWechatTimelineFailNotification object:nil];
+    // 分享失败后
+    [XXNotificationCenter addObserver:self selector:@selector(shareFail) name:XXShareFailNotification object:nil];
+    // 分享失败后
+    [XXNotificationCenter addObserver:self selector:@selector(shareSuccess) name:XXShareSuccessNotification object:nil];
     
     // 观察拔出耳机时候暂停播放音乐
     [XXNotificationCenter addObserver:self selector:@selector(unpluggedEarPhone) name:NOTIFICATION_HEADESTUNPLUGGED object:nil];
@@ -198,21 +201,20 @@
 
 
 #pragma mark - 分享到朋友圈
-// 点击分享图片按钮
+// 展现分享页面
 - (void)showShareToWechatTimeline
 {
-    [XXNotificationCenter postNotificationName:XXPlayerShareToTimeLineNotification object:nil];
-    
+    [XXNotificationCenter postNotificationName:showShareView object:nil];
 }
 
-// 分享到朋友圈成功
-- (void)shareToWechatTimelineSuccess{
-    [self playOrStop];
-}
-
-// 分享到朋友圈失败
-- (void)shareToWechatTimelineFail{
+// 分享失败后返回上一首
+- (void)shareFail{
     [self previous];
+}
+
+// 分享成功后来到下一首
+- (void)shareSuccess{
+    [self next];
 }
 
 #pragma mark - KVO监听AVplayer的播放状态，是否已经准备就绪

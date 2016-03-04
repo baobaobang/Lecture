@@ -275,7 +275,7 @@
     // 设置点击返回的url和title
     NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lecture.lectureId];
     NSString *title = self.lecture.title;
-    [CXShareTool shareInVc:self url:url title:title shareText:self.lecture.desc shareImage:[UIImage imageNamed:@"logo"]];
+    [CXShareTool shareInVc:self url:url title:title shareText:self.lecture.desc shareImage:[UIImage imageNamed:@"logo"] delegate:nil];
 }
 
 #pragma mark - 点击报名
