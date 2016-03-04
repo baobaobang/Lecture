@@ -292,7 +292,7 @@
     if (textView.text.length>=kXXQuestionVCTextViewMaxWords)
     {
         // 给个提示
-        NSString *message = [NSString stringWithFormat:@"字符个数不能大于%lu！", kXXQuestionVCTextViewMaxWords];
+        NSString *message = [NSString stringWithFormat:@"字符个数不能大于%lu！", (unsigned long)kXXQuestionVCTextViewMaxWords];
         UIAlertView *tipAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [tipAlert show];
         return NO;

@@ -107,13 +107,13 @@
     CGFloat playW = playH;
     self.playBtn.frame = CGRectMake(playX, playY, playW, playH);
     
-    // totalTimeLabel
-//    CGSize totalSize = [self.totalTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
-    CGFloat totalW = 45;
-    CGFloat totalH = self.height;
-    CGFloat totalX = playW;
-    CGFloat totalY = 0;
-    self.totalTimeLabel.frame = CGRectMake(totalX, totalY, totalW, totalH);
+    // currentTimeLabel
+    //    CGSize currentSize = [self.currentTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
+    CGFloat currentW = 45;
+    CGFloat currentH = self.height;
+    CGFloat currentX = playW;
+    CGFloat currentY = 0;
+    self.currentTimeLabel.frame = CGRectMake(currentX, currentY, currentW, currentH);
     
     // landscapeBtn
     CGFloat landscapeH = self.height;
@@ -122,18 +122,18 @@
     CGFloat landscapeY = 0;
     self.landscapeBtn.frame = CGRectMake(landscapeX, landscapeY, landscapeW, landscapeH);
     
-    // currentTimeLabel
-//    CGSize currentSize = [self.currentTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
-    CGFloat currentW = 45;
-    CGFloat currentH = self.height;
-    CGFloat currentX = landscapeX - currentW;
-    CGFloat currentY = 0;
-    self.currentTimeLabel.frame = CGRectMake(currentX, currentY, currentW, currentH);
+    // totalTimeLabel
+    //    CGSize totalSize = [self.totalTimeLabel.text sizeWithFont:XXPlayerTimeLabelFont];
+    CGFloat totalW = 45;
+    CGFloat totalH = self.height;
+    CGFloat totalX = landscapeX -totalW;
+    CGFloat totalY = 0;
+    self.totalTimeLabel.frame = CGRectMake(totalX, totalY, totalW, totalH);
     
     // timeSlider
-    CGFloat sliderX = CGRectGetMaxX(self.totalTimeLabel.frame);
+    CGFloat sliderX = CGRectGetMaxX(self.currentTimeLabel.frame);
     CGFloat sliderY = 0;
-    CGFloat sliderW = self.currentTimeLabel.x - CGRectGetMaxX(self.totalTimeLabel.frame);
+    CGFloat sliderW = self.totalTimeLabel.x - CGRectGetMaxX(self.currentTimeLabel.frame);
     CGFloat sliderH = self.height;
     self.timeSlider.frame = CGRectMake(sliderX, sliderY, sliderW, sliderH);
     
