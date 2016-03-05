@@ -33,4 +33,5 @@ typedef enum{
 @property (nonatomic, weak) id<XXExpertReplyViewDelegate> delegate;
 @property (nonatomic, weak) AVAudioRecorder *recorder;
 @property (nonatomic, weak) AVAudioPlayer *player;
+@property (nonatomic, strong) NSURL *audioURL;
 @end

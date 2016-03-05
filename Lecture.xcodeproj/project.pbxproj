@@ -73,6 +73,7 @@
 		2D2B44EC1C89863C0093FA2A /* XXExpertReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B44EB1C89863C0093FA2A /* XXExpertReplyView.m */; };
 		2D2B44EE1C8986560093FA2A /* XXExpertReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2B44ED1C8986560093FA2A /* XXExpertReplyView.xib */; };
 		2D2B44F11C8AAA680093FA2A /* HMAudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B44F01C8AAA680093FA2A /* HMAudioTool.m */; };
+		2D2B44F81C8AF8250093FA2A /* CXCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B44F71C8AF8250093FA2A /* CXCircularProgressView.m */; };
 		2D50CCEB1C5A166A00FAF3AA /* XXQuestionReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50CCE91C5A166A00FAF3AA /* XXQuestionReplyCell.m */; };
 		2D50CCEC1C5A166A00FAF3AA /* XXQuestionReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D50CCEA1C5A166A00FAF3AA /* XXQuestionReplyCell.xib */; };
 		2D50CCEF1C5A1D6C00FAF3AA /* XXReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50CCEE1C5A1D6C00FAF3AA /* XXReply.m */; };
@@ -306,6 +307,8 @@
 		2D2B44ED1C8986560093FA2A /* XXExpertReplyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXExpertReplyView.xib; sourceTree = "<group>"; };
 		2D2B44EF1C8AAA680093FA2A /* HMAudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAudioTool.h; sourceTree = "<group>"; };
 		2D2B44F01C8AAA680093FA2A /* HMAudioTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAudioTool.m; sourceTree = "<group>"; };
+		2D2B44F61C8AF8250093FA2A /* CXCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXCircularProgressView.h; sourceTree = "<group>"; };
+		2D2B44F71C8AF8250093FA2A /* CXCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXCircularProgressView.m; sourceTree = "<group>"; };
 		2D50CCE81C5A166A00FAF3AA /* XXQuestionReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionReplyCell.h; sourceTree = "<group>"; };
 		2D50CCE91C5A166A00FAF3AA /* XXQuestionReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionReplyCell.m; sourceTree = "<group>"; };
 		2D50CCEA1C5A166A00FAF3AA /* XXQuestionReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionReplyCell.xib; sourceTree = "<group>"; };
@@ -1104,6 +1107,8 @@
 				2D1E59871C846F4E008A8893 /* CXShareTool.m */,
 				2D2B44EF1C8AAA680093FA2A /* HMAudioTool.h */,
 				2D2B44F01C8AAA680093FA2A /* HMAudioTool.m */,
+				2D2B44F61C8AF8250093FA2A /* CXCircularProgressView.h */,
+				2D2B44F71C8AF8250093FA2A /* CXCircularProgressView.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1639,6 +1644,7 @@
 				16CFE35F1C7060770033C3BE /* TempData.m in Sources */,
 				2D55BB7C1C5618F900BA1542 /* LGPhotoPickerCollectionView.m in Sources */,
 				162E889B1C619F32004F4C00 /* XXXBaseScrollVC.m in Sources */,
+				2D2B44F81C8AF8250093FA2A /* CXCircularProgressView.m in Sources */,
 				2D6308E21C549B2F0092F622 /* MBProgressHUD+CZ.m in Sources */,
 				2D55BB7B1C5618F900BA1542 /* LGPhotoPickerViewController.m in Sources */,
 				2D6308DD1C549B2F0092F622 /* UIButton+CZ.m in Sources */,

@@ -286,6 +286,7 @@
             AVAudioRecorder *recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
             self.recorder = recorder;
             expertReplyView.recorder = recorder;
+            expertReplyView.audioURL = self.fileUrl;
             
             if ([recorder prepareToRecord]) {
                 [recorder record];

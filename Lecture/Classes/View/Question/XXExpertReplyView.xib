@@ -139,6 +139,7 @@
                 <outlet property="middleBtn" destination="Kj3-FJ-ASa" id="PbH-vb-2Kg"/>
                 <outlet property="sendButton" destination="5CU-b3-zD4" id="DjQ-qI-V0r"/>
                 <outlet property="topView" destination="XAT-iW-t6E" id="hiS-Gy-bbo"/>
+                <outlet property="whiteContainerView" destination="3at-T1-GAo" id="MRp-mh-aKm"/>
             </connections>
             <point key="canvasLocation" x="357.5" y="258.5"/>
         </view>

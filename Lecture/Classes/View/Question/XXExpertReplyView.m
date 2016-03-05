@@ -7,8 +7,13 @@
 //
 
 #import "XXExpertReplyView.h"
+#import "CXCircularProgressView.h"
+
+#define labelColor XXColor(9, 79, 192)
+#define backGrayColor XXColor(187, 187, 187)
 
 @interface XXExpertReplyView ()
+@property (weak, nonatomic) IBOutlet UIView *whiteContainerView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet UIButton *middleBtn;
@@ -17,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (nonatomic, strong) CADisplayLink *link;
+@property (nonatomic, weak) CXCircularProgressView *circularProgressView;
 @end
 
 @implementation XXExpertReplyView
@@ -33,7 +39,6 @@
 }
 
 - (void)awakeFromNib{
-    UIColor *labelColor = XXColor(9, 79, 192);
     self.cancelButton.titleLabel.textColor = labelColor;
     self.sendButton.titleLabel.textColor = labelColor;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTopView:)];
@@ -63,11 +68,13 @@
             _bottomView.hidden = NO;
             _bottomLabel.hidden = YES;
             _link = nil;
+            [self removeCircularProgressView]; // 停止时移除圆形进度条
             break;
         case XXExpertReplyButtonStatusPlaying:
             [_middleBtn setBackgroundImage:[UIImage imageNamed:@"expertReplyRecording"] forState:UIControlStateNormal];
             _bottomView.hidden = NO;
             _bottomLabel.hidden = YES;
+            [self addCircularProgressView]; // 播放时添加圆形进度条
             break;
         default:
         break;
@@ -127,5 +134,20 @@
         default:
             break;
     }
+}
+
+#pragma mark - 圆形进度条
+- (void)addCircularProgressView
+{
+    CXCircularProgressView *circularProgressView = [[CXCircularProgressView alloc] initWithFrame:self.middleBtn.frame backColor:backGrayColor progressColor:labelColor lineWidth:1 player:self.player];
+    
+    self.circularProgressView = circularProgressView;
+    [self.whiteContainerView addSubview:circularProgressView];
+    [self.circularProgressView play];
+}
+
+- (void)removeCircularProgressView{
+    [self.circularProgressView stop];
+    [self.circularProgressView removeFromSuperview];
 }
 @end
