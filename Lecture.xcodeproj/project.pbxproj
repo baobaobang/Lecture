@@ -34,7 +34,6 @@
 		16F979E71C7010EB00C636A6 /* XXXLeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16F979E51C7010EB00C636A6 /* XXXLeftMenuVC.xib */; };
 		2D1BDEEB1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEDD1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m */; };
 		2D1BDEEC1C5B493B00056E87 /* XXExpertProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEE01C5B493B00056E87 /* XXExpertProfileVC.m */; };
-		2D1BDEF01C5B493B00056E87 /* XXHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEEA1C5B493B00056E87 /* XXHomeVC.m */; };
 		2D1BDF0B1C5B62BE00056E87 /* XXLectureExpertOnlyVC（只看专家）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEFE1C5B62BE00056E87 /* XXLectureExpertOnlyVC（只看专家）.m */; };
 		2D1BDF0C1C5B62BE00056E87 /* XXLectureHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDF001C5B62BE00056E87 /* XXLectureHomeVC.m */; };
 		2D1BDF0D1C5B62BE00056E87 /* XXLectureSelectedQuestions（精选提问）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDF021C5B62BE00056E87 /* XXLectureSelectedQuestions（精选提问）.m */; };
@@ -233,8 +232,6 @@
 		2D1BDEDD1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XXLectureJoinVC（讲座前）.m"; sourceTree = "<group>"; };
 		2D1BDEDF1C5B493B00056E87 /* XXExpertProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXExpertProfileVC.h; sourceTree = "<group>"; };
 		2D1BDEE01C5B493B00056E87 /* XXExpertProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXExpertProfileVC.m; sourceTree = "<group>"; };
-		2D1BDEE91C5B493B00056E87 /* XXHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXHomeVC.h; sourceTree = "<group>"; };
-		2D1BDEEA1C5B493B00056E87 /* XXHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXHomeVC.m; sourceTree = "<group>"; };
 		2D1BDEFD1C5B62BE00056E87 /* XXLectureExpertOnlyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLectureExpertOnlyVC.h; sourceTree = "<group>"; };
 		2D1BDEFE1C5B62BE00056E87 /* XXLectureExpertOnlyVC（只看专家）.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XXLectureExpertOnlyVC（只看专家）.m"; sourceTree = "<group>"; };
 		2D1BDEFF1C5B62BE00056E87 /* XXLectureHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLectureHomeVC.h; sourceTree = "<group>"; };
@@ -741,15 +738,6 @@
 			path = "讲座中";
 			sourceTree = "<group>";
 		};
-		2D1BDEE81C5B493B00056E87 /* 首页 */ = {
-			isa = PBXGroup;
-			children = (
-				2D1BDEE91C5B493B00056E87 /* XXHomeVC.h */,
-				2D1BDEEA1C5B493B00056E87 /* XXHomeVC.m */,
-			);
-			path = "首页";
-			sourceTree = "<group>";
-		};
 		2D1D01D01C3EA3910056B10C = {
 			isa = PBXGroup;
 			children = (
@@ -993,7 +981,6 @@
 				2D1BDEDB1C5B493B00056E87 /* 讲座前 */,
 				2D1BDEDE1C5B493B00056E87 /* 讲座前和中共有 */,
 				2D1BDEE31C5B493B00056E87 /* 讲座中 */,
-				2D1BDEE81C5B493B00056E87 /* 首页 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1663,7 +1650,6 @@
 				162E88A11C61EE9D004F4C00 /* XXXProtocolTipView.m in Sources */,
 				2D23727D1C5F0DE800A422EF /* XXXMainPageVC.m in Sources */,
 				2D6309081C549B2F0092F622 /* XXQuestionToolbar.m in Sources */,
-				2D1BDEF01C5B493B00056E87 /* XXHomeVC.m in Sources */,
 				2D23727F1C5F0DE800A422EF /* XXXOnlineCoursewareVC.m in Sources */,
 				2D2372711C5F0DE800A422EF /* NetworkManager.m in Sources */,
 				2D50CCF21C5A506100FAF3AA /* XXQuestionReplyView.m in Sources */,

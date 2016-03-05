@@ -21,12 +21,13 @@
 #import "CXTextView.h"
 #import "XXXLoginVC.h"
 #import "CXShareTool.h"
+#import "XXLectureDescriptionView.h"
 
 @interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
 @property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
-@property (nonatomic, weak) UIView *lectureDescriptionView;
+@property (nonatomic, weak) XXLectureDescriptionView *lectureDescriptionView;
 @property (nonatomic, weak) XXQuestionHeaderView *questionHeaderView;
 @property (nonatomic, weak) XXQuestionVC *questionVc;
 @property (nonatomic, weak) XXButton *joinBtn;
@@ -189,24 +190,15 @@
 
 // 设置讲座简介
 - (void)setupLectureDec{
-    UIView *view = [[UIView alloc] init];
+    XXLectureDescriptionView *view = [[XXLectureDescriptionView alloc] init];
     view.x = 0;
     view.y = CGRectGetMaxY(self.expertVc.view.frame);
     view.width = self.view.width;
     view.height = kXXLectureDescriptioinViewHeight;
-    view.backgroundColor = [UIColor whiteColor];
-    UITextView *textView = [[UITextView alloc] init];
-    [view addSubview:textView];
-    textView.x = 2 * XXQuestionCellBorderW + XXQuestionCellIconWH;
-    textView.y = 0;
-    textView.width = view.width - textView.x - XXQuestionCellBorderW;
-    textView.height = view.height;
-    textView.font = XXQuestionCellReplyFont;
-    textView.text = self.lecture.desc;
-    textView.textColor = [UIColor blackColor];
-    textView.editable = NO;
-    [self.view addSubview:view];
     self.lectureDescriptionView = view;
+    [self.view addSubview:view];
+    view.content = self.lecture.desc;
+    NSLog(@"%@", view.content);
 }
 
 // 精选提问头部
@@ -271,7 +263,11 @@
     self.questionVc = questionVc;
 }
 
-
+#pragma mark - 给子控件赋值
+- (void)setLecture:(XXXLectureModel *)lecture{
+    _lecture = lecture;
+    
+}
 
 #pragma mark - 分享页面
 - (void)clickShareLectureBtn{

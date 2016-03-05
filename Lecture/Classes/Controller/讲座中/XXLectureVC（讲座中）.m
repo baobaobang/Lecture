@@ -15,12 +15,14 @@
 #import "XXExpertProfileHeaderView.h"
 #import "XXQuestionCreateVC.h"
 #import "CXShareTool.h"
+#import "XXLectureDescriptionView.h"
 
 
 @interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate, UMSocialUIDelegate>
 @property (nonatomic, weak) XXPlayerVC *playerVc;
 @property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
+@property (nonatomic, weak) XXLectureDescriptionView *lectureDescriptionView;
 @property (nonatomic, weak) XXOnlineHeaderView *onlineHeaderView;
 //@property (nonatomic, weak) XXOnlineVC *onlineVc;
 @property (nonatomic, weak) XXQuestionVC *onlineVc;
@@ -71,6 +73,9 @@
     // 设置专家简介
     [self setupExpertVc];
     
+    // 设置讲座简介
+    [self setupLectureDec];
+    
     // 设置在线交流头部
     [self setupOnlineHeaderView];
     
@@ -97,7 +102,6 @@
     }
 }
 
-
 #pragma mark - 讲座的详情接口
 
 - (void)setLecture:(XXXLectureModel *)lecture{
@@ -105,7 +109,8 @@
 
     [self loadLectureDetail];// 传递数据给播放器
     
-    _expertVc.lecture = lecture;// 传递数据给专家简介
+    self.expertVc.lecture = lecture;// 传递数据给专家简介
+    self.lectureDescriptionView.content = lecture.desc;// 传递数据给讲座简介
     
 }
 - (void)loadLectureDetail
@@ -173,11 +178,22 @@
     self.expertVc = expertVc;
 }
 
+// 设置讲座简介
+- (void)setupLectureDec{
+    XXLectureDescriptionView *view = [[XXLectureDescriptionView alloc] init];
+    view.x = 0;
+    view.y = CGRectGetMaxY(self.expertVc.view.frame);
+    view.width = self.view.width;
+    view.height = kXXLectureDescriptioinViewHeight;
+    self.lectureDescriptionView = view;
+    [self.view addSubview:view];
+}
+
 // 在线交流头部
 - (void)setupOnlineHeaderView{
     XXOnlineHeaderView *onlineHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXOnlineHeaderView" owner:nil options:0]lastObject];
     onlineHeaderView.x = 0;
-    onlineHeaderView.y = CGRectGetMaxY(self.expertVc.view.frame);
+    onlineHeaderView.y = CGRectGetMaxY(self.lectureDescriptionView.frame);
     onlineHeaderView.height = kXXOnlineHeaderViewHeight;
     onlineHeaderView.width = self.view.width;
     
@@ -247,18 +263,17 @@
 
 - (void)onlineHeaderView:(XXOnlineHeaderView *)headerView didClickContractBtn:(UIButton *)btn
 {
+    // 需要上移和下移的高度
+    CGFloat heightOne = self.playerVc.playerPicView.height;
+    CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight + kXXLectureDescriptioinViewHeight;
     if (!btn.selected) {
-        [self hidePicView];
+        [self hidePicViewHeightOne:heightOne HeightTwo:heightTwo];
     }else{
-        [self showPicView];
+        [self showPicViewHeightOne:heightOne HeightTwo:heightTwo];
     }
 }
 
-- (void)hidePicView{
-
-    // 需要上移的高度
-    CGFloat heightOne = self.playerVc.playerPicView.height;
-    CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+- (void)hidePicViewHeightOne:(CGFloat)heightOne HeightTwo:(CGFloat)heightTwo{
     WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         weakSelf.playerVc.view.y -= heightOne;
@@ -271,11 +286,7 @@
     }];
 }
 
-- (void)showPicView{
-
-    // 需要下移的高度
-    CGFloat heightOne = self.playerVc.playerPicView.height;
-    CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+- (void)showPicViewHeightOne:(CGFloat)heightOne HeightTwo:(CGFloat)heightTwo{
     WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         weakSelf.playerVc.view.y += heightOne;
