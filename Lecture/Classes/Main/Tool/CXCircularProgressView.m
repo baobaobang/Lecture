@@ -77,7 +77,6 @@
 - (void)updateProgressCircle{
     //update progress value
     self.progress = (float) (self.player.currentTime / self.player.duration);
-    NSLog(@"%f", _progress);
 }
 
 - (void)play{

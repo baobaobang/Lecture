@@ -196,7 +196,7 @@
     [postQuestionBtn setBackgroundImage:[UIImage imageNamed:@"bottom_button_bg"] forState:UIControlStateNormal];
     postQuestionBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     [postQuestionBtn addTarget:self action:@selector(postQuestion:) forControlEvents:UIControlEventTouchUpInside];
-    postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;
+    postQuestionBtn.width = XXScreenWidth;
     postQuestionBtn.height = kXXJoinButtonHeight;
     postQuestionBtn.x = 0;
     postQuestionBtn.y = self.view.height - postQuestionBtn.height;
@@ -215,7 +215,11 @@
     onlineVc.view.x = 0;
     onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
     onlineVc.view.width = self.view.width;
-    onlineVc.view.height = self.view.height - onlineVc.view.y - kXXJoinButtonHeight;
+    if (isExpert) {
+        onlineVc.view.height = self.view.height - onlineVc.view.y;
+    }else{
+        onlineVc.view.height = self.view.height - onlineVc.view.y - kXXJoinButtonHeight;
+    }
     [self addChildViewController:onlineVc];
     [self.view addSubview:onlineVc.view];
     [onlineVc didMoveToParentViewController:self];

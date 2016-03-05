@@ -222,22 +222,6 @@
     self.questionHeaderView = questionHeaderView;
 }
 
-// 精选提问
-- (void)setupQuestionVc{
-    
-    XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
-    questionVc.lecture = self.lecture;
-    questionVc.view.x = 0;
-    questionVc.view.y = CGRectGetMaxY(self.questionHeaderView.frame);
-    questionVc.view.width = self.view.width;
-    questionVc.view.height = self.view.height - questionVc.view.y - kXXJoinButtonHeight;
-    [self addChildViewController:questionVc];
-    [self.view addSubview:questionVc.view];
-    [questionVc didMoveToParentViewController:self];
-    self.questionVc = questionVc;
-}
-
-
 // 设置报名活动按钮
 - (void)setupJoinBtn{
     
@@ -251,7 +235,7 @@
     
     [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    joinBtn.width = [UIScreen mainScreen].bounds.size.width;
+    joinBtn.width = XXScreenWidth;
     joinBtn.height = kXXJoinButtonHeight;
     joinBtn.x = 0;
     joinBtn.y = self.view.height - joinBtn.height;
@@ -267,6 +251,26 @@
         self.joinBtn.height = 0;
     }
 }
+
+// 精选提问
+- (void)setupQuestionVc{
+    
+    XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
+    questionVc.lecture = self.lecture;
+    questionVc.view.x = 0;
+    questionVc.view.y = CGRectGetMaxY(self.questionHeaderView.frame);
+    questionVc.view.width = self.view.width;
+    if (isExpert) {
+        questionVc.view.height = self.view.height - questionVc.view.y;
+    }else{
+        questionVc.view.height = self.view.height - questionVc.view.y - kXXJoinButtonHeight;
+    }
+    [self addChildViewController:questionVc];
+    [self.view addSubview:questionVc.view];
+    [questionVc didMoveToParentViewController:self];
+    self.questionVc = questionVc;
+}
+
 
 
 #pragma mark - 分享页面
