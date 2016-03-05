@@ -17,7 +17,10 @@
 #import "AudioTool.h"
 #import "Transcoder.h"
 
-@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate, XXExpertReplyViewDelegate, AVAudioPlayerDelegate>
+
+#define RecordTimeLimit 300
+
+@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate, XXExpertReplyViewDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 @property (nonatomic, strong) UIImageView *noDataImage;
 @property (nonatomic, copy) NSString *replyingQuestionId;
 @property (nonatomic, assign) NSInteger replyingQuestionIndex;
@@ -284,12 +287,13 @@
             self.path = path;
             self.fileUrl = [NSURL URLWithString:path];
             AVAudioRecorder *recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
+            recorder.delegate = self;
             self.recorder = recorder;
             expertReplyView.recorder = recorder;
             expertReplyView.audioURL = self.fileUrl;
             
             if ([recorder prepareToRecord]) {
-                [recorder record];
+                [recorder recordForDuration:RecordTimeLimit]; //限制最大录音时间
                 expertReplyView.status = XXExpertReplyButtonStatusRecording;
             }
         }
@@ -297,11 +301,11 @@
         case XXExpertReplyButtonStatusRecording:// 结束录音
         {
             [self.recorder stop];
-            AVAudioPlayer *player = [[AudioTool shareAudioTool] playerWithURL:self.fileUrl];
-            self.player = player;
-            player.delegate = self;
-            expertReplyView.player = player;
-            expertReplyView.status = XXExpertReplyButtonStatusStop;
+//            AVAudioPlayer *player = [[AudioTool shareAudioTool] playerWithURL:self.fileUrl];
+//            self.player = player;
+//            player.delegate = self;
+//            expertReplyView.player = player;
+//            expertReplyView.status = XXExpertReplyButtonStatusStop;
             break;
         }
         case XXExpertReplyButtonStatusStop:// 开始播放
@@ -324,6 +328,23 @@
     }
 }
 
+// 录音完成时
+- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
+    // 创建player
+    AVAudioPlayer *player = [[AudioTool shareAudioTool] playerWithURL:self.fileUrl];
+    self.player = player;
+    player.delegate = self;
+    self.replyView.player = player;
+    // 更改录音状态
+    self.replyView.status = XXExpertReplyButtonStatusStop;
+    // 判断是否达到规定时间限制
+    if (player.duration == RecordTimeLimit) {
+        NSString *tip = [NSString stringWithFormat:@"注意：最长录音时间为%.0f分钟!", RecordTimeLimit/60];
+        [MBProgressHUD showSuccess:tip toView:self.replyView];
+    }
+}
+
+// 播放完成时
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     self.replyView.status = XXExpertReplyButtonStatusStop;
 }
