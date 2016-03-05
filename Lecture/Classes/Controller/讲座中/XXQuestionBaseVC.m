@@ -12,8 +12,9 @@
 #import "CXTextView.h"
 #import "XXReply.h"
 #import "XXReplyPlayingIndex.h"
+#import "XXExpertReplyView.h"
 
-@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
+@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate, XXExpertReplyViewDelegate>
 @property (nonatomic, strong) UIImageView *noDataImage;
 @property (nonatomic, copy) NSString *replyingQuestionId;
 @property (nonatomic, assign) NSInteger replyingQuestionIndex;
@@ -59,7 +60,10 @@
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:XXQuestionCellReuseId];
     
-    [self setupTextView];
+    // 回复部分
+    if (!isExpert) { // 如果是用户，则设置输入框
+        [self setupTextView];
+    }
     
     [self setupRefresh];
     
@@ -203,16 +207,24 @@
 
 }
 
-#pragma mark - 弹出回复键盘，开始回复
+#pragma mark - 开始回复
 - (void)beginReplyWithQuestionId:(NSString *)questionId{
-    if (![self.textView isFirstResponder]) {
-        [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
+    if (isExpert) { // 专家情况
+        XXExpertReplyView *replyView = [[[NSBundle mainBundle] loadNibNamed:@"XXExpertReplyView" owner:nil options:nil] lastObject];
+        replyView.frame = CGRectMake(0, 0, XXScreenWidth, XXScreenHeight);
+        [XXTopWindow addSubview:replyView];
+        replyView.delegate = self;
+        
+    }else{ // 用户情况
+        if (![self.textView isFirstResponder]) {
+            [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
+        }
+        if (![questionId isEqualToString:self.replyingQuestionId]) { // 如果回复的是不同的问题，就清空之前的回复
+            self.textView.text = nil;
+            self.replyingQuestionId = questionId;
+        }
     }
-    if (![questionId isEqualToString:self.replyingQuestionId]) { // 如果回复的是不同的问题，就清空之前的回复
-        self.textView.text = nil;
-        self.replyingQuestionId = questionId;
-    }
-    
+
 }
 
 #pragma mark - 点击回复按钮后，开始回复
@@ -227,7 +239,47 @@
     [self beginReplyWithQuestionId:noti.userInfo[@"questionId"]];
 }
 
-#pragma mark - 点击回复中的cell，开始回复
+#pragma make - XXExpertReplyViewDelegate
+// 点击中间按钮
+- (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickMiddleButton:(UIButton *)btn{
+    switch (expertReplyView.status) {
+        case XXExpertReplyButtonStatusInitial:
+            expertReplyView.status = XXExpertReplyButtonStatusPrepare;
+            break;
+        case XXExpertReplyButtonStatusPrepare:
+            expertReplyView.status = XXExpertReplyButtonStatusRecording;
+            break;
+        case XXExpertReplyButtonStatusRecording:
+            expertReplyView.status = XXExpertReplyButtonStatusStop;
+            break;
+        case XXExpertReplyButtonStatusStop:
+            expertReplyView.status = XXExpertReplyButtonStatusPlaying;
+            break;
+        case XXExpertReplyButtonStatusPlaying:
+            expertReplyView.status = XXExpertReplyButtonStatusStop;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+// 点击取消按钮
+- (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickCancleButton:(UIButton *)btn{
+    [expertReplyView removeFromSuperview];
+}
+
+// 点击发送按钮
+- (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickSendButton:(UIButton *)btn{
+    [expertReplyView removeFromSuperview];
+}
+
+// 点击topView
+- (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickTopView:(UIView *)view{
+    if (expertReplyView.status == XXExpertReplyButtonStatusInitial) {
+        [expertReplyView removeFromSuperview];
+    }
+}
 
 #pragma mark - 点击点赞按钮后
 - (void)clickUnlikeBtnInToolbar:(XXQuestionToolbar *)toolbar
