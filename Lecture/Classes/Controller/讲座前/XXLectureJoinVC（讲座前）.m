@@ -230,7 +230,7 @@
     questionVc.view.x = 0;
     questionVc.view.y = CGRectGetMaxY(self.questionHeaderView.frame);
     questionVc.view.width = self.view.width;
-    questionVc.view.height = self.view.height - questionVc.view.y - self.joinBtn.height;
+    questionVc.view.height = self.view.height - questionVc.view.y - kXXJoinButtonHeight;
     [self addChildViewController:questionVc];
     [self.view addSubview:questionVc.view];
     [questionVc didMoveToParentViewController:self];

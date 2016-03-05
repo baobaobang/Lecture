@@ -16,18 +16,30 @@
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
-
+@property (nonatomic, strong) CADisplayLink *link;
 @end
 
 @implementation XXExpertReplyView
+
+- (void)dealloc{
+    [_link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+- (CADisplayLink *)link{
+    if (!_link) {
+        _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(refreshHeaderLabel)];
+    }
+    return _link;
+}
 
 - (void)awakeFromNib{
     UIColor *labelColor = XXColor(9, 79, 192);
     self.cancelButton.titleLabel.textColor = labelColor;
     self.sendButton.titleLabel.textColor = labelColor;
-    self.bottomLabel.textColor = labelColor;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTopView:)];
     [self.topView addGestureRecognizer:tap];
+    
+    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 }
 
 - (void)layoutSubviews{
@@ -35,31 +47,24 @@
     
     switch (_status) {
         case XXExpertReplyButtonStatusInitial:
-            _headerLabel.text = @"点击录音";
             [_middleBtn setBackgroundImage:[UIImage imageNamed:@"expertReplyInitial"] forState:UIControlStateNormal];
             _bottomView.hidden = YES;
             _bottomLabel.hidden = NO;
-            break;
-        case XXExpertReplyButtonStatusPrepare:
-            _headerLabel.text = @"准备中...";
-            [_middleBtn setBackgroundImage:[UIImage imageNamed:@"expertReplyInitial"] forState:UIControlStateNormal];
-            _bottomView.hidden = YES;
-            _bottomLabel.hidden = NO;
+            _bottomLabel.text = @"语音回复";
             break;
         case XXExpertReplyButtonStatusRecording:
-            _headerLabel.text = @"";
             [_middleBtn setBackgroundImage:[UIImage imageNamed:@"expertReplyRecording"] forState:UIControlStateNormal];
             _bottomView.hidden = YES;
             _bottomLabel.hidden = NO;
+            _bottomLabel.text = @"正在录音";
             break;
         case XXExpertReplyButtonStatusStop:
-            _headerLabel.text = @"";
             [_middleBtn setBackgroundImage:[UIImage imageNamed:@"expertReplyStop"] forState:UIControlStateNormal];
             _bottomView.hidden = NO;
             _bottomLabel.hidden = YES;
+            _link = nil;
             break;
         case XXExpertReplyButtonStatusPlaying:
-            _headerLabel.text = @"";
             [_middleBtn setBackgroundImage:[UIImage imageNamed:@"expertReplyRecording"] forState:UIControlStateNormal];
             _bottomView.hidden = NO;
             _bottomLabel.hidden = YES;
@@ -92,7 +97,35 @@
 
 - (void)setStatus:(XXExpertReplyButtonStatus)status{
     _status = status;
-    
+
     [self setNeedsLayout];
+}
+
+// 实时更新HeaderLabel
+- (void)refreshHeaderLabel{
+    switch (self.status) {
+        case XXExpertReplyButtonStatusInitial:// 开始录音
+        {
+            _headerLabel.text = @"点击录音";
+        }
+            break;
+        case XXExpertReplyButtonStatusRecording:// 结束录音
+        {
+            _headerLabel.text = [NSString getMinuteSecondWithSecond:self.recorder.currentTime];
+            break;
+        }
+        case XXExpertReplyButtonStatusStop:// 开始播放
+        {
+            _headerLabel.text = [NSString getMinuteSecondWithSecond:self.player.duration];
+            break;
+        }
+        case XXExpertReplyButtonStatusPlaying:// 结束播放
+        {
+            _headerLabel.text = [NSString getMinuteSecondWithSecond:self.player.currentTime];
+            break;
+        }
+        default:
+            break;
+    }
 }
 @end

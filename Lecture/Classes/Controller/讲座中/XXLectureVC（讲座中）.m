@@ -215,7 +215,7 @@
     onlineVc.view.x = 0;
     onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
     onlineVc.view.width = self.view.width;
-    onlineVc.view.height = self.view.height - onlineVc.view.y - self.postQuestionBtn.height;
+    onlineVc.view.height = self.view.height - onlineVc.view.y - kXXJoinButtonHeight;
     [self addChildViewController:onlineVc];
     [self.view addSubview:onlineVc.view];
     [onlineVc didMoveToParentViewController:self];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AudioTool.h"
 typedef enum{
     XXExpertReplyButtonStatusInitial,
     XXExpertReplyButtonStatusPrepare,
@@ -30,4 +31,6 @@ typedef enum{
 
 @property (nonatomic, assign) XXExpertReplyButtonStatus status;
 @property (nonatomic, weak) id<XXExpertReplyViewDelegate> delegate;
+@property (nonatomic, weak) AVAudioRecorder *recorder;
+@property (nonatomic, weak) AVAudioPlayer *player;
 @end
