@@ -17,6 +17,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.image = [UIImage imageNamed:@"placeholder_lecture_cover"]; // 占位图
         [self addSubview:imageView];
         self.imageView = imageView;
     }
@@ -27,13 +28,14 @@
 {
     _page = page;
 
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:page.picture] placeholderImage:[UIImage imageNamed:@"placeholder_lecture_cover"]];
+    if (page) { // 没有page的时候不下载
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:page.picture] placeholderImage:[UIImage imageNamed:@"placeholder_lecture_cover"]];
+    }
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     self.imageView.frame = self.bounds;
-    
 }
 
 @end

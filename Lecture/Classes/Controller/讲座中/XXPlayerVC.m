@@ -59,6 +59,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.hidden = YES; // 一开始隐藏，有数据的时候再显示
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self setupPlayerPicView];
@@ -89,14 +91,17 @@
     
     _lectureDetail = lectureDetail;
     
-    self.pages = lectureDetail.pages;
-    self.playerPicView.pages = lectureDetail.pages;
+    NSMutableArray *pages = lectureDetail.pages;
+    
+    self.pages = pages;
+    self.playerPicView.pages = pages;
     
     // 设置进入时候播放第一首音乐
     self.currentItem = 0;
     
-    // 给maskView传递数据
-    self.playerPicView.maskView.pages = self.pages;
+    if (pages.count > 0) {// 解决page=nil的时候不显示占位图的问题
+        self.view.hidden = NO;
+    }
 }
 
 #pragma mark - 初始化
