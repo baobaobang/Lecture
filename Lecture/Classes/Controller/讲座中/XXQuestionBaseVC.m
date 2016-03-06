@@ -259,14 +259,14 @@
 #pragma mark - XXExpertReplyViewDelegate 专家录音部分
 // 点击取消按钮
 - (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickCancleButton:(UIButton *)btn{
-
-    [self.recorder deleteRecording];
+    [self stopPlay];
+    [[NSFileManager defaultManager] removeItemAtPath:self.path error:nil];// 移除本地wav
     [expertReplyView removeFromSuperview];
 }
 
 // 点击发送按钮
 - (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickSendButton:(UIButton *)btn{
-
+    [self stopPlay];
     [self sendReply];
     [expertReplyView removeFromSuperview];
 }
@@ -283,48 +283,67 @@
     switch (expertReplyView.status) {
         case XXExpertReplyButtonStatusInitial:// 开始录音
         {
-            NSString * document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-            NSString *voiceName = [NSString stringWithFormat:@"lecture%@question%@%@",self.lecture.lectureId, self.replyingQuestionId, @"expertReply.wav"];
-            NSString *path = [document stringByAppendingPathComponent:voiceName];
-            self.path = path;
-//            [NSURL URLWithString:path];// 这个要加协议头file://
-//            [NSURL fileURLWithPath:path];// 这个不要加协议头file://
-            self.fileUrl = [NSURL fileURLWithPath:path];
-            AVAudioRecorder *recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
-            recorder.delegate = self;
-            self.recorder = recorder;
-            expertReplyView.recorder = recorder;
-            expertReplyView.audioURL = self.fileUrl;
-            
-            if ([recorder prepareToRecord]) {
-                [recorder recordForDuration:RecordTimeLimit]; //限制最大录音时间
-                expertReplyView.status = XXExpertReplyButtonStatusRecording;
-            }
+            [self startRecord];
         }
             break;
         case XXExpertReplyButtonStatusRecording:// 结束录音
         {
-            [self.recorder stop];
+            [self stopRecord];
             break;
         }
         case XXExpertReplyButtonStatusStop:// 开始播放
         {
-            if ([self.player prepareToPlay]) {
-                [self.player play];
-            };
-            expertReplyView.status = XXExpertReplyButtonStatusPlaying;
+            [self startPlay];
             break;
         }
         case XXExpertReplyButtonStatusPlaying:// 结束播放
         {
-            [self.player stop];
-            self.player.currentTime = 0;
-            expertReplyView.status = XXExpertReplyButtonStatusStop;
+            [self stopPlay];
             break;
         }
         default:
             break;
     }
+}
+
+- (void)startRecord{
+    
+    NSString * document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *voiceName = [NSString stringWithFormat:@"lecture%@question%@%@",self.lecture.lectureId, self.replyingQuestionId, @"expertReply.wav"];
+    NSString *path = [document stringByAppendingPathComponent:voiceName];
+    self.path = path;
+    //            [NSURL URLWithString:path];// 这个要加协议头file://
+    //            [NSURL fileURLWithPath:path];// 这个不要加协议头file://
+    self.fileUrl = [NSURL fileURLWithPath:path];
+    AVAudioRecorder *recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
+    recorder.delegate = self;
+    self.recorder = recorder;
+    self.replyView.recorder = recorder;
+    self.replyView.audioURL = self.fileUrl;
+    
+    if ([recorder prepareToRecord]) {
+        [recorder recordForDuration:RecordTimeLimit]; //限制最大录音时间
+        self.replyView.status = XXExpertReplyButtonStatusRecording;
+    }
+}
+
+- (void)stopRecord{
+    [self.recorder stop];
+    self.recorder = nil;
+    self.replyView.status = XXExpertReplyButtonStatusStop;
+}
+
+- (void)startPlay{
+    if ([self.player prepareToPlay]) {
+        [self.player play];
+    };
+    self.replyView.status = XXExpertReplyButtonStatusPlaying;
+}
+
+- (void)stopPlay{
+    [self.player stop];
+    self.player.currentTime = 0;
+    self.replyView.status = XXExpertReplyButtonStatusStop;
 }
 
 // 录音完成时
@@ -381,8 +400,7 @@
         [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"发送失败"];
         // 移除本地mp3
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager removeItemAtPath:mp3Path error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:mp3Path error:nil];
     } isImageType:NO];
 }
 
