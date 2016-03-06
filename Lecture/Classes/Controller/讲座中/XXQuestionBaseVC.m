@@ -17,9 +17,10 @@
 #import "AudioTool.h"
 #import "Transcoder.h"
 
+
 #define RecordTimeLimit 300
 
-@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate, XXExpertReplyViewDelegate, AVAudioPlayerDelegate>
+@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate, XXExpertReplyViewDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 @property (nonatomic, strong) UIImageView *noDataImage;
 @property (nonatomic, copy) NSString *replyingQuestionId;
 @property (nonatomic, assign) NSInteger replyingQuestionIndex;
@@ -290,12 +291,13 @@
 //            [NSURL fileURLWithPath:path];// 这个不要加协议头file://
             self.fileUrl = [NSURL fileURLWithPath:path];
             AVAudioRecorder *recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
+            recorder.delegate = self;
             self.recorder = recorder;
             expertReplyView.recorder = recorder;
             expertReplyView.audioURL = self.fileUrl;
             
             if ([recorder prepareToRecord]) {
-                [recorder record];
+                [recorder recordForDuration:RecordTimeLimit]; //限制最大录音时间
                 expertReplyView.status = XXExpertReplyButtonStatusRecording;
             }
         }
