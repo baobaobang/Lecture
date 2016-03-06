@@ -31,7 +31,7 @@
 @property (nonatomic, strong) NSURL *fileUrl;
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *mp3Path;
-@property (nonatomic, weak) AVAudioRecorder *recorder;
+@property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, weak) AVAudioPlayer *player;
 @property (nonatomic, weak) XXExpertReplyView *replyView;
 
@@ -315,14 +315,17 @@
     //            [NSURL URLWithString:path];// 这个要加协议头file://
     //            [NSURL fileURLWithPath:path];// 这个不要加协议头file://
     self.fileUrl = [NSURL fileURLWithPath:path];
-    AVAudioRecorder *recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
-    recorder.delegate = self;
-    self.recorder = recorder;
-    self.replyView.recorder = recorder;
+    
+#warning 必须增加这一句，否则在模拟器上可以录音，但是在真机上只能录音一次，第二次[_recorder prepareToRecord] = false
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//
+    _recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
+    _recorder.delegate = self;
+    self.replyView.recorder = _recorder;
     self.replyView.audioURL = self.fileUrl;
     
-    if ([recorder prepareToRecord]) {
-        [recorder recordForDuration:RecordTimeLimit]; //限制最大录音时间
+    if ([_recorder prepareToRecord]) {
+        [_recorder recordForDuration:RecordTimeLimit]; //限制最大录音时间
         self.replyView.status = XXExpertReplyButtonStatusRecording;
     }
 }
