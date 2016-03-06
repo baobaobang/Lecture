@@ -257,16 +257,18 @@
 }
 
 #pragma mark - XXExpertReplyViewDelegate 专家录音部分
-
 // 点击取消按钮
 - (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickCancleButton:(UIButton *)btn{
+
     [self.recorder deleteRecording];
     [expertReplyView removeFromSuperview];
 }
 
 // 点击发送按钮
 - (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickSendButton:(UIButton *)btn{
+
     [self sendReply];
+    [expertReplyView removeFromSuperview];
 }
 
 // 点击topView
@@ -282,10 +284,12 @@
         case XXExpertReplyButtonStatusInitial:// 开始录音
         {
             NSString * document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-            NSString *voiceName = [NSString stringWithFormat:@"lecture%@question%@%@",self.lecture.lectureId, self.replyingQuestionId, @".wav"];
+            NSString *voiceName = [NSString stringWithFormat:@"lecture%@question%@%@",self.lecture.lectureId, self.replyingQuestionId, @"expertReply.wav"];
             NSString *path = [document stringByAppendingPathComponent:voiceName];
             self.path = path;
-            self.fileUrl = [NSURL URLWithString:path];
+//            [NSURL URLWithString:path];// 这个要加协议头file://
+//            [NSURL fileURLWithPath:path];// 这个不要加协议头file://
+            self.fileUrl = [NSURL fileURLWithPath:path];
             AVAudioRecorder *recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
             recorder.delegate = self;
             self.recorder = recorder;
@@ -301,11 +305,6 @@
         case XXExpertReplyButtonStatusRecording:// 结束录音
         {
             [self.recorder stop];
-//            AVAudioPlayer *player = [[AudioTool shareAudioTool] playerWithURL:self.fileUrl];
-//            self.player = player;
-//            player.delegate = self;
-//            expertReplyView.player = player;
-//            expertReplyView.status = XXExpertReplyButtonStatusStop;
             break;
         }
         case XXExpertReplyButtonStatusStop:// 开始播放
@@ -339,7 +338,7 @@
     self.replyView.status = XXExpertReplyButtonStatusStop;
     // 判断是否达到规定时间限制
     if (player.duration == RecordTimeLimit) {
-        NSString *tip = [NSString stringWithFormat:@"注意：最长录音时间为%.0f分钟!", RecordTimeLimit/60];
+        NSString *tip = [NSString stringWithFormat:@"注意：最长录音时间为%.0f分钟!", RecordTimeLimit/60.0];
         [MBProgressHUD showSuccess:tip toView:self.replyView];
     }
 }
@@ -353,7 +352,6 @@
 - (void)sendReply{
     if (isExpert) {
         [self uploadExpertReplyMp3];
-        [self.replyView removeFromSuperview];
     }else{
         [self postReplyWithContent:self.textView.text questionId:self.replyingQuestionId];
         [self.textView resignFirstResponder];
