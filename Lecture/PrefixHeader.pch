@@ -20,7 +20,7 @@
 #import "NSString+Extension.h"
 #import "NSString+Emoji.h"
 #import "UITextView+Extension.h"
-#import "UIView+Mask.h"
+#import "UIView+Common.h"
 
 // 其他常用
 #import "XXConst.h"

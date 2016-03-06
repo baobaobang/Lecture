@@ -127,7 +127,7 @@
 {
     // 创建playerToolBar
     XXPlayerToolBar *playerToolBar = [[XXPlayerToolBar alloc] init];
-    playerToolBar.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.7];
+    [playerToolBar setMaskColorWithAlpha:0.5];
     playerToolBar.delegate = self;
     [self.view addSubview:playerToolBar];
     self.playerToolBar = playerToolBar;
@@ -209,7 +209,7 @@
 // 展现分享页面
 - (void)showShareToWechatTimeline
 {
-    [XXNotificationCenter postNotificationName:showShareView object:nil];
+    [XXNotificationCenter postNotificationName:XXShowShareViewNotification object:nil];
 }
 
 // 分享失败后返回上一首

@@ -39,8 +39,11 @@
 }
 
 - (void)awakeFromNib{
+    // 设置颜色
     self.cancelButton.titleLabel.textColor = labelColor;
     self.sendButton.titleLabel.textColor = labelColor;
+    [_topView setMaskColor];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTopView:)];
     [self.topView addGestureRecognizer:tap];
     

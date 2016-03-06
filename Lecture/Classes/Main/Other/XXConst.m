@@ -78,7 +78,7 @@ NSString * const XXLectureVCRefreshNotification = @"XXLectureVCRefreshNotificati
 NSString * const XXLectureExpertOnlyVCRefreshNotification = @"XXLectureExpertOnlyVCRefreshNotification";
 NSString * const XXLectureSelectedQuestionsVCRefreshNotification = @"XXLectureSelectedQuestionsVCRefreshNotification";
 NSString * const XXPlayerShareNotification = @"XXPlayerShareNotification";
-NSString * const showShareView = @"showShareView";
+NSString * const XXShowShareViewNotification = @"XXShowShareViewNotification";
 NSString * const XXShareSuccessNotification = @"XXShareSuccessNotification";
 NSString * const XXShareFailNotification = @"XXShareFailNotification";
 

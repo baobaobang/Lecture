@@ -10,7 +10,8 @@
 
 @interface XXLectureDescriptionView ()
 @property (nonatomic, weak) UITextView *textView;
-@property (nonatomic, weak) UIView *line;
+@property (nonatomic, weak) UIView *headerLine;
+@property (nonatomic, weak) UIView *bottomLine;
 @end
 
 @implementation XXLectureDescriptionView
@@ -18,6 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setup];
+        [self setupHeaderLine];
         [self setupTextView];
         [self setupBottomLine];
     }
@@ -38,21 +40,27 @@
     [self addSubview:textView];
 }
 
-- (void)setupBottomLine{
-    UIView *line = [[UIView alloc] init];
-    line.backgroundColor = [UIColor lightGrayColor];
+- (void)setupHeaderLine{
+    UIView *line = [UIView separationLine];
     [self addSubview:line];
-    self.line = line;
+    self.headerLine = line;
+}
+
+- (void)setupBottomLine{
+    UIView *line = [UIView separationLine];
+    [self addSubview:line];
+    self.bottomLine = line;
 }
 
 - (void)layoutSubviews{
+    _headerLine.frame = CGRectMake(0, 0, self.width, 1);
     
     _textView.x = 2 * XXQuestionCellBorderW + XXQuestionCellIconWH;
     _textView.y = 5;
     _textView.width = self.width - _textView.x - XXQuestionCellBorderW;
-    _textView.height = self.height - 2 *_textView.y - 1;
+    _textView.height = self.height - 2 *_textView.y;
 
-    _line.frame = CGRectMake(0, self.height - 1, self.width, 1);
+    _bottomLine.frame = CGRectMake(0, self.height - 1, self.width, 1);
 }
 
 - (void)setContent:(NSString *)content{

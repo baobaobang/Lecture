@@ -87,7 +87,7 @@
     
     [XXNotificationCenter addObserver:self selector:@selector(landscapeBtnClick) name:XXLandscapeBtnDidClickNotification object:nil];
     [XXNotificationCenter addObserver:self selector:@selector(shareBtnClick) name:XXPlayerShareNotification object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(showShareView) name:showShareView object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(showShareView) name:XXShowShareViewNotification object:nil];
     
 //    [XXNotificationCenter addObserver:self selector:@selector(startPlaying) name:XXStartPlayingNotification object:nil];
 //    [XXNotificationCenter addObserver:self selector:@selector(stopPlaying) name:XXStopPlayingNotification object:nil];

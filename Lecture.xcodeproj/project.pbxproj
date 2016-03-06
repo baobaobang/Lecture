@@ -73,6 +73,7 @@
 		2D2B44EE1C8986560093FA2A /* XXExpertReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2B44ED1C8986560093FA2A /* XXExpertReplyView.xib */; };
 		2D2B44F11C8AAA680093FA2A /* HMAudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B44F01C8AAA680093FA2A /* HMAudioTool.m */; };
 		2D2B44F81C8AF8250093FA2A /* CXCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B44F71C8AF8250093FA2A /* CXCircularProgressView.m */; };
+		2D2B44FB1C8C1CDF0093FA2A /* UIView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B44FA1C8C1CDF0093FA2A /* UIView+Common.m */; };
 		2D50CCEB1C5A166A00FAF3AA /* XXQuestionReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50CCE91C5A166A00FAF3AA /* XXQuestionReplyCell.m */; };
 		2D50CCEC1C5A166A00FAF3AA /* XXQuestionReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D50CCEA1C5A166A00FAF3AA /* XXQuestionReplyCell.xib */; };
 		2D50CCEF1C5A1D6C00FAF3AA /* XXReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50CCEE1C5A1D6C00FAF3AA /* XXReply.m */; };
@@ -156,7 +157,6 @@
 		2D9D7DAB1C6324350070AA57 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D7DA61C6324350070AA57 /* SDPhotoBrowser.m */; };
 		2D9D7DAC1C6324350070AA57 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D7DA91C6324350070AA57 /* SDWaitingView.m */; };
 		2DBAF6C61C619DFD00D4BC49 /* CXHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBAF6C51C619DFD00D4BC49 /* CXHttpTool.m */; };
-		2DC246E01C87F717008C56A6 /* UIView+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC246DF1C87F717008C56A6 /* UIView+Mask.m */; };
 		2DD01BC51C7DEF4B0081D63F /* XXBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD01BC41C7DEF4B0081D63F /* XXBaseModel.m */; };
 		2DED0B9E1C80578700B1145E /* XXQuestionReplyUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DED0B9C1C80578700B1145E /* XXQuestionReplyUserCell.m */; };
 		2DED0B9F1C80578700B1145E /* XXQuestionReplyUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DED0B9D1C80578700B1145E /* XXQuestionReplyUserCell.xib */; };
@@ -306,6 +306,8 @@
 		2D2B44F01C8AAA680093FA2A /* HMAudioTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAudioTool.m; sourceTree = "<group>"; };
 		2D2B44F61C8AF8250093FA2A /* CXCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXCircularProgressView.h; sourceTree = "<group>"; };
 		2D2B44F71C8AF8250093FA2A /* CXCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXCircularProgressView.m; sourceTree = "<group>"; };
+		2D2B44F91C8C1CDF0093FA2A /* UIView+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Common.h"; sourceTree = "<group>"; };
+		2D2B44FA1C8C1CDF0093FA2A /* UIView+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Common.m"; sourceTree = "<group>"; };
 		2D50CCE81C5A166A00FAF3AA /* XXQuestionReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionReplyCell.h; sourceTree = "<group>"; };
 		2D50CCE91C5A166A00FAF3AA /* XXQuestionReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuestionReplyCell.m; sourceTree = "<group>"; };
 		2D50CCEA1C5A166A00FAF3AA /* XXQuestionReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXQuestionReplyCell.xib; sourceTree = "<group>"; };
@@ -467,8 +469,6 @@
 		2D9D7DA91C6324350070AA57 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		2DBAF6C41C619DFD00D4BC49 /* CXHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXHttpTool.h; sourceTree = "<group>"; };
 		2DBAF6C51C619DFD00D4BC49 /* CXHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXHttpTool.m; sourceTree = "<group>"; };
-		2DC246DE1C87F717008C56A6 /* UIView+Mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Mask.h"; sourceTree = "<group>"; };
-		2DC246DF1C87F717008C56A6 /* UIView+Mask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Mask.m"; sourceTree = "<group>"; };
 		2DD01BC31C7DEF4B0081D63F /* XXBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBaseModel.h; sourceTree = "<group>"; };
 		2DD01BC41C7DEF4B0081D63F /* XXBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBaseModel.m; sourceTree = "<group>"; };
 		2DED0B9B1C80578700B1145E /* XXQuestionReplyUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuestionReplyUserCell.h; sourceTree = "<group>"; };
@@ -1020,8 +1020,8 @@
 				2D63086B1C549B2F0092F622 /* UITextView+Extension.m */,
 				2D63086C1C549B2F0092F622 /* UIView+Extension.h */,
 				2D63086D1C549B2F0092F622 /* UIView+Extension.m */,
-				2DC246DE1C87F717008C56A6 /* UIView+Mask.h */,
-				2DC246DF1C87F717008C56A6 /* UIView+Mask.m */,
+				2D2B44F91C8C1CDF0093FA2A /* UIView+Common.h */,
+				2D2B44FA1C8C1CDF0093FA2A /* UIView+Common.m */,
 				2D63086E1C549B2F0092F622 /* 单例头文件 */,
 			);
 			path = Category;
@@ -1554,6 +1554,7 @@
 				2D6308DA1C549B2F0092F622 /* NSString+Emoji.m in Sources */,
 				2D55BB911C5618F900BA1542 /* LGCameraImageView.m in Sources */,
 				2D9D7DAA1C6324350070AA57 /* SDBrowserImageView.m in Sources */,
+				2D2B44FB1C8C1CDF0093FA2A /* UIView+Common.m in Sources */,
 				2D55BB7F1C5618F900BA1542 /* LGPhotoPickerGroupTableViewCell.m in Sources */,
 				2D6308F01C549B2F0092F622 /* XXQuestionPhoto.m in Sources */,
 				2D55BB951C5618F900BA1542 /* ZLCameraViewController.m in Sources */,
@@ -1624,7 +1625,6 @@
 				2D6309061C549B2F0092F622 /* XXQuestionPhotosView(相册).m in Sources */,
 				2D2372811C5F0DE800A422EF /* XXXRegisterVC.m in Sources */,
 				2D23726F1C5F0DE800A422EF /* MainPageLectureCell.m in Sources */,
-				2DC246E01C87F717008C56A6 /* UIView+Mask.m in Sources */,
 				16CBD2591C741A500054BC10 /* XXXApplyLectureVC.m in Sources */,
 				2D75DA4B1C5708720056FA6C /* XXOnlineHeaderView.m in Sources */,
 				2D6308E41C549B2F0092F622 /* MBProgressHUD.m in Sources */,
