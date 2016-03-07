@@ -23,8 +23,8 @@
     if (self) {
         self.isOpen = NO;
         
-        for (NSInteger i = 0; i<5; i++) {
-            NSArray *titles = @[@"发布讲座",@"我的讲座",@"回复",@"草稿箱",@""];
+        for (NSInteger i = 0; i<4; i++) {
+            NSArray *titles = @[@"发布讲座",@"我的讲座",@"回复",@""];
             UIButton *btn = [[UIButton alloc]initWithFrame:self.rect];
             btn.tag = 1000+i;
             [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -32,7 +32,7 @@
             btn.titleLabel.font = [UIFont systemFontOfSize:12];
             btn.layer.cornerRadius = btn.frame.size.width/2;
             
-            if (i == 4) {
+            if (i == 3) {
 //                [btn setBackgroundImage:[[UIImage imageNamed:@"plus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]forState:0];
                 [btn setBackgroundImage:[UIImage imageNamed:@"logo"] forState:0];
                 [btn setTintColor:[UIColor whiteColor]];
@@ -52,7 +52,7 @@
 - (void)btnClicked:(UIButton *)sender{
     switch (sender.tag) {
     
-        case 1004://点击了加号
+        case 1003://点击了加号
             [self animateBtns:sender];
             break;
         
@@ -79,27 +79,27 @@
         for (UIButton *sender in self.subviews) {
             switch (sender.tag) {
                 case 1000:
-                    vector = CGVectorMake(-100, -10);
+                    vector = CGVectorMake(-80, -20);
                     break;
                 case 1001:
-                    vector = CGVectorMake(-50, -70);
+                    vector = CGVectorMake(0, -70);
                     break;
                 case 1002:
-                    vector = CGVectorMake(50, -70);
+                    vector = CGVectorMake(80, -20);
                     break;
-                case 1003:
-                    vector = CGVectorMake(100, -10);
-                    break;
+//                case 1003:
+//                    vector = CGVectorMake(100, -10);
+//                    break;
                 default:
                     vector = CGVectorMake(0, 0);
                     break;
             }
             CGFloat delay = 0.2+ (sender.tag-1000)*0.05;
-            if (sender.tag == 1004) {
+            if (sender.tag == 1003) {
                 delay = 0.2;
             }
             [UIView animateWithDuration:0.5 delay:delay usingSpringWithDamping:0.7 initialSpringVelocity:3 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                if (sender.tag != 1004) {
+                if (sender.tag != 1003) {
                     sender.frame = CGRectOffset(sender.frame, vector.dx, vector.dy);
                 }else{
                     sender.layer.transform = CATransform3DMakeRotation(M_PI*2, 0, 0, 1);
@@ -118,11 +118,11 @@
         for (UIButton *sender in self.subviews) {
             
             CGFloat delay = 0.2+ (sender.tag-1000)*0.05;
-            if (sender.tag == 1004) {
+            if (sender.tag == 1003) {
                 delay = 0.2;
             }
             [UIView animateWithDuration:0.5 delay:delay usingSpringWithDamping:1 initialSpringVelocity:3 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                if (sender.tag != 1004) {
+                if (sender.tag != 1003) {
                     sender.frame = self.rect;
                 }else{
                     sender.layer.transform = CATransform3DMakeRotation(0, 0, 0, 1);

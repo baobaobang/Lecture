@@ -173,12 +173,12 @@
         case 2:
             [SVProgressHUD showInfoWithStatus:@"敬请期待"];
             break;
-        case 3:
-        {
-            XXXDraftBoxVC *db = [[XXXDraftBoxVC alloc]init];
-            [self.navigationController pushViewController:db animated:YES];
-        }
-            break;
+//        case 3:
+//        {
+//            XXXDraftBoxVC *db = [[XXXDraftBoxVC alloc]init];
+//            [self.navigationController pushViewController:db animated:YES];
+//        }
+//            break;
         default:
             break;
     }
