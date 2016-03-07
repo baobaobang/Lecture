@@ -19,6 +19,7 @@
 #define XXTestLog XXLog(@"%s", __func__)// 打印测试
 #define XXScreenWidth [UIScreen mainScreen].bounds.size.width// 屏幕的高度
 #define XXScreenHeight [UIScreen mainScreen].bounds.size.height// 屏幕的宽度
+#define FullScreenFrame CGRectMake(0, 0, XXScreenWidth, XXScreenHeight)// 全屏
 
 /** 颜色*/
 #define XXColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]// RGB颜色
@@ -27,6 +28,7 @@
 #define XXColorTint XXColor(47, 180, 254)// 项目默认颜色（浅蓝色）
 #define XXColorText [UIColor whiteColor]// 项目默认文字颜色
 #define XXSelectedColor XXColor(175, 220, 250)// 项目默认选中状态颜色（浅浅蓝色）
+#define MaskViewColor // 蒙版颜色
 
 /** frame*/
 extern const CGFloat kXXStatusAndNavBarHeight;// 状态栏和导航栏的总高度
@@ -89,8 +91,9 @@ extern NSString * const XXLectureVCRefreshNotification;
 extern NSString * const XXLectureExpertOnlyVCRefreshNotification;
 extern NSString * const XXLectureSelectedQuestionsVCRefreshNotification;
 extern NSString * const XXPlayerShareNotification;
-extern NSString * const XXPlayerShareToTimeLineNotification;
-extern NSString * const XXShareToWechatTimelineSuccessNotification;
+extern NSString * const XXShowShareViewNotification;
+extern NSString * const XXShareSuccessNotification;
+extern NSString * const XXShareFailNotification;
 /** 时间*/
 
 extern const CGFloat kXXPlayerVCChageToLandscapeDuration;
@@ -109,7 +112,7 @@ extern NSString * const XXReplyCellPlayBtnDidClickNotification;
 #define XXQuestionCellIconWH 44
 
 
-// 第几页开始需要分享
-#define XXSharePageNumber 3
+// 只能收听几页，之后需要分享才能继续收听
+#define XXSharePageNumber 2
 
 @end

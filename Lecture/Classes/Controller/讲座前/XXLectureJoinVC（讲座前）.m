@@ -21,12 +21,13 @@
 #import "CXTextView.h"
 #import "XXXLoginVC.h"
 #import "CXShareTool.h"
+#import "XXLectureDescriptionView.h"
 
 @interface XXLectureJoinVC ()<XXJoinLectureActionSheetDelegate, XXQuestionHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
 @property (nonatomic, weak) UIImageView *picView;
 @property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
-@property (nonatomic, weak) UIView *lectureDescriptionView;
+@property (nonatomic, weak) XXLectureDescriptionView *lectureDescriptionView;
 @property (nonatomic, weak) XXQuestionHeaderView *questionHeaderView;
 @property (nonatomic, weak) XXQuestionVC *questionVc;
 @property (nonatomic, weak) XXButton *joinBtn;
@@ -189,24 +190,15 @@
 
 // 设置讲座简介
 - (void)setupLectureDec{
-    UIView *view = [[UIView alloc] init];
+    XXLectureDescriptionView *view = [[XXLectureDescriptionView alloc] init];
     view.x = 0;
     view.y = CGRectGetMaxY(self.expertVc.view.frame);
     view.width = self.view.width;
     view.height = kXXLectureDescriptioinViewHeight;
-    view.backgroundColor = [UIColor whiteColor];
-    UITextView *textView = [[UITextView alloc] init];
-    [view addSubview:textView];
-    textView.x = 2 * XXQuestionCellBorderW + XXQuestionCellIconWH;
-    textView.y = 0;
-    textView.width = view.width - textView.x - XXQuestionCellBorderW;
-    textView.height = view.height;
-    textView.font = XXQuestionCellReplyFont;
-    textView.text = self.lecture.desc;
-    textView.textColor = [UIColor blackColor];
-    textView.editable = NO;
-    [self.view addSubview:view];
     self.lectureDescriptionView = view;
+    [self.view addSubview:view];
+    view.content = self.lecture.desc;
+    NSLog(@"%@", view.content);
 }
 
 // 精选提问头部
@@ -222,22 +214,6 @@
     self.questionHeaderView = questionHeaderView;
 }
 
-// 精选提问
-- (void)setupQuestionVc{
-    
-    XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
-    questionVc.lecture = self.lecture;
-    questionVc.view.x = 0;
-    questionVc.view.y = CGRectGetMaxY(self.questionHeaderView.frame);
-    questionVc.view.width = self.view.width;
-    questionVc.view.height = self.view.height - questionVc.view.y - self.joinBtn.height;
-    [self addChildViewController:questionVc];
-    [self.view addSubview:questionVc.view];
-    [questionVc didMoveToParentViewController:self];
-    self.questionVc = questionVc;
-}
-
-
 // 设置报名活动按钮
 - (void)setupJoinBtn{
     
@@ -251,7 +227,7 @@
     
     [joinBtn addTarget:self action:@selector(joinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    joinBtn.width = [UIScreen mainScreen].bounds.size.width;
+    joinBtn.width = XXScreenWidth;
     joinBtn.height = kXXJoinButtonHeight;
     joinBtn.x = 0;
     joinBtn.y = self.view.height - joinBtn.height;
@@ -268,6 +244,30 @@
     }
 }
 
+// 精选提问
+- (void)setupQuestionVc{
+    
+    XXQuestionVC *questionVc = [[XXQuestionVC alloc] init];
+    questionVc.lecture = self.lecture;
+    questionVc.view.x = 0;
+    questionVc.view.y = CGRectGetMaxY(self.questionHeaderView.frame);
+    questionVc.view.width = self.view.width;
+    if (isExpert) {
+        questionVc.view.height = self.view.height - questionVc.view.y;
+    }else{
+        questionVc.view.height = self.view.height - questionVc.view.y - kXXJoinButtonHeight;
+    }
+    [self addChildViewController:questionVc];
+    [self.view addSubview:questionVc.view];
+    [questionVc didMoveToParentViewController:self];
+    self.questionVc = questionVc;
+}
+
+#pragma mark - 给子控件赋值
+- (void)setLecture:(XXXLectureModel *)lecture{
+    _lecture = lecture;
+    
+}
 
 #pragma mark - 分享页面
 - (void)clickShareLectureBtn{
@@ -275,7 +275,7 @@
     // 设置点击返回的url和title
     NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lecture.lectureId];
     NSString *title = self.lecture.title;
-    [CXShareTool shareInVc:self url:url title:title shareText:self.lecture.desc shareImage:[UIImage imageNamed:@"logo"]];
+    [CXShareTool shareInVc:self url:url title:title shareText:self.lecture.desc shareImage:[UIImage imageNamed:@"logo"] delegate:nil];
 }
 
 #pragma mark - 点击报名

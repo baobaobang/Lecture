@@ -92,8 +92,7 @@
     return [[AVPlayer alloc]initWithURL:URL];
 }
 
-#define NOTIFICATION_HEADESTUNPLUGGED @"HeadestUnplugged"
-#define NOTIFICATION_HEADESTPLUGGED @"Headestplugged"
+
 //触发的监听事件
 void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID inPropertyID, UInt32 inPropertyValueSize,const void *inPropertyValue ) {
     // ensure that this callback was invoked for a route change

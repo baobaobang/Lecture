@@ -15,12 +15,14 @@
 #import "XXExpertProfileHeaderView.h"
 #import "XXQuestionCreateVC.h"
 #import "CXShareTool.h"
+#import "XXLectureDescriptionView.h"
 
 
-@interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate>
+@interface XXLectureVC ()<XXOnlineHeaderViewDelegate, XXExpertProfileHeaderViewDelegate, UMSocialUIDelegate>
 @property (nonatomic, weak) XXPlayerVC *playerVc;
 @property (nonatomic, weak) XXExpertProfileHeaderView *expertHeaderView;
 @property (nonatomic, weak) XXExpertProfileVC *expertVc;
+@property (nonatomic, weak) XXLectureDescriptionView *lectureDescriptionView;
 @property (nonatomic, weak) XXOnlineHeaderView *onlineHeaderView;
 //@property (nonatomic, weak) XXOnlineVC *onlineVc;
 @property (nonatomic, weak) XXQuestionVC *onlineVc;
@@ -30,6 +32,8 @@
 @property (nonatomic, assign, getter=isHiddenStatusBar) BOOL hiddenStatusBar;
 
 @property (nonatomic, strong) XXXLectureModel *lectureDetail;// 讲座详情
+
+@property (nonatomic, weak) UIImageView *shareView;
 
 @end
 
@@ -69,6 +73,9 @@
     // 设置专家简介
     [self setupExpertVc];
     
+    // 设置讲座简介
+    [self setupLectureDec];
+    
     // 设置在线交流头部
     [self setupOnlineHeaderView];
     
@@ -80,7 +87,7 @@
     
     [XXNotificationCenter addObserver:self selector:@selector(landscapeBtnClick) name:XXLandscapeBtnDidClickNotification object:nil];
     [XXNotificationCenter addObserver:self selector:@selector(shareBtnClick) name:XXPlayerShareNotification object:nil];
-    [XXNotificationCenter addObserver:self selector:@selector(showShareToWechatTimelineBtn) name:XXPlayerShareToTimeLineNotification object:nil];
+    [XXNotificationCenter addObserver:self selector:@selector(showShareView) name:XXShowShareViewNotification object:nil];
     
 //    [XXNotificationCenter addObserver:self selector:@selector(startPlaying) name:XXStartPlayingNotification object:nil];
 //    [XXNotificationCenter addObserver:self selector:@selector(stopPlaying) name:XXStopPlayingNotification object:nil];
@@ -95,7 +102,6 @@
     }
 }
 
-
 #pragma mark - 讲座的详情接口
 
 - (void)setLecture:(XXXLectureModel *)lecture{
@@ -103,7 +109,8 @@
 
     [self loadLectureDetail];// 传递数据给播放器
     
-    _expertVc.lecture = lecture;// 传递数据给专家简介
+    self.expertVc.lecture = lecture;// 传递数据给专家简介
+    self.lectureDescriptionView.content = lecture.desc;// 传递数据给讲座简介
     
 }
 - (void)loadLectureDetail
@@ -171,11 +178,22 @@
     self.expertVc = expertVc;
 }
 
+// 设置讲座简介
+- (void)setupLectureDec{
+    XXLectureDescriptionView *view = [[XXLectureDescriptionView alloc] init];
+    view.x = 0;
+    view.y = CGRectGetMaxY(self.expertVc.view.frame);
+    view.width = self.view.width;
+    view.height = kXXLectureDescriptioinViewHeight;
+    self.lectureDescriptionView = view;
+    [self.view addSubview:view];
+}
+
 // 在线交流头部
 - (void)setupOnlineHeaderView{
     XXOnlineHeaderView *onlineHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"XXOnlineHeaderView" owner:nil options:0]lastObject];
     onlineHeaderView.x = 0;
-    onlineHeaderView.y = CGRectGetMaxY(self.expertVc.view.frame);
+    onlineHeaderView.y = CGRectGetMaxY(self.lectureDescriptionView.frame);
     onlineHeaderView.height = kXXOnlineHeaderViewHeight;
     onlineHeaderView.width = self.view.width;
     
@@ -194,7 +212,7 @@
     [postQuestionBtn setBackgroundImage:[UIImage imageNamed:@"bottom_button_bg"] forState:UIControlStateNormal];
     postQuestionBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     [postQuestionBtn addTarget:self action:@selector(postQuestion:) forControlEvents:UIControlEventTouchUpInside];
-    postQuestionBtn.width = [UIScreen mainScreen].bounds.size.width;
+    postQuestionBtn.width = XXScreenWidth;
     postQuestionBtn.height = kXXJoinButtonHeight;
     postQuestionBtn.x = 0;
     postQuestionBtn.y = self.view.height - postQuestionBtn.height;
@@ -213,7 +231,11 @@
     onlineVc.view.x = 0;
     onlineVc.view.y = CGRectGetMaxY(self.onlineHeaderView.frame);
     onlineVc.view.width = self.view.width;
-    onlineVc.view.height = self.view.height - onlineVc.view.y - self.postQuestionBtn.height;
+    if (isExpert) {
+        onlineVc.view.height = self.view.height - onlineVc.view.y;
+    }else{
+        onlineVc.view.height = self.view.height - onlineVc.view.y - kXXJoinButtonHeight;
+    }
     [self addChildViewController:onlineVc];
     [self.view addSubview:onlineVc.view];
     [onlineVc didMoveToParentViewController:self];
@@ -241,18 +263,17 @@
 
 - (void)onlineHeaderView:(XXOnlineHeaderView *)headerView didClickContractBtn:(UIButton *)btn
 {
+    // 需要上移和下移的高度
+    CGFloat heightOne = self.playerVc.playerPicView.height;
+    CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight + kXXLectureDescriptioinViewHeight;
     if (!btn.selected) {
-        [self hidePicView];
+        [self hidePicViewHeightOne:heightOne HeightTwo:heightTwo];
     }else{
-        [self showPicView];
+        [self showPicViewHeightOne:heightOne HeightTwo:heightTwo];
     }
 }
 
-- (void)hidePicView{
-
-    // 需要上移的高度
-    CGFloat heightOne = self.playerVc.playerPicView.height;
-    CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+- (void)hidePicViewHeightOne:(CGFloat)heightOne HeightTwo:(CGFloat)heightTwo{
     WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         weakSelf.playerVc.view.y -= heightOne;
@@ -265,11 +286,7 @@
     }];
 }
 
-- (void)showPicView{
-
-    // 需要下移的高度
-    CGFloat heightOne = self.playerVc.playerPicView.height;
-    CGFloat heightTwo = heightOne + kXXExpertHeaderViewHeight + kXXExpertTableViewHeight;
+- (void)showPicViewHeightOne:(CGFloat)heightOne HeightTwo:(CGFloat)heightTwo{
     WS(weakSelf);
     [UIView animateWithDuration:kXXHideAndShowPicViewDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         weakSelf.playerVc.view.y += heightOne;
@@ -424,34 +441,35 @@
     NSString *url = [NSString stringWithFormat:@"http://lsh.kaimou.net/index.php/Home/Lecture/detail/id/%@?from=groupmessage&isappinstalled=1", self.lectureDetail.lectureId];
     NSString *title = self.lectureDetail.title;
     UIImage *image = [UIImage imageNamed:@"logo"];
-    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc shareImage:image];
+    [CXShareTool shareInVc:self url:url title:title shareText:self.lectureDetail.desc shareImage:image delegate:self];
 }
-
-- (void)showShareToWechatTimelineBtn{
-    // 添加一个蒙版
-    UIView *maskView = [UIView maskView];
-    [XXTopWindow addSubview:maskView];
-    // 添加分析提示页面的按钮到最顶层窗口
-    UIButton *btn = [[UIButton alloc] init];
-    [maskView addSubview:btn];
-    btn.bounds = CGRectMake(0, 0, 250, 312);// 1:1.25
-    btn.center = maskView.center;
-    [btn setImage:[UIImage imageNamed:@"shareTip"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(shareToWechatTimeline:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)shareToWechatTimeline:(UIButton *)btn{
+// 显示分享提示图
+- (void)showShareView{
     
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:self.lectureDetail.desc image:[UIImage imageNamed:@"logo"] location:nil urlResource:nil presentedController:nil completion:^(UMSocialResponseEntity *response){
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            NSLog(@"分享成功！");
-            // 通知播放页面继续播放下一首
-            [XXNotificationCenter postNotificationName:XXShareToWechatTimelineSuccessNotification object:nil];
-            // 移除分享页面
-            [btn.superview removeFromSuperview];
-            // 保存已分享的讲座id
-            UserDefaultsSaveBool(YES, self.lectureDetail.lectureId);
-        }
-    }];
+    [self shareBtnClick];
+    // 添加分析提示页面的按钮到最顶层窗口
+    UIImageView *shareView = [[UIImageView alloc] init];
+    [XXTopWindow addSubview:shareView];
+    shareView.bounds = CGRectMake(0, 0, 250, 312);// 1:1.25
+    shareView.center = XXTopWindow.center;
+    shareView.image = [UIImage imageNamed:@"shareTip"];
+    self.shareView = shareView;
 }
-  @end
+
+// 分享成功后
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response{
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        NSLog(@"分享成功！");
+        // 保存已分享的讲座id
+        UserDefaultsSaveBool(YES, self.lectureDetail.lectureId);
+        [XXNotificationCenter postNotificationName:XXShareSuccessNotification object:nil];
+    }
+}
+
+// 关闭分享页面时(分享失败)
+-(void)didCloseUIViewController:(UMSViewControllerType)fromViewControllerType
+{
+    [self.shareView removeFromSuperview];
+    [XXNotificationCenter postNotificationName:XXShareFailNotification object:nil];
+}
+@end

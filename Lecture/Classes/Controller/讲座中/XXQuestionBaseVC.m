@@ -12,13 +12,29 @@
 #import "CXTextView.h"
 #import "XXReply.h"
 #import "XXReplyPlayingIndex.h"
+#import "XXExpertReplyView.h"
+#import "HMAudioTool.h"
+#import "AudioTool.h"
+#import "Transcoder.h"
 
-@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate>
+
+#define RecordTimeLimit 300
+
+@interface XXQuestionBaseVC ()<XXQuestionToolbarDelegate, UITextViewDelegate, XXExpertReplyViewDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 @property (nonatomic, strong) UIImageView *noDataImage;
 @property (nonatomic, copy) NSString *replyingQuestionId;
 @property (nonatomic, assign) NSInteger replyingQuestionIndex;
 
 @property (nonatomic, strong) XXReplyPlayingIndex *clickedIndex; // 正在播放的回复index
+
+// 录音部分
+@property (nonatomic, strong) NSURL *fileUrl;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) NSString *mp3Path;
+@property (nonatomic, strong) AVAudioRecorder *recorder;
+@property (nonatomic, weak) AVAudioPlayer *player;
+@property (nonatomic, weak) XXExpertReplyView *replyView;
+
 @end
 
 @implementation XXQuestionBaseVC
@@ -59,7 +75,10 @@
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:XXQuestionCellReuseId];
     
-    [self setupTextView];
+    // 回复部分
+    if (!isExpert) { // 如果是用户，则设置输入框
+        [self setupTextView];
+    }
     
     [self setupRefresh];
     
@@ -203,18 +222,6 @@
 
 }
 
-#pragma mark - 弹出回复键盘，开始回复
-- (void)beginReplyWithQuestionId:(NSString *)questionId{
-    if (![self.textView isFirstResponder]) {
-        [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
-    }
-    if (![questionId isEqualToString:self.replyingQuestionId]) { // 如果回复的是不同的问题，就清空之前的回复
-        self.textView.text = nil;
-        self.replyingQuestionId = questionId;
-    }
-    
-}
-
 #pragma mark - 点击回复按钮后，开始回复
 - (void)clickReplyBtnInToolbar:(XXQuestionToolbar *)toolbar
 {
@@ -227,7 +234,228 @@
     [self beginReplyWithQuestionId:noti.userInfo[@"questionId"]];
 }
 
-#pragma mark - 点击回复中的cell，开始回复
+
+#pragma mark - 开始回复
+- (void)beginReplyWithQuestionId:(NSString *)questionId{
+    if (isExpert) { // 专家情况
+        XXExpertReplyView *replyView = [[[NSBundle mainBundle] loadNibNamed:@"XXExpertReplyView" owner:nil options:nil] lastObject];
+        replyView.frame = CGRectMake(0, 0, XXScreenWidth, XXScreenHeight);
+        [XXTopWindow addSubview:replyView];
+        replyView.delegate = self;
+        self.replyingQuestionId = questionId;
+        self.replyView = replyView;
+    }else{ // 用户情况
+        if (![self.textView isFirstResponder]) {
+            [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
+        }
+        if (![questionId isEqualToString:self.replyingQuestionId]) { // 如果回复的是不同的问题，就清空之前的回复
+            self.textView.text = nil;
+            self.replyingQuestionId = questionId;
+        }
+    }
+    
+}
+
+#pragma mark - XXExpertReplyViewDelegate 专家录音部分
+// 点击取消按钮
+- (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickCancleButton:(UIButton *)btn{
+    [self stopPlay];
+    [[NSFileManager defaultManager] removeItemAtPath:self.path error:nil];// 移除本地wav
+    [expertReplyView removeFromSuperview];
+}
+
+// 点击发送按钮
+- (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickSendButton:(UIButton *)btn{
+    [self stopPlay];
+    [self sendReply];
+    [expertReplyView removeFromSuperview];
+}
+
+// 点击topView
+- (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickTopView:(UIView *)view{
+    if (expertReplyView.status == XXExpertReplyButtonStatusInitial) {
+        [expertReplyView removeFromSuperview];
+    }
+}
+
+// 点击中间按钮
+- (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickMiddleButton:(UIButton *)btn{
+    switch (expertReplyView.status) {
+        case XXExpertReplyButtonStatusInitial:// 开始录音
+        {
+            [self startRecord];
+        }
+            break;
+        case XXExpertReplyButtonStatusRecording:// 结束录音
+        {
+            [self stopRecord];
+            break;
+        }
+        case XXExpertReplyButtonStatusStop:// 开始播放
+        {
+            [self startPlay];
+            break;
+        }
+        case XXExpertReplyButtonStatusPlaying:// 结束播放
+        {
+            [self stopPlay];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)startRecord{
+    
+    NSString * document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *voiceName = [NSString stringWithFormat:@"lecture%@question%@%@",self.lecture.lectureId, self.replyingQuestionId, @"expertReply.wav"];
+    NSString *path = [document stringByAppendingPathComponent:voiceName];
+    self.path = path;
+    //            [NSURL URLWithString:path];// 这个要加协议头file://
+    //            [NSURL fileURLWithPath:path];// 这个不要加协议头file://
+    self.fileUrl = [NSURL fileURLWithPath:path];
+    
+#warning 必须增加这一句，否则在模拟器上可以录音，但是在真机上只能录音一次，第二次[_recorder prepareToRecord] = false
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//
+    _recorder = [[AudioTool shareAudioTool] recorderWithURL:self.fileUrl];
+    _recorder.delegate = self;
+    self.replyView.recorder = _recorder;
+    self.replyView.audioURL = self.fileUrl;
+    
+    if ([_recorder prepareToRecord]) {
+        [_recorder recordForDuration:RecordTimeLimit]; //限制最大录音时间
+        self.replyView.status = XXExpertReplyButtonStatusRecording;
+    }
+}
+
+- (void)stopRecord{
+    [self.recorder stop];
+    self.recorder = nil;
+    self.replyView.status = XXExpertReplyButtonStatusStop;
+}
+
+- (void)startPlay{
+    if ([self.player prepareToPlay]) {
+        [self.player play];
+    };
+    self.replyView.status = XXExpertReplyButtonStatusPlaying;
+}
+
+- (void)stopPlay{
+    [self.player stop];
+    self.player.currentTime = 0;
+    self.replyView.status = XXExpertReplyButtonStatusStop;
+}
+
+// 录音完成时
+- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
+    // 创建player
+    AVAudioPlayer *player = [[AudioTool shareAudioTool] playerWithURL:self.fileUrl];
+    self.player = player;
+    player.delegate = self;
+    self.replyView.player = player;
+    // 更改录音状态
+    self.replyView.status = XXExpertReplyButtonStatusStop;
+    // 判断是否达到规定时间限制
+    if (player.duration == RecordTimeLimit) {
+        NSString *tip = [NSString stringWithFormat:@"注意：最长录音时间为%.0f分钟!", RecordTimeLimit/60.0];
+        [MBProgressHUD showSuccess:tip toView:self.replyView];
+    }
+}
+
+// 播放完成时
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    self.replyView.status = XXExpertReplyButtonStatusStop;
+}
+
+#pragma mark - 发送回复接口
+- (void)sendReply{
+    if (isExpert) {
+        [self uploadExpertReplyMp3];
+    }else{
+        [self postReplyWithContent:self.textView.text questionId:self.replyingQuestionId];
+        [self.textView resignFirstResponder];
+    }
+}
+
+// 上传专家回复音频
+- (void)uploadExpertReplyMp3{
+    // wav转MP3
+    NSString *mp3Path = [[self.path stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
+    [Transcoder transcodeToMP3From:self.path toPath:mp3Path];
+    // MP3转二进制
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:mp3Path]];
+    
+    // 陈旭接口-上传专家回复音频
+    [NetworkManager qiniuUpload:data progress:^(NSString *key, float percent) {
+        
+        [SVProgressHUD showProgress:percent];
+    } success:^(id result) {// 音频上传成功
+        [SVProgressHUD dismiss];
+        // 移除本地mp3
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager removeItemAtPath:mp3Path error:nil];
+        // 上传音频路径到服务器
+        [self postReplyWithContent:result questionId:self.replyingQuestionId];
+    } fail:^(NSError *error) {
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"发送失败"];
+        // 移除本地mp3
+        [[NSFileManager defaultManager] removeItemAtPath:mp3Path error:nil];
+    } isImageType:NO];
+}
+
+// 上传回复文本
+- (void)postReplyWithContent:(NSString *)content questionId:(NSString *)questionId{
+    // 陈旭接口-发送回复接口
+    NSString *url = [NSString stringWithFormat:@"questions/%@/replies", questionId];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"content"] = content;
+    params[@"type"] = isExpert ? @"1" : @"0";
+    WS(weakSelf);
+    [NetworkManager postWithApi:url params:params success:^(id result) {
+        // 插入新增回复(以后用本地离线缓存来做插入)
+        //        XXQuestionFrame *frame = weakSelf.questionFrames[weakSelf.replyingQuestionIndex];
+        XXReply *reply = [[XXReply alloc] init];
+        
+        reply.questionId = questionId;
+        reply.nickName = @"匿名用户"; // 当前用户的昵称
+        reply.content = content;
+        reply.type = isExpert ? 1 : 0;
+        
+        NSUInteger count = weakSelf.questionFrames.count;
+        NSMutableArray *questionsM = [NSMutableArray array];
+        for (NSInteger i = 0; i < count; i++) {
+            XXQuestionFrame * frame = weakSelf.questionFrames[i];
+            XXQuestion *question = frame.question;
+            if (i == weakSelf.replyingQuestionIndex) {
+                [question.replies addObject:reply];
+            }
+            [questionsM addObject:question];
+        }
+        
+        weakSelf.questionFrames = [weakSelf questionFramesWithQuestions:questionsM];
+        
+        // 刷新当前问题行
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:weakSelf.replyingQuestionIndex inSection:0];
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        // 滚动到所在问题行的底部
+        [weakSelf.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        
+        // 清空文字
+        if (!isExpert) {
+            weakSelf.textView.text = nil;
+        }
+        
+    } fail:^(NSError *error) {
+        [MBProgressHUD showError:@"发送失败！" toView:weakSelf.view];
+    }];
+}
+
+
 
 #pragma mark - 点击点赞按钮后
 - (void)clickUnlikeBtnInToolbar:(XXQuestionToolbar *)toolbar
@@ -292,7 +520,7 @@
     if (textView.text.length>=kXXQuestionVCTextViewMaxWords)
     {
         // 给个提示
-        NSString *message = [NSString stringWithFormat:@"字符个数不能大于%lu！", kXXQuestionVCTextViewMaxWords];
+        NSString *message = [NSString stringWithFormat:@"字符个数不能大于%lu！", (unsigned long)kXXQuestionVCTextViewMaxWords];
         UIAlertView *tipAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [tipAlert show];
         return NO;
@@ -301,7 +529,7 @@
     // 监听文字输入，来完成发送
     if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
         //在这里做你响应return键的代码
-        [self send];
+        [self sendReply];
         return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
     }
     
@@ -309,63 +537,6 @@
     return [text forbiddenEmoji];
 }
 
-#pragma mark - 发送回复接口
-- (void)send{
-    //本地显示
-//    [self showInLocal];
-    //上传到服务器
-    [self postReply];
-    
-    [self.textView resignFirstResponder];
-}
-
-- (void)showInLocal{
-    
-    [self.tableView reloadData];
-}
-
-- (void)postReply{
-    // 陈旭接口-发送回复接口
-    NSString *url = [NSString stringWithFormat:@"questions/%@/replies", self.replyingQuestionId];
-
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"content"] = self.textView.text;
-    params[@"type"] = isExpert ? @"1" : @"0";
-    WS(weakSelf);
-    [NetworkManager postWithApi:url params:params success:^(id result) {
-        // 插入新增回复(以后用本地离线缓存来做插入)
-//        XXQuestionFrame *frame = weakSelf.questionFrames[weakSelf.replyingQuestionIndex];
-        XXReply *reply = [[XXReply alloc] init];
-
-        reply.questionId = weakSelf.replyingQuestionId;
-        reply.nickName = @"匿名用户"; // 当前用户的昵称
-        reply.content = weakSelf.textView.text;
-        reply.type = isExpert ? 1 : 0;
-        
-        NSUInteger count = weakSelf.questionFrames.count;
-        NSMutableArray *questionsM = [NSMutableArray array];
-        for (NSInteger i = 0; i < count; i++) {
-            XXQuestionFrame * frame = weakSelf.questionFrames[i];
-            XXQuestion *question = frame.question;
-            if (i == weakSelf.replyingQuestionIndex) {
-                [question.replies addObject:reply];
-            }
-            [questionsM addObject:question];
-        }
-        
-        weakSelf.questionFrames = [weakSelf questionFramesWithQuestions:questionsM];
-        
-        // 刷新当前问题行
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:weakSelf.replyingQuestionIndex inSection:0];
-        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-
-        // 清空文字
-        weakSelf.textView.text = nil;
-        
-    } fail:^(NSError *error) {
-        [MBProgressHUD showError:@"发送失败！" toView:weakSelf.view];
-    }];
-}
 
 #pragma mark - scrollView Delegate
 // 拖动tableview就退出键盘

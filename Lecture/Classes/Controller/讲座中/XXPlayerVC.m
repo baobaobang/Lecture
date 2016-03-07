@@ -59,13 +59,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.hidden = YES; // 一开始隐藏，有数据的时候再显示
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self setupPlayerPicView];
     
     [self setupPlayerToolBar];
     
+    // 播放完一首后
     [XXNotificationCenter addObserver:self selector:@selector(endPlay) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    // 分享失败后
+    [XXNotificationCenter addObserver:self selector:@selector(shareFail) name:XXShareFailNotification object:nil];
+    // 分享失败后
+    [XXNotificationCenter addObserver:self selector:@selector(shareSuccess) name:XXShareSuccessNotification object:nil];
+    
+    // 观察拔出耳机时候暂停播放音乐
+    [XXNotificationCenter addObserver:self selector:@selector(unpluggedEarPhone) name:NOTIFICATION_HEADESTUNPLUGGED object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -81,14 +91,17 @@
     
     _lectureDetail = lectureDetail;
     
-    self.pages = lectureDetail.pages;
-    self.playerPicView.pages = lectureDetail.pages;
+    NSMutableArray *pages = lectureDetail.pages;
+    
+    self.pages = pages;
+    self.playerPicView.pages = pages;
     
     // 设置进入时候播放第一首音乐
     self.currentItem = 0;
     
-    // 给maskView传递数据
-    self.playerPicView.maskView.pages = self.pages;
+    if (pages.count > 0) {// 解决page=nil的时候不显示占位图的问题
+        self.view.hidden = NO;
+    }
 }
 
 #pragma mark - 初始化
@@ -114,7 +127,7 @@
 {
     // 创建playerToolBar
     XXPlayerToolBar *playerToolBar = [[XXPlayerToolBar alloc] init];
-    playerToolBar.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.7];
+    [playerToolBar setMaskColorWithAlpha:0.5];
     playerToolBar.delegate = self;
     [self.view addSubview:playerToolBar];
     self.playerToolBar = playerToolBar;
@@ -155,13 +168,19 @@
     // 更新索引
     _currentItem = currentItem;
     
-    if (self.pages.count > 0) {
-        // 更改音乐模型
-        self.currentPage = self.pages[currentItem];
-    }
-    
     // 给maskView传递数据，更新当前页码
     self.playerPicView.maskView.currentItem = self.currentItem;
+    
+    if (self.pages.count <= 0) return;
+    
+    self.currentPage = self.pages[currentItem];
+    
+    if (currentItem == XXSharePageNumber && !UserDefaultsGet(self.lectureDetail.lectureId)) {
+        // 如果用户没有分享过就出分享接力页面
+        [self showShareToWechatTimeline];
+        self.playing = YES;
+        [self playOrStop];
+    }
 }
 
 #pragma mark - 切换音乐，准备播放音乐，刷新相关控件
@@ -182,6 +201,25 @@
     
     // 添加kvo监听播放器的状态
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
+}
+
+
+
+#pragma mark - 分享到朋友圈
+// 展现分享页面
+- (void)showShareToWechatTimeline
+{
+    [XXNotificationCenter postNotificationName:XXShowShareViewNotification object:nil];
+}
+
+// 分享失败后返回上一首
+- (void)shareFail{
+    [self previous];
+}
+
+// 分享成功后来到下一首
+- (void)shareSuccess{
+    [self next];
 }
 
 #pragma mark - KVO监听AVplayer的播放状态，是否已经准备就绪
@@ -265,6 +303,16 @@
     }
 }
 
+
+- (void)showHudWithMessage:(NSString *)message{
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.playerPicView animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = message;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:1];
+}
+
 #pragma mark - 下一首
 
 -(void)next{
@@ -275,8 +323,6 @@
         if (self.currentItem == self.pages.count - 1) { // 如果是最后一首
             [self showHudWithMessage:@"已经是最后一页了"];
             
-        }else if (self.currentItem == XXSharePageNumber - 2){ // 判断是否已经分享
-            [self sharedJugeScrollOrNot:YES];
         }else{
             // 当前不是最后一首，更改索引为下一首
             self.currentItem ++;
@@ -286,38 +332,6 @@
         }
     }
 
-}
-
-- (void)sharedJugeScrollOrNot:(BOOL)scroll{
-    
-    BOOL isShared = UserDefaultsGetBool(self.lectureDetail.lectureId);
-    if (isShared) {
-        
-        self.currentItem ++;
-        if (scroll) { // 点击按钮的需要有动画滚动到对应currentItem的位置
-            [self scrollToItemWithAnimation:self.currentItem];
-        }
-    }else{
-        
-        [XXNotificationCenter postNotificationName:XXPlayerShareToTimeLineNotification object:nil];
-        [XXNotificationCenter addObserver:self selector:@selector(shareToWechatTimelineSuccess) name:XXShareToWechatTimelineSuccessNotification object:nil];
-    }
-}
-
-// 分享到朋友圈成功后才可以继续播放下一页
-- (void)shareToWechatTimelineSuccess{
-    self.currentItem++;
-    // 有动画滚动到对应currentItem的位置
-    [self scrollToItemWithAnimation:self.currentItem];
-}
-
-- (void)showHudWithMessage:(NSString *)message{
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.playerPicView animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = message;
-    hud.removeFromSuperViewOnHide = YES;
-    [hud hide:YES afterDelay:1];
 }
 
 
@@ -446,6 +460,11 @@
 #pragma mark - 分享页面
 - (void)share{
     [XXNotificationCenter postNotificationName:XXPlayerShareNotification object:nil];
+}
+
+- (void)unpluggedEarPhone{
+    self.playing = YES;
+    [self playOrStop];
 }
 
 

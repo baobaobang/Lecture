@@ -34,8 +34,7 @@
     if (self = [super initWithFrame:frame]) {
         
         // 设置自己的属性
-        self.backgroundColor = [UIColor blackColor];
-        self.alpha = 0.6;
+        [self setMaskColor];
         
         // 初始化子控件
         UILabel *pageNumberLabel = [[UILabel alloc] init];

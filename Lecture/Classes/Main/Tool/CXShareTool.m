@@ -9,7 +9,7 @@
 #import "CXShareTool.h"
 
 @implementation CXShareTool
-+ (void)shareInVc:(UIViewController *)vc url:(NSString *)url title:(NSString *)title shareText:(NSString *)shareText shareImage:(UIImage *)shareImage{
++ (void)shareInVc:(UIViewController *)vc url:(NSString *)url title:(NSString *)title shareText:(NSString *)shareText shareImage:(UIImage *)shareImage delegate:(id <UMSocialUIDelegate>)delegate{
     
     [UMSocialData defaultData].extConfig.wechatSessionData.url = url;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
@@ -26,7 +26,7 @@
                                       shareText:shareText
                                      shareImage:shareImage
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToSina,nil]
-                                       delegate:nil];
+                                       delegate:delegate];
 
 }
 
