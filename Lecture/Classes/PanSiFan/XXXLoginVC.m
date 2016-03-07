@@ -126,6 +126,10 @@
     [SVProgressHUD show];
     [NetworkManager postWithApi:@"register" params:params success:^(id result) {
         [SVProgressHUD dismiss];
+        if ([result[@"ret"] integerValue] == 1){
+            [SVProgressHUD showErrorWithStatus:@"验证码错误"];
+            return;
+        }
         if ([result[@"ret"] integerValue] == 0) {
             UserDefaultsSave(result[@"data"][@"token"], @"access_token");
             if ([result[@"data"][@"type"] integerValue] == 1) {

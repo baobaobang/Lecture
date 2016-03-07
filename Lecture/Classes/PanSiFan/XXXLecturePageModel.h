@@ -10,6 +10,7 @@
 
 @interface XXXLecturePageModel : XXXBaseModel
 
+@property (nonatomic, copy) NSString *pageId;
 @property (nonatomic, assign) NSInteger pageNo;//页码
 @property (nonatomic, copy) NSString *title;//标题
 @property (nonatomic, copy) NSString *picture;//图片

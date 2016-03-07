@@ -47,12 +47,19 @@
         } success:^(id result) {
             dic[@"infoPic"] = result;
             [SVProgressHUD show];
-            [NetworkManager postWithApi:@"apply" params:@{} success:^(id result) {
+            
+            
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [SVProgressHUD showSuccessWithStatus:@"申请成功"];
-                //TODO: 申请
-            } fail:^(NSError *error) {
-                
-            }];
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+//            [NetworkManager postWithApi:@"apply" params:@{} success:^(id result) {
+//                [SVProgressHUD showSuccessWithStatus:@"申请成功"];
+//                //TODO: 申请
+//            } fail:^(NSError *error) {
+//                
+//            }];
         } fail:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:@"上传失败"];
         } isImageType:YES];

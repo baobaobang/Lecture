@@ -82,7 +82,8 @@
         [self.dataArray addObjectsFromArray:tempArr];
         [self.tableView reloadData];
     } fail:^(NSError *error) {
-        
+        [self endHeaderRefresh];
+        [self endFooterRefresh];
     }];
     
 }
