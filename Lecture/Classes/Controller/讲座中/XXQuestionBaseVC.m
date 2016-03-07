@@ -27,7 +27,9 @@
 
 @property (nonatomic, strong) XXReplyPlayingIndex *clickedIndex; // 正在播放的回复index
 
-// 录音部分
+// 用户回复部分
+@property (nonatomic, weak) UIView *maskView;
+// 专家录音部分
 @property (nonatomic, strong) NSURL *fileUrl;
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *mp3Path;
@@ -65,7 +67,6 @@
 #pragma mark - 生命周期
 - (void)dealloc
 {
-    //    XXLog(@"%@",self.textView);
     [XXNotificationCenter removeObserver:self];
 }
 
@@ -74,11 +75,6 @@
     
     // 注册cell
     [self.tableView registerClass:[XXQuestionCell class] forCellReuseIdentifier:XXQuestionCellReuseId];
-    
-    // 回复部分
-    if (!isExpert) { // 如果是用户，则设置输入框
-        [self setupTextView];
-    }
     
     [self setupRefresh];
     
@@ -96,6 +92,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
+    // 点击回复cell的通知
     [XXNotificationCenter addObserver:self selector:@selector(clickReplyCell:) name:XXReplyCellDidClickNotification object:nil];
     
     // 键盘的frame发生改变时发出的通知（位置和尺寸）
@@ -106,29 +103,10 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    [self.textView resignFirstResponder];
-    
     [XXNotificationCenter removeObserver:self];
 }
 
 #pragma mark - 初始化方法
-- (void)setupTextView{
-    CXTextView *textView = [[CXTextView alloc] init];
-    textView.font = [UIFont systemFontOfSize:kXXTextFont];
-    textView.frame = CGRectMake(0, XXScreenHeight, XXScreenWidth, kXXQuestionVCTextViewOriginalHeight); // 初始位置为底部
-    textView.delegate = self;
-    textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
-    textView.enablesReturnKeyAutomatically = YES;//这里设置为无文字就灰色不可点
-    textView.placeholder = @"回复";// 占位文字
-    textView.autoAdjust = YES; // 自适应
-    textView.adjustTop = YES; // 向上调整
-    textView.maxHeight = kXXQuestionVCTextViewMaxHeight; // 最大高度限制
-    [textView setupBorderolor:XXColor(200, 200, 200) borderWidth:1 cornerRadius:5 masksToBounds:YES];// 设置边框
-    
-    [XXKeyWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
-    self.textView = textView;
-}
-
 - (void)setupRefresh{
     WS(weakSelf);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -178,11 +156,6 @@
 {
     XXQuestionFrame *frame = self.questionFrames[indexPath.row];
     return frame.cellHeight;
-}
-
-#pragma mark - 点击cell后的反应
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.textView resignFirstResponder];
 }
 
 #pragma mark - 点击toolbar上的按钮，XXQuestionToolbarDelegate
@@ -235,28 +208,104 @@
 }
 
 
-#pragma mark - 开始回复
+#pragma mark - 开始回复（专家和用户）
 - (void)beginReplyWithQuestionId:(NSString *)questionId{
-    if (isExpert) { // 专家情况
-        XXExpertReplyView *replyView = [[[NSBundle mainBundle] loadNibNamed:@"XXExpertReplyView" owner:nil options:nil] lastObject];
-        replyView.frame = CGRectMake(0, 0, XXScreenWidth, XXScreenHeight);
-        [XXTopWindow addSubview:replyView];
-        replyView.delegate = self;
-        self.replyingQuestionId = questionId;
-        self.replyView = replyView;
-    }else{ // 用户情况
-        if (![self.textView isFirstResponder]) {
-            [self.textView becomeFirstResponder]; // 懒加载textview，并唤起键盘
-        }
-        if (![questionId isEqualToString:self.replyingQuestionId]) { // 如果回复的是不同的问题，就清空之前的回复
-            self.textView.text = nil;
-            self.replyingQuestionId = questionId;
-        }
-    }
+    // 改变回复的问题id
+    self.replyingQuestionId = questionId;
     
+    if (isExpert) { // 专家情况
+        [self beginExpertReply];
+    }else{ // 用户情况
+        [self beginUserReply];
+    }
+}
+#pragma mark - 用户回复
+
+- (void)beginUserReply{
+    // 添加蒙版
+    UIView *maskView = [[UIView alloc] initWithFrame:FullScreenFrame];
+    [maskView setMaskColorWithAlpha:0.1];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMaskView)];
+    [maskView addGestureRecognizer:tap];
+    [XXTopWindow addSubview:maskView];
+    self.maskView = maskView;
+    
+    // 添加TextView输入框，并弹出
+    CXTextView *textView = [[CXTextView alloc] init];
+    textView.font = [UIFont systemFontOfSize:kXXTextFont];
+    textView.frame = CGRectMake(0, XXScreenHeight, XXScreenWidth, kXXQuestionVCTextViewOriginalHeight); // 初始位置为底部
+    textView.delegate = self;
+    textView.returnKeyType = UIReturnKeySend; // 设置“发送”按钮
+    textView.enablesReturnKeyAutomatically = YES;//这里设置为无文字就灰色不可点
+    textView.placeholder = @"回复";// 占位文字
+    textView.autoAdjust = YES; // 自适应
+    textView.adjustTop = YES; // 向上调整
+    textView.maxHeight = kXXQuestionVCTextViewMaxHeight; // 最大高度限制
+    [textView setupBorderolor:XXColor(200, 200, 200) borderWidth:1 cornerRadius:5 masksToBounds:YES];// 设置边框
+    
+    [XXTopWindow addSubview:textView]; // 添加到窗口上，这样不会跟着tableview一起滚动
+    self.textView = textView;
+    
+    [textView becomeFirstResponder];
 }
 
-#pragma mark - XXExpertReplyViewDelegate 专家录音部分
+// 点击蒙版退出用户回复
+- (void)tapMaskView{
+    [self endUserReply];
+}
+
+- (void)endUserReply{
+    [self.textView resignFirstResponder];
+    [self.textView removeFromSuperview];
+    [self.maskView removeFromSuperview];
+}
+
+// 这个函数的最后一个参数text代表你每次输入的的那个字
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    
+    // 限制字数
+    if ([text isEqualToString:@""]) {//这个是汉语联想的时候的他会出现的，第一次暂时让其联想，下次输入就不能联想了，因为第一次联想它不给自己算lenth，下次再联想词汇就会算上上次输入的，这个是苹果自己的BUG 如果是textfiled，一样 检测每个字符的变化。
+        return YES;
+    }
+    if (textView.text.length>=kXXQuestionVCTextViewMaxWords)
+    {
+        // 给个提示
+        NSString *message = [NSString stringWithFormat:@"字符个数不能大于%lu！", (unsigned long)kXXQuestionVCTextViewMaxWords];
+        UIAlertView *tipAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [tipAlert show];
+        return NO;
+    }
+    
+    // 监听文字输入，来完成发送
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        //在这里做你响应return键的代码
+        [self sendReply];
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
+    // 禁用emoji字符并提示
+    return [text forbiddenEmoji];
+}
+
+
+//#pragma mark - scrollView Delegate
+//// 拖动tableview就退出键盘
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+//    if ([scrollView isKindOfClass:[UITableView class]]) {
+//        [self.textView resignFirstResponder];
+//    }
+//}
+
+#pragma mark - 专家回复
+
+- (void)beginExpertReply{
+    
+    XXExpertReplyView *replyView = [[[NSBundle mainBundle] loadNibNamed:@"XXExpertReplyView" owner:nil options:nil] lastObject];
+    replyView.frame = CGRectMake(0, 0, XXScreenWidth, XXScreenHeight);
+    [XXTopWindow addSubview:replyView];
+    replyView.delegate = self;
+    self.replyView = replyView;
+}
 // 点击取消按钮
 - (void)expertReplyView:(XXExpertReplyView *)expertReplyView didClickCancleButton:(UIButton *)btn{
     [self stopPlay];
@@ -370,18 +419,16 @@
     self.replyView.status = XXExpertReplyButtonStatusStop;
 }
 
-#pragma mark - 发送回复接口
+#pragma mark - 发送回复
 - (void)sendReply{
     if (isExpert) {
-        [self uploadExpertReplyMp3];
+        [self sendExpertReply];
     }else{
-        [self postReplyWithContent:self.textView.text questionId:self.replyingQuestionId];
-        [self.textView resignFirstResponder];
+        [self sendUserReply];
     }
 }
 
-// 上传专家回复音频
-- (void)uploadExpertReplyMp3{
+- (void)sendExpertReply{
     // wav转MP3
     NSString *mp3Path = [[self.path stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
     [Transcoder transcodeToMP3From:self.path toPath:mp3Path];
@@ -397,7 +444,7 @@
         // 移除本地mp3
         NSFileManager *fileManager = [NSFileManager defaultManager];
         [fileManager removeItemAtPath:mp3Path error:nil];
-        // 上传音频路径到服务器
+        // 上传音频路径
         [self postReplyWithContent:result questionId:self.replyingQuestionId];
     } fail:^(NSError *error) {
         [SVProgressHUD dismiss];
@@ -407,7 +454,13 @@
     } isImageType:NO];
 }
 
-// 上传回复文本
+- (void)sendUserReply{
+    
+    [self postReplyWithContent:self.textView.text questionId:self.replyingQuestionId];
+    [self endUserReply];
+}
+
+// 上传回复文本（专家为语音url地址，用户为文字内容）
 - (void)postReplyWithContent:(NSString *)content questionId:(NSString *)questionId{
     // 陈旭接口-发送回复接口
     NSString *url = [NSString stringWithFormat:@"questions/%@/replies", questionId];
@@ -445,16 +498,10 @@
         // 滚动到所在问题行的底部
         [weakSelf.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         
-        // 清空文字
-        if (!isExpert) {
-            weakSelf.textView.text = nil;
-        }
-        
     } fail:^(NSError *error) {
         [MBProgressHUD showError:@"发送失败！" toView:weakSelf.view];
     }];
 }
-
 
 
 #pragma mark - 点击点赞按钮后
@@ -507,56 +554,11 @@
     }];
 }
 
-
-#pragma mark - UITextViewDelegate
-
-// 这个函数的最后一个参数text代表你每次输入的的那个字
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    
-    // 限制字数
-    if ([text isEqualToString:@""]) {//这个是汉语联想的时候的他会出现的，第一次暂时让其联想，下次输入就不能联想了，因为第一次联想它不给自己算lenth，下次再联想词汇就会算上上次输入的，这个是苹果自己的BUG 如果是textfiled，一样 检测每个字符的变化。
-        return YES;
-    }
-    if (textView.text.length>=kXXQuestionVCTextViewMaxWords)
-    {
-        // 给个提示
-        NSString *message = [NSString stringWithFormat:@"字符个数不能大于%lu！", (unsigned long)kXXQuestionVCTextViewMaxWords];
-        UIAlertView *tipAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [tipAlert show];
-        return NO;
-    }
-    
-    // 监听文字输入，来完成发送
-    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
-        //在这里做你响应return键的代码
-        [self sendReply];
-        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
-    }
-    
-    // 禁用emoji字符并提示
-    return [text forbiddenEmoji];
-}
-
-
-#pragma mark - scrollView Delegate
-// 拖动tableview就退出键盘
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    if ([scrollView isKindOfClass:[UITableView class]]) {
-        [self.textView resignFirstResponder];
-    }
-}
-
 #pragma mark - 刷新
 
 - (void)headerRefreshAction{
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //        [self endHeaderRefresh];
-    //    });
 }
 - (void)footerRefreshAction{
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //        [self endFooterRefresh];
-    //    });
 }
 
 - (void)endHeaderRefresh{
