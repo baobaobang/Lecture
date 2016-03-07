@@ -355,14 +355,8 @@
 
 
 - (IBAction)preView:(UIButton *)sender {
-//    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-//    NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,(long)self.pageModel.pageNo]];
     
-    //[self executeVoices:path];
-    
-    //NSLog(@"%@----------%ld",path,self.pageModel.localUrls.count);
-    
-    if (self.pageModel.localUrls.count == 0) {
+    if (self.pageModel.localUrls.count == 0 && self.pageModel.audio.length == 0) {
         [SVProgressHUD showInfoWithStatus:@"没有新录音"];
         return;
     }
@@ -374,15 +368,17 @@
         _playerState = 0;
         return;
     }
-    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,(long)self.pageModel.pageNo]];
+    if (self.pageModel.localUrls.count > 0) {
+        NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,(long)self.pageModel.pageNo]];
+        [self executeVoices:path];
+        _player = [[AudioTool shareAudioTool] streamPlayerWithURL:path];
+    }else if (self.pageModel.audio.length>0 && [self.pageModel.audio hasPrefix:@"http"]) {
+        _player = [[AudioTool shareAudioTool] streamPlayerWithURL:self.pageModel.audio];
+    }{
+        
+    }
     
-//    [self.pageModel.localUrls removeAllObjects];
-//    [self.pageModel.localUrls addObject:path];
-    [self executeVoices:path];
-    _player = [[AudioTool shareAudioTool] streamPlayerWithURL:path];
-
-    //_player.delegate = self;
     _curPlayIndex = 0;
     
         [_player play];
@@ -468,14 +464,12 @@
 - (void)setPageModel:(XXXLecturePageModel *)pageModel{
     _pageModel = pageModel;
     self.supperVC.pageSelectedDelegate = self;
-    if (pageModel.localUrls.count == 0 && pageModel.audio) {
-        [pageModel.localUrls addObject:[pageModel.audio copy]];
-    }
+//    if (pageModel.localUrls.count == 0 && pageModel.audio) {
+//        [pageModel.localUrls addObject:[pageModel.audio copy]];
+//    }
     self.titleLabel.text = pageModel.title;
     self.recordBtn.voiceUrls = pageModel.localUrls;
-    if (pageModel.localImage) {
-
-    }
+    
     [self.voiceViews removeAllObjects];
     [self.voiceListContaner removeSubviews];
     [self updateVoiceList];

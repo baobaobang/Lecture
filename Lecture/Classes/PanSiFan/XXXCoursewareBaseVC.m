@@ -183,10 +183,10 @@
                 
             }
         }
-//        [self.view bringSubviewToFront:_titleTips];
         return;
     }
     
+    [[AudioTool shareAudioTool].streamPlayer pause];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag-1001 inSection:0];
     NSLog(@"%ld------%ld",(long)sender.tag,(long)indexPath.row);
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];

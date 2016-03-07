@@ -10,8 +10,9 @@
 #import "AFNetworking.h"
 #import "UIImage+CutImage.h"
 
-#define HOST @"http://121.42.171.213:3000"
-
+//#define HOST @"http://121.42.171.213:3000"
+#define HOST @"http://114.215.243.223:3000"
+//#define HOST @"http://127.0.0.1:3000"
 @interface NetworkManager()
 
 @property (nonatomic, strong) AFHTTPSessionManager *manager;

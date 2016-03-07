@@ -10,6 +10,20 @@
 
 @implementation XXXLecturePageModel
 
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [XXXLecturePageModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+            return @{@"pageId":@"id"};
+        }];
+    }
+    return self;
+}
+
+
+
 - (BOOL)save{
     
     FMDatabase *db = [DBManager shareDBManager].db;
