@@ -59,6 +59,9 @@
 //音频采样率
 #define SAMPLERATE 10000.0  //44100.0
 
+
+#define NOTIFICATION_TOFINISHINFO @"tofinishInfo"
+
 #define UMKey @"569eec33e0f55a6ad500118c"//友盟Key
 #define QQAppKey @"QNusQiGZCItieACl"
 #define QQAppId @"1105197190"

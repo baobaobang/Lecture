@@ -178,6 +178,11 @@
     
 }
 
+/**
+ *  合并录音转换成Mp3
+ *
+ *  @param toPath 最终文件路径
+ */
 - (void)executeVoices:(NSString *)toPath{
     
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -195,8 +200,9 @@
 #pragma 上传
 - (IBAction)upload:(id)sender {
     
-    if (!self.chosenImage || self.titleLabel.text.length == 0 || (self.pageModel.localUrls.count == 0 && self.pageModel.audio.length == 0)) {
-        AlertMessage(@"请将信息填写完整");
+    if (!self.chosenImage || (self.pageModel.localUrls.count == 0 && self.pageModel.audio.length == 0)) {
+        //AlertMessage(@"请将信息填写完整");
+        [SVProgressHUD showInfoWithStatus:@"内容不完整"];
         return;
     }
     
@@ -208,7 +214,7 @@
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,(long)self.pageModel.pageNo]];
     [self executeVoices:path];
-
+    
     NSData *data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
     
     [NetworkManager qiniuUpload:data progress:^(NSString *key, float percent) {
@@ -233,7 +239,9 @@
     } isImageType:NO];
 }
 
-
+/**
+ *  向服务器提交
+ */
 - (void)addPageTolecture{
     NSDictionary *params = @{@"pageNo":@(self.pageModel.pageNo),
                              @"title":self.titleLabel.text,
@@ -250,7 +258,9 @@
     }];
 }
 
-
+/**
+ *  成功后动画
+ */
 - (void)uploadSuccess{
     [_indicator stopAnimating];
     _indicator.hidden = YES;
@@ -344,19 +354,19 @@
 }
 
 
-- (IBAction)savePage:(UIButton *)sender {
-
-    
-}
-
-
-
 - (IBAction)preView:(UIButton *)sender {
+//    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//    NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,(long)self.pageModel.pageNo]];
+    
+    //[self executeVoices:path];
+    
+    //NSLog(@"%@----------%ld",path,self.pageModel.localUrls.count);
     
     if (self.pageModel.localUrls.count == 0) {
         [SVProgressHUD showInfoWithStatus:@"没有新录音"];
         return;
     }
+    
     if (_playerState == 1) {
         [_player pause];
         [_preView setBackgroundImage:[UIImage imageNamed:@"play"] forState:0];
@@ -364,8 +374,13 @@
         _playerState = 0;
         return;
     }
-
-    _player = [[AudioTool shareAudioTool] streamPlayerWithURL:self.pageModel.localUrls[0]];
+    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],self.pageModel.lectureId,(long)self.pageModel.pageNo]];
+    
+//    [self.pageModel.localUrls removeAllObjects];
+//    [self.pageModel.localUrls addObject:path];
+    [self executeVoices:path];
+    _player = [[AudioTool shareAudioTool] streamPlayerWithURL:path];
 
     //_player.delegate = self;
     _curPlayIndex = 0;
@@ -380,24 +395,33 @@
 
 - (void)endPreView{
     
-    //只处理当前页的通知
-    if (self.supperVC.curPage == self.pageModel.pageNo) {
-        return;
-    }
+//    //只处理当前页的通知
+//    if (self.supperVC.curPage == self.pageModel.pageNo) {
+//        return;
+//    }
+    _player = nil;
+    _playerState = 0;
+    [_preView setBackgroundImage:[UIImage imageNamed:@"play"] forState:0];
+    _voiceListContaner.userInteractionEnabled = YES;
+    return;
         //全部播放完
-    if (_curPlayIndex+1 == self.pageModel.localUrls.count) {
-        _player = nil;
-        _playerState = 0;
-        [_preView setBackgroundImage:[UIImage imageNamed:@"play"] forState:0];
-        _voiceListContaner.userInteractionEnabled = YES;
-        return;
-    }
-        //播放下一条音频
-    _player = [[AudioTool shareAudioTool] streamPlayerWithURL:self.pageModel.localUrls[_curPlayIndex+1]];
-    
-    _curPlayIndex ++ ;
-    
-    [_player play];
+//    if (_curPlayIndex+1 == self.pageModel.localUrls.count) {
+//        _player = nil;
+//        _playerState = 0;
+//        [_preView setBackgroundImage:[UIImage imageNamed:@"play"] forState:0];
+//        _voiceListContaner.userInteractionEnabled = YES;
+//        return;
+//    }
+//    NSLog(@"%ld-----------%ld--------------%ld",(long)self.pageModel.localUrls.count,(long)self.supperVC.curPage,(long)self.pageModel.pageNo);
+//    for (XXXLecturePageModel *page in self.supperVC.lectureModel.pages) {
+//        NSLog(@">>>>>>>>>>>>>%ld",page.pageNo);
+//    }
+//        //播放下一条音频
+//    _player = [[AudioTool shareAudioTool] streamPlayerWithURL:self.pageModel.localUrls[_curPlayIndex+1]];
+//    
+//    _curPlayIndex ++ ;
+//    
+//    [_player play];
     
     
 }

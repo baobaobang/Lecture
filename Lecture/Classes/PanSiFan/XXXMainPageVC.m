@@ -20,6 +20,8 @@
 #import "XXLectureHomeVC.h"
 #import "DateFormatter.h"
 #import "XXXLoginVC.h"
+#import "EditUserInfoVC.h"
+
 @interface XXXMainPageVC ()<XXXMakeLectureViewDelegate>
 
 @property (nonatomic, strong) XXXMakeLectureView *mlv;
@@ -32,29 +34,14 @@
     [super viewDidLoad];
     self.title = @"医讲堂";
     
-//    //NetworkManager *manager = [[NetworkManager s];
-//    UIImage *a = [UIImage imageNamed:@"1"];
-//    UIImage *b = [UIImage imageNamed:@"2"];
-//    UIImage *c = [UIImage imageNamed:@"3"];
-//    NSArray *arr = @[a,b,c];
-//    [NetworkManager qiniuUpload:arr progress:^(NSString *key, float percent) {
-//        
-//    } success:^(id result) {
-//        
-//    } fail:^(NSError *error) {
-//        
-//    } allcompleteBlock:^(id result) {
-//        
-//    }];
-////    [manager qiniuUpload: progress:^(NSString *key, float percent) {
-////        
-////    } success:^(id result) {
-////        //NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>%@",result);
-////    } fail:^(NSError *error) {
-////        
-////    }];
-}
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushFinishInfoVC) name:NOTIFICATION_TOFINISHINFO object:nil];
 
+    
+}
+- (void)pushFinishInfoVC{
+    [self.navigationController pushViewController:[[EditUserInfoVC alloc]init] animated:YES];
+}
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

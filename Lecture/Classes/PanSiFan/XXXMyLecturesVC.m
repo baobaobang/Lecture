@@ -33,7 +33,7 @@
 #pragma -请求数据
 - (void)getLectures:(BOOL) header{
     
-    NSString *api = [NSString stringWithFormat:@"lectures?from=%ld&size=10",header?0:(long)self.dataArray.count];
+    NSString *api = [NSString stringWithFormat:@"my/lectures?from=%ld&size=10",header?0:(long)self.dataArray.count];
     [NetworkManager getWithApi:api params:nil success:^(id result) {
         [self endHeaderRefresh];
         [self endFooterRefresh];
@@ -82,8 +82,8 @@
  */
 - (void)editLecture:(XXXLectureModel *)model{
     
-    [SVProgressHUD showInfoWithStatus:@"暂未开放"];
-    return;
+//    [SVProgressHUD showInfoWithStatus:@"暂未开放"];
+//    return;
     XXXCoursewareBaseVC *cb = [[XXXCoursewareBaseVC alloc]init];
     cb.lectureModel = model;
     [self presentViewController:cb animated:YES completion:nil];

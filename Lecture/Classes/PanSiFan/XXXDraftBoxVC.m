@@ -85,6 +85,7 @@
     
     XXXCoursewareBaseVC *cb = [[XXXCoursewareBaseVC alloc]init];
     cb.lectureModel = model;
+    cb.fromDraft = YES;
     [self presentViewController:cb animated:YES completion:nil];
     
 //    XXXCoursewareBaseVC *cb = [[XXXCoursewareBaseVC alloc]init];

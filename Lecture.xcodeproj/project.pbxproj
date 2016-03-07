@@ -17,6 +17,7 @@
 		162E88A11C61EE9D004F4C00 /* XXXProtocolTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E88A01C61EE9D004F4C00 /* XXXProtocolTipView.m */; };
 		16665EAE1C7C004D00A0B4B5 /* XXXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 16665EAD1C7C004D00A0B4B5 /* XXXUser.m */; };
 		16832C741C86EB3700692E74 /* UIImage+CutImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16832C731C86EB3700692E74 /* UIImage+CutImage.m */; };
+		16A47A511C8AB8F4006C74B5 /* EditUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16A47A501C8AB8F4006C74B5 /* EditUserInfoVC.xib */; };
 		16C139031C5F2D67003B1CB9 /* XXXMakeLectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */; };
 		16C139061C5F4EA8003B1CB9 /* AudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C139051C5F4EA8003B1CB9 /* AudioTool.m */; };
 		16C64A041C62EB5200C6CB58 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C64A021C62EB5200C6CB58 /* SlideMenuController.swift */; };
@@ -30,6 +31,7 @@
 		16CFE3621C7065600033C3BE /* XXXBaseRefreshVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CFE3611C7065600033C3BE /* XXXBaseRefreshVC.m */; };
 		16CFE3651C70721A0033C3BE /* XXXLecturePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CFE3641C70721A0033C3BE /* XXXLecturePageModel.m */; };
 		16CFE3681C707F4D0033C3BE /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CFE3671C707F4D0033C3BE /* DateFormatter.m */; };
+		16F071431C89964D0032AB28 /* EditUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F071421C89964D0032AB28 /* EditUserInfoVC.m */; };
 		16F979E61C7010EB00C636A6 /* XXXLeftMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F979E41C7010EB00C636A6 /* XXXLeftMenuVC.m */; };
 		16F979E71C7010EB00C636A6 /* XXXLeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16F979E51C7010EB00C636A6 /* XXXLeftMenuVC.xib */; };
 		2D1BDEEB1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BDEDD1C5B493B00056E87 /* XXLectureJoinVC（讲座前）.m */; };
@@ -196,6 +198,7 @@
 		16665EAD1C7C004D00A0B4B5 /* XXXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXUser.m; sourceTree = "<group>"; };
 		16832C721C86EB3700692E74 /* UIImage+CutImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CutImage.h"; sourceTree = "<group>"; };
 		16832C731C86EB3700692E74 /* UIImage+CutImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CutImage.m"; sourceTree = "<group>"; };
+		16A47A501C8AB8F4006C74B5 /* EditUserInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditUserInfoVC.xib; sourceTree = "<group>"; };
 		16C139011C5F2D67003B1CB9 /* XXXMakeLectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXMakeLectureView.h; sourceTree = "<group>"; };
 		16C139021C5F2D67003B1CB9 /* XXXMakeLectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXMakeLectureView.m; sourceTree = "<group>"; };
 		16C139041C5F4EA8003B1CB9 /* AudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTool.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 		16CFE3641C70721A0033C3BE /* XXXLecturePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXLecturePageModel.m; sourceTree = "<group>"; };
 		16CFE3661C707F4D0033C3BE /* DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter.h; sourceTree = "<group>"; };
 		16CFE3671C707F4D0033C3BE /* DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter.m; sourceTree = "<group>"; };
+		16F071411C89964D0032AB28 /* EditUserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserInfoVC.h; sourceTree = "<group>"; };
+		16F071421C89964D0032AB28 /* EditUserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserInfoVC.m; sourceTree = "<group>"; };
 		16F979E31C7010EB00C636A6 /* XXXLeftMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXLeftMenuVC.h; sourceTree = "<group>"; };
 		16F979E41C7010EB00C636A6 /* XXXLeftMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXLeftMenuVC.m; sourceTree = "<group>"; };
 		16F979E51C7010EB00C636A6 /* XXXLeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXXLeftMenuVC.xib; sourceTree = "<group>"; };
@@ -691,6 +696,16 @@
 			name = draftbox;
 			sourceTree = "<group>";
 		};
+		16F071401C89960A0032AB28 /* usercenter */ = {
+			isa = PBXGroup;
+			children = (
+				16F071411C89964D0032AB28 /* EditUserInfoVC.h */,
+				16F071421C89964D0032AB28 /* EditUserInfoVC.m */,
+				16A47A501C8AB8F4006C74B5 /* EditUserInfoVC.xib */,
+			);
+			name = usercenter;
+			sourceTree = "<group>";
+		};
 		2D1BDEDB1C5B493B00056E87 /* 讲座前 */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +799,7 @@
 		2D23723F1C5F0DE800A422EF /* PanSiFan */ = {
 			isa = PBXGroup;
 			children = (
+				16F071401C89960A0032AB28 /* usercenter */,
 				16C649FF1C62EB0900C6CB58 /* frameworks */,
 				16C1390C1C6082F4003B1CB9 /* Base */,
 				16C1390B1C6082DF003B1CB9 /* Model */,
@@ -1447,6 +1463,7 @@
 				2D2372851C5F0E2600A422EF /* Info.plist in Resources */,
 				2D2372701C5F0DE800A422EF /* MainPageLectureCell.xib in Resources */,
 				2D23727C1C5F0DE800A422EF /* XXXLoginVC.xib in Resources */,
+				16A47A511C8AB8F4006C74B5 /* EditUserInfoVC.xib in Resources */,
 				2D75DA501C5709C80056FA6C /* XXOnlineHeaderView.xib in Resources */,
 				16F979E71C7010EB00C636A6 /* XXXLeftMenuVC.xib in Resources */,
 				2D50CCEC1C5A166A00FAF3AA /* XXQuestionReplyCell.xib in Resources */,
@@ -1556,6 +1573,7 @@
 				2D6309021C549B2F0092F622 /* XXQuestionCell.m in Sources */,
 				2D23727A1C5F0DE800A422EF /* XXXLectureModel.m in Sources */,
 				2D6309041C549B2F0092F622 /* XXQuestionHeaderView.m in Sources */,
+				16F071431C89964D0032AB28 /* EditUserInfoVC.m in Sources */,
 				2D6308F81C549B2F0092F622 /* XXExpertProfileCell.m in Sources */,
 				2D6308FF1C549B2F0092F622 /* XXPlayerPicView.m in Sources */,
 				2D1BDF0D1C5B62BE00056E87 /* XXLectureSelectedQuestions（精选提问）.m in Sources */,
@@ -1756,7 +1774,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1883,7 +1901,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
@@ -1907,7 +1925,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

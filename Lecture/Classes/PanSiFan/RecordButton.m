@@ -61,7 +61,7 @@
 
 - (void)record:(UIButton *)sender{
     [self addSubview:self.recordingView];
-    //NSLog(@"recording>>>>>>>>>>>>>>>>>>>>>>");
+    
         NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
         if (!_recorder) {
@@ -126,11 +126,20 @@
 }
 
 - (void)stopRecord {
+    
     [self.recordingView removeFromSuperview];
+    NSInteger intTime = (NSInteger)_recorder.currentTime;
     [_recorder stop];
     [_displayLink invalidate];
     _recorder = nil; //删除录音机,必须有这步  否则影响recorder创建逻辑
     _recorderState = RecorderStateStop;
+    
+    
+    if (intTime<2) {
+        [SVProgressHUD showInfoWithStatus:@"录音时间过短"];
+        [_voiceUrls removeLastObject];
+        return;
+    }
     [self.delegate stopRecord:self];
 }
 @end

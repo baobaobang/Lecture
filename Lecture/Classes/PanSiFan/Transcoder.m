@@ -59,7 +59,7 @@
 //        self.audioFileSavePath = mp3FilePath;  
         //NSLog(@"MP3生成成功: %@",mp3savePath);
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager removeItemAtPath:filePath error:nil];
+        //[fileManager removeItemAtPath:filePath error:nil];
         
     }
     
@@ -69,11 +69,13 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager createFileAtPath:toPath contents:nil attributes:nil];
     NSFileHandle *inFile = [NSFileHandle fileHandleForWritingAtPath:toPath];
+    
     for (NSString *filePath in files) {
         NSFileHandle *outFile = [NSFileHandle fileHandleForReadingAtPath:filePath];
         
         NSDictionary *dic = [fileManager attributesOfItemAtPath:filePath error:nil];
         long long size = [dic[NSFileSize] longLongValue];
+        
         long long point = 0;
         NSData *tempData;
         int times = (int)size/100000;
@@ -85,11 +87,13 @@
                 point+=100000;
                 [outFile seekToFileOffset:point];
             }
+            
             [inFile writeData:tempData];
             
-            //移除分段的文件
-            [fileManager removeItemAtPath:filePath error:nil];
         }
+        //移除分段的文件
+        //[fileManager removeItemAtPath:filePath error:nil];
     }
+    [inFile closeFile];
 }
 @end

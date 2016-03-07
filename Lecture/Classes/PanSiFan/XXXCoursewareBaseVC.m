@@ -27,7 +27,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.titleLabel.text = @"编辑讲座";
-    self.navRightView.image = [UIImage imageNamed:@"saveIcon"];
+    //self.navRightView.image = [UIImage imageNamed:@"saveIcon"];
     self.view.backgroundColor = [UIColor whiteColor];
     UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, SWIDTH, SHEIGHT) collectionViewLayout:[self flowLayout]];
     collectionView.pagingEnabled = YES;
@@ -41,16 +41,25 @@
     
     [self.view bringSubviewToFront:self.nav];
     
-    if (self.lectureModel.pages.count== 0) {
-        [NetworkManager getWithApi:[NSString stringWithFormat:@"lectures/%@",self.lectureModel.lectureId] params:nil success:^(id result) {
-            self.lectureModel = [XXXLectureModel mj_objectWithKeyValues:result[@"data"][@"lecture"]];
-            [self setTips];
-        } fail:^(NSError *error) {
-            
-        }];
-    }else{
+    if (self.fromDraft) {
         [self setTips];
+    }else{
+        if (self.lectureModel.pages.count== 0) {
+            [NetworkManager getWithApi:[NSString stringWithFormat:@"lectures/%@",self.lectureModel.lectureId] params:nil success:^(id result) {
+                self.lectureModel = [XXXLectureModel mj_objectWithKeyValues:result[@"data"][@"lecture"]];
+                [self setTips];
+            } fail:^(NSError *error) {
+                
+            }];
+        }else{
+            [self setTips];
+        }
     }
+    
+//    if (!self.fromDraft) {
+//        self.navRightView.alpha = 0;
+//    }
+    
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, SHEIGHT-50, SWIDTH, 50)];
     [button addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundImage:[UIImage imageNamed:@"save"] forState:0];
@@ -179,7 +188,7 @@
     }
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag-1001 inSection:0];
-    
+    NSLog(@"%ld------%ld",(long)sender.tag,(long)indexPath.row);
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
     
     self.curPage = sender.tag - 1000;
@@ -213,6 +222,7 @@
 - (void)setTips{
     if (self.lectureModel.pages.count == 0 ) {
         XXXLecturePageModel *page = [[XXXLecturePageModel alloc]init];
+        NSLog(@"%@",page);
         page.lectureId = self.lectureModel.lectureId;
         page.pageNo = 1;
         [self.lectureModel.pages addObject:page];
@@ -229,38 +239,46 @@
 /**
  *  导航右按钮
  */
-- (void)navRightAcion{
-    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    for (XXXLecturePageModel *pageModel in self.lectureModel.pages) {
-        NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.mp3",[NSDate date],pageModel.lectureId,(long)pageModel.pageNo]];
-        [self executeVoices:pageModel toPath:path];
-        pageModel.audio = path;
-    }
-    
+//- (void)navRightAcion{
+//    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//    for (XXXLecturePageModel *pageModel in self.lectureModel.pages) {
+//        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>%@",pageModel);
+//        NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.wav",[NSDate date],pageModel.lectureId,(long)pageModel.pageNo]];
+//        NSLog(@"%@",path);
+//        [self executeVoices:pageModel toPath:path];
+//        pageModel.audio = path;
+//    }
+//    
+//
+//    //NSLog(@"%d", [self.lectureModel save]);
+//
+//    
+//    if ([self.lectureModel save]) {
+//        [SVProgressHUD showSuccessWithStatus:@"已保存到草稿箱"];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }else{
+//        [SVProgressHUD showErrorWithStatus:@"保存失败"];
+//    }
+//}
 
-    //NSLog(@"%d", [self.lectureModel save]);
-
-    
-    if ([self.lectureModel save]) {
-        [SVProgressHUD showSuccessWithStatus:@"已保存到草稿箱"];
-    }else{
-        [SVProgressHUD showErrorWithStatus:@"保存失败"];
-    }
-}
-
-- (void)executeVoices:(XXXLecturePageModel *)pageModel toPath:(NSString *)toPath{
-    
-    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *path = [document stringByAppendingPathComponent:@"lectureTemp.wav"];
-    if (pageModel.localUrls.count>0) {
-        NSString *first = pageModel.localUrls.firstObject;
-        if ([first hasPrefix:@"http"]) {
-            [pageModel.localUrls removeObject:first];
-        }
-        [Transcoder concatFiles:pageModel.localUrls to:path];
-        [Transcoder transcodeToMP3From:path toPath:toPath];
-    }
-}
+//- (void)executeVoices:(XXXLecturePageModel *)pageModel toPath:(NSString *)toPath{
+//    NSLog(@"id%@>>>>>>>>>>>>%ld>>>>>>%@",pageModel.lectureId,(unsigned long)pageModel.localUrls.count,pageModel.audio);
+////    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+////    NSString *path = [document stringByAppendingPathComponent:@"lectureTemp.wav"];
+////     NSString *path = [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@lecture%@page%ld.wav",[NSDate date],pageModel.lectureId,(long)pageModel.pageNo]];
+//    if (pageModel.localUrls.count>0) {
+//        NSString *first = pageModel.localUrls.firstObject;
+//        if ([first hasPrefix:@"http"]) {
+//            [pageModel.localUrls removeObject:first];
+//        }
+//        NSLog(@"%@",toPath);
+//        for (NSString *url in pageModel.localUrls) {
+//            NSLog(@"%@",url);
+//        }
+//        [Transcoder concatFiles:pageModel.localUrls to:toPath];
+//        //[Transcoder transcodeToMP3From:path toPath:toPath];
+//    }
+//}
 /**
  *  懒加载标签
  *
@@ -272,11 +290,11 @@
         _titleTips.showsHorizontalScrollIndicator = NO;
         _titleTips.backgroundColor = [UIColor whiteColor];
         _titleTips.contentSize = CGSizeMake(SWIDTH, 30);
-        _addBtn = [[UIButton alloc]initWithFrame:CGRectMake(3,0, 30, 30)];
-        [_addBtn setBackgroundImage:[UIImage imageNamed:@"backimg"] forState:0];
-        //[button setTitle:_pageLabel.text forState:0];
-        [_addBtn addTarget:self action:@selector(clickAddPage) forControlEvents:UIControlEventTouchUpInside];
-        [_titleTips addSubview:_addBtn];
+//        _addBtn = [[UIButton alloc]initWithFrame:CGRectMake(3,0, 30, 30)];
+//        [_addBtn setBackgroundImage:[UIImage imageNamed:@"backimg"] forState:0];
+//        //[button setTitle:_pageLabel.text forState:0];
+//        [_addBtn addTarget:self action:@selector(clickAddPage) forControlEvents:UIControlEventTouchUpInside];
+//        [_titleTips addSubview:_addBtn];
         [self.view addSubview:_titleTips];
        
     }

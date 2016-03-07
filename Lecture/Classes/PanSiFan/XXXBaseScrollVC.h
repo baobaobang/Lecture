@@ -8,7 +8,7 @@
 
 #import "XXXBaseVC.h"
 
-@interface XXXBaseScrollVC : XXXBaseVC
+@interface XXXBaseScrollVC : XXXBaseVC<UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *curTextField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
