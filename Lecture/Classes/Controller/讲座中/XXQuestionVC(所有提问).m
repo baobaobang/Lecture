@@ -37,18 +37,25 @@
 {
     // 陈旭接口-所有问题接口-加载新问题
     WS(weakSelf);
-    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions/last?size=%d", self.lecture.lectureId, XXQuestionSize];
     
+    NSString *url;
+    XXQuestionFrame *firstQuestionF = [self.questionFrames firstObject];
+    NSInteger questionId = firstQuestionF.question.ID.integerValue + 1;
+    
+    if (firstQuestionF) { // 不是第一次进入
+        url = [NSString stringWithFormat:@"lectures/%@/questions?minId=%ld", self.lecture.lectureId, questionId];
+    }else{
+        url = [NSString stringWithFormat:@"lectures/%@/questions", self.lecture.lectureId];
+    }
     [NetworkManager getWithApi:url params:nil success:^(id result) {
         NSArray *arr = result[@"data"];
         NSMutableArray *questions = [XXQuestion mj_objectArrayWithKeyValuesArray:arr];
         // question模型转为questionFrames模型
-        weakSelf.questionFrames = [weakSelf questionFramesWithQuestions:questions];
-        
+        NSArray *newFrames = [weakSelf questionFramesWithQuestions:questions];
         // 将最新的微博数据，添加到总数组的最前面
-        //        NSRange range = NSMakeRange(0, size);
-        //        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
-        //        [self.questionFrames insertObjects:questionFrames atIndexes:set];
+        NSRange range = NSMakeRange(0, newFrames.count);
+        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+        [weakSelf.questionFrames insertObjects:newFrames atIndexes:set];
         
         // 刷新表格
         [weakSelf.tableView reloadData];
@@ -68,10 +75,10 @@
     // 计算questionId
     XXQuestionFrame *lastQuestionF = self.questionFrames.lastObject;
     
-    NSInteger questionId = lastQuestionF.question.ID.integerValue - 1;//TODO:
+    NSInteger questionId = lastQuestionF.question.ID.integerValue - 1;
     
     // 陈旭接口-所有问题接口-加载旧问题
-    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%d", self.lecture.lectureId, questionId, XXQuestionSize];
+    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?maxId=%ld", self.lecture.lectureId, questionId];
     WS(weakSelf);
     [NetworkManager getWithApi:url params:nil success:^(id result) {
         NSArray *arr = result[@"data"];

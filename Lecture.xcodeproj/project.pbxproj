@@ -1792,7 +1792,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "54da3d98-75a6-44eb-b571-a54d3d90f4d8";
+				PROVISIONING_PROFILE = "14a86c39-465a-4af4-959e-f116c3341363";
 			};
 			name = adHoc;
 		};
@@ -1920,7 +1920,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "54da3d98-75a6-44eb-b571-a54d3d90f4d8";
+				PROVISIONING_PROFILE = "14a86c39-465a-4af4-959e-f116c3341363";
 			};
 			name = Debug;
 		};
@@ -1943,7 +1943,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDoctor.lectureroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "54da3d98-75a6-44eb-b571-a54d3d90f4d8";
+				PROVISIONING_PROFILE = "14a86c39-465a-4af4-959e-f116c3341363";
 			};
 			name = Release;
 		};
