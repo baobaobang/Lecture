@@ -35,11 +35,9 @@
 // 下拉加载最新的问题
 - (void)headerRefreshAction
 {
-    NSUInteger size = 10;
-    NSUInteger questionId = 0;
     // 陈旭接口-所有问题接口-加载新问题
     WS(weakSelf);
-    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%ld", self.lecture.lectureId, questionId , size];
+    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions/last?size=%d", self.lecture.lectureId, XXQuestionSize];
     
     [NetworkManager getWithApi:url params:nil success:^(id result) {
         NSArray *arr = result[@"data"];
@@ -67,14 +65,13 @@
 // 上拉加载旧的问题
 - (void)footerRefreshAction
 {
-    NSUInteger size = 10;
     // 计算questionId
     XXQuestionFrame *lastQuestionF = self.questionFrames.lastObject;
     
-    NSInteger questionId = lastQuestionF.question.ID.integerValue + 1;//TODO:
+    NSInteger questionId = lastQuestionF.question.ID.integerValue - 1;//TODO:
     
     // 陈旭接口-所有问题接口-加载旧问题
-    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%ld", self.lecture.lectureId, questionId, size];
+    NSString *url = [NSString stringWithFormat:@"lectures/%@/questions?from=%ld&size=%d", self.lecture.lectureId, questionId, XXQuestionSize];
     WS(weakSelf);
     [NetworkManager getWithApi:url params:nil success:^(id result) {
         NSArray *arr = result[@"data"];

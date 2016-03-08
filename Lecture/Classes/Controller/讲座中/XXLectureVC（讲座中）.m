@@ -108,10 +108,9 @@
     _lecture = lecture;
 
     [self loadLectureDetail];// 传递数据给播放器
-    
     self.expertVc.lecture = lecture;// 传递数据给专家简介
     self.lectureDescriptionView.content = lecture.desc;// 传递数据给讲座简介
-    
+    self.onlineVc.lecture = lecture;
 }
 - (void)loadLectureDetail
 {

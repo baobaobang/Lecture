@@ -114,5 +114,5 @@ extern NSString * const XXReplyCellPlayBtnDidClickNotification;
 
 // 只能收听几页，之后需要分享才能继续收听
 #define XXSharePageNumber 2
-
+#define XXQuestionSize 10 // 每次加载的问题数目
 @end
